@@ -13,12 +13,12 @@ class Controller_Api_Auth extends Api_Auth {
         if ( ($user = Auth::instance()->email_login(Core::request('email'), Core::request('password'))) !== FALSE)
         {
             if ($user->loaded())
-            {   
+            {
                 //save device id only if its different
                 if (Core::request('device_id')!==NULL AND $user->device_id!=Core::request('device_id'))
                 {
                     $user->device_id = Core::request('device_id');
-                    try 
+                    try
                     {
                         $user->save();
                     }
@@ -36,7 +36,7 @@ class Controller_Api_Auth extends Api_Auth {
     public function action_social()
     {
         $user = FALSE;
-        
+
         $provider_name = Core::request('social_network');
         $identifier    = Core::request('token');
         $email         = Core::request('email');
@@ -55,12 +55,12 @@ class Controller_Api_Auth extends Api_Auth {
 
 
         if ( $user!== FALSE AND $user->loaded() )
-        {   
+        {
             //save device id only if its different
             if (Core::request('device_id')!==NULL AND $user->device_id!=Core::request('device_id'))
             {
                 $user->device_id = Core::request('device_id');
-                try 
+                try
                 {
                     $user->save();
                 }
@@ -70,11 +70,11 @@ class Controller_Api_Auth extends Api_Auth {
 
             $this->rest_output( array('user' => self::get_user_array($user)) );
         }
-        
+
     }
 
     public function action_index()
-    {   
+    {
         $this->action_login();
     }
 
@@ -89,25 +89,33 @@ class Controller_Api_Auth extends Api_Auth {
         if ($validation->check())
         {
             $email = $this->_post_params['email'];
-                    
-            //check we have this email in the DB
-            $user = new Model_User();
-            $user = $user->where('email', '=', $email)
-                    ->limit(1)
-                    ->find();
-            
-            if ($user->loaded())
+
+            if (Model_User::find_by_email($email)->loaded())
             {
                 $this->_error(__('User already exists'));
             }
             else
             {
                 //creating the user
-                $user = Model_User::create_email($this->_post_params['email'],$this->_post_params['name'],isset($this->_post_params['password'])?$this->_post_params['password']:NULL);
+                try
+                {
+                    $user = Model_User::create_email($this->_post_params['email'],$this->_post_params['name'],isset($this->_post_params['password'])?$this->_post_params['password']:NULL);
+                }
+                catch (ORM_Validation_Exception $e)
+                {
+                    $errors = '';
+
+                    foreach ($e->errors('models') as $error)
+                        $errors .= $error.' - ';
+
+                    $this->_error($errors);
+
+                    return;
+                }
 
                 //add custom fields
                 $save_cf = FALSE;
-                foreach ($this->_post_params as $custom_field => $value) 
+                foreach ($this->_post_params as $custom_field => $value)
                 {
                     if (strpos($custom_field,'cf_')!==FALSE)
                     {
@@ -122,7 +130,7 @@ class Controller_Api_Auth extends Api_Auth {
                 //create the API token since he registered int he app
                 $res = $user->as_array();
                 $res['user_token'] = $user->api_token();
-            
+
                 $this->rest_output(array('user' => $res));
             }
 
@@ -131,10 +139,10 @@ class Controller_Api_Auth extends Api_Auth {
         {
             $errors = '';
             $e = $validation->errors('auth');
-                
-            foreach ($e as $error) 
+
+            foreach ($e as $error)
                 $errors.=$error.' - ';
-                
+
             $this->_error($errors);
         }
 
@@ -153,7 +161,7 @@ class Controller_Api_Auth extends Api_Auth {
                                 'user_agent');
 
         //remove the hidden fields
-        foreach ($res as $key => $value) 
+        foreach ($res as $key => $value)
         {
             if(in_array($key,$hidden_fields))
                 unset($res[$key]);

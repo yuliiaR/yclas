@@ -156,4 +156,24 @@ class Valid extends Kohana_Valid{
         // Check if the number is within range
         return in_array(strlen($number), $lengths);
     }
+
+    /**
+     * Checks if a vat number is valid.
+     *
+     * @param   string  $number     vat number to check
+     * @param   array   $lengths
+     * @return  boolean
+     */
+    public static function vies($validation, $fields)
+    {
+        if (! empty($validation['cf_vatnumber']) AND ! empty($validation['cf_vatcountry']))
+        {
+            if ( ! euvat::verify_vies($validation['cf_vatnumber'], $validation['cf_vatcountry']))
+            {
+                return FALSE;
+            }
+        }
+
+        TRUE;
+    }
 }

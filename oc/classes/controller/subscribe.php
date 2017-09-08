@@ -9,28 +9,35 @@ class Controller_Subscribe extends Controller {
 		if (Valid::email($email,TRUE))
 		{
 			/* find user and compare emails */
-			
-			$obj_user = new Model_User();
+			$user = Model_User::find_by_email($email);
 
-			$user = $obj_user->where('email', '=', $email)->limit(1)->find();
-
-			// case when user is not logged in. 
+			// case when user is not logged in.
     		// We create new user if he doesn't exists in DB
     		// and send him mail for ad created + new profile created
 			if(!$user->loaded())
 			{
-				$user = Model_User::create_email($email);
+				try
+				{
+	                $user = Model_User::create_email($email);
+	            }
+	            catch (ORM_Validation_Exception $e) {
+	                $errors = $e->errors('models');
+	                foreach ($errors as $f => $err)
+	                {
+	                    Alert::set(Alert::ALERT, $err);
+	                }
+	            }
 			}
 			/* save this user to data base as subscriber */
-			
+
 			$arr_cat = Core::post('category_subscribe');
-			
+
 			// string in this case is returned as "int,int" so we need to format min/max price
 			$price = Core::post('price_subscribe');
-			
+
 			if($price = Core::post('price_subscribe'))
 			{
-				$min_price = substr($price, '0', stripos($price, ',')); 
+				$min_price = substr($price, '0', stripos($price, ','));
 				$max_price = substr($price, strrpos($price, ',')+1);
 			}
 			else
@@ -40,15 +47,15 @@ class Controller_Subscribe extends Controller {
 				$min_price = Core::post('price_subscribe-1');
 				$max_price = Core::post('price_subscribe-2');
 			}
-			
-			
+
+
 			//if categry is not selected, subscribe them for al, set category to 0 thats all...
             if($arr_cat === NULL)
-			    $arr_cat[] = 0; 
+			    $arr_cat[] = 0;
 
 
 			// create entry table subscriber for each category selected
-			foreach ($arr_cat as $c => $id_value) 
+			foreach ($arr_cat as $c => $id_value)
 			{
 				$obj_subscribe = new Model_Subscribe();
 
@@ -63,7 +70,7 @@ class Controller_Subscribe extends Controller {
 				} catch (Exception $e) {
 					throw HTTP_Exception::factory(500,$e->getMessage());
 				}
-				
+
 			}
 			Alert::set(Alert::SUCCESS, __('Thank you for subscribing'));
 			$this->redirect(Route::url('default'));
@@ -73,11 +80,11 @@ class Controller_Subscribe extends Controller {
 			Alert::set(Alert::ALERT, __('Invalid Email'));
 			$this->redirect(Route::url('default'));
 		}
-	} 
+	}
 
 	public function action_unsubscribe()
 	{
-        if (Auth::instance()->logged_in()) 
+        if (Auth::instance()->logged_in())
         {
             DB::delete('subscribers')->where('id_user', '=', $this->user->id_user)->execute();
 
@@ -85,7 +92,7 @@ class Controller_Subscribe extends Controller {
         }
 
 		$this->redirect(Route::url('default'));
-		
+
 	}
 
 	public function action_subscribe()

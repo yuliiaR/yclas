@@ -14,13 +14,13 @@ class Controller_Panel_Tools extends Auth_Controller {
     {
         parent::__construct($request, $response);
         Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Tools')));
-        
+
     }
-    
+
     public function action_index()
     {
         //@todo just a view with links?
-        HTTP::redirect(Route::url('oc-panel',array('controller'  => 'update','action'=>'index')));  
+        HTTP::redirect(Route::url('oc-panel',array('controller'  => 'update','action'=>'index')));
     }
 
 
@@ -43,10 +43,10 @@ class Controller_Panel_Tools extends Auth_Controller {
         $total_space = 0;
         $total_gain  = 0;
         $tables_info = array();
-        
+
         $tables = $db->query(Database::SELECT, 'SHOW TABLE STATUS');
 
-        foreach ($tables as $table) 
+        foreach ($tables as $table)
         {
             $tot_data = $table['Data_length'];
             $tot_idx  = $table['Index_length'];
@@ -90,7 +90,7 @@ class Controller_Panel_Tools extends Auth_Controller {
             Alert::set(Alert::SUCCESS,__('Deleted expired cache'));
 
         }
-        
+
 
         $this->template->content = View::factory('oc-panel/pages/tools/cache',array('cache_config'=>$cache_config));
     }
@@ -102,11 +102,11 @@ class Controller_Panel_Tools extends Auth_Controller {
         Breadcrumbs::add(Breadcrumb::factory()->set_title($this->template->title));
 
         //getting the php info clean!
-        ob_start();                                                                                                        
-        phpinfo();                                                                                                     
-        $phpinfo = ob_get_contents();                                                                                         
-        ob_end_clean();  
-        //strip the body html                                                                                                  
+        ob_start();
+        phpinfo();
+        $phpinfo = ob_get_contents();
+        ob_end_clean();
+        //strip the body html
         $phpinfo = preg_replace('%^.*<body>(.*)</body>.*$%ms', '$1', $phpinfo);
         //adding our class
         $phpinfo = str_replace('<table', '<table class="table table-striped  table-bordered"', $phpinfo);
@@ -131,7 +131,7 @@ class Controller_Panel_Tools extends Auth_Controller {
             $this->template->styles = array('//cdn.jsdelivr.net/bootstrap.datepicker/0.1/css/datepicker.css' => 'screen');
             $this->template->scripts['footer'] = array('//cdn.jsdelivr.net/bootstrap.datepicker/0.1/js/bootstrap-datepicker.js', 'js/oc-panel/logs.js');
         }
-        
+
         $date = core::get('date',date('Y-m-d'));
 
         $file = APPPATH.'logs/'.str_replace('-', '/', $date).'.php';
@@ -152,14 +152,14 @@ class Controller_Panel_Tools extends Auth_Controller {
         // all sitemap config values
         $sitemapconfig = new Model_Config();
         $config = $sitemapconfig->where('group_name', '=', 'sitemap')->find_all();
-      
+
         // save only changed values
         if($this->request->post())
         {
-            foreach ($config as $c) 
+            foreach ($config as $c)
             {
-                $config_res = $this->request->post($c->config_key); 
-                
+                $config_res = $this->request->post($c->config_key);
+
                 if($config_res != $c->config_value)
                 {
                     $c->config_value = $config_res;
@@ -191,7 +191,7 @@ class Controller_Panel_Tools extends Auth_Controller {
         $file_name = 'export.csv';
         //name of the TMP file
         $output_file = tempnam('/tmp', $file_name);
-        
+
         //writting
         $output = fopen($output_file, 'w');
         //header of the CSV
@@ -203,7 +203,7 @@ class Controller_Panel_Tools extends Auth_Controller {
         $ads = $ads->find_all();
 
         //each element
-        foreach($ads as $ad) 
+        foreach($ads as $ad)
         {
             $pic1 = NULL;
             $pic2 = NULL;
@@ -241,12 +241,12 @@ class Controller_Panel_Tools extends Auth_Controller {
 
             fputcsv($output, $a);
         }
-        
+
         fclose($output);
 
         //returns the file to the browser as attachement and deletes the TMP file
         Response::factory()->send_file($output_file,$file_name,array('delete'=>TRUE));
-    } 
+    }
 
     public function action_import_tool()
     {
@@ -256,7 +256,7 @@ class Controller_Panel_Tools extends Auth_Controller {
         //sending a CSV
         if($_POST)
         {
-            foreach($_FILES as $file => $path) 
+            foreach($_FILES as $file => $path)
             {
                 $csv = $path["tmp_name"];
                 $csv_2[] = $file;
@@ -270,7 +270,7 @@ class Controller_Panel_Tools extends Auth_Controller {
                 if($file=='csv_file_categories' AND $csv != FALSE)
                 {
                     $expected_header = array('name','category_parent','price');
-                    
+
                     $cat_array = Core::csv_to_array($csv,$expected_header);
 
                     if (count($cat_array) > 10000)
@@ -278,22 +278,22 @@ class Controller_Panel_Tools extends Auth_Controller {
                         Alert::set(Alert::ERROR, __('limited to 10.000 at a time'));
                         $this->redirect(Route::url('oc-panel',array('controller'=>'tools','action'=>'import_tool')));
                     }
-                    
+
                     if ($cat_array===FALSE)
                     {
                         Alert::set(Alert::ERROR, __('Something went wrong, please check format of the file! Remove single quotes or strange characters, in case you have any.'));
                     }
                     else
                     {
-                        foreach ($cat_array as $cat) 
+                        foreach ($cat_array as $cat)
                         {
-                            
+
                             //category parent was sent?
                             if(isset($cat[1]))
                             {
                                 $category_parent = new Model_Category();
                                 $category_parent->where('name','=',$cat[1])->limit(1)->find();
-                                
+
                                 if ($category_parent->loaded())
                                     $cat[1] = $category_parent->id_category;
                                 else
@@ -301,10 +301,10 @@ class Controller_Panel_Tools extends Auth_Controller {
                             }
                             else
                                 $cat[1] = 1;
-                            
+
                             Model_Category::create_name($cat[0], 0, $cat[1], 0, $cat[2]);
                         }
-                        
+
                         Core::delete_cache();
                         Alert::set(Alert::SUCCESS, __('Categories successfully imported.'));
                     }
@@ -312,7 +312,7 @@ class Controller_Panel_Tools extends Auth_Controller {
                 elseif($file=='csv_file_locations' AND $csv != FALSE)
                 {
                     $expected_header = array('name','location_parent','latitude','longitude');
-                    
+
                     $loc_array = Core::csv_to_array($csv,$expected_header);
 
                     if (count($loc_array) > 10000)
@@ -320,21 +320,21 @@ class Controller_Panel_Tools extends Auth_Controller {
                         Alert::set(Alert::ERROR, __('limited to 10.000 at a time'));
                         $this->redirect(Route::url('oc-panel',array('controller'=>'tools','action'=>'import_tool')));
                     }
-                    
+
                     if ($loc_array===FALSE)
                     {
                         Alert::set(Alert::ERROR, __('Something went wrong, please check format of the file! Remove single quotes or strange characters, in case you have any.'));
                     }
                     else
                     {
-                        foreach ($loc_array as $loc) 
+                        foreach ($loc_array as $loc)
                         {
                             //location parent was sent?
                             if(isset($loc[1]))
                             {
                                 $location_parent = new Model_Location();
                                 $location_parent->where('name','=',$loc[1])->limit(1)->find();
-                                
+
                                 if ($location_parent->loaded())
                                     $loc[1] = $location_parent->id_location;
                                 else
@@ -342,17 +342,17 @@ class Controller_Panel_Tools extends Auth_Controller {
                             }
                             else
                                 $loc[1] = 1;
-                            
+
                             Model_Location::create_name($loc[0], 0, $loc[1], 0, $loc[2], $loc[3]);
                         }
-                        
+
                         Core::delete_cache();
                         Alert::set(Alert::SUCCESS, __('Locations successfully imported.'));
                     }
                 }
-                
+
             }
-        } 
+        }
 
         $this->template->content = View::factory('oc-panel/pages/tools/import_tool');
     }
@@ -364,7 +364,7 @@ class Controller_Panel_Tools extends Auth_Controller {
         //then we display the tables with how many rows --> new view, bottom load the db connection form in case they want to change it
         //in the form ask to do diet in current DB cleanins visits users posts inactive?
         //Migration button
-            //on submit 
+            //on submit
             // create config group migration to store in which ID was stuck (if happens)
             // save ids migration for maps in configs?
             // do migration using iframe this
@@ -384,7 +384,7 @@ class Controller_Panel_Tools extends Auth_Controller {
         {
             $db_config = array (
                 'type' => 'mysqli',
-                'connection' => 
+                'connection' =>
                 array (
                     'hostname' => Core::post('hostname'),
                     'database' => Core::post('database'),
@@ -406,37 +406,37 @@ class Controller_Panel_Tools extends Auth_Controller {
                 //verify tables in DB
                 $pf = Core::post('table_prefix');
                 $migration_tables = array($pf.'accounts',$pf.'categories',$pf.'locations',$pf.'posts',$pf.'postshits');
-                
+
                 $tables = $db->query(Database::SELECT, 'SHOW TABLES;');
-                
+
             }
             catch (Exception $e)
             {
                 Alert::set(Alert::ERROR, __('Review database connection parameters'));
                 return;
-            }   
-           
+            }
+
             //verify tables in DB
-            foreach ($tables as $table => $value) 
+            foreach ($tables as $table => $value)
             {
                 $val = array_values($value);
-                $t[] = $val[0];                        
+                $t[] = $val[0];
             }
             $tables = $t;
 
             $match_tables = TRUE;
-            foreach ($migration_tables as $t) 
+            foreach ($migration_tables as $t)
             {
                 if( ! in_array($t, $tables))
                 {
                     $match_tables = FALSE;
                     Alert::set(Alert::ERROR, sprintf(__('Table %s not found'),$t));
                 }
-                    
+
             }
             //end tables verification
-            
-            
+
+
             if ($match_tables)
             {
                 //start migration
@@ -444,7 +444,7 @@ class Controller_Panel_Tools extends Auth_Controller {
                 $this->migrate($db,$pf);
                 Alert::set(Alert::SUCCESS, 'oh yeah! '.round((microtime(true)-$start_time),3).' '.__('seconds'));
             }
-            
+
         }
         else
         {
@@ -474,7 +474,7 @@ class Controller_Panel_Tools extends Auth_Controller {
 
     /**
      * does the DB migration
-     * @param  pointer $db 
+     * @param  pointer $db
      * @param  string $pf db_prefix
      */
     private function migrate($db,$pf)
@@ -486,12 +486,12 @@ class Controller_Panel_Tools extends Auth_Controller {
         //connect DB original/to where we migrate
         $dbo = Database::instance('default');
 
-        
+
         //oc_accounts --> oc_users
         $users_map = array();
         $accounts = $db->query(Database::SELECT, 'SELECT * FROM `'.$pf.'accounts`');
 
-        foreach ($accounts as $account) 
+        foreach ($accounts as $account)
         {
 
             $user = new Model_User();
@@ -520,7 +520,7 @@ class Controller_Panel_Tools extends Auth_Controller {
 
         $categories = $db->query(Database::SELECT, 'SELECT * FROM `'.$pf.'categories` ORDER BY `idCategoryParent` ASC');
 
-        foreach ($categories as $category) 
+        foreach ($categories as $category)
         {
             $cat = new Model_Category();
             $cat->name      = $category['name'];
@@ -544,7 +544,7 @@ class Controller_Panel_Tools extends Auth_Controller {
 
         $locations = $db->query(Database::SELECT, 'SELECT * FROM `'.$pf.'locations` ORDER BY `idLocationParent` ASC');
 
-        foreach ($locations as $location) 
+        foreach ($locations as $location)
         {
             $loc = new Model_Location();
             $loc->name      = $location['name'];
@@ -562,22 +562,35 @@ class Controller_Panel_Tools extends Auth_Controller {
         $ads_map = array();
         $ads = $db->query(Database::SELECT, 'SELECT * FROM `'.$pf.'posts`');
 
-        foreach ($ads as $a) 
+        foreach ($ads as $a)
         {
             if (Valid::email($a['email']))
             {
                 //gettin the id_user
                 if(isset($users_map[$a['email']]))
                 {
-                    $id_user = $users_map[$a['email']]; 
+                    $id_user = $users_map[$a['email']];
                 }
                 //doesnt exits creating it
                 else
                 {
-                    $user = Model_User::create_email($a['email'], $a['name']);
-                    $id_user = $user->id_user;
+                    try
+                    {
+                        $user = Model_User::create_email($a['email'], $a['name']);
+                        $id_user = $user->id_user;
+                    }
+                    catch (ORM_Validation_Exception $e)
+                    {
+                        $errors = $e->errors('models');
+                        foreach ($errors as $f => $err)
+                        {
+                            Alert::set(Alert::ALERT, $err);
+                        }
+
+                        return;
+                    }
                 }
-                    
+
 
                 $ad = new Model_Ad();
                 $ad->id_ad          = $a['idPost']; //so images still work
@@ -632,7 +645,7 @@ class Controller_Panel_Tools extends Auth_Controller {
 
                 $ads_map[$a['idPost']] = $ad->id_ad;
             }
-            
+
         }
 /*
         //posthits --> visits, mass migration
@@ -642,11 +655,11 @@ class Controller_Panel_Tools extends Auth_Controller {
         $total = $db->query(Database::SELECT, 'SELECT count(*) cont FROM `'.$pf.'postshits`')->as_array();
         $total = $total[0]['cont'];
 
-        for ($i=0; $i < $total; $i+=$step) 
-        { 
+        for ($i=0; $i < $total; $i+=$step)
+        {
             $hits = $db->query(Database::SELECT, 'SELECT * FROM `'.$pf.'postshits` LIMIT '.$i.', '.$step);
             $values = '';
-            foreach ($hits as $hit) 
+            foreach ($hits as $hit)
             {
                 //build insert query
                 $values.= '('.$hit['idPost'].',  \''.$hit['hitTime'].'\'),';
@@ -657,17 +670,17 @@ class Controller_Panel_Tools extends Auth_Controller {
             //old way of migrating
             // $hits = $db->query(Database::SELECT, 'SELECT * FROM `'.$pf.'postshits` ');
 
-            // foreach ($hits as $hit) 
+            // foreach ($hits as $hit)
             // {
             //     //build insert query
-                
+
             //     $visit = new Model_Visit();
             //     $visit->id_ad       = (isset($ads_map[$hit['idPost']]))?$ads_map[$hit['idPost']]:NULL;
             //     $visit->created     = $hit['hitTime'];
             //     $visit->ip_address  = ip2long($hit['ip']);
             //     $visit->save();
             // }
-       
+
 
     }
 
@@ -696,25 +709,25 @@ class Controller_Panel_Tools extends Auth_Controller {
                         foreach (new DirectoryIterator($month->getPathname()) as $day)
                         {
                             if($day->isDir() AND !$day->isDot() AND is_numeric($day->getFilename()))
-                            {                                
+                            {
                                 //id_ad
                                 foreach (new DirectoryIterator($day->getPathname()) as $id_ad)
                                 {
                                     if($id_ad->isDir() AND !$id_ad->isDot() AND is_numeric($id_ad->getFilename()))
-                                    {   
+                                    {
                                         $delete = TRUE;
 
                                         //if ad is available leave it, if not delete folder ID
                                         $ad = new Model_Ad($id_ad->getFilename());
                                         if ($ad->loaded() AND $ad->status == Model_Ad::STATUS_PUBLISHED)
                                             $delete = FALSE;
-                                        
+
                                         //ok lets get rid of it!
                                         if ($delete === TRUE)
                                         {
                                             echo '<br>Deleting: '.$id_ad->getFilename().'---'.$id_ad->getPathname();
                                             File::delete($id_ad->getPathname());
-                                            
+
                                             //if the ad was loaded means had a different status, put it like he doesnt have images.
                                             if($ad->loaded() )
                                             {
@@ -736,20 +749,20 @@ class Controller_Panel_Tools extends Auth_Controller {
                     }
                 }
 
-               
+
 
 
             }
         }
 
         echo '<br>deleted '.$count_deleted;
-        
-            
+
+
     }
-    
+
     /**
      * get geocode lat/lon points for given address from google
-     * 
+     *
      * @param string $address
      * @return bool|array false if can't be geocoded, array or geocdoes if successful
      */
@@ -761,34 +774,34 @@ class Controller_Panel_Tools extends Auth_Controller {
                    ->where('address','IS NOT',NULL)
                    ->where('address','!=','')
                    ->find_all();
-                
+
         foreach ($ads as $ad)
         {
             $url = 'http://maps.google.com/maps/api/geocode/json?sensor=false&address='.urlencode($ad->address);
-            
+
             //get contents from google
-            if($result = core::curl_get_contents($url)) 
+            if($result = core::curl_get_contents($url))
             {
                 $result = json_decode($result);
-            
+
                 if($result AND $result->status=="OK") {
                     $ad->latitude  = $result->results[0]->geometry->location->lat;
                     $ad->longitude = $result->results[0]->geometry->location->lng;
-                    
-                    try 
+
+                    try
                     {
                         $ad->save();
-                    } 
-                    catch (Exception $e) 
+                    }
+                    catch (Exception $e)
                     {
                         throw HTTP_Exception::factory(500,$e->getMessage());
                     }
                 }
             }
         }
-        
+
         Alert::set(Alert::SUCCESS, __('Successfully imported latitude and longitude info from your ads.'));
-        
+
         $this->redirect(Route::url('oc-panel',array('controller'=>'import','action'=>'csv')));
     }
 }

@@ -199,7 +199,8 @@ class Controller_New extends Controller
                     ->rule('email', 'email_domain')
                     ->rule('name', 'not_empty')
                     ->rule('name', 'min_length', array(':value', 2))
-                    ->rule('name', 'max_length', array(':value', 145));
+                    ->rule('name', 'max_length', array(':value', 145))
+                    ->rule('cf_vatnumber', 'Valid::vies', array(':validation', array('cf_vatnumber', 'cf_vatcountry')));
                 }
 
                 // Optional banned words validation
@@ -209,35 +210,38 @@ class Controller_New extends Controller
                     $validation = $validation->rule('description', 'no_banned_words');
                 }
 
-                if(isset($data['cf_vatcountry']) AND $data['cf_vatcountry'] AND isset($data['cf_vatnumber']) AND $data['cf_vatnumber']){
-                    if (!euvat::verify_vies($data['cf_vatnumber'],$data['cf_vatcountry'])){
-                        Alert::set(Alert::ERROR, __('Invalid EU Vat Number, please verify number and country match'));
-                        $this->redirect(Route::url('post_new'));
-                    }
-                }
-
                 if($validation->check())
                 {
                     // User detection, if doesnt exists create
                     if (!Auth::instance()->logged_in())
                     {
-                    $user = Model_User::create_email(core::post('email'), core::post('name'));
-
-                    //add custom fields
-                    $save_cf = FALSE;
-                    foreach ($this->request->post() as $custom_field => $value)
-                    {
-                        if (strpos($custom_field,'ucf_')!==FALSE)
+                        try
                         {
-                            $user_custom_field = substr($custom_field, 1); //rename ucf_ to cf
-                            $user->$user_custom_field = $value;
-                            $save_cf = TRUE;
-                            unset($data[$custom_field]);
+                            $user = Model_User::create_email(core::post('email'), core::post('name'));
                         }
-                    }
-                    //saves the user only if there was CF
-                    if($save_cf === TRUE)
-                        $user->save();
+                        catch (ORM_Validation_Exception $e)
+                        {
+                            foreach ($e->errors('models') as $error)
+                                Alert::set(Alert::ALERT, $error);
+
+                            return;
+                        }
+
+                        //add custom fields
+                        $save_cf = FALSE;
+                        foreach ($this->request->post() as $custom_field => $value)
+                        {
+                            if (strpos($custom_field,'ucf_')!==FALSE)
+                            {
+                                $user_custom_field = substr($custom_field, 1); //rename ucf_ to cf
+                                $user->$user_custom_field = $value;
+                                $save_cf = TRUE;
+                                unset($data[$custom_field]);
+                            }
+                        }
+                        //saves the user only if there was CF
+                        if($save_cf === TRUE)
+                            $user->save();
                     }
                     else
                         $user = Auth::instance()->get_user();

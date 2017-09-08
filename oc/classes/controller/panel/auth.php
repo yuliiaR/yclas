@@ -170,14 +170,10 @@ class Controller_Panel_Auth extends Controller {
             if (Valid::email($email))
             {
                 //check we have this email in the DB
-                $user = new Model_User();
-                $user = $user->where('email', '=', $email)
-                            ->limit(1)
-                            ->find();
+                $user = Model_User::find_by_email($email);
 
                 if ($user->loaded())
                 {
-
                     //we get the QL, and force the regen of token for security
                     $url_ql = $user->ql('oc-panel',array( 'controller' => 'profile',
                                                           'action'     => 'changepass'),TRUE);
@@ -235,10 +231,7 @@ class Controller_Panel_Auth extends Controller {
             if (Valid::email($email))
             {
                 //check we have this email in the DB
-                $user = new Model_User();
-                $user = $user->where('email', '=', $email)
-                            ->limit(1)
-                            ->find();
+                $user = Model_User::find_by_email($email);
 
                 if (!$user->loaded())
                 {
@@ -307,69 +300,56 @@ class Controller_Panel_Auth extends Controller {
         {
             if(captcha::check('register')) {
                 $validation =   Validation::factory($this->request->post())
-                                ->rule('name', 'not_empty')
-                                ->rule('name', 'min_length', array(':value', 2))
-                                ->rule('name', 'max_length', array(':value', 145))
                                 ->rule('email', 'not_empty')
                                 ->rule('email', 'email')
-                                ->rule('email', 'email_domain')
                                 ->rule('password1', 'not_empty')
                                 ->rule('password2', 'not_empty')
-                                ->rule('password1', 'matches', array(':validation', 'password1', 'password2'));
+                                ->rule('password1', 'matches', array(':validation', 'password1', 'password2'))
+                                ->rule('cf_vatnumber', 'Valid::vies', array(':validation', array('cf_vatnumber', 'cf_vatcountry')));
 
-                if(core::post('cf_vatnumber') AND core::post('cf_vatcountry'))
-                {
-                    if (!euvat::verify_vies(core::post('cf_vatnumber'),core::post('cf_vatcountry')))
-                    {
-                        Alert::set(Alert::ERROR, __('Invalid EU Vat Number, please verify number and country match'));
-                        $this->redirect(Route::url('oc-panel', array('controller'=>'auth','action'=>'register')));
-                    }
-                }
-
-                if ($validation->check())
+                if ($validation->check() AND CSRF::valid('register'))
                 {
                     //posting data so try to remember password
-                    if (CSRF::valid('register'))
+                    if (Model_User::find_by_email(core::post('email'))->loaded())
                     {
-                        $email = core::post('email');
-
-                        //check we have this email in the DB
-                        $user = new Model_User();
-                        $user = $user->where('email', '=', $email)
-                                ->limit(1)
-                                ->find();
-
-                        if ($user->loaded())
+                        Form::set_errors(array(__('User already exists')));
+                    }
+                    else
+                    {
+                        try
                         {
-                            Form::set_errors(array(__('User already exists')));
+                            $user = Model_User::create_email(core::post('email'),core::post('name'),core::post('password1'));
                         }
-                        else
+                        catch (ORM_Validation_Exception $e)
                         {
-                            //creating the user
-                            $user = Model_User::create_email($email,core::post('name'),core::post('password1'));
+                            foreach ($e->errors('models') as $error)
+                                Alert::set(Alert::ALERT, $error);
 
-                            //add custom fields
-                            $save_cf = FALSE;
-                            foreach ($this->request->post() as $custom_field => $value)
+                            return;
+                        }
+
+                        //add custom fields
+                        $save_cf = FALSE;
+                        foreach ($this->request->post() as $custom_field => $value)
+                        {
+                            if (strpos($custom_field,'cf_')!==FALSE)
                             {
-                                if (strpos($custom_field,'cf_')!==FALSE)
-                                {
-                                    $user->$custom_field = $value;
-                                    $save_cf = TRUE;
-                                }
+                                $user->$custom_field = $value;
+                                $save_cf = TRUE;
                             }
-                            //saves the user only if there was CF
-                            if($save_cf === TRUE)
-                                $user->save();
-
-                            //login the user
-                            Auth::instance()->login(core::post('email'), core::post('password1'));
-
-                            Alert::set(Alert::SUCCESS, __('Welcome!'));
-                            //login the user
-                            $this->redirect(Core::post('auth_redirect',Route::url('oc-panel')));
-
                         }
+
+                        //saves the user only if there was CF
+                        if($save_cf === TRUE)
+                            $user->save();
+
+                        //login the user
+                        Auth::instance()->login(core::post('email'), core::post('password1'));
+
+                        Alert::set(Alert::SUCCESS, __('Welcome!'));
+
+                        //login the user
+                        $this->redirect(Core::post('auth_redirect',Route::url('oc-panel')));
                     }
                 }
                 else
@@ -423,13 +403,8 @@ class Controller_Panel_Auth extends Controller {
             $email  =  Encrypt::instance()->decode(Base64::fix_from_url($email_encoded));
 
             if (Valid::email($email))
-            {
                 //check we have this email in the DB
-                $user = new Model_User();
-                $user = $user->where('email', '=', $email)
-                            ->limit(1)
-                            ->find();
-            }
+                $user = Model_User::find_by_email($email);
             else
                 Alert::set(Alert::INFO, __('Not valid email.'));
         }
@@ -710,16 +685,24 @@ class Controller_Panel_Auth extends Controller {
             $email = Core::post('email');
 
             //check the email exists
-            $user = new Model_User;
-            $user ->where('email', '=', $email)->limit(1)->find();
+            $user = Model_User::find_by_email($email);
 
             //register the user
             if (!$user->loaded() AND Valid::email($email,TRUE))
             {
                 //register the user in DB
-                $user = Model_User::create_email($email,Core::post('name'),$password  = Text::random('alnum', 8));
-                $user->phone = Session::instance()->get('phone_number');
-                $user->save();
+                try
+                {
+                    $user = Model_User::create_email($email,Core::post('name'),$password  = Text::random('alnum', 8));
+                    $user->phone = Session::instance()->get('phone_number');
+                    $user->save();
+                }
+                catch (ORM_Validation_Exception $e)
+                {
+                    Form::set_errors($e->errors('models'));
+
+                    return;
+                }
 
                 Cookie::set('sms_auth' , $user->id_user, Core::config('auth.lifetime') );
 
