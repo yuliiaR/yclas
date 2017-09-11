@@ -6,7 +6,7 @@
 1. Install Yclas. 
 
     Admin must have:<br>
-    Email: admin@reoc.lo<br>
+    Email: admin@gmail.com<br>
     Password: 1234
 
 
