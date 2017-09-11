@@ -24,7 +24,7 @@ class AcceptanceTester extends \Codeception\Actor
     {
     	$I = $this;
     	$I->amOnPage('/oc-panel/auth/login');
-		$I->fillField('email','admin@reoc.lo');
+		$I->fillField('email','admin@gmail.com');
 		$I->fillField('password','1234');
 		$I->click('auth_redirect');
 		$I->amOnPage('/oc-panel/');

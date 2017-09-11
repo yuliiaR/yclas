@@ -3,7 +3,7 @@ $I = new AcceptanceTester($scenario);
 
 //login as a user
 $I->amOnPage('/oc-panel/auth/login');
-$I->fillField('email','gazzasdasd@reoc.lo');
+$I->fillField('email','gazzasdasd@gmail.com');
 $I->fillField('password','1234');
 $I->click('auth_redirect');
 //edit profile on dropdown menu
@@ -31,7 +31,7 @@ $I->see('You have successfully changed your data');
 $I->wantTo('2) change my name, my email and remove description');
 $I->lookForwardTo('see a successful message');
 $I->fillField('#name','Gary Doe');
-$I->fillField("#email", 'gazzasdasd@reoc.lo');
+$I->fillField("#email", 'gazzasdasd@gmail.com');
 $I->fillField("#description", '');
 $I->click("button[type=submit]");
 $I->see('You have successfully changed your data');
