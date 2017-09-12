@@ -6,11 +6,24 @@
 
 <div id="user_profile_info" class="row">
     <div class="col-xs-3">
-        <a class="thumbnail">
-            <picture>
-                <img class="img-rounded img-responsive" src="<?=Core::imagefly($user->get_profile_image(),200,200)?>" alt="<?=$user->name?>">
-            </picture>
-        </a>
+        <?$images = $user->get_profile_images(); if ($images):?>
+            <div id="gallery">
+                <?$i = 0; foreach ($images as $key => $image):?>
+                    <a href="<?=$image?>" class="thumbnail gallery-item <?=$i > 0 ? 'hidden' : NULL?>" data-gallery>
+                        <img class="img-rounded img-responsive" src="<?=Core::imagefly($image,200,200)?>" alt="<?=$user->name?>">
+                    </a>
+                <?$i++; endforeach?>
+            </div>
+            <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
+                <div class="slides"></div>
+                <h3 class="title"></h3>
+                <a class="prev">‹</a>
+                <a class="next">›</a>
+                <a class="close">×</a>
+                <a class="play-pause"></a>
+                <ol class="indicator"></ol>
+            </div>
+        <?endif?>
     </div>
     <div class="col-xs-12 col-sm-9">
         <h3><?=$user->name?> <?=$user->is_verified_user();?></h3>

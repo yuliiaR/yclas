@@ -72,19 +72,39 @@ class Controller_Panel_Profile extends Auth_Frontcontroller {
 	{
         $user = Auth::instance()->get_user();
 
-        if (Core::post('photo_delete') AND $user->delete_image()==TRUE )
-            Alert::set(Alert::SUCCESS, __('Photo deleted.'));
-        elseif(isset($_FILES['profile_image']))
+        // Delete image
+        if (is_numeric($deleted_image = core::request('img_delete')))
         {
-            //get image
-            $image = $_FILES['profile_image']; //file post
+            $user->delete_image($deleted_image);
+        }
 
-            $result = $user->upload_image($image);
+        // Set primary image
+        if (is_numeric($primary_image = core::request('primary_image')))
+        {
+            $user->set_primary_image($primary_image);
+        }
 
-            if ($result === TRUE)
-                Alert::set(Alert::SUCCESS, $image['name'].' '.__('Image is uploaded.'));
-            else
-                Alert::set(Alert::ALERT,$result);
+        // Image upload
+        $filename = NULL;
+
+        for ($i=0; $i < core::config("advertisement.num_images"); $i++)
+        {
+            if (isset($_FILES['image'.$i]))
+                $filename = $user->save_image($_FILES['image'.$i]);
+        }
+
+        if ($filename!==NULL)
+        {
+            $user->last_modified = Date::unix2mysql();
+
+            try
+            {
+                $user->save();
+            }
+            catch (Exception $e)
+            {
+                throw HTTP_Exception::factory(500,$e->getMessage());
+            }
         }
 
         $this->redirect(Route::url('oc-panel',array('controller'=>'profile', 'action'=>'edit')));
@@ -92,7 +112,8 @@ class Controller_Panel_Profile extends Auth_Frontcontroller {
 
 	public function action_edit()
 	{
-        $this->template->scripts['footer'] = ['js/oc-panel/edit_profile.js'];
+        $this->template->styles = ['css/jasny-bootstrap.min.css' => 'screen'];
+        $this->template->scripts['footer'] = ['js/oc-panel/edit_profile.js', 'js/jasny-bootstrap.min.js'];
 
 		Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Edit profile')));
 		// $this->template->title = $user->name;
