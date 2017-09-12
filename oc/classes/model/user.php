@@ -668,10 +668,47 @@ class Model_User extends ORM {
     }
 
     /**
-     * deletes the image of the user
-     * @return boolean
+     * Gets all profile images
+     * @return string url
      */
-    public function delete_image()
+    public function get_profile_images()
+    {
+        $images = array();
+
+        if ($this->has_image)
+        {
+            $base       = Core::S3_domain();
+            $route      = 'images/users/';
+            $folder     = DOCROOT.$route;
+            $version    = $this->last_modified ? '?v='.Date::mysql2unix($this->last_modified) : NULL;
+
+            for ($i=1; $i <= $this->has_image; $i++)
+            {
+                if ($i == 1)
+                    $filename = $this->id_user.'.png';
+                else
+                    $filename = $this->id_user.'_'.$i.'.png';
+
+                $images[$i] = $base.$route.$filename.$version;
+            }
+        }
+        else
+        {
+            if (Theme::get('default_profile_image'))
+                $images = [Theme::get('default_profile_image')];
+            else
+                $images = ['//www.gravatar.com/avatar/'.md5(strtolower(trim($this->email))).'?s=250'];
+        }
+
+        return $images;
+    }
+
+    /**
+     * deletes the image of the user
+     * @param  integer $deleted_image
+     * @return void
+     */
+    public function delete_image($deleted_image)
     {
         if ( ! $this->_loaded)
             throw new Kohana_Exception('Cannot delete :model model because it is not loaded.', array(':model' => $this->_object_name));
@@ -680,29 +717,50 @@ class Model_User extends ORM {
         {
             require_once Kohana::find_file('vendor', 'amazon-s3-php-class/S3','php');
             $s3 = new S3(core::config('image.aws_access_key'), core::config('image.aws_secret_key'));
+
+            $s3->deleteObject(core::config('image.aws_s3_bucket'), $this->image_name($deleted_image));
+
+            //re-ordering image file names
+            for($i = $deleted_image; $i < $this->has_images; $i++)
+            {
+                //rename original image
+                $s3->copyObject(core::config('image.aws_s3_bucket'), $this->image_name(($i+1)), core::config('image.aws_s3_bucket'), $this->image_name($i), S3::ACL_PUBLIC_READ);
+                $s3->deleteObject(core::config('image.aws_s3_bucket'), $this->image_name(($i+1)));
+            }
         }
 
-        $root = DOCROOT.'images/users/'; //root folder
+        $img_path = DOCROOT.'images/users/'; //root folder
 
-        if (!is_dir($root))
+        if (!is_dir($img_path))
             return FALSE;
         else
         {
             //delete photo
-            @unlink($root.$this->id_user.'.png');
+            @unlink($this->image_name($deleted_image));
 
-            // delete photo from Amazon S3
-            if(core::config('image.aws_s3_active'))
-                $s3->deleteObject(core::config('image.aws_s3_bucket'), 'images/users/'.$this->id_user.'.png');
-
-            // update user info
-            $this->has_image = 0;
-            $this->last_modified = Date::unix2mysql();
-            $this->save();
+            //re-ordering image file names
+            for($i = $deleted_image; $i < $this->has_image; $i++)
+            {
+                @rename($this->image_name(($i+1)), $this->image_name($i));
+            }
         }
 
-        return TRUE;
+        // update user info
+        $this->has_image = ($this->has_image > 0) ? $this->has_image-1 : 0;
+        $this->last_modified = Date::unix2mysql();
+        $this->save();
 
+        try
+        {
+            $this->save();
+            return TRUE;
+        }
+        catch (Exception $e)
+        {
+            throw HTTP_Exception::factory(500,$e->getMessage());
+        }
+
+        return FALSE;
     }
 
     /**
@@ -1139,6 +1197,206 @@ class Model_User extends ORM {
     public static function find_by_email($email)
     {
         return (new self())->where('email', '=', $email)->limit(1)->find();
+    }
+
+    /**
+     * returns the images path name
+     * @param  integer $id
+     * @param  string  $type
+     * @param  string  $version
+     * @return string
+     */
+    public function image_name($id = 1, $type='')
+    {
+        if (!$this->loaded())
+            return FALSE;
+
+        // image variables
+        $img_path    = DOCROOT.'images/users/';
+
+        if ($id == 1)
+            $filename = $this->id_user.'.png';
+        else
+            $filename = $this->id_user.'_'.$id.'.png';
+
+        return $img_path.$filename;
+    }
+
+    /**
+     * Set primary image by swapping ids
+     * @param  integer $primary_image
+     * @return void
+     */
+    public function set_primary_image($primary_image)
+    {
+        // if ad doesn't have at least two images do nothing
+        if ($this->has_image < 2)
+            return;
+
+        $img_path = DOCROOT.'images/users/';
+
+        // delete image from Amazon S3
+        if (core::config('image.aws_s3_active'))
+        {
+            require_once Kohana::find_file('vendor', 'amazon-s3-php-class/S3','php');
+            $s3 = new S3(core::config('image.aws_access_key'), core::config('image.aws_secret_key'));
+
+            //re-ordering image file names
+            $s3->copyObject(core::config('image.aws_s3_bucket'), $this->image_name('1'), core::config('image.aws_s3_bucket'), $this->image_name('old'), S3::ACL_PUBLIC_READ);
+            $s3->deleteObject(core::config('image.aws_s3_bucket'), $this->image_name('1'));
+
+            $s3->copyObject(core::config('image.aws_s3_bucket'), $this->image_name($primary_image), core::config('image.aws_s3_bucket'), $this->image_name('1'), S3::ACL_PUBLIC_READ);
+            $s3->deleteObject(core::config('image.aws_s3_bucket'), $this->image_name($primary_image));
+
+            $s3->copyObject(core::config('image.aws_s3_bucket'), $this->image_name('old'), core::config('image.aws_s3_bucket'), $this->image_name($primary_image), S3::ACL_PUBLIC_READ);
+            $s3->deleteObject(core::config('image.aws_s3_bucket'), $this->image_name('old'));
+        }
+
+        //re-ordering image file names
+        @rename($this->image_name('1'), $this->image_name('old'));
+        @rename($this->image_name($primary_image), $this->image_name('1'));
+        @rename($this->image_name('old'), $this->image_name($primary_image));
+
+        $this->last_modified = Date::unix2mysql();
+
+        try
+        {
+            $this->save();
+            return TRUE;
+        }
+        catch (Exception $e)
+        {
+            throw HTTP_Exception::factory(500,$e->getMessage());
+        }
+
+        return FALSE;
+    }
+
+    /**
+     * save_image upload images with given path
+     *
+     * @param array image
+     * @return bool
+     */
+    public function save_image($image)
+    {
+        if (!$this->loaded())
+            return FALSE;
+
+        if (
+        ! Upload::valid($image) OR
+        ! Upload::not_empty($image) OR
+        ! Upload::type($image, explode(',',core::config('image.allowed_formats'))) OR
+        ! Upload::size($image, core::config('image.max_image_size').'M'))
+        {
+            if (Upload::not_empty($image) && ! Upload::type($image, explode(',',core::config('image.allowed_formats'))))
+            {
+                Alert::set(Alert::ALERT, $image['name'].' '.sprintf(__('Is not valid format, please use one of this formats "%s"'),core::config('image.allowed_formats')));
+                return FALSE;
+            }
+            if( ! Upload::size($image, core::config('image.max_image_size').'M'))
+            {
+                Alert::set(Alert::ALERT, $image['name'].' '.sprintf(__('Is not of valid size. Size is limited to %s MB per image'),core::config('image.max_image_size')));
+                return FALSE;
+            }
+            if( ! Upload::not_empty($image))
+                return FALSE;
+        }
+
+        if (core::config('image.disallow_nudes') AND ! Upload::not_nude_image($image))
+        {
+            Alert::set(Alert::ALERT, $image['name'].' '.__('Seems a nude picture so you cannot upload it'));
+            return FALSE;
+        }
+
+        if ($image !== NULL)
+        {
+            $directory      = DOCROOT.'images/users/';
+            if ($file = Upload::save($image, NULL, $directory))
+            {
+                return $this->save_image_file($file, $this->has_image + 1);
+            }
+            else
+            {
+                Alert::set(Alert::ALERT, __('Something went wrong with uploading pictures, please check format'));
+                return FALSE;
+            }
+        }
+    }
+
+    /**
+     * saves image in the disk
+     * @param  string  $file
+     * @param  integer $num  number of the image
+     * @return bool        success?
+     */
+    public function save_image_file($file, $num = 0)
+    {
+        if (core::config('image.aws_s3_active'))
+        {
+            require_once Kohana::find_file('vendor', 'amazon-s3-php-class/S3','php');
+            $s3 = new S3(core::config('image.aws_access_key'), core::config('image.aws_secret_key'));
+        }
+
+        $directory      = DOCROOT.'images/users/';
+        $image_quality  = core::config('image.quality');
+        $width          = core::config('image.width');
+        $height         = core::config('image.height');
+
+        if( ! is_numeric($height)) // when installing this field is empty, to avoid crash we check here
+            $height         = NULL;
+
+        if ($num == 1)
+            $filename_original = $this->id_user.'.png';
+        else
+            $filename_original = $this->id_user.'_'.$num.'.png';
+
+        //if original image is bigger that our constants we resize
+        try
+        {
+            $image_size_orig = getimagesize($file);
+        }
+        catch (Exception $e)
+        {
+            return FALSE;
+        }
+
+        if($image_size_orig[0] > $width || $image_size_orig[1] > $height)
+        {
+            Image::factory($file)
+                ->orientate()
+                ->resize($width, $height, Image::AUTO)
+                ->save($directory.$filename_original, $image_quality);
+        }
+        //we just save the image changing the quality and different name
+        else
+        {
+            Image::factory($file)
+                ->orientate()
+                ->save($directory.$filename_original, $image_quality);
+        }
+
+        // put image and thumb to Amazon S3
+        if (core::config('image.aws_s3_active'))
+        {
+            $s3->putObject($s3->inputFile($directory.$filename_original), core::config('image.aws_s3_bucket'), $path.$filename_original, S3::ACL_PUBLIC_READ);
+        }
+
+        // Delete the temporary file
+        @unlink($file);
+
+        $this->has_image++;
+
+        try
+        {
+            $this->save();
+            return TRUE;
+        }
+        catch (Exception $e)
+        {
+            return FALSE;
+        }
+
     }
 
 } // END Model_User
