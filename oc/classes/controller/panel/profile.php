@@ -76,6 +76,7 @@ class Controller_Panel_Profile extends Auth_Frontcontroller {
         if (is_numeric($deleted_image = core::request('img_delete')))
         {
             $user->delete_image($deleted_image);
+            Alert::set(Alert::SUCCESS, __('Image is deleted.'));
         }
 
         // Set primary image
@@ -105,6 +106,8 @@ class Controller_Panel_Profile extends Auth_Frontcontroller {
             {
                 throw HTTP_Exception::factory(500,$e->getMessage());
             }
+
+            Alert::set(Alert::SUCCESS, __('Image is uploaded.'));
         }
 
         $this->redirect(Route::url('oc-panel',array('controller'=>'profile', 'action'=>'edit')));
