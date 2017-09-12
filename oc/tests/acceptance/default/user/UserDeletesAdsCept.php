@@ -14,7 +14,7 @@ $I->see('Item updated. Please to see the changes delete the cache');
 $I->click('Logout');
 
 $I->amOnPage('/oc-panel/auth/login');
-$I->fillField('email','gazzasdasd@reoc.lo');
+$I->fillField('email','gazzasdasd@gmail.com');
 $I->fillField('password','1234');
 $I->click('auth_redirect');
 $I->see('my profile');
