@@ -38,10 +38,9 @@ Theme::$skin = Theme::get('theme');
 
 $theme_css =  array(      '//cdn.jsdelivr.net/bootstrap/3.3.7/css/bootstrap.min.css' => 'screen',
                           '//cdn.jsdelivr.net/fontawesome/4.7.0/css/font-awesome.min.css' => 'screen',
-                          '//cdn.jsdelivr.net/bootstrap.image-gallery/3.1.0/css/bootstrap-image-gallery.min.css' => 'screen',
-                          '//cdn.jsdelivr.net/blueimp-gallery/2.15.0/css/blueimp-gallery.min.css' => 'screen',
                           '//cdn.jsdelivr.net/bootstrap.datepicker/0.1/css/datepicker.css' => 'screen',
                           '//cdn.jsdelivr.net/select2/4.0.3/css/select2.min.css' => 'screen',
+                          'css/blueimp-gallery.min.css' => 'screen',
                           'css/slider.css' => 'screen',
                           'css/styles.css?v='.Core::VERSION => 'screen',
                   );
@@ -55,8 +54,7 @@ if (Theme::$skin!='default')
 Theme::$styles = $theme_css;
 
 Theme::$scripts['footer'] = array(  '//cdn.jsdelivr.net/g/jquery@1.12.4,bootstrap@3.3.7,select2@4.0.3,jquery.validation@1.15.0,holder@2.9.3',
-                                    '//cdn.jsdelivr.net/blueimp-gallery/2.15.0/js/jquery.blueimp-gallery.min.js',
-                                    '//cdn.jsdelivr.net/bootstrap.image-gallery/3.1.0/js/bootstrap-image-gallery.min.js',
+                                    'js/jquery.blueimp-gallery.min.js',
                                     Route::url('jslocalization', array('controller'=>'jslocalization', 'action'=>'select2')),
                                     Route::url('jslocalization', array('controller'=>'jslocalization', 'action'=>'validate')),
                                     'js/bootstrap-slider.js',

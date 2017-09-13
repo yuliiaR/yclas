@@ -185,47 +185,85 @@
 	        </div>
 	        <?endif?>
 
-			<form enctype="multipart/form-data" method="post" action="<?=Route::url('oc-panel',array('controller'=>'profile','action'=>'image'))?>">
 			<div class="panel panel-default">
-					<div class="panel-heading" id="page-edit-profile">
-					<h3 class="panel-title"><?=_e('Profile picture')?>
+	            <div class="panel-heading" id="page-edit-profile">
+	                <h3 class="panel-title"><?=_e('Profile pictures')?></h3>
+	            </div>
+	            <div class="panel-body">
+	                <div class="row">
+	                    <div class="col-md-12">
+	                        <form enctype="multipart/form-data" class="upload_image" method="post" action="<?=Route::url('oc-panel',array('controller'=>'profile','action'=>'image'))?>">
+	                            <?=Form::errors()?>
+	                            <div class="form-group images"
+	                                data-max-image-size="<?=core::config('image.max_image_size')?>"
+	                                data-image-width="<?=core::config('image.width')?>"
+	                                data-image-height="<?=core::config('image.height') ? core::config('image.height') : 0?>"
+	                                data-image-quality="<?=core::config('image.quality')?>"
+	                                data-swaltext="<?=sprintf(__('Is not of valid size. Size is limited to %s MB per image'),core::config('image.max_image_size'))?>">
+	                                <?$images = $user->get_profile_images()?>
+	                                <?if($images):?>
+	                                    <div class="row">
+	                                        <?foreach ($images as $key => $image):?>
+	                                            <div id="img<?=$key?>" class="col-md-4 edit-image">
+	                                                <a><img src="<?=$image?>" class="img-rounded thumbnail img-responsive"></a>
+	                                                <?if ($key > 0) :?>
+	                                                    <button class="btn btn-danger index-delete img-delete"
+	                                                            data-title="<?=__('Are you sure you want to delete?')?>"
+	                                                            data-btnOkLabel="<?=__('Yes, definitely!')?>"
+	                                                            data-btnCancelLabel="<?=__('No way!')?>"
+	                                                            type="submit"
+	                                                            name="img_delete"
+	                                                            value="<?=$key?>"
+	                                                            href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'image'))?>">
+	                                                            <?=_e('Delete')?>
+	                                                    </button>
+	                                                <?endif?>
+	                                                <?if ($key > 1) :?>
+	                                                    <button class="btn btn-info img-primary"
+	                                                        type="submit"
+	                                                        name="primary_image"
+	                                                        value="<?=$key?>"
+	                                                        href="<?=Route::url('oc-panel', array('controller'=>'profile', 'action'=>'image'))?>"
+	                                                        action="<?=Route::url('oc-panel', array('controller'=>'profile', 'action'=>'image'))?>"
+	                                                    >
+	                                                            <?=_e('Primary image')?>
+	                                                    </button>
+	                                                <?endif?>
+	                                            </div>
+	                                        <?endforeach?>
+	                                    </div>
+	                                <?endif?>
+	                            </div>
+	                            <?if (core::config('advertisement.num_images') > count($images)):?>
+	                                <hr>
+	                                <div class="form-group">
+	                                    <h5><?=_e('Add image')?></h5>
+	                                    <div>
+	                                        <?for ($i = 0; $i < (core::config('advertisement.num_images') - count($images)); $i++):?>
+	                                            <div class="fileinput fileinput-new <?=($i >= 1) ? 'hidden' : NULL?>" data-provides="fileinput">
+	                                                <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;"></div>
+	                                                <div>
+	                                                    <span class="btn btn-default btn-file">
+	                                                        <span class="fileinput-new"><?=_e('Select')?></span>
+	                                                        <span class="fileinput-exists"><?=_e('Edit')?></span>
+	                                                        <input type="file" name="<?='image'.$i?>" id="<?='fileInput'.$i?>" accept="<?='image/'.str_replace(',', ', image/', rtrim(core::config('image.allowed_formats'),','))?>">
+	                                                    </span>
+	                                                    <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput"><?=_e('Delete')?></a>
+	                                                </div>
+	                                            </div>
+	                                        <?endfor?>
+	                                    </div>
+	                                </div>
 
-					<?if ($user->has_image):?>
-						<button type="submit"
-						class="btn btn-sm btn-danger index-delete index-delete-inline pull-right"
-						onclick="return confirm('<?=__('Delete photo?')?>');"
-						type="submit"
-						name="photo_delete"
-						value="1"
-						title="<?=__('Delete photo')?>">
-						<span class="glyphicon glyphicon-remove"></span>
-						</button>
-					<?endif?>
-					</h3>
-				</div>
-				<div class="panel-body">
-					<div class="clearfix">
-						<div class="col-sm-4  col-md-3 ">
-							<div class="profile-pic">
-								<a class="thumbnail">
-									<img src="<?=$user->get_profile_image()?>" class="img-rounded" alt="<?=__('Profile Picture')?>" height='200px'>
-								</a>
-							</div>
-						</div>
-
-						<div class="col-sm-8 col-md-9 clearfix">
-							<?= FORM::label('profile_img', _e('Profile picture'), array('class'=>'col-xs-12 control-label', 'for'=>'profile_img'))?>
-								<div class="col-sm-8">
-									<input type="file" name="profile_image" id="profile_img" />
-								</div>
-						</div>
-					</div>
-					<div class="text-right pad_10">
-						<button type="submit" class="btn btn-success"><?=_e('Update')?></button>
-					</div>
-				</div>
-			</div>
-			</form>
+	                                <div class="form-group">
+	                                    <button type="submit" class="btn btn-success"><?=_e('Upload')?></button>
+	                                </div>
+	                            <?endif?>
+	                        </form>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
 		</div>
 	</div>
 </div>
