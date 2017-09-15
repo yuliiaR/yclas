@@ -181,6 +181,9 @@
 
                             <div class="form-group">
                                 <?= FORM::label($forms['cookie_consent']['id'], __("Cookie consent"), array('class'=>'control-label', 'for'=>$forms['cookie_consent']['id']))?>
+                                <a target="_blank" href="https://docs.yclas.com/cookie-consent/">
+                                    <i class="fa fa-question-circle"></i>
+                                </a>
                                 <div class="radio radio-primary">
                                     <?=Form::radio($forms['cookie_consent']['key'], 1, (bool) $forms['cookie_consent']['value'], array('id' => $forms['cookie_consent']['id'].'1'))?>
                                     <?=Form::label($forms['cookie_consent']['id'].'1', __('Enabled'))?>
