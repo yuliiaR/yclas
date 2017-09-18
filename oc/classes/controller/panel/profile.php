@@ -77,12 +77,14 @@ class Controller_Panel_Profile extends Auth_Frontcontroller {
         {
             $user->delete_image($deleted_image);
             Alert::set(Alert::SUCCESS, __('Image is deleted.'));
+            $this->redirect(Route::url('oc-panel',array('controller'=>'profile', 'action'=>'edit')));
         }
 
         // Set primary image
         if (is_numeric($primary_image = core::request('primary_image')))
         {
             $user->set_primary_image($primary_image);
+            $this->redirect(Route::url('oc-panel',array('controller'=>'profile', 'action'=>'edit')));
         }
 
         // Image upload
@@ -90,11 +92,12 @@ class Controller_Panel_Profile extends Auth_Frontcontroller {
 
         for ($i=0; $i < core::config("advertisement.num_images"); $i++)
         {
-            if (isset($_FILES['image'.$i]))
+            if (Core::post('base64_image'.$i))
+                $filename = $user->save_base64_image(Core::post('base64_image'.$i));
+            elseif (isset($_FILES['image'.$i]))
                 $filename = $user->save_image($_FILES['image'.$i]);
         }
-
-        if ($filename!==NULL)
+        if ($filename !== NULL)
         {
             $user->last_modified = Date::unix2mysql();
 
@@ -108,6 +111,7 @@ class Controller_Panel_Profile extends Auth_Frontcontroller {
             }
 
             Alert::set(Alert::SUCCESS, __('Image is uploaded.'));
+            $this->redirect(Route::url('oc-panel',array('controller'=>'profile', 'action'=>'edit')));
         }
 
         $this->redirect(Route::url('oc-panel',array('controller'=>'profile', 'action'=>'edit')));
@@ -116,7 +120,7 @@ class Controller_Panel_Profile extends Auth_Frontcontroller {
 	public function action_edit()
 	{
         $this->template->styles = ['css/jasny-bootstrap.min.css' => 'screen'];
-        $this->template->scripts['footer'] = ['js/oc-panel/edit_profile.js', 'js/jasny-bootstrap.min.js'];
+        $this->template->scripts['footer'] = ['js/jasny-bootstrap.min.js', 'js/canvasResize.js', 'js/load-image.all.min.js', 'js/oc-panel/edit_profile.js'];
 
 		Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Edit profile')));
 		// $this->template->title = $user->name;

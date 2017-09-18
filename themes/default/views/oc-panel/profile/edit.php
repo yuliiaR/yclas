@@ -196,7 +196,7 @@
             <div class="panel-body">
                 <div class="row">
                     <div class="col-md-12">
-                        <form enctype="multipart/form-data" method="post" action="<?=Route::url('oc-panel',array('controller'=>'profile','action'=>'image'))?>">
+                        <form enctype="multipart/form-data" class="upload_image" method="post" action="<?=Route::url('oc-panel',array('controller'=>'profile','action'=>'image'))?>">
                             <?=Form::errors()?>
                             <div class="form-group images"
                                 data-max-image-size="<?=core::config('image.max_image_size')?>"

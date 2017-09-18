@@ -7,9 +7,24 @@
 				<div class="pad_10">
 					<article class="well clearfix">
 						<div class="col-sm-3">
-							<a class="thumbnail profile-img">
-								<?=HTML::picture($user->get_profile_image(), ['w' => 200, 'h' => 200], ['1200px' => ['w' => '167', 'h' => '167'], '992px' => ['w' => '182', 'h' => '182'], '768px' => ['w' => '190', 'h' => '190'], '480px' => ['w' => '190', 'h' => '190'], '320px' => ['w' => '190', 'h' => '190']], ['class' => 'img-responsive img-rounded'], ['alt' => __('Profile Picture')])?>
-							</a>
+							<?$images = $user->get_profile_images(); if ($images):?>
+					            <div id="gallery">
+					                <?$i = 0; foreach ($images as $key => $image):?>
+					                    <a href="<?=$image?>" class="thumbnail gallery-item <?=$i > 0 ? 'hidden' : NULL?>" data-gallery>
+					                        <img class="img-rounded img-responsive" src="<?=Core::imagefly($image,200,200)?>" alt="<?=$user->name?>">
+					                    </a>
+					                <?$i++; endforeach?>
+					            </div>
+					            <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
+					                <div class="slides"></div>
+					                <h3 class="title"></h3>
+					                <a class="prev">‹</a>
+					                <a class="next">›</a>
+					                <a class="close">×</a>
+					                <a class="play-pause"></a>
+					                <ol class="indicator"></ol>
+					            </div>
+					        <?endif?>
 						</div>
 						<div class="col-sm-9">
 							<h3><?=$user->name?></h3>

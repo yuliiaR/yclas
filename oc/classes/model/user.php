@@ -90,7 +90,7 @@ class Model_User extends ORM {
                         'token'         => array(array('max_length', array(':value', 40))),
                         'token_created' => array(),
                         'token_expires' => array(),
-                        'has_images'    => array(array('numeric')),
+                        'has_image'    => array(array('numeric')),
                         'last_failed'   => array(),
                         'failed_attempts'   => array(),
                         'phone'         => array(
@@ -721,7 +721,7 @@ class Model_User extends ORM {
             $s3->deleteObject(core::config('image.aws_s3_bucket'), $this->image_name($deleted_image));
 
             //re-ordering image file names
-            for($i = $deleted_image; $i < $this->has_images; $i++)
+            for($i = $deleted_image; $i < $this->has_image; $i++)
             {
                 //rename original image
                 $s3->copyObject(core::config('image.aws_s3_bucket'), $this->image_name(($i+1)), core::config('image.aws_s3_bucket'), $this->image_name($i), S3::ACL_PUBLIC_READ);
@@ -1322,6 +1322,46 @@ class Model_User extends ORM {
                 return FALSE;
             }
         }
+    }
+
+    /**
+     * save_base64_image upload images with given path
+     *
+     * @param string $image [base64 encoded image]
+     * @return bool
+     */
+    public function save_base64_image($image)
+    {
+        if ( ! $this->loaded())
+            return FALSE;
+
+        // Temporary save image
+        $image_data = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $image));
+        $image_tmp = tmpfile();
+        $image_tmp_uri = stream_get_meta_data($image_tmp)['uri'];
+        file_put_contents($image_tmp_uri, $image_data);
+
+        $image = Image::factory($image_tmp_uri);
+
+        if ( ! in_array($image->mime, explode(',','image/'.str_replace(",", ",image/", core::config('image.allowed_formats')))))
+        {
+            Alert::set(Alert::ALERT, $image->mime.' '.sprintf(__('Is not valid format, please use one of this formats "%s"'),core::config('image.allowed_formats')));
+            return FALSE;
+        }
+
+        if (filesize($image_tmp_uri) > Num::bytes(core::config('image.max_image_size').'M'))
+        {
+            Alert::set(Alert::ALERT, $image->mime.' '.sprintf(__('Is not of valid size. Size is limited to %s MB per image'),core::config('image.max_image_size')));
+            return FALSE;
+        }
+
+        if (core::config('image.disallow_nudes') AND $image->is_nude_image())
+        {
+            Alert::set(Alert::ALERT, $image->mime.' '.__('Seems a nude picture so you cannot upload it'));
+            return FALSE;
+        }
+
+        return $this->save_image_file($image_tmp_uri, $this->has_image+1);
     }
 
     /**
