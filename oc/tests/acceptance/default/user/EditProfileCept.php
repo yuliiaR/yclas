@@ -56,11 +56,11 @@ $I->see('Password is changed');
 $I->wantTo('4) upload a pic and then delete it');
 $I->lookForwardTo('see a successful message');
 $I->attachFile('input[type="file"]', 'photo.jpg');
-$I->click("//form[contains(@action,'http://reoc.lo/oc-panel/profile/image')]/div/div/button[@type='submit']");
+$I->click("//form[contains(@action,'http://reoc.lo/oc-panel/profile/image')]/div/button[@type='submit']");
 $I->see('Image is uploaded.');
 
 // Delete picture
 $I->wantTo('delete profile picture');
 $I->lookForwardTo('see a successful message');
-$I->click('photo_delete');
-$I->see('Photo deleted.');
+$I->click('img_delete');
+$I->see('Image is deleted.');
