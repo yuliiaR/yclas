@@ -68,7 +68,7 @@ class Model_User extends ORM {
     {
         return array(
                         'id_user'       => array(array('numeric')),
-                        'name'          => array(array('not_empty'), array('min_length', array(':value', 2)), array('max_length', array(':value', 145)), ),
+                        'name'          => array(array('not_empty'), array('min_length', array(':value', 1)), array('max_length', array(':value', 145)), ),
                         'email'         => array(
                                                     array('not_empty'),
                                                     array('email'),
@@ -244,8 +244,10 @@ class Model_User extends ORM {
             {
                 $this->update();
             }
-            catch(Exception $e)
+            catch(ORM_Validation_Exception $e)
             {
+                foreach ($e->errors('models') as $error)
+                    Kohana::$log->add(Log::ERROR, 'Error: ' . $error);
                 throw HTTP_Exception::factory(500,$e->getMessage());
             }
         }
