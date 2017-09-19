@@ -616,7 +616,7 @@ class Model_User extends ORM {
         //get the user or create it
         try
         {
-            $user = self::create_email(core::post('email'),core::post('name'),core::post('password1'));
+            $user = self::create_email($email,$name);
         }
         catch (ORM_Validation_Exception $e)
         {
