@@ -705,6 +705,22 @@ class Model_User extends ORM {
         return $images;
     }
 
+
+    /**
+     * Deletes image from user
+     * @return bool
+     */
+    public function delete_images()
+    {
+        if (!$this->loaded())
+            return FALSE;
+
+        for ($i=1; $i <= $this->has_image; $i++)
+            $this->delete_image($i);
+
+        return TRUE;
+    }
+
     /**
      * deletes the image of the user
      * @param  integer $deleted_image
@@ -991,9 +1007,6 @@ class Model_User extends ORM {
         if ( ! $this->_loaded)
             throw new Kohana_Exception('Cannot delete :model model because it is not loaded.', array(':model' => $this->_object_name));
 
-        //remove image
-        $this->delete_image();
-
         //remove ads, will remove reviews, images etc...
         $ads = new Model_Ad();
         $ads = $ads->where('id_user','=',$this->id_user)->find_all();
@@ -1001,8 +1014,8 @@ class Model_User extends ORM {
         foreach ($ads as $ad)
             $ad->delete();
 
-        //bye profile pic
-        $this->delete_image();
+        //bye profile pics
+        $this->delete_images();
 
         //delete favorites
         DB::delete('favorites')->where('id_user', '=',$this->id_user)->execute();

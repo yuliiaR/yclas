@@ -147,12 +147,6 @@ class Controller_Paypal extends Controller{
         $payer_email      = Core::request('payer_email');
         $payer_name       = Core::request('first_name').' '.Core::request('last_name');
 
-        //amount we need to recieve
-        if ($ad->shipping_price() AND $ad->shipping_pickup() AND core::get('shipping_pickup'))
-            $ad->price = $ad->price;
-        elseif($ad->shipping_price())
-            $ad->price = $ad->price + $ad->shipping_price();
-
         //check ad exists
         $ad     = new Model_Ad($id_ad);
 
@@ -162,6 +156,12 @@ class Controller_Paypal extends Controller{
             AND (core::config('payment.paypal_seller')==1 OR core::config('payment.stripe_connect')==1)
             )
         {
+            //amount we need to recieve
+            if ($ad->shipping_price() AND $ad->shipping_pickup() AND core::get('shipping_pickup'))
+                $ad->price = $ad->price;
+            elseif($ad->shipping_price())
+                $ad->price = $ad->price + $ad->shipping_price();
+        
             //order is from a payment done to the owner of the ad
             $paypal_account = $ad->paypal_account();
 

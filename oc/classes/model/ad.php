@@ -1347,7 +1347,7 @@ class Model_Ad extends ORM {
             // ad edited but we have moderation on, so goes to moderation queue unless you are admin
             if( ($moderation == Model_Ad::MODERATION_ON
                 OR $moderation == Model_Ad::EMAIL_MODERATION
-                OR $moderation == Model_Ad::PAYMENT_MODERATION) AND ! Auth::instance()->get_user()->is_admin() )
+                OR $moderation == Model_Ad::PAYMENT_MODERATION) AND (Auth::instance()->logged_in() AND !Auth::instance()->get_user()->is_admin()) )
             {
                 //notify admins new ad
                 $this->notify_admins();

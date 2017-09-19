@@ -16,7 +16,7 @@ class Widget_Follow extends Widget
 	{	
 
 		$this->title = __('Follow');
-		$this->description = __('Add buttons to your social media accounts.');
+        $this->description = __('Add social media follow buttons.');
 
 		$this->fields = array(	
 								'text_title'  => array(	'type'		=> 'text',

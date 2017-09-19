@@ -43,7 +43,7 @@ $I->see('You do not have permissions to access Profile subscriptions');
 // Image
 $I->amOnPage('/oc-panel/profile/edit');
 $I->attachFile('input[type="file"]', 'photo.jpg');
-$I->click("//form[contains(@action,'http://reoc.lo/oc-panel/profile/image')]/div/div/button[@type='submit']");
+$I->click("//form[contains(@action,'http://reoc.lo/oc-panel/profile/image')]/div/button[@type='submit']");
 $I->seeElement('.alert.alert-danger');
 $I->see('You do not have permissions to access Profile image');
 // Favorites
@@ -101,14 +101,14 @@ $I->see('No Subscriptions');
 // Image
 $I->amOnPage('/oc-panel/profile/edit');
 $I->attachFile('input[type="file"]', 'photo.jpg');
-$I->click("//form[contains(@action,'http://reoc.lo/oc-panel/profile/image')]/div/div/button[@type='submit']");
+$I->click("//form[contains(@action,'http://reoc.lo/oc-panel/profile/image')]/div/button[@type='submit']");
 $I->dontSeeElement('.alert.alert-danger');
 $I->dontSee('You do not have permissions to access Profile image');
 $I->seeElement('.alert.alert-success');
-$I->see('photo.jpg Image is uploaded.');
-$I->click('photo_delete');
+$I->see('Image is uploaded.');
+$I->click('img_delete');
 $I->seeElement('.alert.alert-success');
-$I->see('Photo deleted.');
+$I->see('Image is deleted.');
 // Favorites
 $I->amOnPage('/');
 $I->click('a[href="http://reoc.lo/oc-panel/profile/favorites"]');
