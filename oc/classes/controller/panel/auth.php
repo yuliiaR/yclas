@@ -20,8 +20,13 @@ class Controller_Panel_Auth extends Controller {
         {
             $this->redirect(Route::url('default'));
         }
+        // not valid email domain
+        elseif ($this->request->post() AND !Valid::email(core::post('email'),TRUE))
+        {
+            Alert::set(Alert::ERROR, __('Email must contain a valid email domain'));
+        }
         //posting data so try to login
-        elseif ($this->request->post() AND CSRF::valid('login') AND Valid::email(core::post('email')))
+        elseif ($this->request->post() AND CSRF::valid('login'))
         {
             $blocked_login = FALSE;
 
@@ -117,7 +122,6 @@ class Controller_Panel_Auth extends Controller {
                 }
             }
         }
-
         //private site
         if (!Auth::instance()->logged_in() AND core::config('general.private_site')==1)
         {

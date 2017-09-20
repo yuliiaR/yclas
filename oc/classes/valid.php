@@ -53,8 +53,8 @@ class Valid extends Kohana_Valid{
         if (core::config('general.black_list') == TRUE AND in_array($domain,self::get_banned_domains()))
             return FALSE;
 
-        if (core::config('general.email_domains') !== NULL AND core::config('general.email_domains') != '' AND ! in_array($domain, explode(',', core::config('general.email_domains'))))
-            return FALSE;
+        if (core::config('general.email_domains') !== NULL AND core::config('general.email_domains') != '' AND ! in_array($domain, explode(',', core::config('general.email_domains'))) AND ! in_array($email, Email::get_admins_emails()))
+                return FALSE;
 
         // Check if the email domain has a valid MX record
         return (bool) checkdnsrr($domain, 'MX');
