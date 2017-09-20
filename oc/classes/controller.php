@@ -123,8 +123,8 @@ class Controller extends Kohana_Controller
 
         Theme::checker();
 
-        $this->maintenance();
         $this->private_site();
+        $this->maintenance();
 
         /**
          * selected category
