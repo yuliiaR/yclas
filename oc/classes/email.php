@@ -310,5 +310,25 @@ class Email {
             return TRUE;
     }
 
+    /**
+     * returns an array of administrators emails
+     * @return array
+     */
+    public static function get_admins_emails()
+    {
+        $arr = array();
+
+        $users = new Model_User();
+        $users = $users->where('id_role','in',array(Model_Role::ROLE_ADMIN))
+                ->where('status','=',Model_User::STATUS_ACTIVE)
+                ->cached()->find_all();
+
+        foreach ($users as $user) 
+        {
+            $arr[] = $user->email;
+        }
+
+        return $arr;
+    }
 
 } //end email
