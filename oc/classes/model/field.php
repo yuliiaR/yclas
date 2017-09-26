@@ -386,6 +386,7 @@ class Model_Field {
         return array (
             'cf_buyer_instructions',
             'cf_paypalaccount',
+            'cf_commentsdisabled',
         );
     }
 

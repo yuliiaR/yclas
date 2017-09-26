@@ -278,9 +278,15 @@ a:hover, a:focus {
 	border-width: 2px;
 }
 .btn-primary {
-	color: #2E6DA4;
+	color: #333;
 	background: none;
-	border-color: #2e6da4;
+	border-color: #333;
+	border-width: 2px;
+}
+.btn-primary:hover {
+	color: #fff;
+	background: #222;
+	border-color: #222;
 	border-width: 2px;
 }
 

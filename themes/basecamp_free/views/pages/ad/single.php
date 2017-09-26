@@ -175,9 +175,15 @@
 			<div class="col-xs-12">	
 				<ul class="nav nav-tabs" role="tablist">
 					<li role="presentation" class="active"><a href="#addesc" aria-controls="addesc" role="tab" data-toggle="tab"><i class="glyphicon glyphicon-info-sign"></i></a></li>
-					<li role="presentation"><a href="#comments" aria-controls="comments" role="tab" data-toggle="tab"><i class="glyphicon glyphicon-comment"></i></a></li>
-					<li role="presentation"><a href="#related" aria-controls="related" role="tab" data-toggle="tab"><i class="glyphicon glyphicon-th-list"></i></a></li>
-					<li role="presentation"><a href="#share" aria-controls="share" role="tab" data-toggle="tab"><i class="glyphicon glyphicon-share"></i></a></li>
+					<?if($ad->comments()!=FALSE):?>
+						<li role="presentation"><a href="#comments" aria-controls="comments" role="tab" data-toggle="tab"><i class="glyphicon glyphicon-comment"></i></a></li>
+					<?endif?>
+					<?if($ad->related()):?>
+						<li role="presentation"><a href="#related" aria-controls="related" role="tab" data-toggle="tab"><i class="glyphicon glyphicon-th-list"></i></a></li>
+					<?endif?>
+					<?if(core::config('advertisement.sharing')==1 OR core::config('advertisement.qr_code')==1):?>
+						<li role="presentation"><a href="#share" aria-controls="share" role="tab" data-toggle="tab"><i class="glyphicon glyphicon-share"></i></a></li>
+					<?endif?>
 				</ul>
 
 				<div class="tab-content">
