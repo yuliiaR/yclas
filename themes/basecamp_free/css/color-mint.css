@@ -91,6 +91,11 @@ a {
     color: #7D7D7D;
 }
 
+/* Alerts */
+.alert-success{
+    background: #e3f6ee;
+    border-color: #4AC391;
+}
 
 /** Listings **/
 .cat_loc_desc {
