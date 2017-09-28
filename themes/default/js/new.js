@@ -286,6 +286,21 @@ function locationsGMap() {
                             lat: latlng.lat(),
                             lng: latlng.lng(),
                             draggable: true,
+                            dragend: function(event) {
+                                var lat = event.latLng.lat();
+                                var lng = event.latLng.lng();
+                                GMaps.geocode({
+                                    lat: lat,
+                                    lng: lng,
+                                    callback: function(results, status) {
+                                        if (status == 'OK') {
+                                            $("input[name='address']").val(results[0].formatted_address)
+                                        }
+                                    }
+                                });
+                                $('#publish-latitude').val(lat).removeAttr("disabled");
+                                $('#publish-longitude').val(lng).removeAttr("disabled");
+                            },
                         });
                         $('#publish-latitude').val(latlng.lat()).removeAttr("disabled");
                         $('#publish-longitude').val(latlng.lng()).removeAttr("disabled");
