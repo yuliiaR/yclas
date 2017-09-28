@@ -74,8 +74,13 @@ script:
   - php /var/www/yclas/oc/codecept.phar run acceptance tests/acceptance/default
 
 after_failure:
-  # - cat /var/www/yclas/oc/tests/_output/*****.fail.html
+  # - cat /var/www/yclas-test/oc/tests/_output/AdvertisementDisplayOptionsCept.fail.html
 
-# configure notifications (email, IRC, campfire etc)
+  # configure notifications (email, IRC, campfire etc)
 notifications:
-  email: false
+  email:
+    recipients:
+      - constantinos@open-classifieds.com
+    on_success: never # default: change
+    on_failure: always # default: always
+
