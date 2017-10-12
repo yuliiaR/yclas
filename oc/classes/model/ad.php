@@ -1672,4 +1672,18 @@ class Model_Ad extends ORM {
         return FALSE;
     }
 
+    /**
+     * returns the currency of the ad (GBP, USD, EUR)
+     * @return string
+     */
+    public function currency()
+    {
+        if ($this->loaded())
+        {
+            if(isset($this->cf_currency) AND $this->cf_currency != '')
+                return $this->cf_currency;
+        }
+        return 'USD';
+    }
+
 } // END Model_ad

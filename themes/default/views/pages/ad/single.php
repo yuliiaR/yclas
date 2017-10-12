@@ -66,7 +66,7 @@
 
     <div class="well ">
         <?if ($ad->price>0):?>
-            <span class="label label-danger"><?=_e('Price');?> : <span class="price-curry"><?=i18n::money_format( $ad->price)?></span></span>
+            <span class="label label-danger"><?=_e('Price');?> : <span class="price-curry"><?=i18n::money_format( $ad->price, $ad->currency())?></span></span>
         <?endif?>
         <?if ($ad->price==0 AND core::config('advertisement.free')==1):?>
             <span class="label label-danger"><?=_e('Price');?> : <?=_e('Free');?></span>
@@ -171,7 +171,7 @@
                                             <div class="form-group">
                                                 <?= FORM::label('price', _e('Price'), array('class'=>'col-sm-2 control-label', 'for'=>'price'))?>
                                                 <div class="col-md-6">
-                                                    <?= FORM::input('price', Core::post('price'), array('placeholder' => html_entity_decode(i18n::money_format(1)), 'class' => 'form-control', 'id' => 'price', 'type'=>'text'))?>
+                                                    <?= FORM::input('price', Core::post('price'), array('placeholder' => html_entity_decode(i18n::money_format(1, $ad->currency())), 'class' => 'form-control', 'id' => 'price', 'type'=>'text'))?>
                                                 </div>
                                             </div>
                                         <?endif?>

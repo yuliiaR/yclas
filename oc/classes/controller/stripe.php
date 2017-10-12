@@ -230,7 +230,7 @@ class Controller_Stripe extends Controller{
                 {
                     //crete new order for the application fee so we know how much the site owner is earning ;)
                     $order_app = Model_Order::new_order($order->ad, $order->ad->user,
-                                                        Model_Order::PRODUCT_APP_FEE, $application_fee, core::config('payment.paypal_currency'),
+                                                        Model_Order::PRODUCT_APP_FEE, $application_fee, $order->currency,
                                                         'id_order->'.$order->id_order.' id_ad->'.$order->ad->id_ad);
                     $order_app->confirm_payment('stripe',Core::post('stripeToken'));
                 }
@@ -306,7 +306,7 @@ class Controller_Stripe extends Controller{
                     {
                         $charge = \Stripe\Charge::create(array(
                                                         "amount"    => StripeKO::money_format($ad->price), // amount in cents, again
-                                                        "currency"  => core::config('payment.paypal_currency'),
+                                                        "currency"  => $ad->currency(),
                                                         "source"      => $token,
                                                         "description" => $ad->title,
                                                         "application_fee" => StripeKO::money_format($application_fee)),
@@ -317,7 +317,7 @@ class Controller_Stripe extends Controller{
                     {
                         $charge = \Stripe\Charge::create(array(
                                                         "amount"    => StripeKO::money_format($ad->price), // amount in cents, again
-                                                        "currency"  => core::config('payment.paypal_currency'),
+                                                        "currency"  => $ad->currency(),
                                                         "source"      => $token,
                                                         "description" => $ad->title)
                                                     );
@@ -345,7 +345,7 @@ class Controller_Stripe extends Controller{
                 }
                 //new order
                 $order = Model_Order::new_order($ad, $user, Model_Order::PRODUCT_AD_SELL,
-                                                $ad->price, core::config('payment.paypal_currency'), __('Purchase').': '.$ad->seotitle);
+                                                $ad->price, $ad->currency(), __('Purchase').': '.$ad->seotitle);
 
                 //mark as paid
                 $order->confirm_payment('stripe',Core::post('stripeToken'));

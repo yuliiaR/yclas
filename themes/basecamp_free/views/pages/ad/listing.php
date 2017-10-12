@@ -114,7 +114,7 @@
 											<?endif?>
 											<span class="gallery_only fm"><i class="glyphicon glyphicon-bookmark"></i></span>
 											<?if ($ad->price!=0):?>
-												<span class="gallery_only ad_gprice"><span class="price-curry"><?=i18n::money_format( $ad->price)?></span></span>
+												<span class="gallery_only ad_gprice"><span class="price-curry"><?=i18n::money_format( $ad->price, $ad->currency())?></span></span>
 											<?elseif (($ad->price==0 OR $ad->price == NULL) AND core::config('advertisement.free')==1):?>
 												<span class="gallery_only ad_gprice"><?=_e('Free');?></span>
 											<?else:?>
@@ -192,7 +192,7 @@
 									<?if ($ad->price!=0):?>
 										<span class="ad_price"> 
 											<a class="add-transition" title="<?=HTML::chars($ad->title)?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>">
-											<?=_e('Price');?>: <b><span class="price-curry"><?=i18n::money_format( $ad->price)?></span></b>
+											<?=_e('Price');?>: <b><span class="price-curry"><?=i18n::money_format( $ad->price, $ad->currency())?></span></b>
 											</a>							 
 										</span>
 									<?elseif (($ad->price==0 OR $ad->price == NULL) AND core::config('advertisement.free')==1):?>
