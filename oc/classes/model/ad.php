@@ -1683,7 +1683,7 @@ class Model_Ad extends ORM {
             if(isset($this->cf_currency) AND $this->cf_currency != '')
                 return $this->cf_currency;
         }
-        return 'USD';
+        return core::config('payment.paypal_currency');
     }
 
 } // END Model_ad
