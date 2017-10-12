@@ -82,7 +82,7 @@
 <meta property="logbee:addr" content="<?=Model_Ad::current()->address?>"/>
 <meta property="logbee:email" content="<?=Model_Ad::current()->user->email?>"/>
 <meta property="logbee:phone" content="<?=Model_Ad::current()->phone?>"/>
-<meta property="logbee:price" content="<?=i18n::money_format(Model_Ad::current()->price)?>"/>
+<meta property="logbee:price" content="<?=i18n::money_format(Model_Ad::current()->price, Model_Ad::current()->currency())?>"/>
 <meta property="logbee:imgurl" content="<?=Controller::$image?>"/>
 <?endif?>
 

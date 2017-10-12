@@ -138,12 +138,12 @@
 								<div class="seller_f_block">	
 									<?if(core::config('payment.paypal_seller')==1 AND $ad->price != NULL AND $ad->price > 0):?>
 										<?if(core::config('payment.stock')==0 OR ($ad->stock > 0 AND core::config('payment.stock')==1)):?>
-											<a class="sf_btn i_price" href="<?=Route::url('default', array('action'=>'buy','controller'=>'ad','id'=>$ad->id_ad))?>"><?=__('Buy Now')?> - <span class="price-curry"><?=i18n::money_format( $ad->price)?></a></span>
+											<a class="sf_btn i_price" href="<?=Route::url('default', array('action'=>'buy','controller'=>'ad','id'=>$ad->id_ad))?>"><?=__('Buy Now')?> - <span class="price-curry"><?=i18n::money_format( $ad->price, $ad->currency())?></a></span>
 										<?else:?>
-											<span class="sf_btn i_price"><span class="price-curry"><?=i18n::money_format( $ad->price)?></span></span>
+											<span class="sf_btn i_price"><span class="price-curry"><?=i18n::money_format( $ad->price, $ad->currency())?></span></span>
 										<?endif?>
 									<?elseif ($ad->price>0):?>
-										<span class="sf_btn i_price"><span class="price-curry"><?=i18n::money_format( $ad->price)?></span></span>
+										<span class="sf_btn i_price"><span class="price-curry"><?=i18n::money_format( $ad->price, $ad->currency())?></span></span>
 									<?elseif (($ad->price==0 OR $ad->price == NULL) AND core::config('advertisement.free')==1):?>
 										<span class="sf_btn i_price"><?=_e('Free');?></span>
 									<?else:?>
@@ -318,7 +318,7 @@
 		                                    core::config('advertisement.contact_price')):?>
 											<dl class="form-group clearfix">
 												<dt><?= FORM::label('price', _e('Price'), array('class'=>'control-label', 'for'=>'price'))?></dt>
-												<dd><?= FORM::input('price', Core::post('price'), array('placeholder' => html_entity_decode(i18n::money_format(1)), 'class' => 'form-control', 'id' => 'price', 'type'=>'text'))?></dd>
+												<dd><?= FORM::input('price', Core::post('price'), array('placeholder' => html_entity_decode(i18n::money_format(1, $ad->currency())), 'class' => 'form-control', 'id' => 'price', 'type'=>'text'))?></dd>
 											</dl>
 										<?endif?>
 										<!-- file to be sent-->

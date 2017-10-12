@@ -440,9 +440,13 @@ class I18n extends Kohana_I18n {
      * @param  float $number 
      * @return string
      */
-    public static function money_format($number)
+    public static function money_format($number, $currency = NULL)
     {
-        $format = core::config('general.number_format');
+        if($currency == NULL){    
+            $format = core::config('general.number_format');
+        } else {
+            $format = $currency;
+        }
 
         //in case not any format standard
         if ($format == NULL)

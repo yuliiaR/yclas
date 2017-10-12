@@ -387,6 +387,7 @@ class Model_Field {
             'cf_buyer_instructions',
             'cf_paypalaccount',
             'cf_commentsdisabled',
+            'cf_currency',
         );
     }
 
