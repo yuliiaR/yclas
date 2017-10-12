@@ -74,7 +74,7 @@ script:
   - php /var/www/yclas/oc/codecept.phar run acceptance tests/acceptance/default
 
 after_failure:
-  - cat /var/www/yclas-test/oc/tests/_output/CurrencyFormatCept.fail.html
+  - cat /var/www/yclas-test/oc/tests/_output/AdvertisementDisplayOptionsCept.fail.html
 
   # configure notifications (email, IRC, campfire etc)
 notifications:
