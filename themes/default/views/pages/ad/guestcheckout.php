@@ -61,7 +61,7 @@
                             <?if ($ad->shipping_pickup() AND core::get('shipping_pickup')):?>
                                 <?=i18n::money_format(0, core::config('payment.paypal_currency'))?>
                             <?else:?>
-                                <?=i18n::money_format($ad->shipping_price(), core::config('payment.paypal_currency'))?>    
+                                <?=i18n::money_format($ad->shipping_price(), core::config('payment.paypal_currency'))?>
                             <?endif?>
                         </td>
                     </tr>
@@ -91,7 +91,7 @@
         <?if ($ad->price>0):?>
 
             <?=StripeKO::button_guest_connect($ad)?>
-            
+
             <?if (Core::config('payment.paypal_account')!=''):?>
                 <p class="text-right">
                     <a class="btn btn-success btn-lg" href="<?=Route::url('default', array('controller'=> 'paypal','action'=>'guestpay' , 'id' => $ad->id_ad))?><?=core::get('shipping_pickup') ? '?shipping_pickup=1' : NULL?>">
@@ -103,9 +103,19 @@
         <?else:?>
             <ul class="list-inline text-right">
                 <li>
-                    <a title="<?=__('Click to proceed')?>" class="btn btn-success" href="<?=Route::url('default', array('controller'=> 'ad', 'action'=>'checkoutfree','id'=>$order->id_order))?>">
-                        <?=_e('Click to proceed')?>
-                    </a>
+                    <form method="post" action="<?=Route::url('default', array('controller'=> 'ad', 'action'=>'checkoutfree','id'=>$ad->id_ad))?>" class="form-inline">
+                        <div class="form-group">
+                            <label class="control-label"><?=_e('Email')?></label>
+                            <input
+                                class="form-control"
+                                type="text"
+                                name="email"
+                                value="<?=Request::current()->post('email')?>"
+                                placeholder="<?=__('Email')?>"
+                            >
+                        </div>
+                        <button type="submit" class="btn btn-primary"><?=_e('Click to proceed')?></button>
+                    </form>
                 </li>
             </ul>
         <?endif?>
@@ -123,7 +133,7 @@
             e.src = ('https:' === document.location.protocol ? 'https://' : 'http://') + 'cdn.fraudlabspro.com/s.js';
             var s = document.getElementsByTagName('script')[0];
             s.parentNode.insertBefore(e, s);
-        }             
+        }
         (window.attachEvent) ? window.attachEvent('onload', s) : window.addEventListener('load', s, false);
     })();
 </script>

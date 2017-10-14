@@ -882,8 +882,20 @@ class Controller_Ad extends Controller {
      */
     public function action_checkoutfree()
     {
-        $order = new Model_Order($this->request->param('id'));
-        $ad = new Model_Ad($order->id_ad);
+        if (Auth::instance()->logged_in())
+        {
+            $order = new Model_Order($this->request->param('id'));
+            $ad = new Model_Ad($order->id_ad);
+        }
+        else
+        {
+            $ad = new Model_Ad($this->request->param('id'));
+            //create user if does not exists, if not will return the user
+            $user = Model_User::create_email(core::post('email'));
+            //new order
+            $order = Model_Order::new_order($ad, $user, Model_Order::PRODUCT_AD_SELL,
+                                            $ad->price, core::config('payment.paypal_currency'), __('Purchase').': '.$ad->seotitle);
+        }
 
         if ($order->loaded())
         {
