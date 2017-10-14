@@ -276,7 +276,7 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
                 {
                     $id_product = Model_Order::PRODUCT_AD_SELL;
                     $amount     = Core::request('amount');
-                    $currency   = Core::config('payment.paypal_currency');
+                    $currency   = $ad->currency();
                     $user       = Auth::instance()->get_user();
 
                     // New order and mark as paid

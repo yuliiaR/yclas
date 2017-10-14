@@ -105,7 +105,7 @@ class Controller_Paypal extends Controller{
         	// case when selling advert
         	if($order->id_product == Model_Order::PRODUCT_AD_SELL){
         		$paypal_account = $order->ad->paypal_account();
-        		$currency = i18n::get_intl_currency_symbol();
+        		$currency = $order->currency;
         	}
         	else{
         		$paypal_account = core::config('payment.paypal_account');
@@ -232,7 +232,7 @@ class Controller_Paypal extends Controller{
         {
 
             $paypal_account = $ad->paypal_account();
-            $currency = i18n::get_intl_currency_symbol();
+            $currency = $ad->currency();
 
             if($ad->shipping_price() AND $ad->shipping_pickup() AND core::get('shipping_pickup'))
                 $ad->price = $ad->price;

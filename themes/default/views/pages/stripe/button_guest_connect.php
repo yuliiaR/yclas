@@ -8,7 +8,7 @@
     data-name="<?=$ad->title?>"
     data-description="<?=Text::limit_chars(Text::removebbcode($ad->description), 30, NULL, TRUE)?>"
     data-amount="<?=StripeKO::money_format($ad->price)?>"
-    data-currency="<?=core::config('payment.paypal_currency')?>"
+    data-currency="<?=$ad->currency()?>"
     data-locale="auto"
     <?=(Core::config('payment.stripe_address')==TRUE)?'data-address = "true"':''?>
     >

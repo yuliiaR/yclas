@@ -772,7 +772,7 @@ class Controller_Ad extends Controller {
             else
             {
                 $amount     = $ad->price;
-                $currency   = core::config('payment.paypal_currency');
+                $currency   = $ad->currency();
 
                 if ($ad->shipping_price() AND $ad->shipping_pickup() AND Core::request('shipping_pickup'))
                     $amount = $ad->price;

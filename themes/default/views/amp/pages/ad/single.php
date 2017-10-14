@@ -4,7 +4,7 @@
     <h1 class="amp-oc-title"><?=$ad->title?></h1>
     <ul class="amp-oc-meta">
         <?if ($ad->price>0):?>
-            <li><?=i18n::money_format($ad->price)?></li>
+            <li><?=i18n::money_format($ad->price, $ad->currency())?></li>
         <?elseif ($ad->price==0 AND core::config('advertisement.free')==1):?>
             <li><?=_e('Free')?></li>
         <?endif?>

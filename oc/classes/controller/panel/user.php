@@ -219,7 +219,7 @@ class Controller_Panel_User extends Auth_CrudAjax {
 
             //header of the csv
             $header = array('id_user','name','seoname','email','description','num_ads',
-                            'image','last_login','last_modified','created','ipaddress','status');
+                            'image','last_login','last_modified','created','ipaddress','status','phone');
             foreach (Model_UserField::get_all(FALSE) as $key=>$value)
                 $header[] = $key;
 
@@ -243,6 +243,7 @@ class Controller_Panel_User extends Auth_CrudAjax {
                                         'created'   => $user->created,
                                         'ipaddress' => long2ip($user->last_ip),
                                         'status'    => $user->status,
+                                        'phone'    => $user->phone,
                                        )+$user->custom_columns(FALSE,FALSE));
 
             fclose($output);

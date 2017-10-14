@@ -62,7 +62,7 @@
                                     <ul class="dropdown-menu">
                                         <li class="dropdown-header"><?=_e('Shipping method')?></li>
                                         <li><a href="<?=Route::url('default',array('controller'=>'ad', 'action'=>'checkout','id'=>$order->id_order))?>?shipping_pickup=1"><?=_e('Customer Pickup - Free')?></a></li>
-                                        <li><a href="<?=Route::url('default',array('controller'=>'ad', 'action'=>'checkout','id'=>$order->id_order))?>"><?=_e('Shipping')?> – <?=i18n::money_format($order->ad->shipping_price())?></a></li>
+                                        <li><a href="<?=Route::url('default',array('controller'=>'ad', 'action'=>'checkout','id'=>$order->id_order))?>"><?=_e('Shipping')?> – <?=i18n::money_format($order->ad->shipping_price(), $order->currency)?></a></li>
                                     </ul>
                                 </div>
                             <?endif?>

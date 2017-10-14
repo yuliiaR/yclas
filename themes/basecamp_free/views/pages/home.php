@@ -48,7 +48,7 @@
 								<img data-src="holder.js/200x200?<?=str_replace('+', ' ', http_build_query(array('text' => $ad->category->name, 'size' => 14, 'auto' => 'yes')))?>" alt="<?=HTML::chars($ad->title)?>"> 
 							<?endif?>
 							<?if ($ad->price>0):?>
-								<span class="ad_price"> <?=i18n::money_format( $ad->price)?></span>
+								<span class="ad_price"> <?=i18n::money_format( $ad->price, $ad->currency())?></span>
 							<?elseif (($ad->price==0 OR $ad->price == NULL) AND core::config('advertisement.free')==1):?>
 								<span class="ad_price"><?=_e('Free');?></span>
 							<?else:?>

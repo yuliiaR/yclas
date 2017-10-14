@@ -22,7 +22,7 @@
                 <div class="form-group">
                     <div class="col-xs-12">
                         <?=FORM::label('price', _e('Price'), array('class'=>'control-label', 'for'=>'price'))?>
-                        <?=FORM::input('price', Core::post('price'), array('placeholder' => html_entity_decode(i18n::money_format(1)), 'class' => 'form-control', 'id' => 'price', 'type'=>'text', 'disabled'))?>
+                        <?=FORM::input('price', Core::post('price'), array('placeholder' => html_entity_decode(i18n::money_format(1, $widget->ad->currency())), 'class' => 'form-control', 'id' => 'price', 'type'=>'text', 'disabled'))?>
                     </div>
                 </div>
                 <div class="form-group">
@@ -66,7 +66,7 @@
                     <div class="form-group">
                         <div class="col-xs-12">
                             <?=FORM::label('price', _e('Price'), array('class'=>'control-label', 'for'=>'price'))?>
-                            <?=FORM::input('price', Core::post('price'), array('placeholder' => html_entity_decode(i18n::money_format(1)), 'class' => 'form-control', 'id' => 'price', 'type'=>'text'))?>
+                            <?=FORM::input('price', Core::post('price'), array('placeholder' => html_entity_decode(i18n::money_format(1, $widget->ad->currency())), 'class' => 'form-control', 'id' => 'price', 'type'=>'text'))?>
                         </div>
                     </div>
                 <?endif?>
