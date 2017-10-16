@@ -270,7 +270,7 @@
                     <!-- Fields coming from custom fields feature -->
                     <?if (Theme::get('premium')==1):?>
                         <div id="custom-fields"
-                            data-customfield-values='<?=json_encode($ad->custom_columns(), JSON_HEX_APOS | JSON_HEX_QUOT)?>'
+                            data-customfield-values='<?=json_encode($ad->custom_columns(0, true), JSON_HEX_APOS | JSON_HEX_QUOT)?>'
                             <?=(Auth::instance()->get_user()->is_admin() OR Auth::instance()->get_user()->is_moderator()) ? 'data-admin-privilege': NULL?>
                         >
                             <div id="custom-field-template" class="form-group hidden">

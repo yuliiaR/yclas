@@ -865,7 +865,7 @@ class Model_Ad extends ORM {
     * @param  boolean $show_listing only those fields that needs to be displayed on the list of ads show_listing===TRUE
     * @return array else false
     */
-    public function custom_columns($show_listing = FALSE)
+    public function custom_columns($show_listing = FALSE, $edit_ad = FALSE)
     {
         if($this->loaded())
         {
@@ -903,7 +903,7 @@ class Model_Ad extends ORM {
                             $display = TRUE;
                     }
 
-                    if (in_array($cf_column_name, Model_Field::fields_to_hide()))
+                    if (in_array($cf_column_name, Model_Field::fields_to_hide()) AND $edit_ad == FALSE )
                         $display = FALSE;
 
                     if(isset($cf_value) AND $display )
