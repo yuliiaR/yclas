@@ -101,10 +101,17 @@
         <?if((core::config('payment.paypal_seller')==1 OR Core::config('payment.stripe_connect')==1) AND $ad->price != NULL AND $ad->price > 0):?>
             <?if(core::config('payment.stock')==0 OR ($ad->stock > 0 AND core::config('payment.stock')==1)):?>
                 <div class="btn-group" role="group">
-                    <a class="btn btn-primary" type="button" type="post" href="<?=Route::url('default', array('action'=>'buy','controller'=>'ad','id'=>$ad->id_ad))?>">
-                        <i class="fa fa-money" aria-hidden="true"></i>
-                        &nbsp;&nbsp;<?=_e('Buy Now')?>
-                    </a>
+                    <?if($ad->status != Model_Ad::STATUS_SOLD):?>
+                        <a class="btn btn-primary" type="button" type="post" href="<?=Route::url('default', array('action'=>'buy','controller'=>'ad','id'=>$ad->id_ad))?>">
+                            <i class="fa fa-money" aria-hidden="true"></i>
+                            &nbsp;&nbsp;<?=_e('Buy Now')?>
+                        </a>
+                    <?else:?>
+                        <a class="btn btn-primary disabled">
+                            <i class="fa fa-money" aria-hidden="true"></i>
+                            &nbsp;&nbsp;<?=_e('Sold')?>
+                        </a>
+                    <?endif?>
                 </div>
             <?endif?>
         <?elseif (isset($ad->cf_file_download) AND !empty($ad->cf_file_download) AND  ( core::config('payment.stock')==0 OR ($ad->stock > 0 AND core::config('payment.stock')==1))):?>
