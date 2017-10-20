@@ -232,7 +232,7 @@ class Controller_Paypal extends Controller{
         {
 
             $paypal_account = $ad->paypal_account();
-            $currency = core::config('payment.paypal_currency');
+            $currency = $ad->currency();
 
             if($ad->shipping_price() AND $ad->shipping_pickup() AND core::get('shipping_pickup'))
                 $ad->price = $ad->price;
