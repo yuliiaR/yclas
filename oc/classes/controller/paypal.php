@@ -161,7 +161,7 @@ class Controller_Paypal extends Controller{
                 $ad->price = $ad->price;
             elseif($ad->shipping_price())
                 $ad->price = $ad->price + $ad->shipping_price();
-        
+
             //order is from a payment done to the owner of the ad
             $paypal_account = $ad->paypal_account();
 
@@ -232,7 +232,7 @@ class Controller_Paypal extends Controller{
         {
 
             $paypal_account = $ad->paypal_account();
-            $currency = $ad->currency();
+            $currency = core::config('payment.paypal_currency');
 
             if($ad->shipping_price() AND $ad->shipping_pickup() AND core::get('shipping_pickup'))
                 $ad->price = $ad->price;
