@@ -236,7 +236,7 @@ $('textarea[name=description]:not(.disable-bbcode)').sceditor({
     "bulletlist,orderedlist|link,unlink,youtube|source",
     resizeEnabled: "true",
     emoticonsEnabled: false,
-    width: '88%',
+    width: '100%',
     rtl: $('meta[name="application-name"]').data('rtl'),
     style: $('meta[name="application-name"]').data('baseurl') + "themes/default/css/jquery.sceditor.default.min.css",
 });
