@@ -6,6 +6,6 @@
 
 <div class="panel-body">
 
-<img src="<?=$widget->image_url?>" class="img-responsive">
+<img src="<?=$widget->image_url?>" class="img-responsive center-block">
 
 </div>
