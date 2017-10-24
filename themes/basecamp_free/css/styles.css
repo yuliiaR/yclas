@@ -1543,6 +1543,10 @@ table#forum-table  td, table#forum-table .sibling-forum th {
     color: #ff0084;
 }
 
+.Widget_Image{
+	background-color: inherit;
+}
+
 @media only screen and (max-width : 768px) {
 	.topic-row.header {
 		display: none;

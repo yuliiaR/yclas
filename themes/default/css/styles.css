@@ -360,6 +360,10 @@ img#captcha_img_publish_new {
     color: #ff0084;
 }
 
+.Widget_Image{
+  background-color: inherit;
+}
+
 /*Media screens*/
 @media only screen and (max-width : 480px) {
   .modal-body{

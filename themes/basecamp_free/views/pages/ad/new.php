@@ -47,7 +47,7 @@
                                 data-price0="<?=i18n::money_format(0)?>"
                                 <?=(core::config('advertisement.parent_category')) ? 'data-isparent' : NULL?>
                             >
-                            <div id="select-category-template" class="col-xs-3 hidden">
+                            <div id="select-category-template" class="col-xs-6 hidden">
                                 <select class="disable-select2 select-category" placeholder="<?=__('Pick a category...')?>"></select>
                             </div>
                             <div id="paid-category" class="col-xs-12 hidden">
