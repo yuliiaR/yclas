@@ -56,6 +56,7 @@ class Widget_Contact extends Widget
         if($ad->loaded())
         {
             $this->id_ad = $ad->id_ad;
+            $this->currency = $ad->currency();
         }
 
     }
