@@ -30,6 +30,12 @@ class Widget_Image extends Widget
                                                         'default'   => '',
                                                         'label'     => __('Enter the image URL'),
                                                         'required'  => FALSE),
+
+                                'redirect_url' => array( 'type'     => 'text',
+                                                        'display'   => 'text',
+                                                        'default'   => '',
+                                                        'label'     => __('URL to redirect when clicked (Optional)'),
+                                                        'required'  => FALSE),
 						 		);
 	}
 
