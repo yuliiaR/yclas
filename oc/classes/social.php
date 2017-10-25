@@ -132,7 +132,7 @@ class Social {
             }
 
             if($ad->price>0)
-                $caption .= ', '.i18n::money_format($ad->price);
+                $caption .= ', '.html_entity_decode(i18n::money_format($ad->price, $ad->currency()));
 
             $caption .= ' - '.$url_ad;
 
@@ -185,7 +185,7 @@ class Social {
                 }
 
                 if($ad->price>0)
-                    $caption .= ', '.i18n::money_format($ad->price);
+                    $caption .= ', '.html_entity_decode(i18n::money_format($ad->price, $ad->currency()));
 
                 $caption .= ' - '.Text::limit_chars(Text::removebbcode($ad->description), 100, NULL, TRUE);
                 $caption .= ' - '.$url_ad;
@@ -226,7 +226,7 @@ class Social {
         }
 
         if($ad->price>0)
-            $message .= ', '.i18n::money_format($ad->price);
+            $message .= ', '.html_entity_decode(i18n::money_format($ad->price, $ad->currency()));
 
         $url_ad = Route::url('ad', array('category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle));
         $message .= ' - '.$url_ad;
@@ -257,7 +257,7 @@ class Social {
         $description = $ad->description;
 
         if($ad->price>0)
-            $description .= ' - '.__('Price').': '.i18n::money_format($ad->price);
+            $description .= ' - '.__('Price').': '.html_entity_decode(i18n::money_format($ad->price, $ad->currency()));
 
         $message = $ad->title;
 
@@ -320,9 +320,9 @@ class Social {
 
     public static function GenerateHashtags(Model_Ad $ad, $description)
     {
-    	$hashtag1 = '#'.preg_replace('/\s+/', '_', core::config('general.site_name'));
-    	$hashtag2 = '#'.preg_replace('/\s+/', '_', $ad->category->name);
-    	$hashtag3 = '#'.preg_replace('/\s+/', '_', $ad->location->name);
+    	$hashtag1 = '#'.str_replace([' ', "'", '"', '!', '+', '$', '%', '^', '&', '*', '+', '.', ','], '', core::config('general.site_name'));
+    	$hashtag2 = '#'.str_replace([' ', "'", '"', '!', '+', '$', '%', '^', '&', '*', '+', '.', ','], '', $ad->category->name);
+    	$hashtag3 = '#'.str_replace([' ', "'", '"', '!', '+', '$', '%', '^', '&', '*', '+', '.', ','], '', $ad->location->name);
 
     	return $description.' '.$hashtag1.' '.$hashtag2.' '.$hashtag3;
     }
