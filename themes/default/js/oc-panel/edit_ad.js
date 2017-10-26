@@ -563,6 +563,7 @@ function createCustomFieldsByCategory (customfields) {
 
         switch (customfield.type) {
             case 'string':
+            case 'url':
                 $template.find('div[data-input]').replaceWith($('<input/>').attr({  'type'        : 'text',
                                                                                     'id'          : idx,
                                                                                     'name'        : idx,

@@ -8,11 +8,11 @@
 
 <div class="panel panel-default">
     <div class="panel-body">
-        <form method="post" action="<?=Route::url('oc-panel',array('controller'=>'fields','action'=>'new'))?>">         
-            <?=Form::errors($errors)?>  
-          
+        <form method="post" action="<?=Route::url('oc-panel',array('controller'=>'fields','action'=>'new'))?>">
+            <?=Form::errors($errors)?>
+
             <div class="form-group">
-                <label class="control-label"><?=__('Name')?></label>                    
+                <label class="control-label"><?=__('Name')?></label>
                 <input class="form-control" type="text" name="name" maxlength="64" placeholder="<?=__('Name')?>" value="<?=Core::post('name')?>" required>
             </div>
 
@@ -27,11 +27,11 @@
             </div>
 
             <div class="form-group">
-                <label class="control-label" for="date"><?=__('Type')?></label>      
+                <label class="control-label" for="date"><?=__('Type')?></label>
                 <select name="type"  class="form-control" id="cf_type_fileds" required>
                     <option value="string"><?=__('Text 256 Chars')?></option>
                     <option value="textarea"><?=__('Text Long')?></option>
-                    <option value="integer"><?=__('Number')?></option>  
+                    <option value="integer"><?=__('Number')?></option>
                     <option value="decimal"><?=__('Number Decimal')?></option>
                     <option value="range"><?=__('Numeric Range')?></option>
                     <option value="date"><?=__('Date')?></option>
@@ -42,6 +42,7 @@
                     <option value="country"><?=__('Country')?></option>
                     <option value="file_dropbox"><?=__('File Dropbox')?></option>
                     <option value="file_gpicker"><?=__('File Google Drive')?></option>
+                    <option value="url"><?=__('URL')?></option>
                 </select>
             </div>
 
