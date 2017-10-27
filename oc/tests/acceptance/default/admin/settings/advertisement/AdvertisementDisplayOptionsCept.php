@@ -130,6 +130,8 @@ $I->see('Advertisement is updated');
 // Import Lat & Long
 $I->amOnPage('/oc-panel/import');
 $I->click('a[href="http://reoc.lo/oc-panel/tools/get_ads_latlgn"]');
+$I->amOnPage('/oc-panel/tools/cache?force=1');
+sleep(3);
 
 //Read
 $I->amOnPage('/jobs/some-nice-title-here.html');
