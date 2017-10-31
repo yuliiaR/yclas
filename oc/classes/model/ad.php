@@ -927,7 +927,8 @@ class Model_Ad extends ORM {
                                 $cf_value = '<a'.HTML::attributes(['class' => 'btn btn-success', 'href' => $cf_value]).'>'.__('Download').'</a>';
                                 break;
                             case 'url':
-                                $cf_value = '<a'.HTML::attributes(['href' => $cf_value, 'title' => $cf_config->$cf_name->tooltip, 'data-toggle' => 'tooltip']).'>'.$cf_config->$cf_name->label.'</a>';
+                                if ($edit_ad == FALSE)
+                                    $cf_value = '<a'.HTML::attributes(['href' => $cf_value, 'title' => $cf_config->$cf_name->tooltip, 'data-toggle' => 'tooltip', 'target' => '_blank']).'>'.$cf_config->$cf_name->label.'</a>';
                                 break;
                         }
 
@@ -953,7 +954,7 @@ class Model_Ad extends ORM {
             {
                 if(isset($active_custom_fields[$name]))
                 {
-                    if ($value->type != 'url')
+                    if ($edit_ad == TRUE OR $value->type != 'url')
                         $ad_custom_vals[$value->label] = $active_custom_fields[$name];
                     else
                         $ad_custom_vals[] = $active_custom_fields[$name];
