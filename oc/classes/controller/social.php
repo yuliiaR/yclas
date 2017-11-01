@@ -96,6 +96,12 @@ class Controller_Social extends Controller {
     {
         $provider_name = $this->request->param('id');
 
+        if(!isset($provider))
+            $provider = $provider_name;
+
+        if(!isset($uid))
+            $uid = core::get('uid');
+
         $this->template->content = View::factory('pages/auth/register-social', ['form_action'=>Route::url('default',array('controller'=>'social','action'=>'register','id'=>$provider)).'?uid='.$uid]);
 
         if (core::post('email') AND CSRF::valid('register_social'))
