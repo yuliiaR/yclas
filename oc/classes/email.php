@@ -303,7 +303,11 @@ class Email {
 
         if(!$result) 
         {//to see if we return a message or a value bolean
-            Alert::set(Alert::ALERT,"Mailer Error: " . $mail->ErrorInfo);
+            if (Auth::instance()->logged_in() AND Auth::instance()->get_user()->is_admin())
+                Alert::set(Alert::ALERT,"Email not sent. Please set up the <a target='_blank' href='".Route::url('oc-panel',array('controller'=>'settings', 'action'=>'email'))."''>SMTP settings</a>.<br><br>More information and instructions <a href='//docs.yclas.com/smtp-configuration' target='_blank'>here</a>.");
+            else
+                Alert::set(Alert::ALERT,"Email not sent.");
+
             return FALSE;
         } 
         else 

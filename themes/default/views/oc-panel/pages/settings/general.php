@@ -94,7 +94,7 @@
                                     'id' => $forms['site_description']['id'],
                                 ))?>
                                 <span class="help-block">
-                                    <?=__('Description used for the <meta name="description"> of the home page. Might be used by Google as search result snippet. (max. 160 chars)')?>
+                                    <?=__('Description used for the Meta Description Tag of the home page. Might be used by Google as search result snippet. (max. 160 chars)')?>
                                 </span>
                             </div>
 
@@ -208,7 +208,7 @@
                                     'id' => $forms['moderation']['id'],
                                 ))?>
                                 <span class="help-block">
-                                    <?=__("Moderation is how you control newly created advertisements. You can set it up to fulfill your needs. For example, 'Post directly' will enable new ads to be posted directly, and get published as soon they submit.")?>
+                                    <?=__("Moderation is how you control newly created advertisements. You can set it up to fulfill your needs. For example, Post directly will enable new ads to be posted directly, and get published as soon they submit.")?>
                                 </span>
                             </div>
 
@@ -241,7 +241,7 @@
                                     'id' => $forms['alert_terms']['id'],
                                 ))?>
                                 <span class="help-block">
-                                    <?=__("If you choose to use alert terms, you can select page you want to render. And to edit content, select link 'Content' on your admin panel sidebar. Find page named <name_you_specified> click 'Edit'. In section 'Description' add content that suits you.")?>
+                                    <?=__("If you choose to use alert terms, you can select the page you want to render. And to edit content, select Content->Page on your admin panel sidebar. Find the page and click Edit. In section Description add content that suits you.")?>
                                 </span>
                             </div>
 
