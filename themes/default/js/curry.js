@@ -1,13 +1,12 @@
 /*!
- * Curry currency conversion jQuery Plugin v0.8.1
+ * Curry currency conversion jQuery Plugin v0.8.3
  * https://bitbucket.org/netyou/curry-currency-ddm
  *
- * Copyright 2015, NetYou
+ * Copyright 2017, NetYou (http://curry.netyou.co.il)
  * Dual licensed under the MIT or GPL Version 2 licenses.
  * http://www.opensource.org/licenses/mit-license.php
  * http://www.opensource.org/licenses/GPL-2.0
  */
-
 (function($) {
 
   $.fn.curry = function(options) {
@@ -21,7 +20,7 @@
       t = this,
       requestedCurrency = window.jQCurryPluginCache[1],
       $document = $(document),
-      dropDownMenu,
+      dropDownMenu, value,
       item, keyName,
       i, l, rate;
 
@@ -101,46 +100,18 @@
         var query = '';
         var selected_currencies = $('.curry').data('currencies');
         selected_currencies = selected_currencies.split(',');
-      	savedCurrency = getSavedCurrency();
 
-        var major_currencies = savedCurrency+'USD,'+savedCurrency+'EUR,'+savedCurrency+'GBP,'+savedCurrency+'JPY,'+savedCurrency+'CAD,'+savedCurrency+'CHF,'+savedCurrency+'AUD,'+savedCurrency+'ZAR,';
-        var european_currencies = savedCurrency+'ALL,'+savedCurrency+'BGN,'+savedCurrency+'BYR,'+savedCurrency+'CZK,'+savedCurrency+'DKK,'+savedCurrency+'EUR,'+savedCurrency+'GBP,'+savedCurrency+'HRK,'+savedCurrency+'HUF,'+savedCurrency+'ISK,'+savedCurrency+'NOK,'+savedCurrency+'RON,'+savedCurrency+'RUB,'+savedCurrency+'SEK,'+savedCurrency+'UAH,';
-        var skandi_currencies = savedCurrency+'DKK,'+savedCurrency+'SEK,'+savedCurrency+'NOK,';
-        var asian_currencies = savedCurrency+'JPY,'+savedCurrency+'HKD,'+savedCurrency+'SGD,'+savedCurrency+'TWD,'+savedCurrency+'KRW,'+savedCurrency+'PHP,'+savedCurrency+'IDR,'+savedCurrency+'INR,'+savedCurrency+'CNY,'+savedCurrency+'MYR,'+savedCurrency+'THB,';
-        var americas_currencies = savedCurrency+'USD,'+savedCurrency+'CAD,'+savedCurrency+'MXN,'+savedCurrency+'BRL,'+savedCurrency+'ARS,'+savedCurrency+'CRC,'+savedCurrency+'COP,'+savedCurrency+'CLP,';
+        var major_currencies = 'USD,EUR,GBP,JPY,CAD,CHF,AUD,ZAR,';
+        var european_currencies = 'ALL,BGN,BYR,CZK,DKK,EUR,GBP,HRK,HUF,ISK,NOK,RON,RUB,SEK,UAH,';
+        var skandi_currencies = 'DKK,SEK,NOK,';
+        var asian_currencies = 'JPY,HKD,SGD,TWD,KRW,PHP,IDR,INR,CNY,MYR,THB,';
+        var americas_currencies = 'USD,CAD,MXN,BRL,ARS,CRC,COP,CLP,';
         
         // Request currencies from yahoo finance
         if(selected_currencies == '') {
-          query = 'select * from yahoo.finance.xchange where pair="\
-                                          '+savedCurrency+'USD,\
-                                          '+savedCurrency+'EUR,\
-                                          '+savedCurrency+'INR,\
-                                          '+savedCurrency+'GBP,\
-                                          '+savedCurrency+'CAD,\
-                                          '+savedCurrency+'AED,\
-                                          '+savedCurrency+'BGN,\
-                                          '+savedCurrency+'BDT,\
-                                          '+savedCurrency+'CZK,\
-                                          '+savedCurrency+'DKK,\
-                                          '+savedCurrency+'HRK,\
-                                          '+savedCurrency+'HUF,\
-                                          '+savedCurrency+'IDR,\
-                                          '+savedCurrency+'JPY,\
-                                          '+savedCurrency+'NOK,\
-                                          '+savedCurrency+'PLN,\
-                                          '+savedCurrency+'RON,\
-                                          '+savedCurrency+'RUB,\
-                                          '+savedCurrency+'ALL,\
-                                          '+savedCurrency+'SEK,\
-                                          '+savedCurrency+'PHP,\
-                                          '+savedCurrency+'TRY,\
-                                          '+savedCurrency+'PKR,\
-                                          '+savedCurrency+'VND,\
-                                          '+savedCurrency+'RSD,\
-                                          '+savedCurrency+'CNY\
-                                          "';
+          query = 'AUD,BGN,BRL,CAD,CHF,CNY,CZK,DKK,GBP,HKD,HRK,HUF,IDR,ILS,INR,JPY,KRW,MXN,MYR,NOK,NZD,PHP,PLN,RON,RUB,SEK,SGD,THB,TRY,ZAR,EUR';
         } else {
-          query = 'select * from yahoo.finance.xchange where pair="'+savedCurrency+getSiteCurrency()+',';
+          query = '';
           for (i = 0; i < selected_currencies.length; i++) { 
             selected_currencies[i] = selected_currencies[i].trim();
             if (selected_currencies[i] == 'major')
@@ -154,38 +125,38 @@
             else if (selected_currencies[i] == 'american')
               query += americas_currencies;
             else
-              query += savedCurrency+selected_currencies[i]+',';
+              query += selected_currencies[i]+',';
           }
           query = query.slice(0, -1);
           query += '"';
         }
+
         // Request currencies from yahoo finance
         var jqxhr = $.ajax({
-            url: 'https://query.yahooapis.com/v1/public/yql',
-            dataType: 'jsonp',
-            data: {
-              q: query,
-              format: 'json',
-              env: 'store://datatables.org/alltableswithkeys'
-            }
-          });
-        // Set flag so we know we made a request
+          url: 'https://api.fixer.io/latest',
+          dataType: 'jsonp',
+          data: {
+            symbols: query,
+            base: settings.base
+          }
+        });
+
+        // Set global flag so we know we made a request
         window.jQCurryPluginCache[1] = true;
 
         jqxhr
           .done(function(data) {
 
-            var items = data.query.results.rate;
+            var initrates = data.rates;
 
             // Add the base currency to the rates
             rates[settings.base] = 1;
 
-            for (var i = 0, l = items.length; i < l; i++) {
+            for ( var currency in initrates ) {
 
-              item = items[i];
-              keyName = item.Name.substr(item.Name.length - 3);
+              value = initrates[currency];
 
-              rates[keyName] = +item.Rate;
+              rates[currency] = value;
 
             }
 
@@ -218,7 +189,7 @@
     }
 
     // only change target when change is set by user
-    //if (settings.change) {
+    if (settings.change) {
 
       // Add default currency symbols
       var symbols = $.extend({
@@ -256,6 +227,12 @@
           $price = $($target[i]);
           money = $price.text();
 
+          // Check if field has comma instead of decimal and replace with decimal
+          if ( money.indexOf(',') !== -1 ){
+            has_comma = true;
+            money = money.replace( ',' , '.' );
+          }
+
           // Remove anything but the numbers and decimals and convert string to Number
           money = Number(money.replace(/[^0-9\.]+/g, ''));
 
@@ -283,13 +260,13 @@
 
           symbol = symbols[$option.val()] || $option.val();
 
-          $price.html('<span class="symbol">' + symbol + '</span> ' + result);
+          $price.html('<span class="symbol">' + symbol + '</span>' + result);
 
         }
 
       });
 
-    //}
+    }
 
     // Returns jQuery object for chaining
     return dropDownMenu;
