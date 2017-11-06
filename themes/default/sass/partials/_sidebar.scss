@@ -72,6 +72,12 @@ aside {
         margin-left: 150px!important;
         width: 60%!important;
     }
+    input.gsc-input,
+    .gsc-input-box,
+    .gsc-input-box-hover,
+    .gsc-input-box-focus {
+        border: 0;
+    }
 }
 
 .folded aside {

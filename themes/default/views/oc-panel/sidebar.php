@@ -202,25 +202,16 @@
                     <?if (Auth::instance()->get_user()->id_role != Model_Role::ROLE_USER):?>
                         <div class="search-container-oc-faq">
                             <p class="search-docs"><?=__('Search Documentation')?></p>
-                                <div id="cse" class="header-oc-faq">Loading</div>
-                                <script src='//www.google.com/jsapi' type='text/javascript'></script>
-                                <script type='text/javascript'>
-                                    google.load('search', '1', {language: 'en', style: google.loader.themes.V2_DEFAULT});
-                                    google.setOnLoadCallback(function() {
-                                        var customSearchOptions = {};
-                                        var orderByOptions = {};
-                                        orderByOptions['keys'] = [{label: 'Relevance', key: ''} , {label: 'Date', key: 'date'}];
-                                        customSearchOptions['enableOrderBy'] = true;
-                                        customSearchOptions['orderByOptions'] = orderByOptions;
-                                        customSearchOptions['overlayResults'] = true;
-                                        var customSearchControl =   new google.search.CustomSearchControl('005338858194192804375:pwxtag7ahsm', customSearchOptions);
-                                        customSearchControl.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);
-                                        var options = new google.search.DrawOptions();
-                                        options.setAutoComplete(true);
-                                        customSearchControl.draw('cse', options);
-                                    }, true);
-                                </script>
-                        </div> 
+                            <script>
+                                (function() {
+                                    var cx = '005338858194192804375:pwxtag7ahsm';
+                                    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+                                    gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+                                    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+                                })();
+                            </script>
+                            <gcse:search enableOrderBy='true' enableHistory='true' autoCompleteMaxCompletions='5' autoCompleteMatchType='any'></gcse:search>
+                        </div>
                     <?endif?>
                 </div>
             </li>
@@ -296,7 +287,7 @@
                 <?if ($user->has_access_to_any('settings,config')):?>
                 <li>
                     <a href="#"><i class="linecon li_params"></i> <span class="hidden-xs"><?=__('Settings')?></span><span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level nav-mobile-moved">           
+                    <ul class="nav nav-second-level nav-mobile-moved">
                         <?=Theme::admin_link(__('General'), 'settings','general','oc-panel')?>
                         <?=Theme::admin_link(__('Advertisement'), 'settings','form','oc-panel')?>
                         <?=Theme::admin_link(__('Email settings'), 'settings','email','oc-panel')?>

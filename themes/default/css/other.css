@@ -35,7 +35,6 @@
 
 .active > a > .fa.plus-times {
   filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
-  -webkit-transform: rotate(45deg);
   transform: rotate(45deg); }
 
 .plus-minus {
@@ -234,7 +233,7 @@
 
 .fa {
   display: inline-block;
-  font: normal normal normal 14px / 1 FontAwesome;
+  font: normal normal normal 14px/1 FontAwesome;
   font-size: inherit;
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
@@ -309,52 +308,35 @@
   margin-left: .3em; }
 
 .fa-spin {
-  -webkit-animation: fa-spin 2s infinite linear;
   animation: fa-spin 2s infinite linear; }
 
 .fa-pulse {
-  -webkit-animation: fa-spin 1s infinite steps(8);
   animation: fa-spin 1s infinite steps(8); }
-
-@-webkit-keyframes fa-spin {
-  0% {
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg); }
-  100% {
-    -webkit-transform: rotate(359deg);
-    transform: rotate(359deg); } }
 
 @keyframes fa-spin {
   0% {
-    -webkit-transform: rotate(0deg);
     transform: rotate(0deg); }
   100% {
-    -webkit-transform: rotate(359deg);
     transform: rotate(359deg); } }
 
 .fa-rotate-90 {
   filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
-  -webkit-transform: rotate(90deg);
   transform: rotate(90deg); }
 
 .fa-rotate-180 {
   filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
-  -webkit-transform: rotate(180deg);
   transform: rotate(180deg); }
 
 .fa-rotate-270 {
   filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
-  -webkit-transform: rotate(270deg);
   transform: rotate(270deg); }
 
 .fa-flip-horizontal {
   filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0);
-  -webkit-transform: scale(-1, 1);
   transform: scale(-1, 1); }
 
 .fa-flip-vertical {
   filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
-  -webkit-transform: scale(1, -1);
   transform: scale(1, -1); }
 
 :root .fa-rotate-90,
@@ -362,7 +344,6 @@
 :root .fa-rotate-270,
 :root .fa-flip-horizontal,
 :root .fa-flip-vertical {
-  -webkit-filter: none;
   filter: none; }
 
 .fa-stack {
@@ -2960,12 +2941,10 @@ div.sceditor-group {
   border-radius: 2px; }
 
 .sweet-alert .icon.error .line.left {
-  -webkit-transform: rotate(45deg);
   transform: rotate(45deg);
   left: 17px; }
 
 .sweet-alert .icon.error .line.right {
-  -webkit-transform: rotate(-45deg);
   transform: rotate(-45deg);
   right: 16px; }
 
@@ -3026,25 +3005,20 @@ div.sceditor-group {
   width: 60px;
   height: 120px;
   background: #fff;
-  -webkit-transform: rotate(45deg);
   transform: rotate(45deg); }
 
 .sweet-alert .icon.success:before {
   border-radius: 120px 0 0 120px;
   top: -7px;
   left: -33px;
-  -webkit-transform: rotate(-45deg);
   transform: rotate(-45deg);
-  -webkit-transform-origin: 60px 60px;
   transform-origin: 60px 60px; }
 
 .sweet-alert .icon.success:after {
   border-radius: 0 120px 120px 0;
   top: -11px;
   left: 30px;
-  -webkit-transform: rotate(-45deg);
   transform: rotate(-45deg);
-  -webkit-transform-origin: 0 60px;
   transform-origin: 0 60px; }
 
 .sweet-alert .icon.success .placeholder {
@@ -3066,7 +3040,6 @@ div.sceditor-group {
   left: 28px;
   top: 8px;
   z-index: 1;
-  -webkit-transform: rotate(-45deg);
   transform: rotate(-45deg); }
 
 .sweet-alert .icon.success .line {
@@ -3081,14 +3054,12 @@ div.sceditor-group {
   width: 25px;
   left: 14px;
   top: 46px;
-  -webkit-transform: rotate(45deg);
   transform: rotate(45deg); }
 
 .sweet-alert .icon.success .line.long {
   width: 47px;
   right: 8px;
   top: 38px;
-  -webkit-transform: rotate(-45deg);
   transform: rotate(-45deg); }
 
 .sweet-alert .icon.custom {
@@ -3098,21 +3069,6 @@ div.sceditor-group {
   background-position: center center;
   background-repeat: no-repeat; }
 
-@-webkit-keyframes showSweetAlert {
-  0% {
-    transform: scale(0.7);
-    -webkit-transform: scale(0.7); }
-  45% {
-    transform: scale(1.05);
-    -webkit-transform: scale(1.05); }
-  80% {
-    -webkit-transform: scale(0.95);
-    transform: scale(0.95);
-    -webkit-tranform: scale(0.95); }
-  to {
-    transform: scale(1);
-    -webkit-transform: scale(1); } }
-
 @keyframes showSweetAlert {
   0% {
     transform: scale(0.7);
@@ -3121,20 +3077,11 @@ div.sceditor-group {
     transform: scale(1.05);
     -webkit-transform: scale(1.05); }
   80% {
-    -webkit-transform: scale(0.95);
     transform: scale(0.95);
     -webkit-tranform: scale(0.95); }
   to {
     transform: scale(1);
     -webkit-transform: scale(1); } }
-
-@-webkit-keyframes hideSweetAlert {
-  0% {
-    transform: scale(1);
-    -webkit-transform: scale(1); }
-  to {
-    transform: scale(0.5);
-    -webkit-transform: scale(0.5); } }
 
 @keyframes hideSweetAlert {
   0% {
@@ -3145,30 +3092,10 @@ div.sceditor-group {
     -webkit-transform: scale(0.5); } }
 
 .showSweetAlert {
-  -webkit-animation: showSweetAlert .3s;
   animation: showSweetAlert .3s; }
 
 .hideSweetAlert {
-  -webkit-animation: hideSweetAlert .2s;
   animation: hideSweetAlert .2s; }
-
-@-webkit-keyframes animateSuccessTip {
-  0%, 54% {
-    width: 0;
-    left: 1px;
-    top: 19px; }
-  70% {
-    width: 50px;
-    left: -8px;
-    top: 37px; }
-  84% {
-    width: 17px;
-    left: 21px;
-    top: 48px; }
-  to {
-    width: 25px;
-    left: 14px;
-    top: 45px; } }
 
 @keyframes animateSuccessTip {
   0%, 54% {
@@ -3188,20 +3115,6 @@ div.sceditor-group {
     left: 14px;
     top: 45px; } }
 
-@-webkit-keyframes animateSuccessLong {
-  0%, 65% {
-    width: 0;
-    right: 46px;
-    top: 54px; }
-  84% {
-    width: 55px;
-    right: 0;
-    top: 35px; }
-  to {
-    width: 47px;
-    right: 8px;
-    top: 38px; } }
-
 @keyframes animateSuccessLong {
   0%, 65% {
     width: 0;
@@ -3216,14 +3129,6 @@ div.sceditor-group {
     right: 8px;
     top: 38px; } }
 
-@-webkit-keyframes rotatePlaceholder {
-  0%, 5% {
-    transform: rotate(-45deg);
-    -webkit-transform: rotate(-45deg); }
-  12%, to {
-    transform: rotate(-405deg);
-    -webkit-transform: rotate(-405deg); } }
-
 @keyframes rotatePlaceholder {
   0%, 5% {
     transform: rotate(-45deg);
@@ -3233,26 +3138,13 @@ div.sceditor-group {
     -webkit-transform: rotate(-405deg); } }
 
 .animateSuccessTip {
-  -webkit-animation: animateSuccessTip .75s;
   animation: animateSuccessTip .75s; }
 
 .animateSuccessLong {
-  -webkit-animation: animateSuccessLong .75s;
   animation: animateSuccessLong .75s; }
 
 .icon.success.animate:after {
-  -webkit-animation: rotatePlaceholder 4.25s ease-in;
   animation: rotatePlaceholder 4.25s ease-in; }
-
-@-webkit-keyframes animateErrorIcon {
-  0% {
-    transform: rotateX(100deg);
-    -webkit-transform: rotateX(100deg);
-    opacity: 0; }
-  to {
-    transform: rotateX(0deg);
-    -webkit-transform: rotateX(0deg);
-    opacity: 1; } }
 
 @keyframes animateErrorIcon {
   0% {
@@ -3265,24 +3157,7 @@ div.sceditor-group {
     opacity: 1; } }
 
 .animateErrorIcon {
-  -webkit-animation: animateErrorIcon .5s;
   animation: animateErrorIcon .5s; }
-
-@-webkit-keyframes animateXMark {
-  0%, 50% {
-    transform: scale(0.4);
-    -webkit-transform: scale(0.4);
-    margin-top: 26px;
-    opacity: 0; }
-  80% {
-    transform: scale(1.15);
-    -webkit-transform: scale(1.15);
-    margin-top: -6px; }
-  to {
-    transform: scale(1);
-    -webkit-transform: scale(1);
-    margin-top: 0;
-    opacity: 1; } }
 
 @keyframes animateXMark {
   0%, 50% {
@@ -3301,14 +3176,7 @@ div.sceditor-group {
     opacity: 1; } }
 
 .animateXMark {
-  -webkit-animation: animateXMark .5s;
   animation: animateXMark .5s; }
-
-@-webkit-keyframes pulseWarning {
-  0% {
-    border-color: #f8d486; }
-  to {
-    border-color: #f8bb86; } }
 
 @keyframes pulseWarning {
   0% {
@@ -3317,14 +3185,7 @@ div.sceditor-group {
     border-color: #f8bb86; } }
 
 .pulseWarning {
-  -webkit-animation: pulseWarning .75s infinite alternate;
   animation: pulseWarning .75s infinite alternate; }
-
-@-webkit-keyframes pulseWarningIns {
-  0% {
-    background-color: #f8d486; }
-  to {
-    background-color: #f8bb86; } }
 
 @keyframes pulseWarningIns {
   0% {
@@ -3333,7 +3194,6 @@ div.sceditor-group {
     background-color: #f8bb86; } }
 
 .pulseWarningIns {
-  -webkit-animation: pulseWarningIns .75s infinite alternate;
   animation: pulseWarningIns .75s infinite alternate; }
 
 /*# sourceMappingURL=other.css.map */
