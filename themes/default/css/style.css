@@ -4383,12 +4383,6 @@ a.thumbnail.active {
   .alert-danger .alert-link {
     color: #843534; }
 
-@-webkit-keyframes progress-bar-stripes {
-  from {
-    background-position: 40px 0; }
-  to {
-    background-position: 0 0; } }
-
 @keyframes progress-bar-stripes {
   from {
     background-position: 40px 0; }
@@ -4422,7 +4416,6 @@ a.thumbnail.active {
 
 .progress.active .progress-bar,
 .progress-bar.active {
-  -webkit-animation: progress-bar-stripes 2s linear infinite;
   animation: progress-bar-stripes 2s linear infinite; }
 
 .progress-bar-success {
@@ -5036,12 +5029,9 @@ button.close {
   -webkit-overflow-scrolling: touch;
   outline: 0; }
   .modal.fade .modal-dialog {
-    -webkit-transform: translate(0, -25%);
     transform: translate(0, -25%);
-    transition: -webkit-transform 0.3s ease-out;
     transition: transform 0.3s ease-out; }
   .modal.in .modal-dialog {
-    -webkit-transform: translate(0, 0);
     transform: translate(0, 0); }
 
 .modal-open .modal {
@@ -5380,22 +5370,16 @@ button.close {
       line-height: 1; }
     @media all and (transform-3d), (-webkit-transform-3d) {
       .carousel-inner > .item {
-        transition: -webkit-transform 0.6s ease-in-out;
         transition: transform 0.6s ease-in-out;
-        -webkit-backface-visibility: hidden;
         backface-visibility: hidden;
-        -webkit-perspective: 1000px;
         perspective: 1000px; }
         .carousel-inner > .item.next, .carousel-inner > .item.active.right {
-          -webkit-transform: translate3d(100%, 0, 0);
           transform: translate3d(100%, 0, 0);
           left: 0; }
         .carousel-inner > .item.prev, .carousel-inner > .item.active.left {
-          -webkit-transform: translate3d(-100%, 0, 0);
           transform: translate3d(-100%, 0, 0);
           left: 0; }
         .carousel-inner > .item.next.left, .carousel-inner > .item.prev.right, .carousel-inner > .item.active {
-          -webkit-transform: translate3d(0, 0, 0);
           transform: translate3d(0, 0, 0);
           left: 0; } }
   .carousel-inner > .active,
@@ -5874,7 +5858,6 @@ button.close {
   height: 0; }
 
 #loadingbar.waiting dd, #loadingbar.waiting dt {
-  -webkit-animation: pulse 2s ease-out 0s infinite;
   animation: pulse 2s ease-out 0s infinite; }
 
 #loadingbar dt {
@@ -5955,14 +5938,6 @@ button.close {
   width: 10px; }
 
 @keyframes pulse {
-  30% {
-    opacity: 0.6; }
-  60% {
-    opacity: 0; }
-  100% {
-    opacity: 0.6; } }
-
-@-webkit-keyframes pulse {
   30% {
     opacity: 0.6; }
   60% {
@@ -6391,7 +6366,6 @@ header {
         top: 0;
         opacity: 1; }
       .sidebar-nav li.active a:first-of-type .arrow {
-        -webkit-transform: rotate(-90deg);
         transform: rotate(-90deg); }
     .sidebar-nav li.active .linecon:after {
       display: none !important; }
@@ -6518,6 +6492,11 @@ aside {
     top: 15% !important;
     margin-left: 150px !important;
     width: 60% !important; }
+  aside input.gsc-input,
+  aside .gsc-input-box,
+  aside .gsc-input-box-hover,
+  aside .gsc-input-box-focus {
+    border: 0; }
 
 .folded aside {
   overflow: initial; }
@@ -6969,7 +6948,6 @@ input[type="checkbox"]:focus {
     padding-bottom: 15px; }
 
 .folded #collapse-menu i {
-  -webkit-transform: rotate(180deg);
   transform: rotate(180deg);
   display: block;
   margin: 0 15px 0 24px; }
@@ -7099,14 +7077,11 @@ input[type="checkbox"]:focus {
       .nav-tabs ~ .tab-content > .tab-pane.slide-left.sliding, .nav-tabs ~ .tab-content > .tab-pane.slide-right.sliding {
         opacity: 0 !important; }
       .nav-tabs ~ .tab-content > .tab-pane.slide-left.active, .nav-tabs ~ .tab-content > .tab-pane.slide-right.active {
-        -webkit-transform: translate3d(0, 0, 0);
         transform: translate3d(0, 0, 0);
         opacity: 1; }
     .nav-tabs ~ .tab-content > .tab-pane.slide-left.sliding {
-      -webkit-transform: translate3d(10%, 0, 0);
       transform: translate3d(10%, 0, 0); }
     .nav-tabs ~ .tab-content > .tab-pane.slide-right.sliding {
-      -webkit-transform: translate3d(-10%, 0, 0);
       transform: translate3d(-10%, 0, 0); }
   .nav-tabs.nav-tabs-left:after, .nav-tabs.nav-tabs-right:after {
     border-bottom: 0px; }
@@ -7256,19 +7231,15 @@ input[type="checkbox"]:focus {
 ------------------------------------
 */
 .nav-tabs-fillup {
-  -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  -webkit-perspective: 1000;
   perspective: 1000; }
   .nav-tabs-fillup > li {
     overflow: hidden; }
     .nav-tabs-fillup > li > a {
-      -webkit-backface-visibility: hidden;
       backface-visibility: hidden;
       transition: color 0.3s ease 0s;
       background: transparent; }
       .nav-tabs-fillup > li > a:after {
-        -webkit-backface-visibility: hidden;
         backface-visibility: hidden;
         background: none repeat scroll 0 0 #5cb85c;
         border: 1px solid #5cb85c;
@@ -7277,9 +7248,7 @@ input[type="checkbox"]:focus {
         left: 0;
         position: absolute;
         top: 0;
-        -webkit-transform: translate3d(0, 100%, 0px);
         transform: translate3d(0, 100%, 0px);
-        transition: -webkit-transform 0.3s ease 0s;
         transition: transform 0.3s ease 0s;
         width: 100%;
         z-index: -1; }
@@ -7299,11 +7268,8 @@ input[type="checkbox"]:focus {
           background: none repeat scroll 0 0 #5bc0de;
           border: 1px solid #5bc0de; }
       .nav-tabs-fillup > li > a span {
-        -webkit-backface-visibility: hidden;
         backface-visibility: hidden;
-        -webkit-transform: translate3d(0px, 5px, 0px);
         transform: translate3d(0px, 5px, 0px);
-        transition: -webkit-transform 0.5s ease 0s;
         transition: transform 0.5s ease 0s;
         display: block;
         font-weight: 700;
@@ -7315,18 +7281,13 @@ input[type="checkbox"]:focus {
         background: transparent;
         color: #fff; }
       .nav-tabs-fillup > li.active > a:after {
-        -webkit-transform: translate3d(0px, 0px, 0px);
         transform: translate3d(0px, 0px, 0px); }
       .nav-tabs-fillup > li.active > a span {
-        -webkit-transform: translate3d(0px, -5px, 0px);
         transform: translate3d(0px, -5px, 0px); }
       .nav-tabs-fillup > li.active .icon:before {
-        -webkit-transform: translate3d(0px, -5px, 0px);
         transform: translate3d(0px, -5px, 0px); }
   .nav-tabs-fillup .icon:before {
-    -webkit-transform: translate3d(0px, 5px, 0px);
     transform: translate3d(0px, 5px, 0px);
-    transition: -webkit-transform 0.5s ease 0s;
     transition: transform 0.5s ease 0s;
     display: block;
     margin: 0; }
@@ -7340,32 +7301,23 @@ input[type="checkbox"]:focus {
       width: calc(100% + 1px);
       height: 100%; }
     .nav-tabs-fillup.nav-tabs-left > li.active a:after, .nav-tabs-fillup.nav-tabs-right > li.active a:after {
-      -webkit-transform: translate3d(0px, 0px, 0px);
       transform: translate3d(0px, 0px, 0px); }
   .nav-tabs-fillup.nav-tabs-left > li > a:after {
-    -webkit-transform: translate3d(100%, 0, 0);
     transform: translate3d(100%, 0, 0); }
   .nav-tabs-fillup.nav-tabs-left > li > a span {
-    -webkit-transform: translate3d(5px, 0, 0px);
     transform: translate3d(5px, 0, 0px); }
   .nav-tabs-fillup.nav-tabs-left > li.active a span {
-    -webkit-transform: translate3d(-5px, 0, 0px);
     transform: translate3d(-5px, 0, 0px); }
   .nav-tabs-fillup.nav-tabs-left > li.active .icon:before {
-    -webkit-transform: translate3d(-5px, 0, 0px);
     transform: translate3d(-5px, 0, 0px); }
   .nav-tabs-fillup.nav-tabs-right > li > a:after {
-    -webkit-transform: translate3d(-100%, 0, 0);
     transform: translate3d(-100%, 0, 0);
     left: -1px; }
   .nav-tabs-fillup.nav-tabs-right > li > a span {
-    -webkit-transform: translate3d(-5px, 0, 0px);
     transform: translate3d(-5px, 0, 0px); }
   .nav-tabs-fillup.nav-tabs-right > li.active a span {
-    -webkit-transform: translate3d(5px, 0, 0px);
     transform: translate3d(5px, 0, 0px); }
   .nav-tabs-fillup.nav-tabs-right > li.active .icon:before {
-    -webkit-transform: translate3d(5px, 0, 0px);
     transform: translate3d(5px, 0, 0px); }
 
 /* Panel Groups
@@ -7487,7 +7439,6 @@ input[type="checkbox"]:focus {
     .table.table-condensed.table-detailed > tbody > tr.shown > td {
       background: #fcefdc; }
       .table.table-condensed.table-detailed > tbody > tr.shown > td:first-child:before {
-        -webkit-transform: rotate(90deg);
         transform: rotate(90deg); }
     .table.table-condensed.table-detailed > tbody > tr.shown + tr > td {
       background: #fdfdfd;
