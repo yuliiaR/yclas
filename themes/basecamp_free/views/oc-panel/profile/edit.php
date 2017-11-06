@@ -55,10 +55,11 @@
                                 	<?= FORM::label('phone', _e('Phone'), array('class'=>'col-xs-4 control-label', 'for'=>'phone'))?>
                                 <?endif?>
                                 <div class="col-sm-8">
-                                    <?= FORM::input('phone', $user->phone, array('class'=>'form-control', 'id'=>'phone', 'type'=>'phone' ,'required','placeholder'=>__('Phone'), 'data-country' => core::config('general.country')))?>
                                     <?if (core::config('general.sms_auth')==TRUE):?>
+                                    	<?= FORM::input('phone', $user->phone, array('class'=>'form-control', 'id'=>'phone', 'type'=>'phone' ,'required','placeholder'=>__('Phone'), 'data-country' => core::config('general.country')))?>
                                     	<span class="help-block"><?=_e('Used for SMS authentication.')?></span>
                                     <?else:?>
+                                    	<?= FORM::input('phone', $user->phone, array('class'=>'form-control', 'id'=>'phone', 'type'=>'phone' ,'placeholder'=>__('Phone')))?>
                                     	<br><br>
                                     <?endif?>
                                 </div>
