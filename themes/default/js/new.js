@@ -241,6 +241,8 @@ $('textarea[name=description]:not(.disable-bbcode)').sceditor({
     style: $('meta[name="application-name"]').data('baseurl') + "themes/default/css/jquery.sceditor.default.min.css",
 });
 
+$('textarea[name=description]').prop('required',true);
+
 function initLocationsGMap() {
     jQuery.ajax({
         url: ("https:" == document.location.protocol ? "https:" : "http:") + "//cdn.jsdelivr.net/gmaps/0.4.15/gmaps.min.js",
