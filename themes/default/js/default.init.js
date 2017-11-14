@@ -500,15 +500,19 @@ function getRate(from, to) {
       }
     });
 
+    if(getSiteCurrency() == to){
+        rate = 1;
+        setCookie('site_rate', rate, { expires: 7, path: '' });
+    }
+
     jqxhr.done(function(data) {
 
         var initrates = data.rates;
 
         for ( var currency in initrates ) {
 
-            value = initrates[currency];
+            rate = initrates[currency];
 
-            rate = value;
             setCookie('site_rate', rate, { expires: 7, path: '' });
         }
 
