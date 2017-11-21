@@ -59,7 +59,7 @@ $(function(){
 
     //intial value
     if ( favicon !== false ) {
-    favicon.badge($('#contact-notification span').text());
+        favicon.badge($('#contact-notification span').first().text());
     }
 
 });
