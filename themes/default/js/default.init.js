@@ -51,7 +51,7 @@ $(function(){
     });
 
     //intial value
-    favicon.badge($('#contact-notification span').text());
+    favicon.badge($('#contact-notification span').first().text());
 });
 
 //validate auth pages
