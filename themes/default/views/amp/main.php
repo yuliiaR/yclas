@@ -77,6 +77,18 @@
             object-fit: contain;
         }
 
+        /* Logo */
+        .fixed-height-container {
+            position: relative;
+            width: 100%;
+            height: 50px;
+        }
+
+        /* Site Name */
+        .amp-oc-title-bar h3{
+            margin: 0 auto;
+        }
+
         /* Template Styles */
         .amp-oc-content, .amp-oc-title-bar div {
             max-width: 720px;
@@ -101,9 +113,9 @@
         }
 
         .amp-oc-title {
-            margin: 36px 0 0 0;
+            margin: 20px 0 0 0;
             font-size: 36px;
-            line-height: 1.258;
+            line-height: 1.1;
             font-weight: 700;
             color: #379e15;
         }
@@ -194,7 +206,7 @@
         /* Titlebar */
         nav.amp-oc-title-bar {
             background: #41bb19;
-            padding: 0 16px;
+            padding: 4px 16px;
         }
 
         nav.amp-oc-title-bar div {
@@ -214,7 +226,6 @@
             border-radius: 50%;
         }
 
-
         /* Captions */
         .oc-caption-text {
             padding: 8px 16px;
@@ -227,7 +238,6 @@
             margin: 20px 0;
             padding: 15px;
             font-size: 14px;
-            text-transform: uppercase;
             display: block;
             border-radius: 4px;
             text-align: center;
@@ -242,6 +252,12 @@
 
         .amp-oc-text-center {
             text-align: center;
+        }
+        ul.amp-oc-cf{
+            padding: 0;
+        }
+        ul.amp-oc-cf li{
+            list-style-type: none;
         }
 
         /* Quotes */
@@ -272,6 +288,27 @@
         amp-carousel > amp-img > img {
             object-fit: contain;
         }
+
+        <?if (Theme::get('amp_top_bar_color') AND Theme::get('amp_custom_color')) :?>
+            a,
+            a:visited,
+            a:hover,
+            a:active,
+            a:focus{
+                color: <?=Theme::get('amp_custom_color')?>;
+            }
+            nav.amp-oc-title-bar {
+                background: <?=Theme::get('amp_top_bar_color')?>;
+            }
+            .amp-oc-title {
+                color: <?=Theme::get('amp_custom_color')?>;
+            }
+            .amp-oc-link > a {
+                background: <?=Theme::get('amp_top_bar_color')?>;
+            }
+
+        <?endif?>
+
     </style>
 </head>
 <body>
