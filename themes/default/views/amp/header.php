@@ -2,9 +2,11 @@
     <div>
         <a href="<?=Route::url('default')?>">
         	<?if (Theme::get('logo_url')!=''):?>
-                <amp-img src="<?=Theme::get('logo_url')?>" width="32" height="32" class="amp-oc-site-icon"></amp-img>
+        		<div class="fixed-height-container my1 amp-oc-text-center">
+                	<amp-img src="<?=Theme::get('logo_url')?>" class="amp-oc-unknown-size" layout="fill"></amp-img>
+                </div>
             <?else:?>
-	            <?=core::config('general.site_name')?>
+	            <h3><?=core::config('general.site_name')?></h3>
             <?endif?>
         </a>
     </div>
