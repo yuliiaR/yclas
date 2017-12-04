@@ -46,4 +46,32 @@ class Sms  {
 
     }
 
+    public function testAPIkey($apikey){
+
+        $user = Auth::instance()->get_user();
+
+        if(empty($user->phone) OR $user->phone == NULL OR empty($apikey) OR $apikey == NULL)
+            return FALSE;
+
+        $clickatell = new \Clickatell\Rest($apikey);
+
+        try {
+            $result = $clickatell->sendMessage(['to' => [$user->phone], 'content' => '2 Step SMS Authentication enabled - '.Core::config('general.site_name')]);
+
+            foreach ($result as $message) 
+            {
+                if($message['accepted'] == TRUE){
+                    return TRUE;
+                } else {
+                    Alert::set(Alert::ALERT, $message['error']);
+                    return FALSE;
+                }
+            }
+
+        } catch (ClickatellException $e) {
+            return FALSE;
+        }
+
+    }
+
 }
