@@ -10,6 +10,18 @@
  */
 class Controller_Panel_Update extends Auth_Controller {
 
+    public function action_340()
+    {
+        //user phone number
+        try
+        {
+            DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."users` ADD  `latitude`  float(10,6) DEFAULT NULL")->execute();
+            DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."users` ADD  `longitude`  float(10,6) DEFAULT NULL")->execute();
+            DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."users` ADD  `address`  varchar(145) DEFAULT NULL")->execute();
+        }catch (exception $e) {}
+
+    }
+
     public function action_330()
     {
         //new configs

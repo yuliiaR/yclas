@@ -1,3 +1,107 @@
+// selectize for location select
+$(function(){
+
+    // create 1st location select
+    location_select = createLocationSelect();
+    // remove hidden class
+    $('#location-chained .select-location[data-level="0"]').parent('div').removeClass('hidden');
+
+    // load options for 1st location select
+    location_select.load(function(callback) {
+        $.ajax({
+            url: $('#location-chained').data('apiurl'),
+            type: 'GET',
+            data: {
+                "id_location_parent": 1,
+                "sort": 'order',
+            },
+            success: function(results) {
+                callback(results.locations);
+                if (results.locations.length === 0)
+                    $('#location-chained').closest('.form-group').hide();
+            },
+            error: function() {
+                callback();
+            }
+        });
+    });
+
+});
+
+function createLocationSelect () {
+
+    // count how many location selects we have rendered
+    num_location_select = $('#location-chained .select-location[data-level]').length;
+
+    // clone location select from template
+    $('#select-location-template').clone().attr('id', '').insertBefore($('#select-location-template')).find('select').attr('data-level', num_location_select);
+
+    // initialize selectize on created location select
+    location_select = $('.select-location[data-level="'+ num_location_select +'"]').selectize({
+        valueField:  'id_location',
+        labelField:  'name',
+        searchField: 'name',
+        onChange: function (value) {
+
+            if (!value.length) return;
+
+            // update #location-selected input value
+            $('#location-selected').attr('value', value);
+
+            // get current location level
+            current_level = $('#location-chained .option[data-value="'+ value +'"]').closest('.selectize-control').prev().data('level');
+
+            destroyLocationChildSelect(current_level);
+
+            // create location select
+            location_select = createLocationSelect();
+
+            // load options for location select
+            location_select.load(function (callback) {
+                $.ajax({
+                    url: $('#location-chained').data('apiurl'),
+                    data: {
+                        "id_location_parent": value,
+                        "sort": 'order',
+                    },
+                    type: 'GET',
+                    success: function (results) {
+                        if (results.locations.length > 0)
+                        {
+                            callback(results.locations);
+                            $('#location-chained .select-location[data-level="' + (current_level + 1) + '"]').parent('div').removeClass('hidden');
+                        }
+                        else
+                        {
+                            destroyLocationChildSelect(current_level);
+                        }
+                    },
+                    error: function () {
+                        callback();
+                    }
+                });
+            });
+        }
+    });
+
+    // return selectize control
+    return location_select[0].selectize;
+}
+
+function destroyLocationChildSelect (level) {
+    if (level === undefined) return;
+    $('#location-chained .select-location[data-level]').each(function () {
+        if ($(this).data('level') > level) {
+            $(this).parent('div').remove();
+        }
+    });
+}
+
+$('#location-edit button').click(function(){
+    $('#location-chained').removeClass('hidden');
+    $('#location-edit').addClass('hidden');
+});
+
 //datepicker in case date field exists
 if($('.cf_date_fields').length != 0){
     $('.cf_date_fields').datepicker();

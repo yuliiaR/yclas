@@ -613,7 +613,7 @@
                         </div>
 
                         <div class="form-group">
-                            <?=FORM::label($forms['map']['key'], __('Google Maps in Ad'), array('class'=>'control-label', 'for'=>$forms['map']['key']))?>
+                            <?=FORM::label($forms['map']['key'], __('Google Maps in Ad and Profile page'), array('class'=>'control-label', 'for'=>$forms['map']['key']))?>
                             <div class="radio radio-primary">
                                 <?=Form::radio($forms['map']['key'], 1, (bool) $forms['map']['value'], array('id' => $forms['map']['key'].'1'))?>
                                 <?=Form::label($forms['map']['key'].'1', __('Enabled'))?>
