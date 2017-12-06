@@ -273,7 +273,8 @@ class Controller_Panel_Settings extends Auth_Controller {
                                     Alert::set(Alert::SUCCESS, '2 Step SMS Authentication activated');
                                 }
                             } else {
-                                Alert::set(Alert::ALERT, '2 Step SMS Authentication activated');
+                                $c->config_value = 0;
+                                Alert::set(Alert::ALERT, 'Please configure <a href="//docs.yclas.com/2-step-sms-authentication/">Clickatell</a> to enable 2 Step SMS Authentication!');
                             }
                         }
 

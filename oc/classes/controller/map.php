@@ -64,6 +64,24 @@ class Controller_Map extends Controller {
                 ->limit(Core::config('advertisement.map_elements'))
                 ->find_all();
 
+        // if user
+        if (is_numeric(core::get('id_user')))
+        {
+            $user = new Model_User();
+            $user->where('id_user','=',core::get('id_user'))
+                ->where('latitude','IS NOT',NULL)
+                ->where('longitude','IS NOT',NULL)
+                ->where('address','IS NOT',NULL)
+                ->cached()
+                ->limit(1)
+                ->find();
+                
+            if ($user->loaded())
+            {
+                $this->template->user = $user;
+            }
+        }
+
         $this->template->ads = $ads;
 	
 	}
