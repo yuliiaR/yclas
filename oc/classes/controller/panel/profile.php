@@ -15,58 +15,81 @@ class Controller_Panel_Profile extends Auth_Frontcontroller {
 
 
 	public function action_changepass()
-	{
-		Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Change password')));
+    {
 
-		$this->template->title   = __('Change password');
+        $this->template->styles = ['//cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/css/selectize.bootstrap3.min.css' => 'screen'];
+        $this->template->scripts['footer'] = ['js/oc-panel/edit_profile.js','//cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/js/standalone/selectize.min.js'];
 
-		$user = Auth::instance()->get_user();
+        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Change password')));
 
-		$this->template->bind('content', $content);
-		$this->template->content = View::factory('oc-panel/profile/edit',array('user'=>$user,'custom_fields'=>Model_UserField::get_all()));
-		$this->template->content->msg ='';
+        $this->template->title   = __('Change password');
 
-		if ($this->request->post())
-		{
-			$user = Auth::instance()->get_user();
+        $user = Auth::instance()->get_user();
 
-			if (core::post('password1')==core::post('password2'))
-			{
-				$new_pass = core::post('password1');
-				if(!empty($new_pass)){
+        $id_location = ($user->id_location!==null)?$user->id_location:null;
+        $selected_location = new Model_Location();
 
-					$user->password = core::post('password1');
+        // if user set his location already
+        if ($id_location!==NULL)
+        {
+            if (is_numeric($id_location))
+                $selected_location->where('id_location','=',$id_location)->limit(1)->find();
+            else
+                $selected_location->where('seoname','=',$id_location)->limit(1)->find();
+
+            if ($selected_location->loaded())
+                $id_location = $selected_location->id_location;
+        }
+
+        $this->template->bind('content', $content);
+        $this->template->content = View::factory('oc-panel/profile/edit',array(
+                                                    'user'=>$user,
+                                                    'custom_fields'=>Model_UserField::get_all(),                            
+                                                    'id_location'=>$user->id_location,
+                                                    'selected_location'=>$selected_location));
+        $this->template->content->msg ='';
+
+        if ($this->request->post())
+        {
+            $user = Auth::instance()->get_user();
+
+            if (core::post('password1')==core::post('password2'))
+            {
+                $new_pass = core::post('password1');
+                if(!empty($new_pass)){
+
+                    $user->password = core::post('password1');
                     $user->last_modified = Date::unix2mysql();
 
-					try
-					{
-						$user->save();
-					}
-					catch (ORM_Validation_Exception $e)
-					{
-						throw HTTP_Exception::factory(500,$e->errors(''));
-					}
-					catch (Exception $e)
-					{
-						throw HTTP_Exception::factory(500,$e->getMessage());
-					}
+                    try
+                    {
+                        $user->save();
+                    }
+                    catch (ORM_Validation_Exception $e)
+                    {
+                        throw HTTP_Exception::factory(500,$e->errors(''));
+                    }
+                    catch (Exception $e)
+                    {
+                        throw HTTP_Exception::factory(500,$e->getMessage());
+                    }
 
-					Alert::set(Alert::SUCCESS, __('Password is changed'));
-				}
-				else
-				{
-					Form::set_errors(array(__('Nothing is provided')));
-				}
-			}
-			else
-			{
-				Form::set_errors(array(__('Passwords do not match')));
-			}
+                    Alert::set(Alert::SUCCESS, __('Password is changed'));
+                }
+                else
+                {
+                    Form::set_errors(array(__('Nothing is provided')));
+                }
+            }
+            else
+            {
+                Form::set_errors(array(__('Passwords do not match')));
+            }
 
-		}
+        }
 
 
-	}
+    }
 
 	public function action_image()
 	{
@@ -131,7 +154,7 @@ class Controller_Panel_Profile extends Auth_Frontcontroller {
         $locations = new Model_Location;
         $locations = $locations->where('id_location', '!=', '1');
 
-        $id_location = ($user->id_location)?$user->id_location:null;
+        $id_location = ($user->id_location!==null)?$user->id_location:null;
         $selected_location = new Model_Location();
 
         // if user set his location already
