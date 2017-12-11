@@ -57,6 +57,7 @@ class Sms  {
 
         if(empty($apikey) OR $apikey == NULL){
             Alert::set(Alert::ALERT, 'Please configure <a href="//docs.yclas.com/2-step-sms-authentication/">Clickatell</a> to enable 2 Step SMS Authentication!');
+            return FALSE;
         }
 
         $clickatell = new \Clickatell\Rest($apikey);
