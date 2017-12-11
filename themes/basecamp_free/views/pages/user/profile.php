@@ -104,7 +104,7 @@
 						</div>
 						</p>
 				        <?if (core::config('advertisement.gm_api_key')):?>
-				            <?if($user->address !== NULL AND $user->latitude !== NULL AND $user->longitude !== NULL):?>
+				            <?if(Core::config('advertisement.map') AND $user->address !== NULL AND $user->latitude !== NULL AND $user->longitude !== NULL):?>
 				                <h3><?=_e('Map')?></h3>
 				                <p>
 				                    <img class="img-responsive" src="//maps.googleapis.com/maps/api/staticmap?language=<?=i18n::get_gmaps_language(i18n::$locale)?>&amp;zoom=<?=Core::config('advertisement.map_zoom')?>&amp;scale=false&amp;size=600x300&amp;maptype=roadmap&amp;format=png&amp;visual_refresh=true&amp;markers=size:large%7Ccolor:red%7Clabel:·%7C<?=$user->latitude?>,<?=$user->longitude?>&amp;key=<?=core::config('advertisement.gm_api_key')?>" alt="<?=HTML::chars($user->name)?> <?=_e('Map')?>" style="width:100%;">
@@ -113,6 +113,14 @@
 				                    <a class="btn btn-default btn-sm" href="<?=Route::url('map')?>?id_user=<?=$user->id_user?>" target="<?=THEME::$is_mobile ? '_blank' : NULL?>">
 				                        <span class="glyphicon glyphicon-globe"></span> <?=_e('Map View')?>
 				                    </a>
+				                </p>
+				        	<?elseif (Auth::instance()->logged_in() AND Auth::instance()->get_user()->is_admin() AND !Core::config('advertisement.map')) :?>
+				        		<p>
+				                    <div class="alert alert-danger" role="alert">
+				                        <a href="<?=Route::url('oc-panel',array('controller'=>'profile','action'=>'edit'))?>" class="alert-link">
+				                            <?=__('Please enable "Google Maps in Ad and Profile page" to show user location on the map.')?>
+				                        </a>
+				                    </div>
 				                </p>
 				            <?elseif(Auth::instance()->logged_in() AND Auth::instance()->get_user()->id_user == $user->id_user):?>
 				                <p>

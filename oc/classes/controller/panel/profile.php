@@ -193,7 +193,7 @@ class Controller_Panel_Profile extends Auth_Frontcontroller {
             $user->id_location = core::post('location');
             $user->address = core::post('address');
 
-            if(Core::config('advertisement.map') AND $user->address)
+            if($user->address)
             {
 
                 $url = 'http://maps.google.com/maps/api/geocode/json?sensor=false&address='.urlencode($user->address);
