@@ -50,8 +50,15 @@ class Sms  {
 
         $user = Auth::instance()->get_user();
 
-        if(empty($user->phone) OR $user->phone == NULL OR empty($apikey) OR $apikey == NULL)
+        if(empty($user->phone) OR $user->phone == NULL){
+            Alert::set(Alert::ALERT, 'Please <a href="'.Route::url('oc-panel',array('controller'=>'profile','action'=>'edit')).'">edit your profile</a> and enter your phone number');
             return FALSE;
+        }
+
+        if(empty($apikey) OR $apikey == NULL){
+            Alert::set(Alert::ALERT, 'Please configure <a href="//docs.yclas.com/2-step-sms-authentication/">Clickatell</a> to enable 2 Step SMS Authentication!');
+            return FALSE;
+        }
 
         $clickatell = new \Clickatell\Rest($apikey);
 
@@ -64,6 +71,7 @@ class Sms  {
                     return TRUE;
                 } else {
                     Alert::set(Alert::ALERT, $message['error']);
+                    Alert::set(Alert::ALERT, 'Please configure <a href="//docs.yclas.com/2-step-sms-authentication/">Clickatell</a> to enable 2 Step SMS Authentication!');
                     return FALSE;
                 }
             }
