@@ -74,4 +74,36 @@
         </p>
     <?endif?>
 
+    <?if ($widget->location):?>
+        <?if ($widget->location == 1 AND core::config('advertisement.gm_api_key')):?>
+            <?if($widget->user->address !== NULL AND $widget->user !== NULL AND $widget->user !== NULL):?>
+                <h3<?=$widget->user->name?><?=_e('\'s location')?></h3>
+                <p>
+                    <img class="img-responsive" src="//maps.googleapis.com/maps/api/staticmap?language=<?=i18n::get_gmaps_language(i18n::$locale)?>&amp;zoom=<?=Core::config('advertisement.map_zoom')?>&amp;scale=false&amp;size=200x200&amp;maptype=roadmap&amp;format=png&amp;visual_refresh=true&amp;markers=size:large%7Ccolor:red%7Clabel:·%7C<?=$widget->user->latitude?>,<?=$widget->user->longitude?>&amp;key=<?=core::config('advertisement.gm_api_key')?>" alt="<?=HTML::chars($widget->user->name)?> <?=_e('Map')?>" style="width:100%;">
+                </p>
+                <p>
+                    <a class="btn btn-default btn-sm" href="<?=Route::url('map')?>?id_user=<?=$widget->user->id_user?>" target="<?=THEME::$is_mobile ? '_blank' : NULL?>">
+                        <span class="glyphicon glyphicon-globe"></span> <?=_e('Map View')?>
+                    </a>
+                </p>
+            <?elseif(Auth::instance()->logged_in() AND Auth::instance()->get_user()->id_user == $widget->user->id_user):?>
+                <p>
+                    <div class="alert alert-danger" role="alert">
+                        <a href="<?=Route::url('oc-panel',array('controller'=>'profile','action'=>'edit'))?>" class="alert-link">
+                            <?=__('Click here to enter your address.')?>
+                        </a>
+                    </div>
+                </p>
+            <?endif?>
+        <?elseif ($widget->location == 1 AND Auth::instance()->logged_in() AND Auth::instance()->get_user()->is_admin()) :?>
+            <div class="alert alert-danger" role="alert">
+                <a href="<?=Route::url('oc-panel',array('controller'=>'settings', 'action'=>'form'))?>" class="alert-link">
+                    <?=__('Please set your Google API key on advertisement configuration.')?>
+                </a>
+            </div>
+        <?elseif ($widget->location == 2 AND $widget->user->address!=NULL) :?>
+            <p><?=_e('Address:')?> <?=$widget->user->address?></p>
+        <?endif?>
+    <?endif?>
+
 </div>

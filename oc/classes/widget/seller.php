@@ -51,6 +51,16 @@ class Widget_Seller extends Widget
                                                         'default'   => 0,
                                                         'required'  => TRUE),
 
+                                'location'      => array(  'type'      => 'text',
+                                                        'display'   => 'select',
+                                                        'label'     => __('Show seller location'),
+                                                        'options'   => array('0'   => __('Hidden'),
+                                                                             '1'   => __('Location on Map'),
+                                                                             '2'   => __('Address'),
+                                                                            ), 
+                                                        'default'   => 0,
+                                                        'required'  => TRUE),
+
                                 'custom_fields'      => array(  'type'      => 'text',
                                                         'display'   => 'select',
                                                         'label'     => __('Show seller custom fields'),
