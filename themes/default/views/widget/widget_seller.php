@@ -61,6 +61,8 @@
         </p>
     <?endif?>
 
+    <br>
+
     <?if ($widget->ad->can_contact() AND $widget->contact):?>
         <p>
             <?if ((core::config('advertisement.login_to_contact') == TRUE OR core::config('general.messaging') == TRUE) AND !Auth::instance()->logged_in()) :?>
@@ -70,15 +72,16 @@
             <?else :?>
                 <button class="form-control btn btn-success" type="button" data-toggle="modal" data-target="#contact-modal"><i class="glyphicon glyphicon-envelope"></i>&nbsp;&nbsp;<?=_e('Send Message')?></button>
             <?endif?>
-
         </p>
     <?endif?>
+
+    <br>
 
     <?if ($widget->location):?>
         <?if ($widget->location == 1 AND core::config('advertisement.gm_api_key')):?>
             <?if($widget->user->address !== NULL AND $widget->user !== NULL AND $widget->user !== NULL):?>
-                <h3<?=$widget->user->name?><?=_e('\'s location')?></h3>
                 <p>
+                    <h3><?=$widget->user->name?><?=_e('\'s location')?></h3>
                     <img class="img-responsive" src="//maps.googleapis.com/maps/api/staticmap?language=<?=i18n::get_gmaps_language(i18n::$locale)?>&amp;zoom=<?=Core::config('advertisement.map_zoom')?>&amp;scale=false&amp;size=200x200&amp;maptype=roadmap&amp;format=png&amp;visual_refresh=true&amp;markers=size:large%7Ccolor:red%7Clabel:·%7C<?=$widget->user->latitude?>,<?=$widget->user->longitude?>&amp;key=<?=core::config('advertisement.gm_api_key')?>" alt="<?=HTML::chars($widget->user->name)?> <?=_e('Map')?>" style="width:100%;">
                 </p>
                 <p>
