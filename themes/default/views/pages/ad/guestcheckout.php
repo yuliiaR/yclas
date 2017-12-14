@@ -10,7 +10,11 @@
             </address>
         </div>
         <div class="col-xs-6 col-sm-6 col-md-6 text-right">
-            <p>
+            <p>                
+                <?if(isset($vat) AND $vat > 0):?>
+                    <em><?=_e('VAT Number')?>: <?=$vatcountry?> <?=$vatnumber?></em>
+                    <br>
+                <?endif?>
                 <em><?=_e('Date')?>: <?=date(core::config('general.date_format'))?></em>
                 <br>
                 <em><?=_e('Checkout')?> :# <?=$ad->id_ad?></em>
@@ -74,17 +78,42 @@
                         </td>
                     </tr>
                 <?endif?>
-                <tr>
-                    <td>   </td>
-                    <td class="text-right"><h4><strong><?=_e('Total')?>: </strong></h4></td>
-                    <?if($ad->shipping_price() AND $ad->shipping_pickup() AND core::get('shipping_pickup')):?>
-                        <td class="text-center text-danger"><h4><strong><?=i18n::money_format($ad->price, $ad->currency())?></stronge></h4></td>
-                    <?elseif($ad->shipping_price()):?>
-                        <td class="text-center text-danger"><h4><strong><?=i18n::money_format($ad->price + $ad->shipping_price(), $ad->currency())?></strong></h4></td>
-                    <?else:?>
-                        <td class="text-center text-danger"><h4><strong><?=i18n::money_format($ad->price, $ad->currency())?></strong></h4></td>
-                    <?endif?>
-                </tr>
+
+                <?if(isset($vat) AND $vat > 0):?>
+                    <td class="col-md-1" style="text-align: center"></td>
+                    <td class="col-md-9">
+                        <em><?=_e('VAT')?> <?=number_format($vat,2)?>%</em>
+                    </td>
+                    <td class="col-md-2 text-center">
+                        <?=i18n::money_format($ad->price*$vat/100, $ad->currency())?>
+                    </td>
+                <?endif?>
+
+                <?if(isset($vat) AND $vat > 0):?>
+                    <tr>
+                        <td>   </td>
+                        <td class="text-right"><h4><strong><?=_e('Total')?>: </strong></h4></td>
+                        <?if($ad->shipping_price() AND $ad->shipping_pickup() AND core::get('shipping_pickup')):?>
+                            <td class="text-center text-danger"><h4><strong><?=i18n::money_format($ad->price + $ad->price*$vat/100, $ad->currency())?></stronge></h4></td>
+                        <?elseif($ad->shipping_price()):?>
+                            <td class="text-center text-danger"><h4><strong><?=i18n::money_format($ad->price + $ad->shipping_price() + $ad->price*$vat/100, $ad->currency())?></strong></h4></td>
+                        <?else:?>
+                            <td class="text-center text-danger"><h4><strong><?=i18n::money_format($ad->price + $ad->price*$vat/100, $ad->currency())?></strong></h4></td>
+                        <?endif?>
+                    </tr>
+                <?else:?>
+                        <tr>
+                        <td>   </td>
+                        <td class="text-right"><h4><strong><?=_e('Total')?>: </strong></h4></td>
+                        <?if($ad->shipping_price() AND $ad->shipping_pickup() AND core::get('shipping_pickup')):?>
+                            <td class="text-center text-danger"><h4><strong><?=i18n::money_format($ad->price, $ad->currency())?></stronge></h4></td>
+                        <?elseif($ad->shipping_price()):?>
+                            <td class="text-center text-danger"><h4><strong><?=i18n::money_format($ad->price + $ad->shipping_price(), $ad->currency())?></strong></h4></td>
+                        <?else:?>
+                            <td class="text-center text-danger"><h4><strong><?=i18n::money_format($ad->price, $ad->currency())?></strong></h4></td>
+                        <?endif?>
+                    </tr>
+                <?endif?>
             </tbody>
         </table>
 

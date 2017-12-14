@@ -90,7 +90,7 @@
                             <div class="form-group">
                                 <?= FORM::label('address', _e('Address'), array('class'=>'col-xs-4 control-label', 'for'=>'address'))?>
                                 <div class="col-sm-8">
-                                    <?= FORM::input('address', $user->address, array('class'=>'form-control', 'id'=>'address', 'required', 'placeholder'=>__('Address')))?>
+                                    <?= FORM::input('address', $user->address, array('class'=>'form-control', 'id'=>'address', 'placeholder'=>__('Address')))?>
                                 </div>
                             </div>
                             <div class="form-group">

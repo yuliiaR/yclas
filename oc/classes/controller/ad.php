@@ -810,7 +810,32 @@ class Controller_Ad extends Controller {
             AND (core::config('payment.stock')==0 OR ($ad->stock > 0 AND core::config('payment.stock')==1))
             AND (core::config('payment.paypal_seller')==1 OR core::config('payment.stripe_connect')==1)
             )
-        {
+        {            
+
+            // Calculate VAT
+            if(isset($ad->cf_vatnumber) AND $ad->cf_vatnumber AND isset($ad->cf_vatcountry) AND $ad->cf_vatcountry){
+                $vatcountry = $ad->cf_vatcountry;
+                $vatnumber = $ad->cf_vatnumber;
+            } elseif(isset($ad->user->cf_vatnumber) AND $ad->user->cf_vatnumber AND isset($ad->user->cf_vatcountry) AND $ad->user->cf_vatcountry) {
+                $vatcountry = $ad->user->cf_vatcountry;
+                $vatnumber = $ad->user->cf_vatnumber;
+            } else{
+                $vatcountry = NULL;
+                $vatnumber = NULL;
+            }
+
+            if(isset($vatcountry) AND isset($vatnumber)){
+                if(euvat::is_eu_country($vatcountry))
+                    $vat = euvat::vat_by_country($vatcountry);
+                elseif(isset($ad->cf_vatcountry) AND isset($ad->cf_vatnoneu) AND $ad->cf_vatnoneu > 0 AND $ad->cf_vatnoneu!=NULL)
+                    $vat = $ad->cf_vatnoneu;
+                elseif(isset($ad->user->cf_vatcountry) AND isset($ad->user->cf_vatnoneu) AND $ad->user->cf_vatnoneu > 0 AND $ad->user->cf_vatnoneu!=NULL)
+                    $vat = $ad->user->cf_vatnoneu;
+                else
+                    $vat = 0;
+            } else {
+                $vat = 0;
+            }
 
             //template header
             $this->template->title              = __('Checkout').' '.Model_Order::product_desc(Model_Order::PRODUCT_AD_SELL);

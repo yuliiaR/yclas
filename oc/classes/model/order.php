@@ -268,16 +268,26 @@ class Model_Order extends ORM {
                 {
                     $order->VAT_country = $order->ad->cf_vatcountry;
                     $order->VAT_number = $order->ad->cf_vatnumber;
-                    $order->VAT = euvat::vat_by_country($order->ad->cf_vatcountry);
+
+                    if(euvat::is_eu_country($order->ad->cf_vatcountry))
+                        $order->VAT = euvat::vat_by_country($order->ad->cf_vatcountry);
+                    elseif(isset($order->ad->cf_vatcountry) AND isset($order->ad->cf_vatnoneu) AND $order->ad->cf_vatnoneu > 0 AND $order->ad->cf_vatnoneu!=NULL)
+                        $order->VAT = $order->ad->cf_vatnoneu;
+
                 }
                 // check if user has VAT
-                elseif(isset($order->user->cf_vatnumber) AND $order->user->cf_vatnumber AND isset($order->user->cf_vatcountry) AND $order->user->cf_vatcountry)
+                elseif(isset($order->ad->user->cf_vatnumber) AND $order->ad->user->cf_vatnumber AND isset($order->ad->user->cf_vatcountry) AND $order->ad->user->cf_vatcountry)
                 {
-                    $order->VAT_country = $order->user->cf_vatcountry;
-                    $order->VAT_number = $order->user->cf_vatnumber;
-                    $order->VAT = euvat::vat_by_country($order->user->cf_vatcountry);
+                    $order->VAT_country = $order->ad->user->cf_vatcountry;
+                    $order->VAT_number = $order->ad->user->cf_vatnumber;
+
+                    if(euvat::is_eu_country($order->ad->user->cf_vatcountry))
+                        $order->VAT = euvat::vat_by_country($order->ad->user->cf_vatcountry);
+                    elseif(isset($order->ad->user->cf_vatcountry) AND isset($order->ad->user->cf_vatnoneu) AND $order->ad->user->cf_vatnoneu > 0 AND $order->ad->user->cf_vatnoneu!=NULL)
+                        $order->VAT = $order->ad->user->cf_vatnoneu;
+
                 }
-            } 
+            }
             else
             {
                 if(core::config('payment.vat_country') AND core::config('payment.vat_number'))
