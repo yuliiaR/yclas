@@ -12,6 +12,31 @@ class Controller_Panel_Update extends Auth_Controller {
 
     public function action_340()
     {
+        //new configs
+        $configs = array(
+
+            array( 'config_key'     => 'zenith_testing',
+                   'group_name'     => 'payment',
+                   'config_value'   => '0'),
+            array( 'config_key'     => 'zenith_merchantid',
+                   'group_name'     => 'payment',
+                   'config_value'   => ''),
+            array( 'config_key'     => 'zenith_uid',
+                   'group_name'     => 'payment',
+                   'config_value'   => ''),
+            array( 'config_key'     => 'zenith_pwd',
+                   'group_name'     => 'payment',
+                   'config_value'   => ''),
+            array( 'config_key'     => 'zenith_merchant_name',
+                   'group_name'     => 'payment',
+                   'config_value'   => ''),
+            array( 'config_key'     => 'zenith_merchant_phone',
+                   'group_name'     => 'payment',
+                   'config_value'   => ''),
+            );
+
+        Model_Config::config_array($configs);
+
         //user phone number
         try
         {
