@@ -275,11 +275,8 @@ class Social {
         }
 
         $data['link'] = $url_ad;
-        $data['message'] = $message;
+        $data['message'] = $message.' - '.$description.' '.self::GenerateHashtags($ad);;
         $data['caption'] = core::config('general.base_url').' | '.core::config('general.site_name');
-
-        $description = self::GenerateHashtags($ad, $description);
-        $data['description'] = $description;
 
         $data['access_token'] = $page_access_token;
 
@@ -292,6 +289,9 @@ class Social {
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         $return = curl_exec($ch);
         curl_close($ch);
+
+        if(strpos($return,'error') AND Auth::instance()->get_user()->is_admin())
+            Alert::set(Alert::ALERT, $return);
 
     }
 
