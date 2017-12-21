@@ -117,7 +117,6 @@ class Model_Review extends ORM {
                         ->using('id_ad')
                             ->where('ads.id_user','=',$user->id_user)
                             ->where('reviews.status','=',Model_Review::STATUS_ACTIVE)
-                        ->group_by('reviews.id_ad')
                         ->execute();
 
         $rates = $query->as_array();
