@@ -101,6 +101,9 @@
                             <a data-toggle="tab" href="#tabSettingsPaymentMercadoPago" aria-expanded="false">MercadoPago</a>
                         </li>
                         <li>
+                            <a data-toggle="tab" href="#tabSettingsPaymentZenith" aria-expanded="false">Zenith</a>
+                        </li>
+                        <li>
                             <a data-toggle="tab" href="#tabSettingsPaymentPreventFraud" aria-expanded="false"><?=__('Prevent Fraud')?></a>
                         </li>
                     </ul>
@@ -893,7 +896,92 @@
                             Client Secret
                         </span>
                     </div>
-                    
+
+                    <hr>
+                    <?=FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'payment'))))?>
+                </div>
+
+                <div id="tabSettingsPaymentZenith" class="tab-pane fade">
+                    <h4>Zenith</h4>
+                    <hr>
+
+                    <div class="form-group">
+                        <?=FORM::label($forms['zenith_merchantid']['key'], 'merchantid', array('class'=>'control-label', 'for'=>$forms['zenith_merchantid']['key']))?>
+                        <?=FORM::input($forms['zenith_merchantid']['key'], $forms['zenith_merchantid']['value'], array(
+                                'placeholder' => "",
+                                'class' => 'tips form-control',
+                                'id' => $forms['zenith_merchantid']['key']
+                        ))?>
+                        <span class="help-block">
+                            merchantid
+                        </span>
+                    </div>
+
+                    <div class="form-group">
+                        <?=FORM::label($forms['zenith_uid']['key'], 'Web service username', array('class'=>'control-label', 'for'=>$forms['zenith_uid']['key']))?>
+                        <?=FORM::input($forms['zenith_uid']['key'], $forms['zenith_uid']['value'], array(
+                                'placeholder' => "",
+                                'class' => 'tips form-control',
+                                'id' => $forms['zenith_uid']['key']
+                        ))?>
+                        <span class="help-block">
+                            Web service username
+                        </span>
+                    </div>
+
+                    <div class="form-group">
+                        <?=FORM::label($forms['zenith_pwd']['key'], 'Web service password', array('class'=>'control-label', 'for'=>$forms['zenith_pwd']['key']))?>
+                        <?=FORM::input($forms['zenith_pwd']['key'], $forms['zenith_pwd']['value'], array(
+                                'placeholder' => "",
+                                'class' => 'tips form-control',
+                                'id' => $forms['zenith_pwd']['key']
+                        ))?>
+                        <span class="help-block">
+                            Web service password
+                        </span>
+                    </div>
+
+                    <div class="form-group">
+                        <?=FORM::label($forms['zenith_testing']['key'], __('Sandbox'), array('class'=>'control-label', 'for'=>$forms['zenith_testing']['key']))?>
+                        <div class="radio radio-primary">
+                            <?=Form::radio($forms['zenith_testing']['key'], 1, (bool) $forms['zenith_testing']['value'], array('id' => $forms['zenith_testing']['key'].'1'))?>
+                            <?=Form::label($forms['zenith_testing']['key'].'1', __('Enabled'))?>
+                            <?=Form::radio($forms['zenith_testing']['key'], 0, ! (bool) $forms['zenith_testing']['value'], array('id' => $forms['zenith_testing']['key'].'0'))?>
+                            <?=Form::label($forms['zenith_testing']['key'].'0', __('Disabled'))?>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <?=FORM::label($forms['zenith_merchant_name']['key'], 'Merchant Name', array('class'=>'control-label', 'for'=>$forms['zenith_merchant_name']['key']))?>
+                        <?=FORM::input($forms['zenith_merchant_name']['key'], $forms['zenith_merchant_name']['value'], array(
+                                'placeholder' => "",
+                                'class' => 'tips form-control',
+                                'id' => $forms['zenith_merchant_name']['key']
+                        ))?>
+                        <span class="help-block">
+                            Merchant Name
+                        </span>
+                    </div>
+
+                    <div class="form-group">
+                        <?=FORM::label($forms['zenith_merchant_phone']['key'], 'Merchant Phone', array('class'=>'control-label', 'for'=>$forms['zenith_merchant_phone']['key']))?>
+                        <?=FORM::input($forms['zenith_merchant_phone']['key'], $forms['zenith_merchant_phone']['value'], array(
+                                'placeholder' => "",
+                                'class' => 'tips form-control',
+                                'id' => $forms['zenith_merchant_phone']['key']
+                        ))?>
+                        <span class="help-block">
+                            Merchant Phone
+                        </span>
+                    </div>
+
+                    <div class="form-group">
+                        <?=FORM::label('', __('Return URL'), array('class'=>'control-label'))?>
+                        <span class="help-block">
+                            Result URL <pre><?=Route::url('default',array('controller'=>'zenith', 'action'=>'result','id'=>1))?></pre>
+                        </span>
+                    </div>
+
                     <hr>
                     <?=FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'payment'))))?>
                 </div>
