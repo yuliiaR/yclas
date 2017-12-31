@@ -189,7 +189,7 @@ class Social {
 
                 $caption .= ' - '.Text::limit_chars(Text::removebbcode($ad->description), 100, NULL, TRUE);
                 $caption .= ' - '.$url_ad;
-		        $caption = self::GenerateHashtags($ad, $caption);
+                $caption = self::GenerateHashtags($ad, $caption);
 
                 $i = new \InstagramAPI\Instagram();
                 
@@ -275,7 +275,7 @@ class Social {
         }
 
         $data['link'] = $url_ad;
-        $data['message'] = $message.' - '.$description.' '.self::GenerateHashtags($ad);;
+        $data['message'] = $message.' - '.$description.' '.self::GenerateHashtags($ad, $description);;
         $data['caption'] = core::config('general.base_url').' | '.core::config('general.site_name');
 
         $data['access_token'] = $page_access_token;
@@ -320,11 +320,11 @@ class Social {
 
     public static function GenerateHashtags(Model_Ad $ad, $description)
     {
-    	$hashtag1 = '#'.str_replace([' ', "'", '"', '!', '+', '$', '%', '^', '&', '*', '+', '.', ','], '', core::config('general.site_name'));
-    	$hashtag2 = '#'.str_replace([' ', "'", '"', '!', '+', '$', '%', '^', '&', '*', '+', '.', ','], '', $ad->category->name);
-    	$hashtag3 = '#'.str_replace([' ', "'", '"', '!', '+', '$', '%', '^', '&', '*', '+', '.', ','], '', $ad->location->name);
+        $hashtag1 = '#'.str_replace([' ', "'", '"', '!', '+', '$', '%', '^', '&', '*', '+', '.', ','], '', core::config('general.site_name'));
+        $hashtag2 = '#'.str_replace([' ', "'", '"', '!', '+', '$', '%', '^', '&', '*', '+', '.', ','], '', $ad->category->name);
+        $hashtag3 = '#'.str_replace([' ', "'", '"', '!', '+', '$', '%', '^', '&', '*', '+', '.', ','], '', $ad->location->name);
 
-    	return $description.' '.$hashtag1.' '.$hashtag2.' '.$hashtag3;
+        return $hashtag1.' '.$hashtag2.' '.$hashtag3;
     }
 
 }
