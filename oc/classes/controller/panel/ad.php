@@ -352,7 +352,16 @@ class Controller_Panel_Ad extends Auth_Controller {
 				}
 				elseif ($ad->status != Model_Ad::STATUS_PUBLISHED)
 				{
-					$ad->published = Date::unix2mysql();
+					// update publish date if ad was not published before or
+					//	was published and to_top is not enabled
+					if($ad->published == NULL OR
+						($ad->published != NULL AND 
+						(core::config('payment.pay_to_go_on_top') == 0 OR
+						core::config('payment.to_top') == FALSE)))
+					{
+						$ad->published = Date::unix2mysql();
+					}
+
 					$ad->status    = Model_Ad::STATUS_PUBLISHED;
 						
 					try
