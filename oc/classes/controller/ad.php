@@ -876,6 +876,17 @@ class Controller_Ad extends Controller {
                 $this->redirect(Route::url('default'));
             }
 
+            // Only if zenith payment is configured
+            if (Core::config('payment.zenith_merchantid') != ''
+                AND Core::config('payment.zenith_uid') != ''
+                AND Core::config('payment.zenith_pwd') != ''
+                AND Auth::instance()->logged_in()
+                AND empty(Auth::instance()->get_user()->phone))
+            {
+                Alert::set(Alert::INFO, __('Please, enter your phone first'));
+                $this->redirect(Route::url('oc-panel', array('controller'=>'profile','action'=>'edit')));
+            }
+
             //checks coupons or amount of featured days
             $order->check_pricing();
 
