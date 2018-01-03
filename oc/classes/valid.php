@@ -101,13 +101,16 @@ class Valid extends Kohana_Valid{
         // Get the decimal point for the current locale
         list($decimal) = array_values(localeconv());
 
+        if(core::config('general.number_format') == 'BTC'){
+            $str = number_format($str,8);
+        }
+
         // A lookahead is used to make sure the string contains at least one digit (before or after the decimal point)
         $result = (bool) preg_match('/^-?+(?=.*[0-9])[0-9]*+'.preg_quote($decimal).'?+[0-9]*+$/D', (string) $str);
 
         //failsafe using as decimal de '.'
         if ($result===FALSE)
             $result = (bool) preg_match('/^-?+(?=.*[0-9])[0-9]*+.?+[0-9]*+$/D', (string) $str);
-
 
         return $result;
     }

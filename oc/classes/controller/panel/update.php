@@ -37,13 +37,13 @@ class Controller_Panel_Update extends Auth_Controller {
 
         Model_Config::config_array($configs);
 
-        //user phone number
         try
         {
             DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."users` ADD  `latitude`  float(10,6) DEFAULT NULL")->execute();
             DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."users` ADD  `longitude`  float(10,6) DEFAULT NULL")->execute();
             DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."users` ADD  `address`  varchar(145) DEFAULT NULL")->execute();
             DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."ads` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;")->execute();
+            DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."ads` CHANGE  `price`  `price` DECIMAL(14,8) NOT NULL DEFAULT '0.000'")->execute();
         }catch (exception $e) {}
 
         File::replace_file(APPPATH.'config/database.php',"'utf8'","'utf8mb4'");
