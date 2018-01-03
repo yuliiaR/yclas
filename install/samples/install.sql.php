@@ -124,7 +124,7 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX').
   `address` varchar(145) DEFAULT '0',
   `latitude` float(10,6) NULL DEFAULT NULL,
   `longitude` float(10,6) NULL DEFAULT NULL,
-  `price` decimal(14,3) NOT NULL DEFAULT '0',
+  `price` decimal(14,8) NOT NULL DEFAULT '0',
   `phone` varchar(30) DEFAULT NULL,
   `website` varchar(200) DEFAULT NULL,
   `ip_address` bigint DEFAULT NULL,

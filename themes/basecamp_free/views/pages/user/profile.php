@@ -131,7 +131,7 @@
 				                    </div>
 				                </p>
 				            <?endif?>
-				        <?elseif (Auth::instance()->logged_in() AND Auth::instance()->get_user()->is_admin()) :?>
+				        <?elseif (Core::config('advertisement.map') AND Auth::instance()->logged_in() AND Auth::instance()->get_user()->is_admin()) :?>
 				            <div class="alert alert-danger" role="alert">
 				                <a href="<?=Route::url('oc-panel',array('controller'=>'settings', 'action'=>'form'))?>" class="alert-link">
 				                    <?=__('Please set your Google API key on advertisement configuration.')?>

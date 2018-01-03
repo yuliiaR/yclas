@@ -189,7 +189,7 @@ class Social {
 
                 $caption .= ' - '.Text::limit_chars(Text::removebbcode($ad->description), 100, NULL, TRUE);
                 $caption .= ' - '.$url_ad;
-		        $caption = self::GenerateHashtags($ad, $caption);
+                $caption = self::GenerateHashtags($ad, $caption);
 
                 $i = new \InstagramAPI\Instagram();
                 
@@ -275,11 +275,8 @@ class Social {
         }
 
         $data['link'] = $url_ad;
-        $data['message'] = $message;
+        $data['message'] = $message.' - '.$description.' '.self::GenerateHashtags($ad, $description);;
         $data['caption'] = core::config('general.base_url').' | '.core::config('general.site_name');
-
-        $description = self::GenerateHashtags($ad, $description);
-        $data['description'] = $description;
 
         $data['access_token'] = $page_access_token;
 
@@ -292,6 +289,9 @@ class Social {
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         $return = curl_exec($ch);
         curl_close($ch);
+
+        if(strpos($return,'error') AND Auth::instance()->get_user()->is_admin())
+            Alert::set(Alert::ALERT, $return);
 
     }
 
@@ -320,11 +320,11 @@ class Social {
 
     public static function GenerateHashtags(Model_Ad $ad, $description)
     {
-    	$hashtag1 = '#'.str_replace([' ', "'", '"', '!', '+', '$', '%', '^', '&', '*', '+', '.', ','], '', core::config('general.site_name'));
-    	$hashtag2 = '#'.str_replace([' ', "'", '"', '!', '+', '$', '%', '^', '&', '*', '+', '.', ','], '', $ad->category->name);
-    	$hashtag3 = '#'.str_replace([' ', "'", '"', '!', '+', '$', '%', '^', '&', '*', '+', '.', ','], '', $ad->location->name);
+        $hashtag1 = '#'.str_replace([' ', "'", '"', '!', '+', '$', '%', '^', '&', '*', '+', '.', ','], '', core::config('general.site_name'));
+        $hashtag2 = '#'.str_replace([' ', "'", '"', '!', '+', '$', '%', '^', '&', '*', '+', '.', ','], '', $ad->category->name);
+        $hashtag3 = '#'.str_replace([' ', "'", '"', '!', '+', '$', '%', '^', '&', '*', '+', '.', ','], '', $ad->location->name);
 
-    	return $description.' '.$hashtag1.' '.$hashtag2.' '.$hashtag3;
+        return $hashtag1.' '.$hashtag2.' '.$hashtag3;
     }
 
 }

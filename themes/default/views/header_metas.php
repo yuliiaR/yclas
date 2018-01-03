@@ -22,12 +22,16 @@
     AND Request::current()->param('category') == URL::title(__('all'))):?>
 <link rel="canonical" href="<?=Route::url('default')?>" />
 <?endif?>
+
+<meta property="fb:app_id" content="<?=core::config('advertisement.facebook_app_id')?>" /> 
+<meta property="fb:pages" content="<?=core::config('advertisement.facebook_id')?>" /> 
 <?if (Controller::$image!==NULL):?>
 <meta property="og:image"   content="<?=Controller::$image?>"/>
 <?elseif(Theme::get('logo_url')!=NULL):?>
 <meta property="og:image"   content="<?=Theme::get('logo_url')?>"/>
 <?endif?>
 <meta property="og:title"   content="<?=HTML::chars($title)?>"/>
+<meta property="og:type"   content="website"/>
 <meta property="og:description"   content="<?=HTML::chars($meta_description)?>"/>
 <meta property="og:url"     content="<?=URL::current()?>"/>
 <meta property="og:site_name" content="<?=HTML::chars(core::config('general.site_name'))?>"/>

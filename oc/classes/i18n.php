@@ -491,6 +491,7 @@ class I18n extends Kohana_I18n {
         'BWP' => array(NULL,2,'.',',',0),          //  Botswana, Pula
         'BRL' => array('R$',2,',','.',0),          //  Brazilian Real
         'BND' => array(NULL,2,'.',',',0),          //  Brunei Dollar
+        'BTC' => array('BTC',8,'.','',1),          //  Bitcoin
         'CAD' => array('CA$',2,'.',',',0),          //  Canadian Dollar
         'KYD' => array(NULL,2,'.',',',0),          //  Cayman Islands Dollar
         'CLP' => array(NULL,0,'','.',0),           //  Chilean Peso
@@ -829,6 +830,7 @@ class I18n extends Kohana_I18n {
         'BWP' => 'Botswana, Pula',
         'BRL' => 'Brazilian Real',
         'BND' => 'Brunei Dollar',
+        'BTC' => 'Bitcoin',
         'KYD' => 'Cayman Islands Dollar',
         'CLP' => 'Chilean Peso',
         'CNY' => 'China Yuan Renminbi',

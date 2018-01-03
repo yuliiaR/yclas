@@ -164,7 +164,7 @@
                 <div class="form-group adv">                
                     <div class="col-md-12">
                     <label class="control-label"><?=__("Database charset")?>:</label>
-                    <input type="text" name="DB_CHARSET" value="<?=core::request('DB_CHARSET','utf8')?>" class="form-control" data-toggle="tooltip" title="<?=__("Database charset")?>" required />
+                    <input type="text" name="DB_CHARSET" value="<?=core::request('DB_CHARSET','utf8mb4')?>" class="form-control" data-toggle="tooltip" title="<?=__("Database charset")?>" required />
                     </div>
                 </div>
 
