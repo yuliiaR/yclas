@@ -172,7 +172,7 @@ else
                                             </div>
                                             <div class="form-group hidden animated db-adv">
                                                 <label for="DB_CHARSET" class="control-label"><?=__("Database charset")?>:</label>
-                                                <input type="text" id="DB_CHARSET" name="DB_CHARSET" class="form-control" value="<?=core::request('DB_CHARSET','utf8')?>" required>
+                                                <input type="text" id="DB_CHARSET" name="DB_CHARSET" class="form-control" value="<?=core::request('DB_CHARSET','utf8mb4')?>" required>
                                             </div>
                                             <div class="form-group hidden animated db-adv">
                                                 <label form="TABLE_PREFIX" class="control-label"><?=__("Table prefix")?>:</label>

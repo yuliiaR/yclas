@@ -157,4 +157,29 @@ class File extends Kohana_File{
         return FALSE;   
     }
 
+    /**
+     * replaces in a file 
+     * @param  string $orig_file 
+     * @param  array $search   
+     * @param  array $replace  
+     * @return bool           
+     */
+    public static function replace_file($orig_file,$search, $replace,$to_file = NULL)
+    {
+        if ($to_file === NULL)
+            $to_file = $orig_file;
+
+        //check file is writable
+        // if (is_writable($to_file))
+        // {
+            //read file content
+            $content = file_get_contents($orig_file);
+            //replace fields
+            $content = str_replace($search, $replace, $content);
+            //save file
+            return file::write($to_file,$content);
+        // }
+        // return FALSE;
+    }
+
 }
