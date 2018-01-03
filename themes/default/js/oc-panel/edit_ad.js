@@ -811,6 +811,20 @@ function createCustomFieldsByCategory (customfields) {
         placement: "right",
         trigger: "focus"
     });
+
+    if (typeof CarQuery !== 'undefined' && $.isFunction(CarQuery) && customfields['cf_make'] != undefined && customfields['cf_model'] != undefined && customfields['cf_year'] != undefined) {
+        $('select#cf_make')[0].selectize.destroy();
+        $('select#cf_model')[0].selectize.destroy();
+        $('select#cf_year')[0].selectize.destroy();
+
+        var carquery = new CarQuery();
+        carquery.init(
+            $('#custom-fields').data('customfield-values')[customfields['cf_year'].label],
+            $('#custom-fields').data('customfield-values')[customfields['cf_make'].label],
+            $('#custom-fields').data('customfield-values')[customfields['cf_model'].label]
+        );
+        carquery.initYearMakeModelTrim('cf_year', 'cf_make', 'cf_model');
+    }
 }
 
 $(function(){

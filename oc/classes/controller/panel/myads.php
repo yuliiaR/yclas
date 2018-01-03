@@ -118,7 +118,7 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
             } catch (Exception $e) {
                 Alert::set(Alert::ERROR, __('Advertisement not deleted'));
             }
-                
+
             HTTP::redirect(Route::url('oc-panel',array('controller'=>'myads','action'=>'index')));
 
         }
@@ -356,7 +356,10 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
             $this->template->scripts['async_defer'][] = '//apis.google.com/js/api.js?onload=onApiLoad';
         }
 
-
+        if (core::config('general.carquery'))
+        {
+            $this->template->scripts['footer'][] = '//www.carqueryapi.com/js/carquery.0.3.4.js';
+        }
 
 		Breadcrumbs::add(Breadcrumb::factory()->set_title(__('My ads'))->set_url(Route::url('oc-panel',array('controller'=>'myads','action'=>'index'))));
 

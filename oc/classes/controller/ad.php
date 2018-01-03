@@ -810,7 +810,7 @@ class Controller_Ad extends Controller {
             AND (core::config('payment.stock')==0 OR ($ad->stock > 0 AND core::config('payment.stock')==1))
             AND (core::config('payment.paypal_seller')==1 OR core::config('payment.stripe_connect')==1)
             )
-        {            
+        {
 
             // Calculate VAT
             if(isset($ad->cf_vatnumber) AND $ad->cf_vatnumber AND isset($ad->cf_vatcountry) AND $ad->cf_vatcountry){
@@ -1003,6 +1003,11 @@ class Controller_Ad extends Controller {
         }
         $this->template->scripts['footer'][] = 'js/jquery.toolbar.js';
         $this->template->scripts['footer'][] = 'js/sort.js';
+
+        if (core::config('general.carquery'))
+        {
+            $this->template->scripts['footer'][] = '//www.carqueryapi.com/js/carquery.0.3.4.js';
+        }
 
 		//template header
 		$this->template->title           	= __('Advanced Search');
@@ -1367,4 +1372,3 @@ class Controller_Ad extends Controller {
 
 
 }// End ad controller
-

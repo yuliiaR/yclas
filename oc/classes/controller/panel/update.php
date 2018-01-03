@@ -33,6 +33,9 @@ class Controller_Panel_Update extends Auth_Controller {
             array( 'config_key'     => 'zenith_merchant_phone',
                    'group_name'     => 'payment',
                    'config_value'   => ''),
+            array( 'config_key'     => 'carquery',
+                   'group_name'     => 'general',
+                   'config_value'   => '0'),
             );
 
         Model_Config::config_array($configs);
