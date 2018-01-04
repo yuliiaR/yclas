@@ -704,11 +704,14 @@
                             </p>
                         </div>
                         <div id="tabSettingsCarQuery" class="tab-pane fade">
-                            <h4>CarQuery</h4>
+                            <h4>CarQuery
+                                <a target="_blank" href="//docs.yclas.com/vehicle-data">
+                                    <i class="fa fa-question-circle"></i>
+                                </a></h4>
                             <hr>
 
                             <div class="form-group">
-                                <?= FORM::label($forms['carquery']['id'], __("Enable Algolia Search"), array('class'=>'control-label', 'for'=>$forms['carquery']['id']))?>
+                                <?= FORM::label($forms['carquery']['id'], __("Enable CarQuery"), array('class'=>'control-label', 'for'=>$forms['carquery']['id']))?>
 
                                 <div class="radio radio-primary">
                                     <?=Form::radio($forms['carquery']['key'], 1, (bool) $forms['carquery']['value'], array('id' => $forms['carquery']['id'].'1'))?>
