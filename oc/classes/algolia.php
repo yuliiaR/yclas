@@ -85,7 +85,7 @@ class Algolia
         return;
     }
 
-    protected function add_permalink($items, $model)
+    protected static function add_permalink($items, $model)
     {
         foreach($items as $key => $item)
         {
@@ -105,7 +105,7 @@ class Algolia
         return $items;
     }
 
-    protected function get_ads()
+    protected static function get_ads()
     {
         $ads = new Model_Ad();
         $ads->where('status', '=', Model_Ad::STATUS_PUBLISHED);
@@ -123,7 +123,7 @@ class Algolia
         return $index_ads;
     }
 
-    protected function get_categories()
+    protected static function get_categories()
     {
         $categories = DB::select(DB::expr('id_category objectID, name, seoname, description'))
             ->from('categories')
@@ -134,7 +134,7 @@ class Algolia
         return $categories;
     }
 
-    protected function get_locations()
+    protected static function get_locations()
     {
         $locations = DB::select(DB::expr('id_location objectID, name, seoname, description'))
             ->from('locations')
@@ -145,7 +145,7 @@ class Algolia
         return $locations;
     }
 
-    protected function get_users()
+    protected static function get_users()
     {
        $users = DB::select(DB::expr('id_user objectID, name, seoname'))
             ->from('users')

@@ -1185,7 +1185,7 @@ class Model_User extends ORM {
      * @param  string $message, what will be send
      * @param  string $channel, where will be send/to whom
      */
-    public function pusher($channel = NULL, $message = NULL, $content)
+    public static function pusher($channel = NULL, $message = NULL, $content)
     {
         require_once Kohana::find_file('vendor', 'pusher/autoload');
 
