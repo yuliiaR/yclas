@@ -1547,6 +1547,10 @@ table#forum-table  td, table#forum-table .sibling-forum th {
 	background-color: inherit;
 }
 
+.Widget_Seller .glyphicon-star{
+	color: #DAA520;
+}
+
 @media only screen and (max-width : 768px) {
 	.topic-row.header {
 		display: none;

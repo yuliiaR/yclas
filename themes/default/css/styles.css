@@ -364,6 +364,10 @@ img#captcha_img_publish_new {
   background-color: inherit;
 }
 
+.Widget_Seller .glyphicon-star{
+  color: #DAA520;
+}
+
 /*Media screens*/
 @media only screen and (max-width : 480px) {
   .modal-body{

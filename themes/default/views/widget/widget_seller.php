@@ -6,7 +6,7 @@
     </div>
 <?endif?>
 
-<div class="panel-body">
+<div class="panel-body text-center">
     <h4><?=$widget->user->name?></h4>
     <?if (Core::config('advertisement.reviews')==1):?>
         <p>
