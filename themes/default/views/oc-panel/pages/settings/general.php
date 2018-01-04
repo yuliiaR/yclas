@@ -10,7 +10,7 @@
     </li>
 </ul>
 
-<h1 id="page-general-configuration"" class="page-header page-title"><?=__('General Configuration')?></h1>
+<h1 id="page-general-configuration" class="page-header page-title"><?=__('General Configuration')?></h1>
 
 <hr>
 
@@ -40,6 +40,9 @@
                         </li>
                         <li>
                             <a data-toggle="tab" href="#tabSettingsAlgolia" aria-expanded="false">Algolia Search</a>
+                        </li>
+                        <li>
+                            <a data-toggle="tab" href="#tabSettingsCarQuery" aria-expanded="false">CarQuery</a>
                         </li>
                     </ul>
                     <div class="tab-content">
@@ -694,6 +697,25 @@
                                     'class' => 'form-control',
                                     'id' => $forms['algolia_search_only_key']['id'],
                                 ))?>
+                            </div>
+                            <hr>
+                            <p>
+                                <?=FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'general'))))?>
+                            </p>
+                        </div>
+                        <div id="tabSettingsCarQuery" class="tab-pane fade">
+                            <h4>CarQuery</h4>
+                            <hr>
+
+                            <div class="form-group">
+                                <?= FORM::label($forms['carquery']['id'], __("Enable Algolia Search"), array('class'=>'control-label', 'for'=>$forms['carquery']['id']))?>
+
+                                <div class="radio radio-primary">
+                                    <?=Form::radio($forms['carquery']['key'], 1, (bool) $forms['carquery']['value'], array('id' => $forms['carquery']['id'].'1'))?>
+                                    <?=Form::label($forms['carquery']['id'].'1', __('Enabled'))?>
+                                    <?=Form::radio($forms['carquery']['key'], 0, ! (bool) $forms['carquery']['value'], array('id' => $forms['carquery']['id'].'0'))?>
+                                    <?=Form::label($forms['carquery']['id'].'0', __('Disabled'))?>
+                                </div>
                             </div>
                             <hr>
                             <p>

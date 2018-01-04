@@ -106,6 +106,11 @@ class Controller_New extends Controller
             $this->template->scripts['footer'][] = 'js/utils.js';
         }
 
+        if (core::config('general.carquery'))
+        {
+            $this->template->scripts['footer'][] = '//www.carqueryapi.com/js/carquery.0.3.4.js';
+        }
+
         $this->template->scripts['footer'][] = 'js/new.js?v='.Core::VERSION;
 
         $categories = new Model_Category;

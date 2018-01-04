@@ -708,6 +708,7 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."config` (`grou
 ('general', 'algolia_search_admin_key', ''),
 ('general', 'algolia_search_only_key', ''),
 ('general', 'algolia_powered_by_enabled', 1),
+('general', 'carquery', '0'),
 ('general', 'sms_auth', '0'),
 ('general', 'sms_clickatell_api', ''),
 ('image', 'allowed_formats', 'jpeg,jpg,png,'),
