@@ -1699,4 +1699,17 @@ class Model_Ad extends ORM {
             return core::config('general.number_format');
     }
 
+    /**
+     * return btc address and QR code view
+     */
+    public function btc()
+    {
+        if($this->loaded() AND $this->status == self::STATUS_PUBLISHED AND
+            ((isset($this->cf_bitcoinaddress) AND !empty($this->cf_bitcoinaddress)) OR 
+            (isset($this->user->cf_bitcoinaddress) AND !empty($this->user->cf_bitcoinaddress))))
+        {
+            return View::factory('pages/ad/btc',array('ad'=>$this))->render();
+        }
+    }
+
 } // END Model_ad
