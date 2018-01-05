@@ -707,7 +707,8 @@
                             <h4>CarQuery
                                 <a target="_blank" href="//docs.yclas.com/vehicle-data">
                                     <i class="fa fa-question-circle"></i>
-                                </a></h4>
+                                </a>
+                            </h4>
                             <hr>
 
                             <div class="form-group">
