@@ -229,6 +229,17 @@ class Controller_Panel_Fields extends Auth_Controller {
                             __('I’m looking for a car to buy')])
                     ],
                     [
+                        'name' => 'year',
+                        'type' => 'select',
+                        'label' => __('Year'),
+                        'tooltip' => __('Year'),
+                        'required' => TRUE,
+                        'searchable' => TRUE,
+                        'admin_privilege' => FALSE,
+                        'show_listing' => TRUE,
+                        'values' => FALSE
+                    ],
+                    [
                         'name' => 'make',
                         'type' => 'select',
                         'label' => __('Make'),
@@ -237,76 +248,18 @@ class Controller_Panel_Fields extends Auth_Controller {
                         'searchable' => TRUE,
                         'admin_privilege' => FALSE,
                         'show_listing' => TRUE,
-                        'values' => implode(',', [
-                            'Acura',
-                            'Alfa Romeo',
-                            'AM General',
-                            'AMC',
-                            'Aston Martin',
-                            'Audi',
-                            'Austin-Healey',
-                            'Bently',
-                            'BMW',
-                            'Bricklin',
-                            'Bugatti',
-                            'Buick',
-                            'Cadillac',
-                            'Chevrolet',
-                            'Chrysler',
-                            'Daewoo',
-                            'Datsun',
-                            'Diahatsu',
-                            'Dodge',
-                            'Eagle',
-                            'Ferrari',
-                            'Fiat',
-                            'Ford',
-                            'Geo',
-                            'GMC',
-                            'Honda',
-                            'HUMMER',
-                            'Hyundai',
-                            'Infiniti',
-                            'International Harvester',
-                            'Isuzu',
-                            'Jaguar',
-                            'Jeep',
-                            'Kia',
-                            'Lamborghini',
-                            'Land Rover',
-                            'Lexus',
-                            'Lincoln',
-                            'Lotus',
-                            'Maserati',
-                            'Maybach',
-                            'Mazda',
-                            'Mercedes-Benz',
-                            'Mercury',
-                            'MG',
-                            'MINI',
-                            'Mitsubishi',
-                            'Nissan',
-                            'Oldsmobile',
-                            'Opel',
-                            'Peugeot',
-                            'Plymouth',
-                            'Pontiac',
-                            'Porsche',
-                            'Ram',
-                            'Renault',
-                            'Rolls-Royce',
-                            'Saab',
-                            'Saturn',
-                            'Scion',
-                            'Shelby',
-                            'Smart',
-                            'Subaru',
-                            'Suzuki',
-                            'Toyota',
-                            'Triumph',
-                            'Volkswagen',
-                            'Volvo',
-                            __('Other')])
+                        'values' => FALSE
+                    ],
+                    [
+                        'name' => 'model',
+                        'type' => 'select',
+                        'label' => __('Model'),
+                        'tooltip' => __('Model'),
+                        'required' => TRUE,
+                        'searchable' => TRUE,
+                        'admin_privilege' => FALSE,
+                        'show_listing' => TRUE,
+                        'values' => FALSE
                     ],
                     [
                         'name' => 'othermake',
@@ -317,28 +270,6 @@ class Controller_Panel_Fields extends Auth_Controller {
                         'searchable' => TRUE,
                         'admin_privilege' => FALSE,
                         'show_listing' => FALSE,
-                        'values' => FALSE
-                    ],
-                    [
-                        'name' => 'model',
-                        'type' => 'string',
-                        'label' => __('Model'),
-                        'tooltip' => __('Model'),
-                        'required' => TRUE,
-                        'searchable' => TRUE,
-                        'admin_privilege' => FALSE,
-                        'show_listing' => TRUE,
-                        'values' => FALSE
-                    ],
-                    [
-                        'name' => 'year',
-                        'type' => 'integer',
-                        'label' => __('Year'),
-                        'tooltip' => __('Year'),
-                        'required' => TRUE,
-                        'searchable' => TRUE,
-                        'admin_privilege' => FALSE,
-                        'show_listing' => TRUE,
                         'values' => FALSE
                     ],
                     [
@@ -826,6 +757,16 @@ class Controller_Panel_Fields extends Auth_Controller {
                 } catch (Exception $e) {
                     throw HTTP_Exception::factory(500,$e->getMessage());     
                 }    
+            }
+
+            if(Core::post('type') == 'cars'){
+                
+                $config_key = 'carquery';
+                $group_name = 'general';
+                $config_value = 1;
+                
+                Model_Config::set_value($group_name, $config_key, $config_value);
+                Core::delete_cache();
             }
     
             HTTP::redirect(Route::url('oc-panel',array('controller'  => 'fields','action'=>'index')));  
