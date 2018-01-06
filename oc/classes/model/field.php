@@ -388,6 +388,7 @@ class Model_Field {
             'cf_paypalaccount',
             'cf_commentsdisabled',
             'cf_currency',
+            'cf_bitcoinaddress',
         );
     }
 
