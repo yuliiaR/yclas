@@ -178,7 +178,7 @@ class install{
      */
     public static function is_compatible()
     {
-        self::$msg = '';
+        self::$msg = [];
         $compatible = TRUE;
         foreach (install::requirements() as $name => $values)
         {
