@@ -258,6 +258,19 @@ class Controller_Panel_Settings extends Auth_Controller {
                         if ($c->config_key == 'maintenance' AND $c->config_value == 0)
                             Alert::del('maintenance');
 
+                        if ($c->config_key == 'subscriptions_expire' AND $c->config_value == 1)
+                        {
+                            
+                            $plan = new Model_Plan();
+                            $plan->where('status','=',1)->find();
+
+                            if (!$plan->loaded())
+                            {
+                                $url = Route::url('oc-panel',array('controller'=>'plan','action'=>'index'));
+                                Alert::set(Alert::INFO, __('Please, <a href="'.$url.'">create a plan</a> first. More information <a href="//docs.yclas.com/membership-plans/#subscription-expire" target="_blank">here</a>'));
+                            }
+                        }
+
                         if ($c->config_key == 'sms_auth' AND $c->config_value == 1){
 
                             if(!empty(Kohana::$_POST_ORIG['general']['sms_clickatell_api'][0]) 

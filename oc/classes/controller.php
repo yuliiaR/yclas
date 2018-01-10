@@ -89,27 +89,13 @@ class Controller extends Kohana_Controller
             strtolower($this->request->action())!='checkoutfree' AND
             Auth::instance()->logged_in() AND
             Core::config('general.subscriptions') == TRUE AND
-            Core::config('general.subscriptions_expire') == TRUE AND
+            Core::config('general.subscriptions_expire') == TRUE AND 
+            (!Auth::instance()->get_user()->is_admin() AND !Auth::instance()->get_user()->is_moderator()) AND
             Theme::get('premium') == TRUE
             AND !$this->user->subscription()->loaded() )
         {
-            //control loop
-            if ($this->user->is_admin() OR $this->user->is_moderator())
-            {
-                $plan = new Model_Plan();
-                $plan->where('status','=',1)->find();
-
-                if (!$plan->loaded())
-                {
-                    Alert::set(Alert::INFO, __('Please, create a plan'));
-                    $url = Route::url('oc-panel',array('controller'=>'plan','action'=>'index'));
-                    $this->redirect($url);
-                }
-            }
-
             Alert::set(Alert::INFO, __('Please, choose a plan first'));
             HTTP::redirect(Route::url('pricing'));
-
         }
     }
 
