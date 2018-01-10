@@ -67,7 +67,7 @@ class URL extends Kohana_URL {
         if (!isset($_SERVER['QUERY_STRING']) OR Request::$current == NULL OR defined('SUPPRESS_REQUEST'))
             return URL::base();
 
-        return Request::initial()->referrer();
+        return substr(URL::base(),0,-1) . $_SERVER['REQUEST_URI'];
     }
 
     /**
