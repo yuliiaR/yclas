@@ -38,7 +38,13 @@ class Controller_Plan extends Controller {
             $plans = $plans->where('status','=',1)
                             ->order_by('price','asc')
                             ->cached()->find_all();
-            
+
+            if ($plans->count() === 0 AND Auth::instance()->logged_in() AND Auth::instance()->get_user()->is_admin())
+            {
+                $url = Route::url('oc-panel', ['controller' => 'plan', 'action' => 'index']);
+                Alert::set(Alert::INFO, __('Please, <a href="' . $url . '">create a plan</a> first. More information <a href="//docs.yclas.com/membership-plans/#subscription-expire" target="_blank">here</a>'));
+            }
+
             $subscription = ($this->user!=FALSE AND $this->user->subscription()->loaded())?$this->user->subscription():FALSE;
 
             $this->template->content = View::factory('pages/plan/pricing',array('plans'=>$plans,'user'=>$this->user,'subscription'=>$subscription));
