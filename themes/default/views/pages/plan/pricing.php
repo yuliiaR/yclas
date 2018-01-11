@@ -52,7 +52,7 @@
                     <?endif?>
 
                     <hr>
-                    <a href="<?=Route::url('default', array('controller'=>'plan','action'=>'buy','id'=>$plan->seoname))?>" 
+                    <a href="<?=Route::url('default', array('controller'=>'plan','action'=>'buy','id'=>$plan->seoname))?>"
                         class="btn btn-<?=($current_plan)?'primary':'success'?> btn-block">
                         <?if($current_plan==TRUE):?>
                             <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span> <?=_e('Renew')?>
