@@ -13,7 +13,7 @@
 class zenith {
 
     const url_gateway            = 'https://www.globalpay.com.ng/Paymentgatewaycapture.aspx';
-    const url_sandbox_gateway    = 'https://demo.globalpay.com.ng/globalpay_demo/Paymentgatewaycapture.aspx';
+    const url_sandbox_gateway    = 'https://demo.globalpay.com.ng/GlobalPayAPI/Paymentgatewaycapture.aspx';
 
     /**
      * generates HTML for apy buton
