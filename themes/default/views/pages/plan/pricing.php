@@ -65,7 +65,7 @@
                 </div>
             </div>
         <?endforeach?>
-    <?elseif(count($plans) < 1 AND Auth::instance()->get_user()->is_admin() ):?>
+    <?elseif(count($plans) < 1 AND Auth::instance()->logged_in() AND Auth::instance()->get_user()->is_admin() ):?>
         <?
             $plan = new Model_Plan();
             $plan->where('status','=',1)->find();
