@@ -652,7 +652,7 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."config` (`grou
 ('payment', 'zenith_merchant_name', ''),
 ('payment', 'zenith_merchant_phone', ''),
 ('general', 'subscriptions', '0'),
-('general', 'subscriptions_expire', '1'),
+('general', 'subscriptions_expire', '0'),
 ('general', 'api_key', '".core::generate_password(32)."'),
 ('general', 'country', ''),
 ('general', 'number_format', '%n'),
