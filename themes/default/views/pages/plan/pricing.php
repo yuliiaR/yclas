@@ -61,20 +61,9 @@
                         <?endif?>
                         <b><?=i18n::format_currency($plan->price,core::config('payment.paypal_currency'))?></b>
                     </a>
-                    
+
                 </div>
             </div>
         <?endforeach?>
-    <?elseif(count($plans) < 1 AND Auth::instance()->get_user()->is_admin() ):?>
-        <?
-            $plan = new Model_Plan();
-            $plan->where('status','=',1)->find();
-
-            if (!$plan->loaded())
-            {
-                $url = Route::url('oc-panel',array('controller'=>'plan','action'=>'index'));
-                Alert::set(Alert::INFO, __('Please, <a href="'.$url.'">create a plan</a> first. More information <a href="//docs.yclas.com/membership-plans/#subscription-expire" target="_blank">here</a>'));
-            }
-        ?>
     <?endif?>
-</div>    
+</div>
