@@ -312,10 +312,7 @@ class Social {
 
         $paramsfb = json_decode($contents, true);
 
-        if($err == '200')
-            model_config::set_value('advertisement','facebook_access_token',$paramsfb['access_token']);
-        else
-            model_config::set_value('advertisement','facebook_access_token','');
+        Model_Config::set_value('advertisement','facebook_access_token',$paramsfb['access_token']);
     }
 
     public static function GenerateHashtags(Model_Ad $ad, $description)
