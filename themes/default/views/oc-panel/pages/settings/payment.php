@@ -302,7 +302,7 @@
                     </div>
 
                     <div class="form-group">
-                        <?=FORM::label($forms['stripe_bitcoin']['key'], __('Accept Bitoin payments, only with USD'), array('class'=>'control-label', 'for'=>$forms['stripe_bitcoin']['key']))?>
+                        <?=FORM::label($forms['stripe_bitcoin']['key'], __('Accept Bitcoin payments, only with USD'), array('class'=>'control-label', 'for'=>$forms['stripe_bitcoin']['key']))?>
                         <div class="radio radio-primary">
                             <?=Form::radio($forms['stripe_bitcoin']['key'], 1, (bool) $forms['stripe_bitcoin']['value'], array('id' => $forms['stripe_bitcoin']['key'].'1'))?>
                             <?=Form::label($forms['stripe_bitcoin']['key'].'1', __('Enabled'))?>
