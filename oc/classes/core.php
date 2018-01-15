@@ -506,62 +506,83 @@ class Core {
 
     /**
      * CSV file to array
-     * @param  file  $csv             
-     * @param  array  $expected_header 
+     * @param  file  $csv
+     * @param  array  $expected_header
      * @param  boolean $convert_object  you want it returned as an object?
-     * @param  string  $delimiter       
-     * @param  string  $enclosure       
-     * @return array                   
+     * @param  string  $delimiter
+     * @param  string  $enclosure
+     * @return array
      */
-    public static function csv_to_array($csv,$expected_header=NULL,$convert_object = FALSE, $delimiter = "," , $enclosure = '"')
+    public static function csv_to_array($filename, $header_expected = array(), $as_object = FALSE, $delimiter = ",", $enclosure = '"')
     {
-        $end_array =  array();
-        
-        //open CSV
-        if (file_exists($csv) AND ($handle = fopen($csv, 'r')) !== FALSE) 
+        if (!self::csv_is_valid($filename, $header_expected, $delimiter = ",", $enclosure = '"'))
+            return FALSE;
+
+        $items = array();
+        $handle = fopen($filename, 'r');
+
+        //remove header
+        $data = fgetcsv($handle, 0, $delimiter, $enclosure);
+
+        //line by line
+        while(($data = fgetcsv($handle, 0, $delimiter, $enclosure)) !== FALSE)
         {
-            $i = 0;
-
-            //line by line
-            while(($data = fgetcsv($handle, 0, $delimiter, $enclosure)) !== FALSE)
+            //return as object
+            if ($as_object === TRUE)
             {
-                //check the header
-                if ($i == 0 AND is_array($expected_header))
+                $item = new stdClass();
+
+                foreach ($data as $field => $value)
                 {
-                    if($data != $expected_header)
-                        return FALSE;
-                }
-                //not header 
-                else
-                {
-                    //return as object
-                    if ($convert_object === TRUE)
+                    try
                     {
-                        $obj = new stdClass();
-                        foreach ($data as $field => $value) 
-                        {
-                            try 
-                            {
-                                $expected_header_field = $expected_header[$field];
-                                $obj->$expected_header_field = $value;   
-                            } catch (Exception $e) {
-                                //got a field that was not in the header :S
-                                return FALSE;
-                            }
-                        }
-
-                        $end_array[$i] = $obj;
+                        $expected_field = $header_expected[$field];
+                        $item->$expected_field = $value;
+                    } catch (Exception $e) {
+                        //got a field that was not in the header :S
+                        return FALSE;
                     }
-                    else
-                        $end_array[$i] = $data;
                 }
 
-                $i++;
+                $items[] = $item;
             }
-            fclose($handle); 
+            else
+            {
+                $items[] = $data;
+            }
         }
 
-        return $end_array;
+        fclose($handle);
+
+        return $items;
+    }
+
+    /**
+     * Validates CSV file
+     * @param  file  $filename
+     * @param  array  $header_expected
+     * @param  string  $delimiter
+     * @param  string  $enclosure
+     * @return bool
+     */
+    public static function csv_is_valid($filename, $header_expected = array(), $delimiter = "," , $enclosure = '"')
+    {
+        //open CSV
+        if (!file_exists($filename))
+            return FALSE;
+
+        if (($handle = fopen($filename, 'r')) === FALSE)
+            return FALSE;
+
+        if (($header_data = fgetcsv($handle, 0, $delimiter, $enclosure)) === FALSE)
+            return FALSE;
+
+        if ($header_data != $header_expected)
+            return FALSE;
+
+        fclose($handle);
+
+        return TRUE;
     }
 
     /**
