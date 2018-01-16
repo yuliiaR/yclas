@@ -104,6 +104,9 @@
                             <a data-toggle="tab" href="#tabSettingsPaymentZenith" aria-expanded="false">Zenith</a>
                         </li>
                         <li>
+                            <a data-toggle="tab" href="#tabSettingsPaymentPayline" aria-expanded="false">Payline</a>
+                        </li>
+                        <li>
                             <a data-toggle="tab" href="#tabSettingsPaymentPreventFraud" aria-expanded="false"><?=__('Prevent Fraud')?></a>
                         </li>
                     </ul>
@@ -986,7 +989,68 @@
                     <?=FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'payment'))))?>
                 </div>
 
-                <div id="tabSettingsPaymentPreventFraud" class="tab-pane fade">                           
+                <div id="tabSettingsPaymentPayline" class="tab-pane fade">
+                    <h4>Payline</h4>
+                    <hr>
+
+                    <div class="form-group">
+                        <?=FORM::label($forms['payline_merchant_id']['key'], 'Merchant ID', array('class'=>'control-label', 'for'=>$forms['payline_merchant_id']['key']))?>
+                        <?=FORM::input($forms['payline_merchant_id']['key'], $forms['payline_merchant_id']['value'], array(
+                                'placeholder' => "",
+                                'class' => 'tips form-control',
+                                'id' => $forms['payline_merchant_id']['key']
+                        ))?>
+                        <span class="help-block">
+                            Merchant ID
+                        </span>
+                    </div>
+
+                    <div class="form-group">
+                        <?=FORM::label($forms['payline_access_key']['key'], 'Access Key', array('class'=>'control-label', 'for'=>$forms['payline_access_key']['key']))?>
+                        <?=FORM::input($forms['payline_access_key']['key'], $forms['payline_access_key']['value'], array(
+                                'placeholder' => "",
+                                'class' => 'tips form-control',
+                                'id' => $forms['payline_access_key']['key']
+                        ))?>
+                        <span class="help-block">
+                            Access Key
+                        </span>
+                    </div>
+
+                    <div class="form-group">
+                        <?=FORM::label($forms['payline_contract_number']['key'], 'Contract Number', array('class'=>'control-label', 'for'=>$forms['payline_contract_number']['key']))?>
+                        <?=FORM::input($forms['payline_contract_number']['key'], $forms['payline_contract_number']['value'], array(
+                                'placeholder' => "",
+                                'class' => 'tips form-control',
+                                'id' => $forms['payline_contract_number']['key']
+                        ))?>
+                        <span class="help-block">
+                            Contract Number
+                        </span>
+                    </div>
+
+                    <div class="form-group">
+                        <?=FORM::label($forms['payline_testing']['key'], __('Sandbox'), array('class'=>'control-label', 'for'=>$forms['payline_testing']['key']))?>
+                        <div class="radio radio-primary">
+                            <?=Form::radio($forms['payline_testing']['key'], 1, (bool) $forms['payline_testing']['value'], array('id' => $forms['payline_testing']['key'].'1'))?>
+                            <?=Form::label($forms['payline_testing']['key'].'1', __('Enabled'))?>
+                            <?=Form::radio($forms['payline_testing']['key'], 0, ! (bool) $forms['payline_testing']['value'], array('id' => $forms['payline_testing']['key'].'0'))?>
+                            <?=Form::label($forms['payline_testing']['key'].'0', __('Disabled'))?>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <?=FORM::label('', __('Return URL'), array('class'=>'control-label'))?>
+                        <span class="help-block">
+                            Result URL <pre><?=Route::url('default',array('controller'=>'payline', 'action'=>'result','id'=>1))?></pre>
+                        </span>
+                    </div>
+
+                    <hr>
+                    <?=FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'payment'))))?>
+                </div>
+
+                <div id="tabSettingsPaymentPreventFraud" class="tab-pane fade">
                     <h4>Prevent Fraud</h4>
                     <hr>
 
