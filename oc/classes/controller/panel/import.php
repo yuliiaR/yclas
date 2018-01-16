@@ -422,52 +422,40 @@ class Controller_Panel_Import extends Controller_Panel_Tools {
         ];
 
         foreach (Model_Field::get_all() as $name => $custom_field) {
+            $name = 'cf_' . $name;
             switch ($custom_field['type']) {
                 case 'textarea':
-                    $columns[] = "`cf_" . $name ."` text DEFAULT NULL";
+                    $columns[] = "`" . $name ."` text DEFAULT NULL";
                     break;
 
                 case 'integer':
-                    $columns[] = '`cf_' . $name . '` int DEFAULT NULL';
+                    $columns[] = '`' . $name . '` int DEFAULT NULL';
                     break;
 
                 case 'checkbox':
-                    $columns[] = '`cf_' . $name . '` tinyint(1) DEFAULT NULL';
+                case 'radio':
+                    $columns[] = '`' . $name . '` tinyint(1) DEFAULT NULL';
                     break;
 
                 case 'decimal':
-                    $columns[] = '`cf_' . $name . '` float DEFAULT NULL';
-                    break;
-
                 case 'range':
-                    $columns[] = '`cf_' . $name . '` float DEFAULT NULL';
+                    $columns[] = '`' . $name . '` float DEFAULT NULL';
                     break;
 
                 case 'date':
-                    $columns[] = '`cf_' . $custom_field['name'] . '` date DEFAULT NULL';
+                    $columns[] = '`' . $name . '` date DEFAULT NULL';
                     break;
 
                 case 'select':
-                    $columns[] = '`cf_' . $name . '` varchar(145) DEFAULT NULL';
-                    break;
-
-                case 'radio':
-                    $columns[] = '`cf_' . $name . '` tinyint(1) DEFAULT NULL';
-                    break;
-
                 case 'email':
-                    $columns[] = '`cf_' . $name . '` varchar(145) DEFAULT NULL';
-
-                    break;
-
                 case 'country':
-                    $columns[] = '`cf_' . $name . '` varchar(145) DEFAULT NULL';
+                    $columns[] = '`' . $name . '` varchar(145) DEFAULT NULL';
 
                     break;
 
                 case 'string':
                 default:
-                    $columns[] = '`cf_' . $name . '` varchar(256) DEFAULT NULL';
+                    $columns[] = '`' . $name . '` varchar(256) DEFAULT NULL';
 
                     break;
             }
