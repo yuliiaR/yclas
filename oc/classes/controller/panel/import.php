@@ -64,29 +64,40 @@ class Controller_Panel_Import extends Controller_Panel_Tools {
             }
 
             //header that I expect
-            $expected_header = array('user_name','user_email','title','description','date','category','location',
+            $header_expected = array('user_name','user_email','title','description','date','category','location',
                                         'price','address','phone','website','image_1','image_2','image_3','image_4');
+
+            $header_expected_with_custom_fields = array_merge($header_expected, preg_filter('/^/', 'cf_', array_keys(Model_Field::get_all())));
 
             $csv = $_FILES['csv_file_ads']["tmp_name"];
 
-            $ads_array = Core::csv_to_array($csv,$expected_header);
+            //check if wants to import custom fields too
+            if (Core::csv_is_valid($csv, $header_expected_with_custom_fields))
+            {
+                $header_expected = $header_expected_with_custom_fields;
+                $ads = Core::csv_to_array($csv, $header_expected_with_custom_fields);
+            }
+            else
+            {
+                $ads = Core::csv_to_array($csv, $header_expected);
+            }
 
-            if (count($ads_array) > 10000)
+            if (count($ads) > 10000)
             {
                 Alert::set(Alert::ERROR, __('limited to 10.000 at a time'));
                 $this->redirect(Route::url('oc-panel',array('controller'=>'import','action'=>'index')));
             }
 
-            if ( $ads_array===FALSE OR count($ads_array)<=0 OR ($ads_imported = $this->insert_into_import($ads_array,$expected_header))===FALSE )
+            if ($ads === FALSE OR count($ads) === 0 OR ($ads_imported = $this->insert_into_import($ads, $header_expected)) === FALSE)
             {
                 Alert::set(Alert::ERROR, __('Something went wrong, please check format of the file! Remove single quotes or strange characters, in case you have any.'));
             }
             else
             {
-                Alert::set(Alert::SUCCESS, sprintf(__('%d Ads imported, click process to start migration'),$ads_imported));
+                Alert::set(Alert::SUCCESS, sprintf(__('%d Ads imported, click process to start migration'), $ads_imported));
             }
-            
-        } 
+
+        }
 
         $this->redirect(Route::url('oc-panel',array('controller'=>'import','action'=>'index')));
     }
@@ -265,7 +276,13 @@ class Controller_Panel_Import extends Controller_Panel_Tools {
         $ad->phone      = $adi->phone;
         $ad->website    = $adi->website;
         $ad->status     = Model_Ad::STATUS_PUBLISHED;
-        
+
+        foreach (Model_Field::get_all() as $name => $custom_field)
+        {
+            $name = 'cf_' . $name;
+            $ad->$name = $adi->$name;
+        }
+
         try {
             $ad->save();
         } catch (Exception $e) {
@@ -375,54 +392,97 @@ class Controller_Panel_Import extends Controller_Panel_Tools {
      * inserts into table adsimport
      * @param  array $ads_array from csv
      * @param array $expected_header
-     * @return bool/integer      
+     * @return bool/integer
      */
     private function insert_into_import($ads_array,$expected_header)
     {
         $prefix = Database::instance()->table_prefix();
 
+        $columns = [
+            "`id_import` int(10) unsigned NOT NULL AUTO_INCREMENT",
+            "`id_user` int(10) unsigned  NULL",
+            "`user_name` varchar(145) NOT NULL",
+            "`user_email` varchar(145) NOT NULL",
+            "`id_category` int(10) unsigned  NULL",
+            "`category` varchar(145) NOT NULL",
+            "`id_location` int(10) unsigned  NULL",
+            "`location` varchar(145) NOT NULL",
+            "`title` varchar(145) NOT NULL",
+            "`description` text NOT NULL",
+            "`address` varchar(145) DEFAULT '0'",
+            "`price` decimal(14,3) NOT NULL DEFAULT '0.000'",
+            "`phone` varchar(30) DEFAULT NULL",
+            "`date` datetime DEFAULT NULL",
+            "`website` varchar(200) DEFAULT NULL",
+            "`image_1` varchar(200) DEFAULT NULL",
+            "`image_2` varchar(200) DEFAULT NULL",
+            "`image_3` varchar(200) DEFAULT NULL",
+            "`image_4` varchar(200) DEFAULT NULL",
+            "`processed` tinyint(1) NOT NULL DEFAULT '0'"
+        ];
+
+        foreach (Model_Field::get_all() as $name => $custom_field) {
+            $name = 'cf_' . $name;
+            switch ($custom_field['type']) {
+                case 'textarea':
+                    $columns[] = "`" . $name ."` text DEFAULT NULL";
+                    break;
+
+                case 'integer':
+                    $columns[] = '`' . $name . '` int DEFAULT NULL';
+                    break;
+
+                case 'checkbox':
+                case 'radio':
+                    $columns[] = '`' . $name . '` tinyint(1) DEFAULT NULL';
+                    break;
+
+                case 'decimal':
+                case 'range':
+                    $columns[] = '`' . $name . '` float DEFAULT NULL';
+                    break;
+
+                case 'date':
+                    $columns[] = '`' . $name . '` date DEFAULT NULL';
+                    break;
+
+                case 'select':
+                case 'email':
+                case 'country':
+                    $columns[] = '`' . $name . '` varchar(145) DEFAULT NULL';
+
+                    break;
+
+                case 'string':
+                default:
+                    $columns[] = '`' . $name . '` varchar(256) DEFAULT NULL';
+
+                    break;
+            }
+        }
+
         //create table import if doesnt exists
         $query = DB::query(Database::INSERT,"CREATE TABLE IF NOT EXISTS `".$prefix."adsimport` (
-                                              `id_import` int(10) unsigned NOT NULL AUTO_INCREMENT,
-                                              `id_user` int(10) unsigned  NULL,
-                                              `user_name` varchar(145) NOT NULL,
-                                              `user_email` varchar(145) NOT NULL,
-                                              `id_category` int(10) unsigned  NULL,
-                                              `category` varchar(145) NOT NULL,
-                                              `id_location` int(10) unsigned  NULL,
-                                              `location` varchar(145) NOT NULL,
-                                              `title` varchar(145) NOT NULL,
-                                              `description` text NOT NULL,
-                                              `address` varchar(145) DEFAULT '0',
-                                              `price` decimal(14,3) NOT NULL DEFAULT '0.000',
-                                              `phone` varchar(30) DEFAULT NULL,
-                                              `date` datetime DEFAULT NULL,
-                                              `website` varchar(200) DEFAULT NULL,
-                                              `image_1` varchar(200) DEFAULT NULL,
-                                              `image_2` varchar(200) DEFAULT NULL,
-                                              `image_3` varchar(200) DEFAULT NULL,
-                                              `image_4` varchar(200) DEFAULT NULL,
-                                              `processed` tinyint(1) NOT NULL DEFAULT '0',
-                                              PRIMARY KEY (`id_import`)
-                                            ) ENGINE=InnoDB DEFAULT CHARSET=utf8;"); 
-        try 
+                                              " . implode(',', $columns) . "
+                                            , PRIMARY KEY (`id_import`) ) ENGINE=InnoDB DEFAULT CHARSET=utf8;");
+        try
         {
            $query->execute();
-        } 
-        catch (Exception $e) 
+        }
+        catch (Exception $e)
         {
             return FALSE;
         }
 
         //insert into table import
-        foreach ($ads_array as $ad=>$values) 
+        foreach ($ads_array as $ad=>$values)
         {
             $query = DB::insert('adsimport', $expected_header)->values($values);
-            try 
+            try
             {
                $query->execute();
-            } 
-            catch (Exception $e) 
+            }
+            catch (Exception $e)
             {
                 return FALSE;
             }
