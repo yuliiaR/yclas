@@ -461,10 +461,23 @@ class Controller_Panel_Import extends Controller_Panel_Tools {
             }
         }
 
+        //drop table first
+        $query = DB::query(Database::INSERT, 'DROP TABLE IF EXISTS `' . $prefix . 'adsimport`;');
+
+        try
+        {
+           $query->execute();
+        }
+        catch (Exception $e)
+        {
+            return FALSE;
+        }
+
         //create table import if doesnt exists
-        $query = DB::query(Database::INSERT,"CREATE TABLE IF NOT EXISTS `".$prefix."adsimport` (
-                                              " . implode(',', $columns) . "
-                                            , PRIMARY KEY (`id_import`) ) ENGINE=InnoDB DEFAULT CHARSET=utf8;");
+        $query = DB::query(Database::INSERT, 'CREATE TABLE`' . $prefix . 'adsimport` (
+                                              ' . implode(',', $columns) . '
+                                            , PRIMARY KEY (`id_import`) ) ENGINE=InnoDB DEFAULT CHARSET=utf8;');
+
         try
         {
            $query->execute();
