@@ -461,20 +461,8 @@ class Controller_Panel_Import extends Controller_Panel_Tools {
             }
         }
 
-        //drop table first
-        $query = DB::query(Database::INSERT, 'DROP TABLE IF EXISTS `' . $prefix . 'adsimport`;');
-
-        try
-        {
-           $query->execute();
-        }
-        catch (Exception $e)
-        {
-            return FALSE;
-        }
-
         //create table import if doesnt exists
-        $query = DB::query(Database::INSERT, 'CREATE TABLE`' . $prefix . 'adsimport` (
+        $query = DB::query(Database::INSERT, 'CREATE TABLE IF NOT EXISTS `' . $prefix . 'adsimport` (
                                               ' . implode(',', $columns) . '
                                             , PRIMARY KEY (`id_import`) ) ENGINE=InnoDB DEFAULT CHARSET=utf8;');
 
@@ -485,6 +473,33 @@ class Controller_Panel_Import extends Controller_Panel_Tools {
         catch (Exception $e)
         {
             return FALSE;
+        }
+
+        $adsimport_columns = array_keys(Database::instance()->list_columns('adsimport'));
+        $adsimport_expected_columns = ['user_name', 'user_email', 'title', 'description', 'date', 'category', 'location',
+                            'price', 'address', 'phone', 'website', 'image_1', 'image_2', 'image_3', 'image_4',
+                            'id_import', 'id_user', 'id_category', 'id_location', 'processed'];
+        $adsimport_expected_columns = array_merge($adsimport_expected_columns, preg_filter('/^/', 'cf_', array_keys(Model_Field::get_all())));
+        sort($adsimport_columns);
+        sort($adsimport_expected_columns);
+
+        //drop and create table if not same columns
+        if ($adsimport_columns !== $adsimport_expected_columns)
+        {
+            $drop_table = DB::query(Database::INSERT, 'DROP TABLE IF EXISTS `' . $prefix . 'adsimport`;');
+            $create_table = DB::query(Database::INSERT, 'CREATE TABLE IF NOT EXISTS `' . $prefix . 'adsimport` (
+                                                ' . implode(',', $columns) . '
+                                                , PRIMARY KEY (`id_import`) ) ENGINE=InnoDB DEFAULT CHARSET=utf8;');
+
+            try
+            {
+                $drop_table->execute();
+                $create_table->execute();
+            }
+            catch (Exception $e)
+            {
+                return FALSE;
+            }
         }
 
         //insert into table import

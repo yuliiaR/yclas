@@ -237,6 +237,9 @@
                         <?if(($zenith = zenith::button($order)) != ''):?>
                             <li class="text-right"><?=$zenith?></li>
                         <?endif?>
+                        <?if(($payline = payline::button($order)) != ''):?>
+                            <li class="text-right"><?=$payline?></li>
+                        <?endif?>
                         <?if( ($alt = $order->alternative_pay_button()) != ''):?>
                             <li class="text-right"><?=$alt?></li>
                         <?endif?>

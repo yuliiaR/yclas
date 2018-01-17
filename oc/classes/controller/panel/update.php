@@ -36,6 +36,18 @@ class Controller_Panel_Update extends Auth_Controller {
             array( 'config_key'     => 'carquery',
                    'group_name'     => 'general',
                    'config_value'   => '0'),
+            array( 'config_key'     => 'payline_testing',
+                   'group_name'     => 'payment',
+                   'config_value'   => '0'),
+            array( 'config_key'     => 'payline_merchant_id',
+                   'group_name'     => 'payment',
+                   'config_value'   => ''),
+            array( 'config_key'     => 'payline_access_key',
+                   'group_name'     => 'payment',
+                   'config_value'   => ''),
+            array( 'config_key'     => 'payline_contract_number',
+                   'group_name'     => 'payment',
+                   'config_value'   => ''),
             );
 
         Model_Config::config_array($configs);
