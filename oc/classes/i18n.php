@@ -525,6 +525,7 @@ class I18n extends Kohana_I18n {
         'JMD' => array(NULL,2,'.',',',0),          //  Jamaican Dollar
         'JPY' => array('&yen;',0,'',',',0),           //  Japan, Yen
         'JOD' => array(NULL,3,'.',',',0),          //  Jordanian Dinar
+        'KZT' => array(NULL,2,'.',',',0),          //  Kazakhstani tenge
         'KES' => array(NULL,2,'.',',',0),          //  Kenyan Shilling
         'KWD' => array(NULL,3,'.',',',0),          //  Kuwaiti Dinar
         'LVL' => array(NULL,2,'.',',',0),          //  Latvian Lats
@@ -861,6 +862,7 @@ class I18n extends Kohana_I18n {
         'IRR' => 'Iranian Rial',
         'JMD' => 'Jamaican Dollar',
         'JOD' => 'Jordanian Dinar',
+        'KZT' => 'Kazakhstani tenge',
         'KES' => 'Kenyan Shilling',
         'KWD' => 'Kuwaiti Dinar',
         'LVL' => 'Latvian Lats',
