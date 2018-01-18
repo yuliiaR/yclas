@@ -227,6 +227,9 @@
           $price = $($target[i]);
           money = $price.text();
 
+          // remove currency symbol and letters
+          money = money.replace(/[^\d,-]/g, '');
+
           // Check if field has comma instead of decimal and replace with decimal
           if ( money.indexOf(',') !== -1 ){
             has_comma = true;
@@ -246,7 +249,6 @@
             // Store the base price on the element
             $price.data('base-figure', money);
             result = rate * money;
-
           }
 
           // Parse as two decimal number with .
