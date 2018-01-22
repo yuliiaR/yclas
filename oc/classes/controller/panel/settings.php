@@ -258,7 +258,7 @@ class Controller_Panel_Settings extends Auth_Controller {
                         if ($c->config_key == 'maintenance' AND $c->config_value == 0)
                             Alert::del('maintenance');
 
-                        if ($c->config_key == 'subscriptions_expire' AND $c->config_value == 1)
+                        if ($c->config_key == 'subscriptions_expire' AND $c->config_value == 1 AND Core::config('general.subscriptions') == TRUE)
                         {
                             
                             $plan = new Model_Plan();
