@@ -545,36 +545,54 @@ class Controller_Panel_Profile extends Auth_Frontcontroller {
     {
         $action = $this->request->param('id');
 
-
         if ($action == 'enable')
         {
             //load library
             require Kohana::find_file('vendor', 'GoogleAuthenticator');
             $ga = new PHPGangsta_GoogleAuthenticator();
-            $this->user->google_authenticator = $ga->createSecret();
 
-            //set cookie
-            Cookie::set('google_authenticator' , $this->user->id_user, Core::config('auth.lifetime') );
+            if (core::post('code') AND CSRF::valid('2step'))
+            {            
+                if ($ga->verifyCode(Session::instance()->get('ga_secret_temp'), core::post('code'), 2)) 
+                {
+                    $this->user->google_authenticator = Session::instance()->get('ga_secret_temp');
+                    //set cookie
+                    Cookie::set('google_authenticator' , $this->user->id_user, Core::config('auth.lifetime') );
+                    Alert::set(Alert::SUCCESS, __('2 Step Authentication Enabled'));
 
-            Alert::set(Alert::SUCCESS, __('2 Step Authentication Enabled'));
+                    try {
+                        $this->user->save();
+                    } catch (Exception $e) {
+                        //throw 500
+                        throw HTTP_Exception::factory(500,$e->getMessage());
+                    }   
+                    $this->redirect(Route::url('oc-panel', array('controller'=>'profile','action'=>'edit')));
+                } 
+                else 
+                    Form::set_errors(array(__('Invalid Code')));                
+            }
+            elseif( Session::instance()->get('ga_secret_temp') == NULL )
+                Session::instance()->set('ga_secret_temp',$ga->createSecret()); 
+            
+            //template header
+            $this->template->title            = __('2 Step Authentication');
+            $this->template->content = View::factory('pages/auth/2step',array('form_action'=>Route::url('oc-panel',array('controller'=>'profile','action'=>'2step','id'=>'enable'))));
         }
         elseif($action == 'disable')
         {
             $this->user->google_authenticator = '';
             Cookie::delete('google_authenticator');
             Alert::set(Alert::INFO, __('2 Step Authentication Disabled'));
-        }
+            try {
+                $this->user->save();
+            } catch (Exception $e) {
+                //throw 500
+                throw HTTP_Exception::factory(500,$e->getMessage());
+            }   
 
-        try {
-            $this->user->save();
-        } catch (Exception $e) {
-            //throw 500
-            throw HTTP_Exception::factory(500,$e->getMessage());
+            $this->redirect(Route::url('oc-panel', array('controller'=>'profile','action'=>'edit')));
         }
-
-        $this->redirect(Route::url('oc-panel', array('controller'=>'profile','action'=>'edit')));
     }
-
 
    /**
     * all this functions are only redirect, just in case we missed any link or if they got the link via email so keeps working.
