@@ -210,5 +210,19 @@ class Controller_Jslocalization extends Controller {
                               ';
         $this->template->content = $localization_rules;
     }
+
+    public function action_faq()
+    {
+        $localization_rules = 'function getFAQLocalization(text)
+                                {
+                                    switch (text)
+                                    { 
+                                        case "Search by Keyword": 
+                                            return "'.addslashes(__('Search by Keyword')).'";
+                                            break;
+                                    }
+                                }'; 
+        $this->template->content = $localization_rules;
+    }
     
 }// End Jslocalization Controller

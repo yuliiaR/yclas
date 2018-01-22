@@ -31,6 +31,7 @@ class Controller_FAQ extends Controller {
 
         $this->template->styles = array('css/faq.css' => 'screen');
         $this->template->scripts['footer'] = array('js/faq.js');
+        $this->template->scripts['footer'][] = Route::url('default',array('controller'=>'jslocalization','action'=>'faq'));
 
         //FAQ CMS
         $faqs =  new Model_Content();

@@ -111,7 +111,7 @@
         function generateSearchForm () {
         	
         	var $form = $('<form>', { 'class': 'faq-search' });
-        	var $input = $('<input>', { 'type': 'text', 'name': 'search', 'placeholder': 'Search by Keyword' });
+        	var $input = $('<input>', { 'type': 'text', 'name': 'search', 'placeholder': getFAQLocalization("Search by Keyword") });
         	
         	$input.appendTo ($form);
         	
