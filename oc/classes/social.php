@@ -189,7 +189,7 @@ class Social {
 
                 $caption .= ' - '.Text::limit_chars(Text::removebbcode($ad->description), 100, NULL, TRUE);
                 $caption .= ' - '.$url_ad;
-                $caption = self::GenerateHashtags($ad, $caption);
+                $caption = self::GenerateHashtags($ad);
 
                 $i = new \InstagramAPI\Instagram();
                 
@@ -214,8 +214,6 @@ class Social {
         $cb = Codebird::getInstance();
         $cb->setToken(core::config('advertisement.access_token'), core::config('advertisement.access_token_secret'));
 
-        // 'status' char limit is 140
-
         $message = Text::limit_chars($ad->title, 17, NULL, TRUE).', ';
 
         $message .= Text::limit_chars($ad->category->name, 17, NULL, TRUE);
@@ -230,7 +228,7 @@ class Social {
 
         $url_ad = Route::url('ad', array('category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle));
         $message .= ' - '.$url_ad;
-        $message = self::GenerateHashtags($ad, $message);
+        $message .= ' - '.self::GenerateHashtags($ad);
 
         $params = array(
             'status' => $message
@@ -275,7 +273,7 @@ class Social {
         }
 
         $data['link'] = $url_ad;
-        $data['message'] = $message.' - '.$description.' '.self::GenerateHashtags($ad, $description);;
+        $data['message'] = $message.' - '.$description.' '.self::GenerateHashtags($ad);
         $data['caption'] = core::config('general.base_url').' | '.core::config('general.site_name');
 
         $data['access_token'] = $page_access_token;
@@ -319,7 +317,7 @@ class Social {
         }
     }
 
-    public static function GenerateHashtags(Model_Ad $ad, $description)
+    public static function GenerateHashtags(Model_Ad $ad)
     {
         $hashtag1 = '#'.str_replace([' ', "'", '"', '!', '+', '$', '%', '^', '&', '*', '+', '.', ','], '', core::config('general.site_name'));
         $hashtag2 = '#'.str_replace([' ', "'", '"', '!', '+', '$', '%', '^', '&', '*', '+', '.', ','], '', $ad->category->name);
