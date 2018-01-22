@@ -459,7 +459,7 @@ class Controller_Panel_Auth extends Controller {
 
         //template header
         $this->template->title            = __('2 Step Authentication');
-        $this->template->content = View::factory('pages/auth/2step');
+        $this->template->content = View::factory('pages/auth/2step', array('form_action'=>Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'2step'))));
 
         //if user loged in redirect home
         if  ( Auth::instance()->logged_in() AND ( Cookie::get('google_authenticator') == $this->user->id_user OR $this->user->google_authenticator == '' ) )
