@@ -6,6 +6,11 @@
         <i class="fa fa-question-circle"></i>
     </a>
 </h1>
+    <p>
+        <a class="btn btn-info" href="<?=Route::url('oc-panel',array('controller'=>'social','action'=>'oauth2'))?>">
+            OAuth 2.0 Config
+        </a>
+    </p>
 <hr>
 
 <?if (Theme::get('premium')!=1):?>

@@ -48,7 +48,27 @@ class Controller_Panel_Update extends Auth_Controller {
             array( 'config_key'     => 'payline_contract_number',
                    'group_name'     => 'payment',
                    'config_value'   => ''),
+            array( 'config_key'     => 'oauth2_enabled',
+                   'group_name'     => 'social',
+                   'config_value'   => 0),
+            array( 'config_key'     => 'oauth2_client_id',
+                   'group_name'     => 'social',
+                   'config_value'   => ''),
+            array( 'config_key'     => 'oauth2_client_secret',
+                   'group_name'     => 'social',
+                   'config_value'   => ''),
+            array( 'config_key'     => 'oauth2_url_authorize',
+                   'group_name'     => 'social',
+                   'config_value'   => ''),
+            array( 'config_key'     => 'oauth2_url_access_token',
+                   'group_name'     => 'social',
+                   'config_value'   => ''),
+            array( 'config_key'     => 'oauth2_url_resource_owner_details',
+                   'group_name'     => 'social',
+                   'config_value'   => ''),
             );
+
+
 
         Model_Config::config_array($configs);
 

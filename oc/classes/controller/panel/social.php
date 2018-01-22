@@ -26,7 +26,6 @@ class Controller_Panel_Social extends Auth_Controller {
 
         //retrieve social_auth values
         $config = Social::get();
-        
 		if($p = $this->request->post())
 		{
 			$confit_old = $config;
@@ -77,4 +76,49 @@ class Controller_Panel_Social extends Auth_Controller {
 
         
 	}
+
+
+    public function action_oauth2()
+    {
+
+        Breadcrumbs::add(Breadcrumb::factory()->set_title('OAuth2'));
+        $this->template->title = 'OAuth2';
+
+        $this->template->styles              = array(
+            'css/sortable.css' => 'screen',
+            'css/pnotify.custom.min.css' => 'screen');
+        $this->template->scripts['footer'][] = 'js/jquery-sortable-min.js';
+        $this->template->scripts['footer'][] = 'js/pnotify.custom.min.js';
+        $this->template->scripts['footer'][] = 'js/jquery.validate.min.js';
+        $this->template->scripts['footer'][] = 'js/oc-panel/settings.js';
+
+        // all form config values
+        $config = new Model_Config();
+        $config = $config->where('group_name', '=', 'social')->where('config_key','!=','config')->find_all();
+
+        // save only changed values
+        if($this->request->post())
+        {
+            
+            foreach ($config as $c)
+            {
+                $config_res = $this->request->post($c->config_key);
+
+                if($config_res != $c->config_value)
+                {
+                    $c->config_value = $config_res;
+                    try {
+                        $c->save();
+                    } catch (Exception $e) {
+                        throw HTTP_Exception::factory(500,$e->getMessage());
+                    }
+                }
+            }
+            
+            Alert::set(Alert::SUCCESS, __('Social Auth updated'));
+        }
+
+
+        $this->template->content = View::factory('oc-panel/pages/social_auth/oauth2',array('oauth'=>core::config('social')));
+    }
 }

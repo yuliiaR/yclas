@@ -12,7 +12,7 @@
 
 class zenith {
 
-    const url_gateway            = 'https://www.globalpay.com.ng/Paymentgatewaycapture.aspx';
+    const url_gateway            = 'https://www.globalpay.com.ng/GlobalPayAPI/Paymentgatewaycapture.aspx';
     const url_sandbox_gateway    = 'https://demo.globalpay.com.ng/GlobalPayAPI/Paymentgatewaycapture.aspx';
 
     /**

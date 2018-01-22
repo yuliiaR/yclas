@@ -1,6 +1,141 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
 class Controller_Social extends Controller {
+
+    public function action_oauth()
+    {
+         //if user loged in redirect home
+        if (Auth::instance()->logged_in())
+            Auth::instance()->login_redirect();
+
+        if (core::config('social.oauth2_enabled')==FALSE AND Theme::get('premium')==1)
+            $this->redirect(Route::url('default'));
+
+        require_once Kohana::find_file('vendor', 'oauth2/vendor/autoload','php');
+
+        $provider = new \League\OAuth2\Client\Provider\GenericProvider([
+            'clientId'                => Core::config('social.oauth2_client_id'),    // The client ID assigned to you by the provider
+            'clientSecret'            => Core::config('social.oauth2_client_secret'),   // The client password assigned to you by the provider
+            'redirectUri'             =>  Route::url('default',array('controller'=>'social','action'=>'oauth','id'=>1)),
+            'urlAuthorize'            => Core::config('social.oauth2_url_authorize'),
+            'urlAccessToken'          => Core::config('social.oauth2_url_access_token'),
+            'urlResourceOwnerDetails' => Core::config('social.oauth2_url_resource_owner_details'),
+        ]);
+
+        $provider_name = 'oauth2';
+
+        // If we don't have an authorization code then get one
+        if (!isset($_GET['code'])) {
+
+            // Fetch the authorization URL from the provider; this returns the
+            // urlAuthorize option and generates and applies any necessary parameters
+            // (e.g. state).
+            $authorizationUrl = $provider->getAuthorizationUrl();
+
+            // Get the state generated for you and store it to the session.
+            $_SESSION['oauth2state'] = $provider->getState();
+
+            // Redirect the user to the authorization URL.
+            $this->redirect($authorizationUrl);
+
+        // Check given state against previously stored one to mitigate CSRF attack
+        } 
+        elseif ( empty($_GET['state']) OR (isset($_SESSION['oauth2state']) AND $_GET['state'] !== $_SESSION['oauth2state'])  ) 
+        {
+            unset($_SESSION['oauth2state']);
+            $this->redirect(Route::url('default'));
+
+        } 
+        else 
+        {
+
+            try {
+
+                // Try to get an access token using the authorization code grant.
+                $accessToken = $provider->getAccessToken('authorization_code', [
+                    'code' => $_GET['code']
+                ]);
+
+                // We have an access token, which we may use in authenticated
+                // requests against the service provider's API.
+                /*echo $accessToken->getToken() . "\n";
+                echo $accessToken->getRefreshToken() . "\n";
+                echo $accessToken->getExpires() . "\n";
+                echo ($accessToken->hasExpired() ? 'expired' : 'not expired') . "\n";*/
+
+                // Using the access token, we may look up details about the
+                // resource owner.
+                $resourceOwner = $provider->getResourceOwner($accessToken);
+                $user_profile  = $resourceOwner->toArray();
+
+                //getting unique identifier, different options...
+                $user_id = NULL;
+                if (isset($user_profile['sub']))
+                    $user_id = $user_profile['sub'];
+                elseif (isset($user_profile['id']))
+                    $user_id = $user_profile['id'];
+                elseif (isset($user_profile['preferred_username']))
+                    $user_id = $user_profile['preferred_username'];
+                elseif (isset($user_profile['username']))
+                    $user_id = $user_profile['username'];
+                elseif (isset($user_profile['email']))
+                    $user_id = $user_profile['email'];
+
+                if ($user_id === NULL)
+                {
+                    Alert::set(Alert::ERROR,  __('Error: please try again!'));
+                    $this->redirect(Route::url('default'));
+                }
+
+                $user_email = (isset($user_profile['email']))?$user_profile['email']:NULL;
+
+                $user_name = NULL;
+                if (isset($user_profile['name']))
+                    $user_name = $user_profile['name'];
+                elseif (isset($user_profile['preferred_username']))
+                    $user_name = $user_profile['preferred_username'];
+                elseif (isset($user_profile['username']))
+                    $user_name = $user_profile['username'];
+
+                //try to login the user with same provider and identifier
+                $user = Auth::instance()->social_login($provider_name, $user_id);
+
+                //we couldnt login create account
+                if ($user == FALSE)
+                {
+                    //if not email provided 
+                    if (!Valid::email($user_email,TRUE))
+                    {
+                        Alert::set(Alert::INFO, __('We need your email address to complete'));
+                        //redirect him to select the email to register
+                        $this->redirect(Route::url('default',array('controller'=>'social',
+                                                                            'action'=>'register',
+                                                                            'id'    =>$provider_name)).'?uid='.$user_id.'&name='.$user_name);
+                    }
+                    else
+                    {
+                        //register the user in DB
+                        Model_User::create_social($user_email,$user_name,$provider_name,$user_id);
+                        //log him in
+                        Auth::instance()->social_login($provider_name, $user_profile->identifier);
+                    }
+                }
+                else                    
+                    Alert::set(Alert::SUCCESS, __('Welcome!'));
+
+                $this->redirect(Session::instance()->get_once('auth_redirect',Route::url('default')));
+
+
+            } catch (\League\OAuth2\Client\Provider\Exception\IdentityProviderException $e) {
+
+                // Failed to get the access token or user details.
+                Alert::set(Alert::ERROR, $e->getMessage());
+                $this->redirect(Route::url('default'));
+
+            }
+
+        }
+    }
 	
 	public function action_login()
 	{
