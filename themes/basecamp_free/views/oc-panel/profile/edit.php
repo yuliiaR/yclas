@@ -201,6 +201,13 @@
 	                                </a>
 	                            </p>
 	                        <?else:?>
+	                            <?
+	                                require Kohana::find_file('vendor', 'GoogleAuthenticator');
+	                                $ga = new PHPGangsta_GoogleAuthenticator();
+	                                if( ($ga_secret_temp  = Session::instance()->get('ga_secret_temp'))==NULL )
+	                                    Session::instance()->set('ga_secret_temp',$ga->createSecret());
+	                            ?>
+	                            <p><img src="<?=$ga->getQRCodeGoogleUrl(Kohana::$base_url,Session::instance()->get('ga_secret_temp'))?>"></p>
 	                            <p>
 	                                <a class="btn btn-primary" href="<?=Route::url('oc-panel',array('controller'=>'profile','action'=>'2step','id'=>'enable'))?>">
 	                                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> <?=_e('Enable')?>

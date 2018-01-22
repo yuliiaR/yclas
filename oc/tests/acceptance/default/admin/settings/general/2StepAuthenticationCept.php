@@ -20,18 +20,17 @@ $I->seeElement('.btn.btn-primary');
 $I->seeElement('.fa.fa-android');
 $I->seeElement('.fa.fa-apple');
 
-// Enable 2 step authentication and see the code
+// Try to enable 2 step authentication and see the code
 $I->click('a[href="http://reoc.lo/oc-panel/profile/2step/enable"]');
-$I->see('2 Step Authentication Enabled');
-$I->seeElement('.alert.alert-success');
-$I->see('Google Authenticator Code');
-$I->seeElement('.btn.btn-warning');
+$I->see('Verification Code','label');
+$I->see('2 Step Authentication','h1');
 
-// Disable 2 step authentication and see the code 
-$I->click('a[href="http://reoc.lo/oc-panel/profile/2step/disable"]');
-$I->seeElement('.alert.alert-info');
-$I->see('2 Step Authentication Disabled');
-$I->dontSee('Google Authenticator Code');
+// Chech that 2 step auth is still disabled 
+$I->amOnPage('/oc-panel/profile/edit');
+$I->see('2 Step Authentication','h3');
+$I->seeElement('.btn.btn-primary');
+$I->seeElement('.fa.fa-android');
+$I->seeElement('.fa.fa-apple');
 
 // Disable google_authenticator
 $I->wantTo('disable google_authenticator');
