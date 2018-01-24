@@ -90,6 +90,13 @@ class Controller_Panel_Update extends Auth_Controller {
             DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."plans` CHANGE  `marketplace_fee`  `marketplace_fee` DECIMAL(28,8) NOT NULL DEFAULT '0'")->execute();
         }catch (exception $e) {}
 
+
+        //delete bitcoin from stripe
+        try
+        {
+            DB::query(Database::DELETE,"DELETE FROM ".self::$db_prefix."config WHERE `config_key` = 'stripe_bitcoin'")->execute();
+        }catch (exception $e) {}
+
         File::replace_file(APPPATH.'config/database.php',"'utf8'","'utf8mb4'");
 
     }

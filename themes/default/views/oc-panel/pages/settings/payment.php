@@ -305,16 +305,6 @@
                     </div>
 
                     <div class="form-group">
-                        <?=FORM::label($forms['stripe_bitcoin']['key'], __('Accept Bitcoin payments, only with USD'), array('class'=>'control-label', 'for'=>$forms['stripe_bitcoin']['key']))?>
-                        <div class="radio radio-primary">
-                            <?=Form::radio($forms['stripe_bitcoin']['key'], 1, (bool) $forms['stripe_bitcoin']['value'], array('id' => $forms['stripe_bitcoin']['key'].'1'))?>
-                            <?=Form::label($forms['stripe_bitcoin']['key'].'1', __('Enabled'))?>
-                            <?=Form::radio($forms['stripe_bitcoin']['key'], 0, ! (bool) $forms['stripe_bitcoin']['value'], array('id' => $forms['stripe_bitcoin']['key'].'0'))?>
-                            <?=Form::label($forms['stripe_bitcoin']['key'].'0', __('Disabled'))?>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
                         <?=FORM::label($forms['stripe_3d_secure']['key'], __('Requires 3D security').' - BETA', array('class'=>'control-label', 'for'=>$forms['stripe_3d_secure']['key']))?>
                         <div class="radio radio-primary">
                             <?=Form::radio($forms['stripe_3d_secure']['key'], 1, (bool) $forms['stripe_3d_secure']['value'], array('id' => $forms['stripe_3d_secure']['key'].'1'))?>

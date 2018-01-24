@@ -14,7 +14,6 @@
     data-locale="auto"
     <?=(Core::config('payment.stripe_address')==TRUE)?'data-address = "true"':''?>
     <?=(Core::config('payment.stripe_alipay')==TRUE)?'data-alipay="true"':''?>
-    <?=(Core::config('payment.stripe_bitcoin')==TRUE AND $order->currency=='USD')?'data-bitcoin="true"':''?>
     >
   </script>
 </form>
