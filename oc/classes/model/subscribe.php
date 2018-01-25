@@ -76,7 +76,7 @@ class Model_Subscribe extends ORM {
         }
 
         // query for getting users, transform it to array and pass to email function 
-        if(count($subscribers_id) > 0)
+        if(core::count($subscribers_id) > 0)
         {  
 
             $query = DB::select('email')->select('name')
@@ -90,7 +90,7 @@ class Model_Subscribe extends ORM {
 
 
             // Send mails like in newsletter, to multiple users simultaneously
-            if (count($users)>0)
+            if (core::count($users)>0)
             {
 
                 $url_ad = Route::url('ad', array('category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle));

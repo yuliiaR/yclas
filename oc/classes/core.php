@@ -710,14 +710,14 @@ class Core {
     /**
      * count the entries of a list
      * @param  boolean $list
-     * @return count($list) or NULL if list is empty
+     * @return core::count($list) or NULL if list is empty
      */
     public static function count($list)
     {
         if ($list)
             return count($list);
         else 
-            NULL;
+            return NULL;
     }
 
 

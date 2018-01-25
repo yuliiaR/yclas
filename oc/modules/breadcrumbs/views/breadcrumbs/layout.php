@@ -5,7 +5,7 @@
  * @author Kieran Graham
  */
 ?>
-<? if (count($breadcrumbs) > 0) : ?>
+<? if (core::count($breadcrumbs) > 0) : ?>
 <ul id="breadcrumbs">
 <? foreach ($breadcrumbs as $crumb) : ?>
 <? if ($crumb->get_url() !== NULL) :  ?>

@@ -19,7 +19,7 @@ class Controller_Panel_Newsletter extends Auth_Controller {
         $count_all_users = $user->count_all();
 
         //count featured expired
-        $query = DB::select(DB::expr('COUNT(id_user) count'))
+        $query = DB::select(DB::expr('count(id_user) count'))
                         ->from('ads')
                         ->where('status','=',Model_Ad::STATUS_PUBLISHED)
                         ->where('featured','<',Date::unix2mysql())
@@ -31,7 +31,7 @@ class Controller_Panel_Newsletter extends Auth_Controller {
 
         
         //count all featured 
-        $query = DB::select(DB::expr('COUNT(id_user) count'))
+        $query = DB::select(DB::expr('count(id_user) count'))
                         ->from('ads')
                         ->where('status','=',Model_Ad::STATUS_PUBLISHED)
                         ->where('featured','IS NOT',NULL)
@@ -42,7 +42,7 @@ class Controller_Panel_Newsletter extends Auth_Controller {
         $count_featured = (isset($count_featured[0]['count']))?$count_featured[0]['count']:0;
 
         //users without published ads
-        $query = DB::select(DB::expr('COUNT(id_user) count'))
+        $query = DB::select(DB::expr('count(id_user) count'))
                         ->from(array('users','u'))
                         ->join(array('ads','a'),'LEFT')
                         ->using('id_user')
@@ -55,7 +55,7 @@ class Controller_Panel_Newsletter extends Auth_Controller {
         $count_unpub = (isset($count_unpub[0]['count']))?$count_unpub[0]['count']:0;
 
         //count all users not login 3 months 
-        $query = DB::select(DB::expr('COUNT(id_user) count'))
+        $query = DB::select(DB::expr('count(id_user) count'))
                         ->from('users')
                         ->where('status','=',Model_User::STATUS_ACTIVE)
                         ->where('last_login','<=',Date::unix2mysql(strtotime('-3 month')))
@@ -67,7 +67,7 @@ class Controller_Panel_Newsletter extends Auth_Controller {
         $count_logged = (isset($count_logged[0]['count']))?$count_logged[0]['count']:0;
 
         //count all users spammers
-        $query = DB::select(DB::expr('COUNT(id_user) count'))
+        $query = DB::select(DB::expr('count(id_user) count'))
                         ->from('users')
                         ->where('status','=',Model_User::STATUS_SPAM)
                         ->where('subscriber','=',1)
@@ -168,7 +168,7 @@ class Controller_Panel_Newsletter extends Auth_Controller {
             //NOTE $users may have duplicated emails, but phpmailer takes care of not sending the email 2 times to same recipient
             
             //sending!
-            if (count($users)>0)
+            if (core::count($users)>0)
             {
                 if ( !Email::send($users,'',Core::post('subject'),Kohana::$_POST_ORIG['description'],Core::post('from_email'), Core::post('from') ) )
                     Alert::set(Alert::ERROR,__('Error on mail delivery, not sent'));

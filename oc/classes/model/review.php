@@ -89,7 +89,7 @@ class Model_Review extends ORM {
      */
     public static function get_ad_count_rates(Model_Ad $ad)
     {
-        $query = DB::select(DB::expr('COUNT(rate) rate'))
+        $query = DB::select(DB::expr('count(rate) rate'))
                         ->from('reviews')
                         ->where('id_ad','=',$ad->id_ad)
                         ->where('status','=',Model_Review::STATUS_ACTIVE)

@@ -24,7 +24,7 @@ class Controller_Panel_UserFields extends Auth_Controller {
         
         //retrieve fields
         $fields = Model_UserField::get_all(FALSE);
-        if ( count($fields) > 65 ) //upper bound for custom fields
+        if ( core::count($fields) > 65 ) //upper bound for custom fields
             Alert::set(Alert::WARNING,__('You have reached the maximum number of custom fields allowed.'));
 
 		$this->template->content = View::factory('oc-panel/pages/userfields/index',array('fields' => $fields));
@@ -40,7 +40,7 @@ class Controller_Panel_UserFields extends Auth_Controller {
 
         if ($_POST)
         {
-            if ( count(Model_UserField::get_all(FALSE)) > 65 ) //upper bound for custom fields
+            if ( core::count(Model_UserField::get_all(FALSE)) > 65 ) //upper bound for custom fields
             {
                 Alert::set(Alert::ERROR,__('You have reached the maximum number of custom fields allowed.'));
                 HTTP::redirect(Route::url('oc-panel',array('controller'  => 'userfields','action'=>'index')));  

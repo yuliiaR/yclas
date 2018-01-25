@@ -210,7 +210,7 @@ class Controller_Panel_Tools extends Auth_Controller {
             $pic3 = NULL;
             $pic4 = NULL;
             $images = $ad->get_images();
-            if (count($images)>0)
+            if (core::count($images)>0)
             {
                 if (isset($images[1]))
                     $pic1 = $images[1]['image'];
@@ -273,7 +273,7 @@ class Controller_Panel_Tools extends Auth_Controller {
 
                     $cat_array = Core::csv_to_array($csv,$expected_header);
 
-                    if (count($cat_array) > 10000)
+                    if (core::count($cat_array) > 10000)
                     {
                         Alert::set(Alert::ERROR, __('limited to 10.000 at a time'));
                         $this->redirect(Route::url('oc-panel',array('controller'=>'tools','action'=>'import_tool')));
@@ -315,7 +315,7 @@ class Controller_Panel_Tools extends Auth_Controller {
 
                     $loc_array = Core::csv_to_array($csv,$expected_header);
 
-                    if (count($loc_array) > 10000)
+                    if (core::count($loc_array) > 10000)
                     {
                         Alert::set(Alert::ERROR, __('limited to 10.000 at a time'));
                         $this->redirect(Route::url('oc-panel',array('controller'=>'tools','action'=>'import_tool')));
