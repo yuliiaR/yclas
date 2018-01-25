@@ -3,7 +3,7 @@
 	<h1><?=_e('Publish new advertisement')?></h1>
 </div>
 <div class="row">
-	<div class="<?=count(Widgets::render('publish_new')) > 0 ? 'col-xs-9' : 'col-xs-12'?>">
+	<div class="<?=core::count(Widgets::render('publish_new')) > 0 ? 'col-xs-9' : 'col-xs-12'?>">
 		<div class="well">
 			<?= FORM::open(Route::url('post_new',array('controller'=>'new','action'=>'index')), array('class'=>'form-horizontal post_new', 'id'=>'publish-new', 'enctype'=>'multipart/form-data'))?>
 				<fieldset>
@@ -277,7 +277,7 @@
 			</div>
 		</div>
 	</div>
-	<? if(count(Widgets::render('publish_new')) > 0) :?>
+	<? if(core::count(Widgets::render('publish_new')) > 0) :?>
 		<div class="col-md-3 col-sm-12 col-xs-12">
 		    <?foreach ( Widgets::render('publish_new') as $widget):?>
 		        <div class="panel panel-sidebar <?=get_class($widget->widget)?>">

@@ -26,7 +26,7 @@
 				<!-- // CAT or LOC DESCRIPTION --> 
 
 				<!-- ADS AVAILABLE SO LETS SHOW THEM --> 
-				<?if(count($ads)):?>
+				<?if(core::count($ads)):?>
 					<!-- FILTER OPTIONS --> 
 					<div class="listing_filter">
 						<div class="loc_opts btn-group">

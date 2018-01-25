@@ -39,9 +39,9 @@
                     <i class="linecon li_mail"></i> <?=$messages_count?>
                 </a>
             <?endif?>
-    <?elseif ($ads = Auth::instance()->get_user()->contacts() AND count($ads) > 0) :?>
+    <?elseif ($ads = Auth::instance()->get_user()->contacts() AND core::count($ads) > 0) :?>
             <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="contact-notification" data-url="<?=Route::url('oc-panel', array('controller'=>'profile', 'action'=>'notifications'))?>">
-                <i class="linecon li_mail"></i> <?=count($ads)?>
+                <i class="linecon li_mail"></i> <?=core::count($ads)?>
             </a>
             <ul id="contact-notification-dd" class="dropdown-menu">
                 <li class="dropdown-header"><?=__('Please check your email')?></li>

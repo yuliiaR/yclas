@@ -3,7 +3,7 @@
     <h1><?=_e('Frequently Asked Questions')?></h1>
 </div>
 
-<?if(count($faqs)):?>
+<?if(core::count($faqs)):?>
 <ol class="faq-list">
     <?foreach($faqs as $faq ):?>
     <li>

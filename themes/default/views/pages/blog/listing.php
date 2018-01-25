@@ -11,7 +11,7 @@
     <h1><?=Core::config('general.site_name')?> <?=_e('Blog')?></h1>
 </div>
 
-<?if(count($posts)):?>
+<?if(core::count($posts)):?>
     <?foreach($posts as $post ):?>
     <article class="list well clearfix">
     	<h2>

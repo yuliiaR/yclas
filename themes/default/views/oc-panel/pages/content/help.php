@@ -21,7 +21,7 @@
     </div>
 <?= FORM::close()?>
 
-<?if (count($contents)>0):?>
+<?if (core::count($contents)>0):?>
 <div class="row">
     <div class="col-md-12">
         <div class="panel panel-default">

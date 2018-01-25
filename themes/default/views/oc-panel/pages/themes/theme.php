@@ -70,7 +70,7 @@
 
 <hr>
 
-<? if (count($themes)>1):?>
+<? if (core::count($themes)>1):?>
     <div class="row">
         <?$i=0;
         foreach ($themes as $theme=>$info):?>
@@ -104,7 +104,7 @@
 <?endif?>
 
 <?
-$a_m_themes = count($mobile_themes);
+$a_m_themes = core::count($mobile_themes);
 if(Core::config('appearance.theme_mobile')!='')
     $a_m_themes--;
 
@@ -144,7 +144,7 @@ if ($a_m_themes>0):?>
     </div>
 <?endif?>
 
-<?if (count($market)>0):?>
+<?if (core::count($market)>0):?>
 <h2><?=__('Themes Market')?></h2>
 <p><?=__('Here you can find a selection of our premium themes.')?></p>
 <p class="text-success"><?=__('All themes include support, updates and 1 site license.')?></p> <?=__('Also white labeled and free of ads')?>!

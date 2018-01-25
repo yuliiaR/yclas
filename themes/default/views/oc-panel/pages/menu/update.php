@@ -31,7 +31,7 @@
                         <div class="accordion-group">
                             <div class="accordion-heading"> 
                 
-                                <?if (count($item)>0):?>
+                                <?if (core::count($item)>0):?>
                                     <div class="radio">
                                     <label>
                                     <input <?=($cats[$key]['seoname']==Core::get('category'))?'checked':''?> type="radio" id="radio_<?=$cats[$key]['seoname']?>" data-name="radio_<?=$cats[$key]['name']?>" class="menu_category"  value="<?=$cats[$key]['id']?>"> 
@@ -56,7 +56,7 @@
                                 <?endif?>
                             </div>
                 
-                            <?if (count($item)>0):?>
+                            <?if (core::count($item)>0):?>
                                 <div id="acc_<?=$cats[$key]['seoname']?>" 
                                     class="accordion-body collapse <?=($cats[$key]['seoname']==Core::get('category'))?'in':''?>">
                                     <div class="accordion-inner">

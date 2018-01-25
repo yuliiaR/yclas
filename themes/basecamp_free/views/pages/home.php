@@ -23,7 +23,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-xs-12">			
-			<?if(count($ads)):?>
+			<?if(core::count($ads)):?>
 			<h3 class="text-center">
 				<?if(core::config('advertisement.ads_in_home') == 0):?>
 					<?=_e('Latest Ads')?>
@@ -161,7 +161,7 @@
 
 <?if(core::config('general.auto_locate') AND ! Cookie::get('user_location')):?>
 	<input type="hidden" name="auto_locate" value="<?=core::config('general.auto_locate')?>">
-	<?if(count($auto_locats) > 0):?>
+	<?if(core::count($auto_locats) > 0):?>
 		<div class="modal fade" id="auto-locations" tabindex="-1" role="dialog" aria-labelledby="autoLocations" aria-hidden="true">
 			<div class="modal-dialog	modal-sm">
 				<div class="modal-content">

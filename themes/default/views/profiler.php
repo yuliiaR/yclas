@@ -30,7 +30,7 @@ $application_cols = array('min', 'max', 'average', 'current');
 		<?php foreach ($benchmarks as $name => $tokens): ?>
 		<tr class="mark time">
 			<?php $stats = Profiler::stats($tokens) ?>
-			<th class="name" rowspan="2" scope="rowgroup"><?=HTML::chars($name), ' (', count($tokens), ')' ?></th>
+			<th class="name" rowspan="2" scope="rowgroup"><?=HTML::chars($name), ' (', core::count($tokens), ')' ?></th>
 			<?php foreach ($group_cols as $key): ?>
 			<td class="<?=$key ?>">
 				<div>
@@ -123,7 +123,7 @@ function koggle(elem)
 	<h2><?=__('Environment') ?></h2>
 	<div class="content">
 		<?php $included = get_included_files() ?>
-		<h3><a href="#<?=$env_id = 'environment_included'?>" onclick="return koggle('<?=$env_id?>')"><?=__('Included files') ?></a> (<?=count($included)?>)</h3>
+		<h3><a href="#<?=$env_id = 'environment_included'?>" onclick="return koggle('<?=$env_id?>')"><?=__('Included files') ?></a> (<?=core::count($included)?>)</h3>
 		<div id="<?=$env_id?>" class="collapsed">
 			<table cellspacing="0">
 				<?php foreach ($included as $file): ?>
@@ -134,7 +134,7 @@ function koggle(elem)
 			</table>
 		</div>
 		<?php $included = get_loaded_extensions() ?>
-		<h3><a href="#<?=$env_id = 'environment_loaded' ?>" onclick="return koggle('<?=$env_id?>')"><?=__('Loaded extensions')?></a> (<?=count($included)?>)</h3>
+		<h3><a href="#<?=$env_id = 'environment_loaded' ?>" onclick="return koggle('<?=$env_id?>')"><?=__('Loaded extensions')?></a> (<?=core::count($included)?>)</h3>
 		<div id="<?=$env_id?>" class="collapsed">
 			<table cellspacing="0">
 				<?php foreach ($included as $file): ?>

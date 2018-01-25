@@ -65,7 +65,7 @@
                                         </td>
                                         <td class="col-md-3 text-center">
                                             <div class="dropdown inline-block">
-                                                <?if ($order->id_product == Model_Order::PRODUCT_TO_FEATURED AND is_array($featured_plans=Model_Order::get_featured_plans()) AND count($featured_plans) > 1):?>
+                                                <?if ($order->id_product == Model_Order::PRODUCT_TO_FEATURED AND is_array($featured_plans=Model_Order::get_featured_plans()) AND core::count($featured_plans) > 1):?>
                                                     <button class="btn btn-xs btn-success dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
                                                         <?=_e('Change plan')?> 
                                                         <span class="caret"></span>

@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
-<?if(count($ads)):?>
+<?if(core::count($ads)):?>
     <h3><?=_e('Related ads')?></h3>
     <?foreach($ads as $ad ):?>
         <div class="media">

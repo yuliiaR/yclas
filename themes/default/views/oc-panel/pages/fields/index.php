@@ -107,7 +107,7 @@
                                 <?if($cats[$key]['id'] != 1):?>
                                     <option value="<?=$cats[$key]['id']?>"><?=$cats[$key]['name']?></option>
                                 <?endif?>
-                                <?if (count($item)>0):?>
+                                <?if (core::count($item)>0):?>
                                     <? if (is_array($item)) array_walk($item, 'lili12', $cats);?>
                                 <?endif?>
                             <?}array_walk($order_categories, 'lili12',$categories);?>

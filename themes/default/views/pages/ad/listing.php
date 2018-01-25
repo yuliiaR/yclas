@@ -32,7 +32,7 @@
     <?endif?>
 </div><!--end of recomentadion-->
 
-<?if(count($ads)):?>
+<?if(core::count($ads)):?>
     <div class="btn-group pull-right">
         <?if(core::config('general.auto_locate')):?>
             <button
@@ -192,7 +192,7 @@
   <div class="text-center">
       <?=$pagination?>
   </div>
- <?elseif (count($ads) == 0):?>
+ <?elseif (core::count($ads) == 0):?>
     <?if(core::config('general.auto_locate') AND core::request('userpos') == 1):?>
         <div class="btn-group pull-right">
             <button

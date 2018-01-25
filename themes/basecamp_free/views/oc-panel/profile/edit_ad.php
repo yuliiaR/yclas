@@ -73,7 +73,7 @@
 						</table>
 						</div>
 					<?endif?>
-					<?if (count($orders) > 0) :?>
+					<?if (core::count($orders) > 0) :?>
 						<div class="text-center">
 							<?foreach ($orders as $order):?>
 							<a class="btn btn-success mt-3" href="<?=Route::url('default', array('controller'=> 'ad','action'=>'checkout' , 'id' => $order->id_order))?>">
@@ -311,13 +311,13 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<?if (core::config('advertisement.num_images') > count($images)):?> <!-- permition to add more images-->
+								<?if (core::config('advertisement.num_images') > core::count($images)):?> <!-- permition to add more images-->
 									<div class="col-xs-12">
 										<hr>
 										<br>
 										<?= FORM::label('images', _e('Add image'), array('class'=>'', 'for'=>'images0'))?>
 										<br>
-										<?for ($i = 0; $i < (core::config('advertisement.num_images') - count($images)); $i++):?>
+										<?for ($i = 0; $i < (core::config('advertisement.num_images') - core::count($images)); $i++):?>
 											<div class="fileinput fileinput-new <?=($i >= 1) ? 'hidden' : NULL?>" data-provides="fileinput">
 												<div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;"></div>
 													<div>

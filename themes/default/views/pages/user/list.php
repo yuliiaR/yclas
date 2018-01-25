@@ -50,7 +50,7 @@
 </div>
 
 
-<?if(count($users)):?>
+<?if(core::count($users)):?>
 <div class="btn-group pull-right">
 
     <button type="button" id="sort" data-sort="<?=core::request('sort')?>" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown">
@@ -104,7 +104,7 @@
 </div>
 <?=$pagination?>
 
-<?elseif (count($users) == 0):?>
+<?elseif (core::count($users) == 0):?>
 <!-- Case when we dont have ads for specific category / location -->
 <div class="page-header">
   <h3><?=_e('We do not have any users matching your search')?></h3>

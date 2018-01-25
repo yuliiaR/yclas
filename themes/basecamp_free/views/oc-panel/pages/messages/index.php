@@ -49,7 +49,7 @@
 			</div>
 
 			<div class="col-xs-12 col-sm-9 ">
-				<?if (count($messages) > 0):?>
+				<?if (core::count($messages) > 0):?>
 				<div class="list-group">
 					<?foreach ($messages as $message):?>
 					<div class="list-group-item clearfix" style="<?=($message->status_to == Model_Message::STATUS_NOTREAD AND $message->id_user_from != $user->id_user) ? 'font-weight: bold;' : NULL?>">

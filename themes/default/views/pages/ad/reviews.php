@@ -21,7 +21,7 @@
                         <?for ($i=0; $i < round($ad->rate,1); $i++):?>
                             <span class="glyphicon glyphicon-star"></span>
                         <?endfor?>(<?=round($ad->rate,1)?>/<?=Model_Review::RATE_MAX?>)<span class="separator"> | </span>
-                        <span class="glyphicon glyphicon-comment"></span> <?=count($reviews)?> <?=_e('reviews')?>
+                        <span class="glyphicon glyphicon-comment"></span> <?=core::count($reviews)?> <?=_e('reviews')?>
                     </div>
                 </div>
 
@@ -88,7 +88,7 @@
     <?endif?>
     
     <hgroup class="mb20"></hgroup>
-    <?if(count($reviews)):?>
+    <?if(core::count($reviews)):?>
         <?foreach ($reviews as $review):?>
         
         <article class="search-result row">
@@ -124,7 +124,7 @@
         <hgroup class="mb20 mt20"></hgroup>
         <?endforeach?>
 
-    <?elseif (count($reviews) == 0):?>
+    <?elseif (core::count($reviews) == 0):?>
     <div class="page-header">
         <h3><?=__('We do not have any reviews for this product')?></h3>
     </div>

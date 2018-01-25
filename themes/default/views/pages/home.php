@@ -99,7 +99,7 @@
 </div>
 <?if(core::config('general.auto_locate') AND ! Cookie::get('user_location') AND Core::is_HTTPS()):?>
     <input type="hidden" name="auto_locate" value="<?=core::config('general.auto_locate')?>">
-    <?if(count($auto_locats) > 0):?>
+    <?if(core::count($auto_locats) > 0):?>
         <div class="modal fade" id="auto-locations" tabindex="-1" role="dialog" aria-labelledby="autoLocations" aria-hidden="true">
             <div class="modal-dialog	modal-sm">
                 <div class="modal-content">
