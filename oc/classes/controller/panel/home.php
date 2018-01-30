@@ -62,7 +62,7 @@ class Controller_Panel_Home extends Auth_Controller {
         
         //ads published last XX days
         $query = DB::select(DB::expr('DATE(published) date'))
-                        ->select(DB::expr('count(id_ad) count'))
+                        ->select(DB::expr('COUNT(id_ad) count'))
                         ->from('ads')
                         ->where('status','=',Model_Ad::STATUS_PUBLISHED)
                         //->where(DB::expr('TIMESTAMPDIFF( DAY , published, NOW() )') ,'<=','30')
@@ -75,7 +75,7 @@ class Controller_Panel_Home extends Auth_Controller {
         
         
         //Today 
-        $query = DB::select(DB::expr('count(id_ad) count'))
+        $query = DB::select(DB::expr('COUNT(id_ad) count'))
                         ->from('ads')
                         ->where('status','=',Model_Ad::STATUS_PUBLISHED)
                         ->where(DB::expr('DATE( created )'),'=',DB::expr('CURDATE()'))
@@ -87,7 +87,7 @@ class Controller_Panel_Home extends Auth_Controller {
         $content->ads_today     = (isset($ads[0]['count']))?$ads[0]['count']:0;
         
         //Yesterday
-        $query = DB::select(DB::expr('count(id_ad) count'))
+        $query = DB::select(DB::expr('COUNT(id_ad) count'))
                         ->from('ads')
                         ->where('status','=',Model_Ad::STATUS_PUBLISHED)
                         ->where(DB::expr('DATE( created )'),'=',date('Y-m-d',strtotime('-1 day')))
@@ -100,7 +100,7 @@ class Controller_Panel_Home extends Auth_Controller {
         
         
         //Last 30 days ads
-        $query = DB::select(DB::expr('count(id_ad) count'))
+        $query = DB::select(DB::expr('COUNT(id_ad) count'))
                         ->from('ads')
                         ->where('status','=',Model_Ad::STATUS_PUBLISHED)
                         ->where('published','between',array(date('Y-m-d',strtotime('-30 day')),date::unix2mysql()))
@@ -110,7 +110,7 @@ class Controller_Panel_Home extends Auth_Controller {
         $content->ads_month = (isset($ads[0]['count']))?$ads[0]['count']:0;
         
         //total ads
-        $query = DB::select(DB::expr('count(id_ad) count'))
+        $query = DB::select(DB::expr('COUNT(id_ad) count'))
                         ->from('ads')
                         ->where('status','=',Model_Ad::STATUS_PUBLISHED)
                         ->execute();
@@ -122,7 +122,7 @@ class Controller_Panel_Home extends Auth_Controller {
         
         //visits created last XX days
         $query = DB::select(DB::expr('DATE(created) date'))
-                        ->select(DB::expr('count(id_visit) count'))
+                        ->select(DB::expr('COUNT(id_visit) count'))
                         ->from('visits')
                         ->where('created','between',array($my_from_date,$my_to_date))
                         ->group_by(DB::expr('DATE( created )'))
@@ -145,7 +145,7 @@ class Controller_Panel_Home extends Auth_Controller {
         
         
          //Today 
-        $query = DB::select(DB::expr('count(id_visit) count'))
+        $query = DB::select(DB::expr('COUNT(id_visit) count'))
                         ->from('visits')
                         ->where(DB::expr('DATE( created )'),'=',DB::expr('CURDATE()'))
                         ->group_by(DB::expr('DATE( created )'))
@@ -156,7 +156,7 @@ class Controller_Panel_Home extends Auth_Controller {
         $content->visits_today     = (isset($ads[0]['count']))?$ads[0]['count']:0;
         
         //Yesterday
-        $query = DB::select(DB::expr('count(id_visit) count'))
+        $query = DB::select(DB::expr('COUNT(id_visit) count'))
                         ->from('visits')
                         ->where(DB::expr('DATE( created )'),'=',date('Y-m-d',strtotime('-1 day')))
                         ->group_by(DB::expr('DATE( created )'))
@@ -168,7 +168,7 @@ class Controller_Panel_Home extends Auth_Controller {
         
         
         //Last 30 days visits
-        $query = DB::select(DB::expr('count(id_visit) count'))
+        $query = DB::select(DB::expr('COUNT(id_visit) count'))
                         ->from('visits')
                         ->where('created','between',array(date('Y-m-d',strtotime('-30 day')),date::unix2mysql()))
                         ->execute();
@@ -177,7 +177,7 @@ class Controller_Panel_Home extends Auth_Controller {
         $content->visits_month = (isset($visits[0]['count']))?$visits[0]['count']:0;
         
         //total visits
-        $query = DB::select(DB::expr('count(id_visit) count'))
+        $query = DB::select(DB::expr('COUNT(id_visit) count'))
                         ->from('visits')
                         ->execute();
         
@@ -189,7 +189,7 @@ class Controller_Panel_Home extends Auth_Controller {
         
         //orders created last XX days
         $query = DB::select(DB::expr('DATE(created) date'))
-                        ->select(DB::expr('count(id_order) count'))
+                        ->select(DB::expr('COUNT(id_order) count'))
                         ->select(DB::expr('SUM(amount) total'))
                         ->from('orders')
                         ->where('created','between',array($my_from_date,$my_to_date))
@@ -228,7 +228,7 @@ class Controller_Panel_Home extends Auth_Controller {
         $content->orders_yesterday     = (isset($ads[0]['count']))?$ads[0]['count']:0;
         
         //Yesterday
-        $query = DB::select(DB::expr('count(id_order) count'))
+        $query = DB::select(DB::expr('COUNT(id_order) count'))
                         ->from('orders')
                         ->where(DB::expr('DATE( created )'),'=',date('Y-m-d',strtotime('-1 day')))
                         ->where('status','=',Model_Order::STATUS_PAID)
@@ -253,7 +253,7 @@ class Controller_Panel_Home extends Auth_Controller {
         $content->orders_month = (isset($orders[0]['count']))?$orders[0]['count']:0;
         
         //total orders
-        $query = DB::select(DB::expr('count(id_order) count'))
+        $query = DB::select(DB::expr('COUNT(id_order) count'))
                         ->from('orders')
                         ->where('status','=',Model_Order::STATUS_PAID)
                         ->where('id_product','!=',Model_Order::PRODUCT_AD_SELL)
@@ -264,7 +264,7 @@ class Controller_Panel_Home extends Auth_Controller {
 
         /////////////////////USERS STATS////////////////////////////////
         $query = DB::select(DB::expr('DATE(created) date'))
-                        ->select(DB::expr('count(id_user) count'))
+                        ->select(DB::expr('COUNT(id_user) count'))
                         ->from('users')
                         ->where('status','=',Model_User::STATUS_ACTIVE)
                         ->where('created','between',array($my_from_date,$my_to_date))
@@ -288,7 +288,7 @@ class Controller_Panel_Home extends Auth_Controller {
         $content->users_today     = (isset($users[0]['count']))?$users[0]['count']:0;
         
         //Yesterday
-        $query = DB::select(DB::expr('count(id_user) count'))
+        $query = DB::select(DB::expr('COUNT(id_user) count'))
                         ->from('users')
                         ->where('status','=',Model_User::STATUS_ACTIVE)
                         ->where(DB::expr('DATE( created )'),'=',date('Y-m-d',strtotime('-1 day')))
@@ -301,7 +301,7 @@ class Controller_Panel_Home extends Auth_Controller {
         
         
         //Last 30 days ads
-        $query = DB::select(DB::expr('count(id_user) count'))
+        $query = DB::select(DB::expr('COUNT(id_user) count'))
                         ->from('users')
                         ->where('status','=',Model_User::STATUS_ACTIVE)
                         ->where('created','between',array(date('Y-m-d',strtotime('-30 day')),date::unix2mysql()))
@@ -311,7 +311,7 @@ class Controller_Panel_Home extends Auth_Controller {
         $content->users_month = (isset($users[0]['count']))?$users[0]['count']:0;
         
         //total ads
-        $query = DB::select(DB::expr('count(id_user) count'))
+        $query = DB::select(DB::expr('COUNT(id_user) count'))
                         ->from('users')
                         ->where('status','=',Model_User::STATUS_ACTIVE)
                         ->execute();

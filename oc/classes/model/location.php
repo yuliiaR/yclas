@@ -341,7 +341,7 @@ class Model_Location extends ORM {
             $db_prefix = Database::instance('default')->table_prefix();
 
             //get the locations that have ads id_location->num ads
-            $count_ads = DB::select('l.id_location' , array(DB::expr('count("a.id_ad")'),'count'))
+            $count_ads = DB::select('l.id_location' , array(DB::expr('COUNT("a.id_ad")'),'count'))
                         ->from(array('locations', 'l'))
                         ->join(array('ads','a'))
                         ->using('id_location')

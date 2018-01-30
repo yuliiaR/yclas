@@ -182,7 +182,7 @@ class Model_Forum extends ORM {
         if ( ($forums = Core::cache('get_forum_count'))===NULL)
         {
             $forums = DB::select('f.*')
-                ->select(array(DB::select(DB::expr('count("id_post")'))
+                ->select(array(DB::select(DB::expr('COUNT("id_post")'))
                         ->from(array('posts','p'))
                         ->where('p.id_post_parent','IS', NULL)
                         ->where('p.id_forum','=',DB::expr(Database::instance('default')->table_prefix().'f.id_forum'))

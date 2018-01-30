@@ -410,7 +410,7 @@ class Controller_Panel_Stats extends Auth_Controller {
             $to_date            = $original_to_date - ($original_to_date - $original_from_date);
         }
 
-        $query = DB::select(DB::expr('count(id_ad) total'))
+        $query = DB::select(DB::expr('COUNT(id_ad) total'))
             ->from('ads')
             ->where('status', '=', Model_Ad::STATUS_PUBLISHED)
             ->where('published', 'between', array(Date::unix2mysql($from_date), Date::unix2mysql($to_date)));
@@ -434,7 +434,7 @@ class Controller_Panel_Stats extends Auth_Controller {
         $dates = $this->dates_range($from_date, $to_date);
 
         $query = DB::select(DB::expr('DATE(published) date'))
-            ->select(DB::expr('count(id_ad) total'))
+            ->select(DB::expr('COUNT(id_ad) total'))
             ->from('ads')
             ->where('status', '=', Model_Ad::STATUS_PUBLISHED)
             //->where(DB::expr('TIMESTAMPDIFF( DAY , published, NOW() )') ,'<=','30')
@@ -482,7 +482,7 @@ class Controller_Panel_Stats extends Auth_Controller {
             $to_date            = $original_to_date - ($original_to_date - $original_from_date);
         }
 
-        $query = DB::select(DB::expr('count(id_user) total'))
+        $query = DB::select(DB::expr('COUNT(id_user) total'))
             ->from('users')
             ->where('status', '=', Model_User::STATUS_ACTIVE)
             ->where('created', 'between', array(Date::unix2mysql($from_date), Date::unix2mysql($to_date)));
@@ -506,7 +506,7 @@ class Controller_Panel_Stats extends Auth_Controller {
         $dates = $this->dates_range($from_date, $to_date);
 
         $query = DB::select(DB::expr('DATE(created) date'))
-            ->select(DB::expr('count(id_user) total'))
+            ->select(DB::expr('COUNT(id_user) total'))
             ->from('users')
             ->where('status', '=', Model_User::STATUS_ACTIVE)
             ->where('created', 'between', array(Date::unix2mysql($from_date), Date::unix2mysql($to_date)));
@@ -691,7 +691,7 @@ class Controller_Panel_Stats extends Auth_Controller {
             $to_date            = $original_to_date - ($original_to_date - $original_from_date);
         }
 
-        $query = DB::select(DB::expr('count(id_order) total'))
+        $query = DB::select(DB::expr('COUNT(id_order) total'))
             ->from('orders')
             ->where('status', '=', Model_Order::STATUS_PAID)
             ->where('id_product','!=',Model_Order::PRODUCT_AD_SELL)
@@ -716,7 +716,7 @@ class Controller_Panel_Stats extends Auth_Controller {
         $dates = $this->dates_range($from_date, $to_date);
 
         $query = DB::select(DB::expr('DATE(pay_date) date'))
-            ->select(DB::expr('count(id_order) total'))
+            ->select(DB::expr('COUNT(id_order) total'))
             ->from('orders')
             ->where('id_product','!=',Model_Order::PRODUCT_AD_SELL)
             ->where('status', '=', Model_Order::STATUS_PAID)

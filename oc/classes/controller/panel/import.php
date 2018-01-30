@@ -527,7 +527,7 @@ class Controller_Panel_Import extends Controller_Panel_Tools {
     {
         //how many ads left to import?
         try {
-            $ads_import =  DB::select(array(DB::expr('count(`id_import`)'), 'total'))
+            $ads_import =  DB::select(array(DB::expr('COUNT(`id_import`)'), 'total'))
                             ->from('adsimport')
                             ->where('processed','=',$processed)
                             ->execute()->as_array('total');

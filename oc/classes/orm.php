@@ -107,7 +107,7 @@ class ORM extends Kohana_ORM {
         $this->_build(Database::SELECT);
 
         $records = $this->_db_builder->from(array($this->_table_name, $this->_object_name))
-            ->select(array(DB::expr('count('.$this->_db->quote_column($this->_object_name.'.'.$this->_primary_key).')'), 'records_found'))
+            ->select(array(DB::expr('COUNT('.$this->_db->quote_column($this->_object_name.'.'.$this->_primary_key).')'), 'records_found'))
             ->execute($this->_db)
             ->get('records_found');
 

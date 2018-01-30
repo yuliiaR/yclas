@@ -358,7 +358,7 @@ class Model_Category extends ORM {
             $db_prefix = Database::instance('default')->table_prefix();
 
             //get the categories that have ads id_category->num ads
-            $count_ads = DB::select('c.id_category' , array(DB::expr('count("a.id_ad")'),'count'))
+            $count_ads = DB::select('c.id_category' , array(DB::expr('COUNT("a.id_ad")'),'count'))
                         ->from(array('categories', 'c'))
                         ->join(array('ads','a'))
                         ->using('id_category')
