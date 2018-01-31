@@ -8,25 +8,17 @@
                 <br>
                 <?=Core::config('general.base_url')?>
                 <br>
-                <?if(isset($order->VAT) AND $order->VAT > 0):?>
-                    <em><?=_e('VAT Number')?>: <?=$order->VAT_country?> <?=$order->VAT_number?></em>
+                <?if(isset($vat) AND $vat > 0):?>
+                    <em><?=_e('VAT Number')?>: <?=$vatcountry?> <?=$vatnumber?></em>
                     <br>
                 <?endif?>
-                <em><?=_e('Date')?>: <?= Date::format($order->created, core::config('general.date_format'))?></em>
-                <br>
-                <em><?=_e('Checkout')?> #: <?=$order->id_order?></em>
             </address>
         </div>
         <div class="col-xs-6 col-sm-6 col-md-6 text-right">
             <address>
-                <strong><?=$order->user->name?></strong>
+                <em><?=_e('Date')?>: <?=date(core::config('general.date_format'))?></em>
                 <br>
-                <span><?=$order->user->email?></span>
-                <br>
-                <?if($order->user->address != NULL):?>
-                    <span><?=$order->user->address?></span>
-                    <br>
-                <?endif?>
+                <em><?=_e('Checkout')?> :# <?=$ad->id_ad?></em>
             </address>
         </div>
     </div>
