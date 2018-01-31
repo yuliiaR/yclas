@@ -15,11 +15,11 @@
             </address>
         </div>
         <div class="col-xs-6 col-sm-6 col-md-6 text-right">
-            <address>
+            <p>
                 <em><?=_e('Date')?>: <?=date(core::config('general.date_format'))?></em>
                 <br>
                 <em><?=_e('Checkout')?> :# <?=$ad->id_ad?></em>
-            </address>
+            </p>
         </div>
     </div>
     <div class="row">

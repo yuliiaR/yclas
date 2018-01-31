@@ -21,7 +21,7 @@
 			            </address>
 			        </div>
 			        <div class="col-xs-6 col-sm-6 col-md-6 text-right">
-			            <address>
+			            <p>
 			            	<strong><?=$order->user->name?></strong>
 			            	<br>
 			            	<span><?=$order->user->email?></span>
@@ -30,7 +30,7 @@
 				            	<span><?=$order->user->address?></span>
 				            	<br>
 			            	<?endif?>
-			            </address>
+			            </p>
 			        </div>	
 					<div class="">
 						<table class="table table-hover">
