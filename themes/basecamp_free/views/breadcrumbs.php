@@ -1,5 +1,5 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
-<?if (count($breadcrumbs) > 0):?>
+<?if (core::count($breadcrumbs) > 0):?>
     <div>
         <div class="container">
             <div class="row">

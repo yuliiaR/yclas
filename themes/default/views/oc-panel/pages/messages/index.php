@@ -22,7 +22,7 @@
 </div>
 <br>
 <div class="panel">
-    <?if (count($messages) > 0):?>
+    <?if (core::count($messages) > 0):?>
         <br>
         <table class="table table-striped">
             <thead>

@@ -1,4 +1,4 @@
-<?if(count($ads)):?>
+<?if(core::count($ads)):?>
     <div class="modal fade" id="listingMap" tabindex="-1" role="dialog" aria-labelledby="listingMap">
         <div class="modal-dialog">
             <div class="modal-content">

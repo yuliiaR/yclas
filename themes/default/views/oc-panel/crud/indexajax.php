@@ -35,7 +35,7 @@
 <?endif?>
 
 <div id="filter_buttons" data-url="<?=Route::url($route, array('controller'=> Request::current()->controller(), 'action'=>'ajax')).'?'.str_replace('rel=ajax','',$_SERVER['QUERY_STRING']) ?>">
-    <?if (count($filters)>0):?>
+    <?if (core::count($filters)>0):?>
         <form class="form-inline form-hidden-elements" id="form-ajax-load" method="get" action="<?=Route::url($route, array('controller'=> Request::current()->controller(), 'action'=>'index')) ?>">
             <?foreach($filters as $field_name=>$values):?>
                 <?if (is_array($values)):?>

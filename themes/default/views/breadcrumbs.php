@@ -1,5 +1,5 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
-<? if (count($breadcrumbs) > 0) : ?>
+<? if (core::count($breadcrumbs) > 0) : ?>
 	<ul class="breadcrumb">
 	<? foreach ($breadcrumbs as $crumb) : ?>
 		<? if ($crumb->get_url() !== NULL) :  ?>

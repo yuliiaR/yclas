@@ -42,7 +42,7 @@
 <?= FORM::close()?>
 
 <div class="panel panel-default">
-    <?if (count($contents)>0):?>
+    <?if (core::count($contents)>0):?>
         <table class="table">
             <thead>
                 <tr>

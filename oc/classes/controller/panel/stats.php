@@ -448,7 +448,7 @@ class Controller_Panel_Stats extends Auth_Controller {
 
         // print maxinum 30 date labels on charts
         $label_counter = 0;
-        $label_breaker = count($dates) > 30 ? Num::round(count($dates)/30) : 1;
+        $label_breaker = core::count($dates) > 30 ? Num::round(core::count($dates)/30) : 1;
 
         $ret = array();
 
@@ -521,7 +521,7 @@ class Controller_Panel_Stats extends Auth_Controller {
 
         // print maxinum 30 date labels on charts
         $label_counter = 0;
-        $label_breaker = count($dates) > 30 ? Num::round(count($dates)/30) : 1;
+        $label_breaker = core::count($dates) > 30 ? Num::round(core::count($dates)/30) : 1;
 
         foreach ($dates as $k => $date) 
         {
@@ -590,7 +590,7 @@ class Controller_Panel_Stats extends Auth_Controller {
 
         // print maxinum 30 date labels on charts
         $label_counter = 0;
-        $label_breaker = count($dates) > 30 ? Num::round(count($dates)/30) : 1;
+        $label_breaker = core::count($dates) > 30 ? Num::round(core::count($dates)/30) : 1;
 
         foreach ($dates as $k => $date) 
         {
@@ -659,7 +659,7 @@ class Controller_Panel_Stats extends Auth_Controller {
 
         // print maxinum 30 date labels on charts
         $label_counter = 0;
-        $label_breaker = count($dates) > 30 ? Num::round(count($dates)/30) : 1;
+        $label_breaker = core::count($dates) > 30 ? Num::round(core::count($dates)/30) : 1;
 
         foreach ($dates as $k => $date) 
         {
@@ -732,7 +732,7 @@ class Controller_Panel_Stats extends Auth_Controller {
 
         // print maxinum 30 date labels on charts
         $label_counter = 0;
-        $label_breaker = count($dates) > 30 ? Num::round(count($dates)/30) : 1;
+        $label_breaker = core::count($dates) > 30 ? Num::round(core::count($dates)/30) : 1;
 
         foreach ($dates as $k => $date) 
         {
@@ -803,7 +803,7 @@ class Controller_Panel_Stats extends Auth_Controller {
 
         // print maxinum 30 date labels on charts
         $label_counter = 0;
-        $label_breaker = count($dates) > 30 ? Num::round(count($dates)/30) : 1;
+        $label_breaker = core::count($dates) > 30 ? Num::round(core::count($dates)/30) : 1;
 
         foreach ($dates as $k => $date) 
         {

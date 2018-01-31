@@ -18,7 +18,7 @@
                 </div>
                 </div>
 
-                <?if(count($categories) > 1):?>
+                <?if(core::count($categories) > 1):?>
                     <div class="form-group">
                         <?= FORM::label('category', _e('Category'), array('class'=>'', 'for'=>'category' ))?>
                         <div class="control mr-30">
@@ -32,7 +32,7 @@
                                 <?else:?>
                                     <option value="<?=$cats[$key]['seoname']?>" data-id="<?=$cats[$key]['id']?>" <?=(core::request('category') == $cats[$key]['seoname'])?"selected":''?> ><?=$cats[$key]['name']?></option>
                                 <?endif?>
-                                <?if (count($item)>0):?>
+                                <?if (core::count($item)>0):?>
                                 <optgroup label="<?=$cats[$key]['name']?>">    
                                     <? if (is_array($item)) array_walk($item, 'lili', $cats);?>
                                     </optgroup>
@@ -43,7 +43,7 @@
                     </div>
                 <?endif?>
 
-                <?if(core::config('advertisement.location') != FALSE AND count($locations) > 1):?>
+                <?if(core::config('advertisement.location') != FALSE AND core::count($locations) > 1):?>
                     <div class="form-group">
                         <?= FORM::label('location', _e('Location'), array('class'=>'', 'for'=>'location' , 'multiple'))?>        
                         <div class="control mr-30">
@@ -57,7 +57,7 @@
                                 <?else:?>
                                     <option value="<?=$locs[$key]['seoname']?>" <?=(core::request('location') == $locs[$key]['seoname'])?"selected":''?> ><?=$locs[$key]['name']?></option>
                                 <?endif?>
-                                <?if (count($item)>0):?>
+                                <?if (core::count($item)>0):?>
                                 <optgroup label="<?=$locs[$key]['name']?>">    
                                     <? if (is_array($item)) array_walk($item, 'lolo', $locs);?>
                                     </optgroup>
@@ -95,7 +95,7 @@
 </div>
 
 <?if (Request::current()->query()):?>
-    <?if (count($ads)>0):?>
+    <?if (core::count($ads)>0):?>
         <h3>
             <?if (core::get('title')) :?>
                 <?=($total_ads == 1) ? sprintf(__('%d advertisement for %s'), $total_ads, core::get('title')) : sprintf(__('%d advertisements for %s'), $total_ads, core::get('title'))?>

@@ -69,7 +69,7 @@ class Widget_Featured extends Widget
         $this->before();
 
         //only render if theres ads
-        if (count($this->ads)>0)
+        if (core::count($this->ads)>0)
         {
             //get the view file (check if exists in the theme if not default), and inject the widget
             $out = View::factory('widget/'.strtolower(get_class($this)),array('widget' => $this));

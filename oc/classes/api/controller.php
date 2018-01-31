@@ -485,7 +485,7 @@ class Api_Controller extends Kohana_Controller {
                 $values = explode(',',$value);
 
                 //needs to have exactly 2, no more no less, if not we do nothing
-                if (count($values)==2)
+                if (core::count($values)==2)
                 {
                     $field    = str_replace($between_operator,'',$field);
                     $operator = 'between';
@@ -538,7 +538,7 @@ class Api_Controller extends Kohana_Controller {
      */
     private function _remove_fields($data)
     {
-        if (is_array($data) AND count($this->_return_fields)>0)
+        if (is_array($data) AND core::count($this->_return_fields)>0)
         {
             foreach ($data as $key => $value) 
             {

@@ -26,7 +26,7 @@
 				</div>
 				
 				<!-- Blog Posts -->
-				<?if(count($posts)):?>
+				<?if(core::count($posts)):?>
 					<?foreach($posts as $post ):?>
 						<div class="blog-item panel panel-default">
 							<div class="panel-heading">

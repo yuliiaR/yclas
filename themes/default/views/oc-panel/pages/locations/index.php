@@ -87,7 +87,7 @@
                     
                     <span id='ajax_result' data-url='<?=Route::url('oc-panel',array('controller'=>'location','action'=>'saveorder'))?>'></span>
                 </div>
-                <?if(count($locs) > 1) :?>
+                <?if(core::count($locs) > 1) :?>
                     <div class="panel-footer">
                         <div class="text-right">
                             <button type="button" data-toggle="modal" data-target="#delete-all" class="btn btn-danger">

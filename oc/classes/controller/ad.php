@@ -1140,7 +1140,7 @@ class Controller_Ad extends Controller {
                         }
                     }
 
-                    if (count($cat_siblings_ids) > 0)
+                    if (core::count($cat_siblings_ids) > 0)
                         $ads->where('id_category', 'IN', $cat_siblings_ids);
                 }
 
@@ -1160,7 +1160,7 @@ class Controller_Ad extends Controller {
                         }
                     }
 
-                    if (count($loc_siblings_ids) > 0)
+                    if (core::count($loc_siblings_ids) > 0)
                         $ads->where('id_location', 'IN', $loc_siblings_ids);
                 }
             }
@@ -1214,7 +1214,7 @@ class Controller_Ad extends Controller {
             }
 
             //filter by CF ads
-	        if (count($cf_fields)>0)
+	        if (core::count($cf_fields)>0)
             {
                 foreach ($cf_fields as $key => $value)
     	        {
@@ -1261,7 +1261,7 @@ class Controller_Ad extends Controller {
             }
 
             //filter by user
-            if (count($cf_user_fields)>0)
+            if (core::count($cf_user_fields)>0)
             {
                 $users = new Model_User();
 

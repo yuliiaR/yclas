@@ -65,7 +65,7 @@ class Widget_Locations extends Widget
     	    //list of children of current location
             // if list_loc dosent have siblings take brothers //
     	    $list_loc = $loc->where('id_location_parent','=',$location)->order_by('order','asc')->cached()->find_all();
-    	    if(count($list_loc) == 0)
+    	    if(core::count($list_loc) == 0)
             {
                 $list_loc = $loc->where('id_location_parent','=',Model_Location::current()->id_location_parent)->order_by('order','asc')->cached()->find_all();
             }

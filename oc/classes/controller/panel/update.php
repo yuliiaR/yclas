@@ -884,7 +884,7 @@ class Controller_Panel_Update extends Auth_Controller {
                 $lines = explode(PHP_EOL,$htaccess);
 
                 //we remove lines between header and footer
-                if (is_array($lines) AND count($lines)>5)
+                if (is_array($lines) AND core::count($lines)>5)
                 {
                     //which KEY int he array is its of the items?
                     $header_line = array_search($search_header, $lines);
@@ -1078,7 +1078,7 @@ class Controller_Panel_Update extends Auth_Controller {
         $ads = new Model_Ad();
         $ads = $ads->find_all();
 
-        if (count($ads))
+        if (core::count($ads))
         {
             foreach ($ads as $ad)
             {
@@ -1310,7 +1310,7 @@ class Controller_Panel_Update extends Auth_Controller {
         $ads = new Model_Ad();
         $ads = $ads->where('has_images','>',0)->find_all();
 
-        if(count($ads))
+        if(core::count($ads))
         {
             foreach ($ads as $ad)
             {
@@ -1341,7 +1341,7 @@ class Controller_Panel_Update extends Auth_Controller {
                     }
 
                     //count images and reordering file names
-                    if (count($image_keys))
+                    if (core::count($image_keys))
                     {
                         asort($image_keys);
 

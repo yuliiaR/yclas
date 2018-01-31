@@ -29,7 +29,7 @@
                                 <?else:?>
                                     <option value="<?=$params['cats'][$key]['seoname']?>" data-id="<?=$params['cats'][$key]['id']?>" <?=($params['selected_category'] == $params['cats'][$key]['seoname'])?"selected":''?> ><?=$params['cats'][$key]['name']?></option>
                                 <?endif?>
-                                <?if (count($item)>0):?>
+                                <?if (core::count($item)>0):?>
                                     <optgroup label="<?=$params['cats'][$key]['name']?>">  
                                         <? if (is_array($item)) array_walk($item, 'lili_search', array('cats' => $params['cats'], 'selected_category' => $params['selected_category']));?>
                                     </optgroup>
@@ -46,7 +46,7 @@
             
             <!-- locations -->
             <?if($widget->loc_items !== NULL):?>
-                <?if(count($widget->loc_items) > 1 AND core::config('advertisement.location') != FALSE):?>
+                <?if(core::count($widget->loc_items) > 1 AND core::config('advertisement.location') != FALSE):?>
                     <div class="form-group">
                         <div class="col-xs-12">
                             <?= FORM::label('location_widget_search', _e('Locations'), array('class'=>'', 'for'=>'location_widget_search' ))?>
@@ -58,7 +58,7 @@
                                     <?else:?>
                                         <option value="<?=$params['locs'][$key]['seoname']?>" data-id="<?=$params['locs'][$key]['id']?>" <?=($params['selected_location'] == $params['locs'][$key]['seoname'])?"selected":''?> ><?=$params['locs'][$key]['name']?></option>
                                     <?endif?>
-                                    <?if (count($item)>0):?>
+                                    <?if (core::count($item)>0):?>
                                         <optgroup label="<?=$params['locs'][$key]['name']?>">  
                                             <? if (is_array($item)) array_walk($item, 'lolo_search', array('locs' => $params['locs'], 'selected_location' => $params['selected_location']));?>
                                         </optgroup>

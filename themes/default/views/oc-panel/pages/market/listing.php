@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
-<? if (count($market)>=1):?>
+<? if (core::count($market)>=1):?>
 <?$i=0;
 foreach ($market as $item):?>
     <?if ($i%3==0):?><div class="clearfix"></div><?endif?>

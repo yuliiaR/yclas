@@ -196,9 +196,13 @@ class install{
                                     'mandatory' => TRUE,
                                     'result'    => (extension_loaded('curl'))
                                     ),
-                'mcrypt'    =>array('message'   => 'Install requires the <a href="http://php.net/mcrypt">mcrypt</a> for the Encrypt class.',
-                                    'mandatory' => TRUE,
+                'mcrypt'    =>array('message'   => 'Install requires the <a href="http://php.net/mcrypt">mcrypt</a> for the Encrypt class for PHP versions below 7.2.',
+                                    'mandatory' => version_compare(PHP_VERSION, '7.2', '<'),
                                     'result'    => (extension_loaded('mcrypt'))
+                                    ),
+                'OpenSSL'    =>array('message'   => 'Install requires the <a href="http://php.net/openssl">OpenSSL</a> for PHP versions 7.2 or above.',
+                                    'mandatory' => FALSE,
+                                    'result'    => (extension_loaded('openssl'))
                                     ),
                 'GD'        =>array('message'   => 'Install requires the <a href="http://php.net/gd">GD</a> v2 for the Image class',
                                     'mandatory' => TRUE,

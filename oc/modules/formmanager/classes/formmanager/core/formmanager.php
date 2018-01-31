@@ -365,7 +365,7 @@ abstract class FormManager_Core_FormManager
 	public function add_field($name, $spec = array(), $position = 'end', $relative = null) {
 		if (!isset($spec['name'])) $spec['name'] = $name;
 
-		$insertion_point = count($this->fields);
+		$insertion_point = core::count($this->fields);
 		if ($position == 'start') {
 			$insertion_point = 0;
 		} else if ($position == 'before' && $relative) {
@@ -517,8 +517,8 @@ abstract class FormManager_Core_FormManager
 			$this->process_fieldsets($remaining_field_names);
 		}
 		
-		if (isset($this->fieldsets[count($this->fieldsets)-1]) && !$this->fieldsets[count($this->fieldsets)-1]['fields']) {
-			unset($this->fieldsets[count($this->fieldsets)-1]);
+		if (isset($this->fieldsets[core::count($this->fieldsets)-1]) && !$this->fieldsets[core::count($this->fieldsets)-1]['fields']) {
+			unset($this->fieldsets[core::count($this->fieldsets)-1]);
 		}
 
 	}

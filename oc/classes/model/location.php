@@ -261,7 +261,7 @@ class Model_Location extends ORM {
 
 
             //last build multidimensional array
-            if (count($locs_s)>1)
+            if (core::count($locs_s)>1)
                 $locs_m = self::multi_locs($locs_s);
             else
                 $locs_m = array();
@@ -375,7 +375,7 @@ class Model_Location extends ORM {
                 //for each parent of this location add the count
                 $parents_ids = $location->get_parents_ids();
 
-                if (count($parents_ids)>0)
+                if (core::count($parents_ids)>0)
                 {
                     foreach ($parents_ids as $id )
                     {
@@ -506,7 +506,7 @@ class Model_Location extends ORM {
                     $ids_siblings[] = $location->id_location;
 
                     //adding his children recursevely if they have any
-                    if ( count($siblings_locs = $location->get_siblings_ids())>1 )
+                    if ( core::count($siblings_locs = $location->get_siblings_ids())>1 )
                         $ids_siblings = array_merge($ids_siblings,$siblings_locs);
                 }
 

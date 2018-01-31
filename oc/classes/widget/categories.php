@@ -56,7 +56,7 @@ class Widget_Categories extends Widget
     	    //list of children of current category
             // if list_cat dosent have siblings take brothers
             $list_cat = $cat->where('id_category_parent','=',$category)->order_by('order','asc')->cached()->find_all();
-    	    if(count($list_cat) == 0)
+    	    if(core::count($list_cat) == 0)
             {
                 $list_cat = $cat->where('id_category_parent','=',Model_Category::current()->id_category_parent)->order_by('order','asc')->cached()->find_all();
             }

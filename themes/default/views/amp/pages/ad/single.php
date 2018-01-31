@@ -57,7 +57,7 @@
         <p><?=$ad->address?></p>
     <?endif?>
 
-    <?if (count($cf_list) > 0) :?>
+    <?if (core::count($cf_list) > 0) :?>
         <ul class="amp-oc-cf">
             <?foreach ($cf_list as $name => $value):?>
                 <?if($value=='checkbox_1'):?>

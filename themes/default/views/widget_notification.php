@@ -35,10 +35,10 @@
                 </a>
             <?endif?>
         </div>
-    <?elseif ($ads = Auth::instance()->get_user()->contacts() AND count($ads) > 0) :?>
+    <?elseif ($ads = Auth::instance()->get_user()->contacts() AND core::count($ads) > 0) :?>
         <div class="btn-group" role="group">
             <a class="btn dropdown-toggle btn-success widget_notification" data-toggle="dropdown" href="#" id="contact-notification" data-url="<?=Route::url('oc-panel', array('controller'=>'profile', 'action'=>'notifications'))?>">
-                <i class="fa fa-bell"></i> <span class="badge"><?=count($ads)?></span>
+                <i class="fa fa-bell"></i> <span class="badge"><?=core::count($ads)?></span>
             </a>
             <ul id="contact-notification-dd" class="dropdown-menu">
                 <li class="dropdown-header"><?=_e('Please check your email')?></li>

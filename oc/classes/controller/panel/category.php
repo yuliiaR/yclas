@@ -251,7 +251,7 @@ class Controller_Panel_Category extends Auth_Crud {
         elseif (core::post('categories'))
             $categories = core::post('categories');
 
-        if (count($categories) > 0)
+        if (core::count($categories) > 0)
         {
             foreach ($categories as $id_category)
             {

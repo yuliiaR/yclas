@@ -126,7 +126,7 @@ class Model_Forum extends ORM {
                  $forums_s[$forum->id_forum_parent][] = $forum->id_forum;
 
             //last build multidimensional array
-            if (count($forums_s)>0)
+            if (core::count($forums_s)>0)
                 $forums_m = self::multi_forums($forums_s);
             else
                 $forums_m = array();

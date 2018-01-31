@@ -272,7 +272,7 @@ class Model_Ad extends ORM {
     {
         $images = $this->get_images();
 
-        if(count($images) > 0)
+        if(core::count($images) > 0)
             $first_image = reset($images);
 
         return (isset($first_image[$type])) ? $first_image[$type] : NULL ;
@@ -996,7 +996,7 @@ class Model_Ad extends ORM {
                 ->cached()
                 ->find_all();
 
-            if (count($related_ads) == 0)
+            if (core::count($related_ads) == 0)
             {
                 $related_ads = clone $ads;
                 $related_ads = $related_ads->where_open()

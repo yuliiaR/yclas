@@ -3,7 +3,7 @@
 <div class="container">
 	<div class="row">
 	<?if (Request::current()->query()):?>
-		<?if (count($ads)>0):?>
+		<?if (core::count($ads)>0):?>
 		<div class="<?=(Theme::get('sidebar_position')!='none')?'col-xs-9':'col-xs-12'?> <?=(Theme::get('sidebar_position')=='left')?'pull-right':'pull-left'?>">
 			<div class="page-header">
 				<h3>
@@ -49,7 +49,7 @@
 								<?else:?>
 									<option value="<?=$cats[$key]['seoname']?>" data-id="<?=$cats[$key]['id']?>" <?=(core::request('category') == $cats[$key]['seoname'])?"selected":''?> ><?=$cats[$key]['name']?></option>
 								<?endif?>
-								<?if (count($item)>0):?>
+								<?if (core::count($item)>0):?>
 								<optgroup label="<?=$cats[$key]['name']?>">
 									<? if (is_array($item)) array_walk($item, 'lili', $cats);?>
 									</optgroup>
@@ -58,7 +58,7 @@
 							</select>
 						</div>
 				</div>
-				<?if(core::config('advertisement.location') != FALSE AND count($locations) > 1):?>
+				<?if(core::config('advertisement.location') != FALSE AND core::count($locations) > 1):?>
 					<div class="form-group col-xs-12 col-sm-4">
 						<?= FORM::label('location', _e('Location'), array('class'=>'', 'for'=>'location' , 'multiple'))?>
 						<div class="control mr-30">
@@ -72,7 +72,7 @@
 								<?else:?>
 									<option value="<?=$locs[$key]['seoname']?>" <?=(core::request('location') == $locs[$key]['seoname'])?"selected":''?> ><?=$locs[$key]['name']?></option>
 								<?endif?>
-								<?if (count($item)>0):?>
+								<?if (core::count($item)>0):?>
 								<optgroup label="<?=$locs[$key]['name']?>">
 									<? if (is_array($item)) array_walk($item, 'lolo', $locs);?>
 									</optgroup>
@@ -152,7 +152,7 @@
 								<?else:?>
 									<option value="<?=$cats[$key]['seoname']?>" data-id="<?=$cats[$key]['id']?>" <?=(core::request('category') == $cats[$key]['seoname'])?"selected":''?> ><?=$cats[$key]['name']?></option>
 								<?endif?>
-								<?if (count($item)>0):?>
+								<?if (core::count($item)>0):?>
 								<optgroup label="<?=$cats[$key]['name']?>">
 									<? if (is_array($item)) array_walk($item, 'lili', $cats);?>
 									</optgroup>
@@ -161,7 +161,7 @@
 							</select>
 						</div>
 					</div>
-					<?if(core::config('advertisement.location') != FALSE AND count($locations) > 1):?>
+					<?if(core::config('advertisement.location') != FALSE AND core::count($locations) > 1):?>
 						<div class="form-group col-xs-12 col-sm-4">
 							<?= FORM::label('location', _e('Location'), array('class'=>'', 'for'=>'location' , 'multiple'))?>
 							<div class="control mr-30">
@@ -175,7 +175,7 @@
 									<?else:?>
 										<option value="<?=$locs[$key]['seoname']?>" <?=(core::request('location') == $locs[$key]['seoname'])?"selected":''?> ><?=$locs[$key]['name']?></option>
 									<?endif?>
-									<?if (count($item)>0):?>
+									<?if (core::count($item)>0):?>
 									<optgroup label="<?=$locs[$key]['name']?>">
 										<? if (is_array($item)) array_walk($item, 'lolo', $locs);?>
 										</optgroup>
@@ -260,7 +260,7 @@
 								<?else:?>
 									<option value="<?=$cats[$key]['seoname']?>" data-id="<?=$cats[$key]['id']?>" <?=(core::request('category') == $cats[$key]['seoname'])?"selected":''?> ><?=$cats[$key]['name']?></option>
 								<?endif?>
-								<?if (count($item)>0):?>
+								<?if (core::count($item)>0):?>
 								<optgroup label="<?=$cats[$key]['name']?>">
 									<? if (is_array($item)) array_walk($item, 'lili', $cats);?>
 								</optgroup>
@@ -269,7 +269,7 @@
 							</select>
 						</div>
 					</div>
-					<?if(core::config('advertisement.location') != FALSE AND count($locations) > 1):?>
+					<?if(core::config('advertisement.location') != FALSE AND core::count($locations) > 1):?>
 						<div class="form-group col-xs-12">
 							<?= FORM::label('location', _e('Location'), array('class'=>'', 'for'=>'location' , 'multiple'))?>
 							<div class="control mr-30">
@@ -283,7 +283,7 @@
 									<?else:?>
 										<option value="<?=$locs[$key]['seoname']?>" <?=(core::request('location') == $locs[$key]['seoname'])?"selected":''?> ><?=$locs[$key]['name']?></option>
 									<?endif?>
-									<?if (count($item)>0):?>
+									<?if (core::count($item)>0):?>
 									<optgroup label="<?=$locs[$key]['name']?>">
 										<? if (is_array($item)) array_walk($item, 'lolo', $locs);?>
 										</optgroup>
