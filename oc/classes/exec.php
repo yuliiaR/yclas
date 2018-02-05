@@ -123,7 +123,7 @@ class Exec{
     public static function is_running($pid)
     {
        exec('ps '.$pid, $process_state);
-       return(count($process_state) >= 2);
+       return(core::count($process_state) >= 2);
     }
     
     /**

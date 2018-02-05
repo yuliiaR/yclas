@@ -82,13 +82,13 @@ class Controller_Panel_Import extends Controller_Panel_Tools {
                 $ads = Core::csv_to_array($csv, $header_expected);
             }
 
-            if (count($ads) > 10000)
+            if (core::count($ads) > 10000)
             {
                 Alert::set(Alert::ERROR, __('limited to 10.000 at a time'));
                 $this->redirect(Route::url('oc-panel',array('controller'=>'import','action'=>'index')));
             }
 
-            if ($ads === FALSE OR count($ads) === 0 OR ($ads_imported = $this->insert_into_import($ads, $header_expected)) === FALSE)
+            if ($ads === FALSE OR core::count($ads) === 0 OR ($ads_imported = $this->insert_into_import($ads, $header_expected)) === FALSE)
             {
                 Alert::set(Alert::ERROR, __('Something went wrong, please check format of the file! Remove single quotes or strange characters, in case you have any.'));
             }
@@ -516,7 +516,7 @@ class Controller_Panel_Import extends Controller_Panel_Tools {
             }
         }
 
-        return count($ads_array);
+        return core::count($ads_array);
     }
 
     /**

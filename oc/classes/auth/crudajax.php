@@ -177,7 +177,7 @@ class Auth_CrudAjax extends Auth_Crud
         $elements = ORM::Factory($this->_orm_model);
         
         //search searchPhrase: from an array specified in the controller. If none search does not appear. do in bootdrig action
-        if (Core::post('searchPhrase')!==NULL AND count($this->_search_fields) > 0)
+        if (Core::post('searchPhrase')!==NULL AND core::count($this->_search_fields) > 0)
         {
             foreach ($this->_search_fields as $field) 
                 $elements->or_where($field,'LIKE','%'.Core::post('searchPhrase').'%');
@@ -210,7 +210,7 @@ class Auth_CrudAjax extends Auth_Crud
                     $data   = $this->_fields_caption[$field];
                     $search = ORM::Factory($data['model']);
                     $search = $search->where($data['caption'],'LIKE','%'.$value.'%')->find_all();
-                    if (count($search)>0)
+                    if (core::count($search)>0)
                     {
                         $result = array();
                         foreach ($search as $res)

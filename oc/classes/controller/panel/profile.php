@@ -382,7 +382,7 @@ class Controller_Panel_Profile extends Auth_Frontcontroller {
 		$query = $subscriptions->where('id_user','=',$user)
 							   ->find_all();
 
-   		if(count($query) != 0)
+   		if(core::count($query) != 0)
    		{
    			// get categories, location, date, and price range to show in view
 

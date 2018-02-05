@@ -215,7 +215,7 @@ class Controller_Panel_Home extends Auth_Controller {
         
         
         //Today 
-        $query = DB::select(DB::expr('COUNT(id_order) count'))
+        $query = DB::select(DB::expr('count(id_order) count'))
                         ->from('orders')
                         ->where(DB::expr('DATE( created )'),'=',DB::expr('CURDATE()'))
                         ->where('status','=',Model_Order::STATUS_PAID)
@@ -242,7 +242,7 @@ class Controller_Panel_Home extends Auth_Controller {
         
         
         //Last 30 days orders
-        $query = DB::select(DB::expr('COUNT(id_order) count'))
+        $query = DB::select(DB::expr('count(id_order) count'))
                         ->from('orders')
                         ->where('created','between',array(date('Y-m-d',strtotime('-30 day')),date::unix2mysql()))
                         ->where('status','=',Model_Order::STATUS_PAID)
@@ -276,7 +276,7 @@ class Controller_Panel_Home extends Auth_Controller {
         
         
         //Today 
-        $query = DB::select(DB::expr('COUNT(id_user) count'))
+        $query = DB::select(DB::expr('count(id_user) count'))
                         ->from('users')
                         ->where('status','=',Model_User::STATUS_ACTIVE)
                         ->where(DB::expr('DATE( created )'),'=',DB::expr('CURDATE()'))

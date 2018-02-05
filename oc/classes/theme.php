@@ -878,7 +878,7 @@ class Theme {
      */
     public static function has_options()
     {
-        return (count(self::$data)>0)? TRUE:FALSE;
+        return (core::count(self::$data)>0)? TRUE:FALSE;
     }
 
     /**

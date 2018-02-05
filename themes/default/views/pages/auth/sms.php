@@ -3,7 +3,7 @@
 		<h1><?=_e('2 Step SMS Authentication')?></h1>
 	</div>
 
-    <form class="well form-horizontal auth"  method="post" action="<?=Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'sms'))?>">         
+    <form class="well form-horizontal auth"  method="post" action="<?=$form_action?>">         
       <?=Form::errors()?>
 
       <div class="form-group">

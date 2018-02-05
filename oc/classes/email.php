@@ -28,7 +28,7 @@ class Email {
         $result = FALSE;
 
         //multiple to but theres none...
-        if (is_array($to) AND count($to)==0)
+        if (is_array($to) AND core::count($to)==0)
             return FALSE;
         
         $body = Text::nl2br($body);
@@ -37,7 +37,7 @@ class Email {
         
         $email_encoded = NULL;
         //is sent to a single user get hash to auto unsubscribe
-        if (!is_array($to) OR count($to)==1)
+        if (!is_array($to) OR core::count($to)==1)
         {
             //from newsletter sent
             if (isset($to[0]['email']))

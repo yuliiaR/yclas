@@ -47,7 +47,7 @@ class Form extends Kohana_Form {
         else
         {
             // Searchs for the error in any inner error array
-            if( count(self::$_errors) )
+            if( core::count(self::$_errors) )
             {
                 foreach(self::$_errors as $k=>$v)
                 {
@@ -76,7 +76,7 @@ class Form extends Kohana_Form {
         $out = NULL;
 
         // Assigns the view errors to the Form Helper
-        if ( ! count(self::$_errors) AND $errors !== NULL)
+        if ( ! core::count(self::$_errors) AND $errors !== NULL)
         {
             self::set_errors($errors);
         }

@@ -60,7 +60,7 @@ class Controller_Forum extends Controller {
             Breadcrumbs::add(Breadcrumb::factory()->set_title($forum->name));
 
             //count all topics
-            $count = DB::select(array(DB::expr('COUNT("id_post")'),'count'))
+            $count = DB::select(array(DB::expr('count("id_post")'),'count'))
                         ->from(array('posts', 'p'))
                         ->where('id_post_parent','IS',NULL)
                         ->where('id_forum','=',$forum->id_forum)
@@ -83,7 +83,7 @@ class Controller_Forum extends Controller {
 
             //getting all the topic for the forum
             $topics =   DB::select('p.*')
-                        ->select(array(DB::select(DB::expr('COUNT("id_post")'))
+                        ->select(array(DB::select(DB::expr('count("id_post")'))
                             ->from(array('posts','pc'))
                             ->where('pc.id_post_parent','=',DB::expr(Database::instance('default')->table_prefix().'p.id_post'))
                             ->where('pc.id_forum','=',$forum->id_forum)
@@ -136,7 +136,7 @@ class Controller_Forum extends Controller {
 
         $forums = Model_Forum::get_forum_count();
 
-        if(count($forums) == 0)
+        if(core::count($forums) == 0)
         {
         	if(Auth::instance()->logged_in() AND Auth::instance()->get_user()->is_admin())
         	{

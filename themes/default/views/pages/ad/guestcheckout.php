@@ -7,14 +7,15 @@
                 <strong><?=Core::config('general.site_name')?></strong>
                 <br>
                 <?=Core::config('general.base_url')?>
-            </address>
-        </div>
-        <div class="col-xs-6 col-sm-6 col-md-6 text-right">
-            <p>                
+                <br>
                 <?if(isset($vat) AND $vat > 0):?>
                     <em><?=_e('VAT Number')?>: <?=$vatcountry?> <?=$vatnumber?></em>
                     <br>
                 <?endif?>
+            </address>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6 text-right">
+            <p>
                 <em><?=_e('Date')?>: <?=date(core::config('general.date_format'))?></em>
                 <br>
                 <em><?=_e('Checkout')?> :# <?=$ad->id_ad?></em>

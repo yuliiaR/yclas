@@ -132,7 +132,7 @@ class Controller_Panel_Translations extends Auth_Controller {
         }
 
         //how many translated items we have?
-        $total_items = count($translation_array_filtered);
+        $total_items = core::count($translation_array_filtered);
 
         //get elements for current page
         $pagination = Pagination::factory(array(
@@ -157,8 +157,8 @@ class Controller_Panel_Translations extends Auth_Controller {
 
         $content->edit_language     = $language;
         $content->translation_array = $trans_array_paginated;
-        $content->cont_untranslated = count($untranslated_array);
-        $content->total_items       = count($translation_array);
+        $content->cont_untranslated = core::count($untranslated_array);
+        $content->total_items       = core::count($translation_array);
         $content->pagination        = $pagination->render();
 
     }

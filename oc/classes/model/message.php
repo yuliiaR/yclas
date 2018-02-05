@@ -414,7 +414,7 @@ class Model_Message extends ORM {
         $messages = new Model_Message();
 
         //filter only if theres results
-        if (count($ids)>0)
+        if (core::count($ids)>0)
             $messages->where('id_message','IN',$ids);
         else
             $messages->where('id_message','=',0);

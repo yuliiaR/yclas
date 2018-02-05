@@ -270,7 +270,7 @@ class Model_Category extends ORM {
 
 
             //last build multidimensional array
-            if (count($cats_s)>1)
+            if (core::count($cats_s)>1)
                 $cats_m = self::multi_cats($cats_s);
             else
                 $cats_m = array();
@@ -400,7 +400,7 @@ class Model_Category extends ORM {
 
                 //for each parent of this category add the count
                 $parents_ids = $category->get_parents_ids();
-                if (count($parents_ids)>0)
+                if (core::count($parents_ids)>0)
                 {
                     foreach ($parents_ids as $id )
                     {
@@ -516,7 +516,7 @@ class Model_Category extends ORM {
                     $ids_siblings[] = $category->id_category;
 
                     //adding his children recursevely if they have any
-                    if ( count($siblings_cats = $category->get_siblings_ids())>1 )
+                    if ( core::count($siblings_cats = $category->get_siblings_ids())>1 )
                         $ids_siblings = array_merge($ids_siblings,$siblings_cats);
                 }
 

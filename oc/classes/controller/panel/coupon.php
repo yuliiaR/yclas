@@ -181,7 +181,7 @@ class Controller_Panel_Coupon extends Auth_Crud {
                     
                     $coupon_array = Core::csv_to_array($csv,$expected_header);
 
-                    if (count($coupon_array) > 10000)
+                    if (core::count($coupon_array) > 10000)
                     {
                         Alert::set(Alert::ERROR, __('limited to 10.000 at a time'));
                         $this->redirect(Route::url('oc-panel',array('controller'=>'coupon','action'=>'index')));

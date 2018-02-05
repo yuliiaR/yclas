@@ -60,7 +60,7 @@
                             <h3 class="panel-title"><?=__('Custom Fields')?></h3>
                         </div>
                         <div class="panel-body">
-                            <p class="<?=(count($category_fields) > 0) ? NULL : 'hidden'?>" data-added-label><strong><?=__('Added Custom Fields')?></strong></p>
+                            <p class="<?=(core::count($category_fields) > 0) ? NULL : 'hidden'?>" data-added-label><strong><?=__('Added Custom Fields')?></strong></p>
                             <ol class='plholder' id="ol_1" data-id="1">
                                 <?foreach($category_fields as $name=>$field):?>
                                     <li class="inactive" data-id="<?=$name?>" id="li_<?=$name?>">
@@ -93,7 +93,7 @@
                                 <?endforeach?>
                             </ol><!--ol_1-->
                             <hr>
-                            <p class="<?=(count($selectable_fields) > 0) ? NULL : 'hidden'?>" data-add-label><strong><?=__('Add Custom Fields')?></strong></p>
+                            <p class="<?=(core::count($selectable_fields) > 0) ? NULL : 'hidden'?>" data-add-label><strong><?=__('Add Custom Fields')?></strong></p>
                             <ol class='plholder' id="ol_2" data-id="2">
                                 <?foreach($selectable_fields as $name=>$field):?>
                                     <li class="inactive" data-id="<?=$name?>" id="li_<?=$name?>">

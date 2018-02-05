@@ -274,7 +274,7 @@ class Controller_Panel_Location extends Auth_Crud {
         elseif (core::post('locations'))
             $locations = core::post('locations');
 
-        if (count($locations) > 0)
+        if (core::count($locations) > 0)
         {
             foreach ($locations as $id_location)
             {
@@ -407,7 +407,7 @@ class Controller_Panel_Location extends Auth_Crud {
     
             $geonames_locations = json_decode(core::post('geonames_locations'));
             
-            if (count($geonames_locations) > 0)
+            if (core::count($geonames_locations) > 0)
             {
                 $obj_location = new Model_Location();
                 $locations_array = array();

@@ -69,7 +69,7 @@ class Blacksmith_Table_Core {
 			$this->_sql .= ' MODIFY COLUMN ' . $this->_column->sql($db);
 		}
 
-		if ((!$this->_drop_column or !$this->_modify_column) and count($this->_columns) > 0)
+		if ((!$this->_drop_column or !$this->_modify_column) and core::count($this->_columns) > 0)
 		{
 			$this->_sql .= ' (';
 

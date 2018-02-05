@@ -21,7 +21,7 @@
         ?>
         <div class="collapse navbar-collapse" id="mobile-menu-panel">
             <ul class="nav navbar-nav">
-                <?if (class_exists('Menu') AND count( $menus = Menu::get() )>0 ):?>
+                <?if (class_exists('Menu') AND core::count( $menus = Menu::get() )>0 ):?>
                     <?foreach ($menus as $menu => $data):?>
                         <li class="<?=(Request::current()->uri()==$data['url'])?'active':''?>" >
                         <a href="<?=$data['url']?>" target="<?=$data['target']?>">

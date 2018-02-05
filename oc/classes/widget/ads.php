@@ -73,7 +73,7 @@ class Widget_Ads extends Widget
         {
             case 'popular':
                 $id_ads = array_keys(Model_Visit::popular_ads());
-                if (count($id_ads)>0)
+                if (core::count($id_ads)>0)
                     $ads->where('id_ad','IN', $id_ads);
          
                 break;
@@ -103,7 +103,7 @@ class Widget_Ads extends Widget
         $this->before();
 
         //only render if theres ads
-        if (count($this->ads)>0)
+        if (core::count($this->ads)>0)
         {
             //get the view file (check if exists in the theme if not default), and inject the widget
             $out = View::factory('widget/'.strtolower(get_class($this)),array('widget' => $this));

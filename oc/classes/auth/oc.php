@@ -411,7 +411,7 @@ class Auth_OC extends Kohana_Auth {
 		$data = $this->ql_decode($quicklogin);
 
 		//not a real QL
-		if (count($data) != 3)
+		if (core::count($data) != 3)
 		{
 			return FALSE;
 		}

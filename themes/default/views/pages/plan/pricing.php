@@ -10,7 +10,7 @@
     </p>
 <?endif?>
 <div class="row pricing">
-    <?if(count($plans) > 0):?>
+    <?if(core::count($plans) > 0):?>
         <?foreach ($plans as $plan):?>
             <?
                 $current_plan = FALSE;

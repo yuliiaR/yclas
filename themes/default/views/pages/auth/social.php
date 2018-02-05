@@ -1,5 +1,5 @@
 <?if (Theme::get('premium')==1):?>
-    <?if (count($providers = Social::enabled_providers()) > 0) :?>
+    <?if (core::count($providers = Social::enabled_providers()) > 0) :?>
         <ul class="list-inline social-providers">
             <?foreach ($providers as $key => $provider) :?>     
                 <li>

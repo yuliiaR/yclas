@@ -168,7 +168,7 @@ class Controller_Panel_Newsletter extends Auth_Controller {
             //NOTE $users may have duplicated emails, but phpmailer takes care of not sending the email 2 times to same recipient
             
             //sending!
-            if (count($users)>0)
+            if (core::count($users)>0)
             {
                 if ( !Email::send($users,'',Core::post('subject'),Kohana::$_POST_ORIG['description'],Core::post('from_email'), Core::post('from') ) )
                     Alert::set(Alert::ERROR,__('Error on mail delivery, not sent'));

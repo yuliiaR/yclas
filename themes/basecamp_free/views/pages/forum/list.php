@@ -53,7 +53,7 @@
 					<div class="clear"></div>
 				</div>
 
-				<?if(count($topics)):?>
+				<?if(core::count($topics)):?>
 					<?foreach($topics as $topic):?>
 					<?
 					//amount answers a topic got
@@ -83,7 +83,7 @@
 						<div class="clear"></div>
 						</div>
 					<?endforeach?>
-				<?elseif (count($topics) == 0):?>
+				<?elseif (core::count($topics) == 0):?>
 					<div class="no_results text-center">
 						<span class="nr_badge"><i class="glyphicon glyphicon-info-sign glyphicon"></i></span>
 						<p class="nr_info"><?=_e('There are no topics in this section..')?></p>

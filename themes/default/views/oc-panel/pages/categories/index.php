@@ -87,7 +87,7 @@
                     </ol><!--ol_1-->
                     <span id='ajax_result' data-url='<?=Route::url('oc-panel',array('controller'=>'category','action'=>'saveorder'))?>'></span>
                 </div>
-                <?if(count($cats) > 1) :?>
+                <?if(core::count($cats) > 1) :?>
                     <div class="panel-footer">
                         <div class="text-right">
                             <button type="button" data-toggle="modal" data-target="#delete-all" class="btn btn-danger">

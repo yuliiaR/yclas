@@ -707,6 +707,19 @@ class Core {
         return $url;
     }
 
+    /**
+     * count the entries of a list
+     * @param  boolean $list
+     * @return core::count($list) or NULL if list is empty
+     */
+    public static function count($list)
+    {
+        if (isset($list))
+            return count($list);
+        else 
+            return NULL;
+    }
+
 
 } //end core
 

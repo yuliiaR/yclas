@@ -63,7 +63,7 @@
         <?endif?>
         <!-- end paypal button -->
 
-        <?if (count($orders) > 0) :?>
+        <?if (core::count($orders) > 0) :?>
             <div class="panel panel-default">
                 <div class="panel-body">
                     <?foreach ($orders as $order):?>
@@ -325,12 +325,12 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <?if (core::config('advertisement.num_images') > count($images)):?> <!-- permition to add more images-->
+                        <?if (core::config('advertisement.num_images') > core::count($images)):?> <!-- permition to add more images-->
                             <div class="col-sm-8">
                                 <?= FORM::label('images', _e('Add image'), array('class'=>'', 'for'=>'images0'))?>
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <?for ($i = 0; $i < (core::config('advertisement.num_images') - count($images)); $i++):?>
+                                        <?for ($i = 0; $i < (core::config('advertisement.num_images') - core::count($images)); $i++):?>
                                             <div class="fileinput fileinput-new <?=($i >= 1) ? 'hidden' : NULL?>" data-provides="fileinput">
                                                 <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;"></div>
                                                 <div>

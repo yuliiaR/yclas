@@ -5,7 +5,7 @@
 			<div class="<?=(Theme::get('sidebar_position')!='none')?'col-xs-9':'col-xs-12'?> <?=(Theme::get('sidebar_position')=='left')?'pull-right':'pull-left'?>">
 				<div class="page-header">
 					<h3>
-						<?if(count($users)):?>
+						<?if(core::count($users)):?>
 							<div class="btn-group pull-right">
 								<button type="button" id="sort" data-sort="<?=core::request('sort')?>" class="btn btn-base-dark btn-sm dropdown-toggle" data-toggle="dropdown">
 									<span class="glyphicon glyphicon-list-alt"></span> <?=_e('Sort')?> <span class="caret"></span>
@@ -37,7 +37,7 @@
 					</div>
 					<?= FORM::close()?>
 
-					<?if(count($users)):?>
+					<?if(core::count($users)):?>
 
 					<div class="clearfix"><br></div>
 					<div id="users">
@@ -68,7 +68,7 @@
 						<?=$pagination?>
 					</div>
 
-					<?elseif (count($users) == 0):?>
+					<?elseif (core::count($users) == 0):?>
 						<div class="no_results text-center">
 							<span class="nr_badge"><i class="glyphicon glyphicon-info-sign glyphicon"></i></span>
 							<p class="nr_info"><?=_e('We do not have any users matching your search')?></p>
