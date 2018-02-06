@@ -150,27 +150,29 @@
 					<!-- END CATEGORY -->
 
 					<!-- START LOCATION -->
-					<div class="form-group">
-						<div class="col-xs-12">
-							<?= FORM::label('locations', _e('Location'), array('for'=>'location'))?>
-								<div id="location-chained" class="hidden" data-apiurl="<?=Route::url('api', array('version'=>'v1', 'format'=>'json', 'controller'=>'locations'))?>">
-									<div id="select-location-template" class="col-sm-6 row hidden">
-										<select class="disable-select2 select-location" placeholder="<?=__('Pick a location...')?>"></select>
-									</div>
-								</div>
-								<div id="location-edit">
-									<div class="col-sm-6 row">
-										<div class="input-group">
-											<input class="form-control" type="text" placeholder="<?=$ad->location->name?>" disabled>
-											<span class="input-group-btn">
-												<button class="btn btn-default" type="button"><?=_e('Edit location')?></button>
-											</span>
+					<?if(core::config('advertisement.location')):?>
+						<div class="form-group">
+							<div class="col-xs-12">
+								<?= FORM::label('locations', _e('Location'), array('for'=>'location'))?>
+									<div id="location-chained" class="hidden" data-apiurl="<?=Route::url('api', array('version'=>'v1', 'format'=>'json', 'controller'=>'locations'))?>">
+										<div id="select-location-template" class="col-sm-6 row hidden">
+											<select class="disable-select2 select-location" placeholder="<?=__('Pick a location...')?>"></select>
 										</div>
 									</div>
-								</div>
-								<input id="location-selected" name="location" value="<?=$ad->id_location?>" class="form-control invisible" style="height: 0; padding:0; width:1px; border:0;" required></input>
+									<div id="location-edit">
+										<div class="col-sm-6 row">
+											<div class="input-group">
+												<input class="form-control" type="text" placeholder="<?=$ad->location->name?>" disabled>
+												<span class="input-group-btn">
+													<button class="btn btn-default" type="button"><?=_e('Edit location')?></button>
+												</span>
+											</div>
+										</div>
+									</div>
+									<input id="location-selected" name="location" value="<?=$ad->id_location?>" class="form-control invisible" style="height: 0; padding:0; width:1px; border:0;" required></input>
+							</div>
 						</div>
-					</div>
+					<?endif?>
 					<!-- END LOCATION -->
 
 					<!-- START PRICE AND STOCK -->
