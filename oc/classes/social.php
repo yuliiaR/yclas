@@ -288,7 +288,7 @@ class Social {
         $return = curl_exec($ch);
         curl_close($ch);
 
-        if(strpos($return,'error') AND Auth::instance()->get_user()->is_admin())
+        if(strpos($return,'error') AND Auth::instance()->logged_in() AND Auth::instance()->get_user()->is_admin())
             Alert::set(Alert::ALERT, $return);
 
     }
