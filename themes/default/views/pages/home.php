@@ -1,15 +1,7 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
 <?if(core::config('advertisement.homepage_map') == 1):?>
-    <iframe
-        width="100%"
-        height="<?=(empty(core::config('advertisement.homepage_map_height'))?'400px':core::config('advertisement.homepage_map_height'))?>" 
-        frameBorder="0"
-        src="/map.html"
-        class="homepage_map"
-        <?=((core::config('advertisement.homepage_map_allowfullscreen')==1)?'allowfullscreen':'')?>
-        >
-    </iframe>
+    <?=View::factory('pages/map/home')?>
 <?endif?>
 
 <?if(core::config('advertisement.ads_in_home') != 3):?>
@@ -99,15 +91,7 @@
 </div>
 
 <?if(core::config('advertisement.homepage_map') == 2):?>
-    <iframe
-        width="100%"
-        height="<?=(empty(core::config('advertisement.homepage_map_height'))?'400px':core::config('advertisement.homepage_map_height'))?>" 
-        frameBorder="0"
-        src="/map.html"
-        class="homepage_map"
-        <?=((core::config('advertisement.homepage_map_allowfullscreen')==1)?'allowfullscreen':'')?>
-        >
-    </iframe>
+    <?=View::factory('pages/map/home')?>
 <?endif?>
 
 <div id="modalAllCategories" class="modal fade" tabindex="-1" data-apiurl="<?=Route::url('api', array('version'=>'v1', 'format'=>'json', 'controller'=>'categories'))?>">
