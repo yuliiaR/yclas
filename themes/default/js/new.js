@@ -499,6 +499,15 @@ $(function(){
         messages:{},
         focusInvalid: false,
         onkeyup: false,
+        errorPlacement: function(error, element) {
+            if(element.is(':radio') || element.is(':checkbox')){
+                error.insertBefore(element.closest('label'));
+            } else if (element.is('textarea')) {
+                error.insertAfter(element.closest('textarea'));
+            } else {
+                error.insertAfter(element.closest('input'));
+            }
+        },
         submitHandler: function(form) {
             $('#processing-modal').on('shown.bs.modal', function() {
                 if (FileApiSupported())
