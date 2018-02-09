@@ -66,6 +66,15 @@ class Controller_Panel_Update extends Auth_Controller {
             array( 'config_key'     => 'oauth2_url_resource_owner_details',
                    'group_name'     => 'social',
                    'config_value'   => ''),
+            array( 'config_key'     => 'homepage_map',
+                   'group_name'     => 'advertisement',
+                   'config_value'   => '0'),
+            array( 'config_key'     => 'homepage_map_height',
+                   'group_name'     => 'advertisement',
+                   'config_value'   => ''),
+            array( 'config_key'     => 'homepage_map_allowfullscreen',
+                   'group_name'     => 'advertisement',
+                   'config_value'   => '1'),
             );
 
 
@@ -77,7 +86,7 @@ class Controller_Panel_Update extends Auth_Controller {
             DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."users` ADD  `latitude`  float(10,6) DEFAULT NULL")->execute();
             DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."users` ADD  `longitude`  float(10,6) DEFAULT NULL")->execute();
             DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."users` ADD  `address`  varchar(145) DEFAULT NULL")->execute();
-            DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."ads` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;")->execute();
+            DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."ads` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;")->execute();
             DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."ads` CHANGE  `price`  `price` DECIMAL(28,8) NOT NULL DEFAULT '0.000'")->execute();
             DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."categories` CHANGE  `price`  `price` DECIMAL(28,8) NOT NULL DEFAULT '0'")->execute();
             DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."orders` CHANGE  `amount`  `amount` DECIMAL(28,8) NOT NULL DEFAULT '0'")->execute();

@@ -62,9 +62,9 @@ before_script:
 
   # Install codecept
   - cd /var/www/yclas/oc
-  - if [ "$TRAVIS_PHP_VERSION" == "5.6" ]; then sudo wget http://codeception.com/php5/codecept.phar; fi
-  - if [ "$TRAVIS_PHP_VERSION" == "7.0" ]; then sudo wget http://codeception.com/codecept.phar; fi
-  - if [ "$TRAVIS_PHP_VERSION" == "7.1" ]; then sudo wget http://codeception.com/codecept.phar; fi
+  - if [ "$TRAVIS_PHP_VERSION" == "5.6" ]; then sudo wget https://codeception.com/php5/codecept.phar; fi
+  - if [ "$TRAVIS_PHP_VERSION" == "7.0" ]; then sudo wget https://codeception.com/codecept.phar; fi
+  - if [ "$TRAVIS_PHP_VERSION" == "7.1" ]; then sudo wget https://codeception.com/codecept.phar; fi
   - sudo chmod -R 755 codecept.phar
 
 script: 
