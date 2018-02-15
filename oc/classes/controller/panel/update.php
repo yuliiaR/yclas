@@ -1978,7 +1978,7 @@ class Controller_Panel_Update extends Auth_Controller {
     {
         try
         {
-            DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."users` ADD  `hybridauth_provider_name` VARCHAR( 40 ) NULL DEFAULT NULL ,ADD  `hybridauth_provider_uid` VARCHAR( 245 ) NULL DEFAULT NULL")->execute();
+            DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."users` ADD  `hybridauth_provider_name` VARCHAR( 40 ) NULL DEFAULT NULL ,ADD  `hybridauth_provider_uid` VARCHAR( 191 ) NULL DEFAULT NULL")->execute();
         }catch (exception $e) {}
         try
         {
@@ -1991,7 +1991,7 @@ class Controller_Panel_Update extends Auth_Controller {
                   `id_post` int(10) unsigned NOT NULL AUTO_INCREMENT,
                   `id_user` int(10) unsigned NOT NULL,
                   `title` varchar(245) NOT NULL,
-                  `seotitle` varchar(245) NOT NULL,
+                  `seotitle` varchar(191) NOT NULL,
                   `description` text NOT NULL,
                   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
                   `status` tinyint(1) NOT NULL DEFAULT '0',
