@@ -714,7 +714,7 @@ class Core {
      */
     public static function count($list)
     {
-        if (isset($list))
+        if (isset($list) AND $list != NULL)
             return count($list);
         else 
             return NULL;
