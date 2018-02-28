@@ -3,7 +3,7 @@
     <?=View::factory('widget_notification')?>
     <div class="btn-group">
         <a class="btn btn-success" href="<?=Route::url('oc-panel',array('controller'=>'home','action'=>'index'))?>">
-            <i class="glyphicon glyphicon-user"></i> 
+            <i class="glyphicon glyphicon-user"></i>
         </a>
         <button type="button" class="btn btn-success" data-toggle="dropdown">
             <span class="caret"></span>
@@ -28,11 +28,13 @@
             <li><a href="<?=Route::url('oc-panel',array('controller'=>'profile','action'=>'sales'))?>"><i
                    class="glyphicon glyphicon-usd"></i> <?=_e('My Sales')?></a></li>
             <?endif?>
-            <li>
-                <a href="<?=Route::url('oc-panel',array('controller'=>'profile','action'=>'orders'))?>">
-                    <i class="glyphicon glyphicon-shopping-cart"></i> <?=_e('My Payments')?>
-                </a>
-            </li>
+            <? if (Model_Order::by_user(Auth::instance()->get_user())->count_all() > 0) : ?>
+                <li>
+                    <a href="<?=Route::url('oc-panel',array('controller'=>'profile','action'=>'orders'))?>">
+                        <i class="glyphicon glyphicon-shopping-cart"></i> <?=_e('My Payments')?>
+                    </a>
+                </li>
+            <?endif?>
             <?if (core::config('general.messaging') == TRUE):?>
                 <li>
                     <a href="<?=Route::url('oc-panel',array('controller'=>'messages','action'=>'index'))?>">

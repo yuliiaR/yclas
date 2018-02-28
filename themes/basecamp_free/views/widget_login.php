@@ -3,7 +3,7 @@
 	<?=View::factory('widget_notification')?>
 	<div class="btn-group">
 		<a class="btn btn-base-light" href="<?=Route::url('oc-panel',array('controller'=>'home','action'=>'index'))?>">
-			<i class="glyphicon glyphicon-user"></i> 
+			<i class="glyphicon glyphicon-user"></i>
 		</a>
 		<button type="button" class="btn btn-base-light" data-toggle="dropdown">
 			<span class="caret"></span>
@@ -24,11 +24,13 @@
 					<i class="glyphicon glyphicon-star"></i> <?=_e('My Favorites')?>
 				</a>
 			</li>
-			<li>
-				<a href="<?=Route::url('oc-panel',array('controller'=>'profile','action'=>'orders'))?>">
-					<i class="glyphicon glyphicon-shopping-cart"></i> <?=_e('My Payments')?>
-				</a>
-			</li>
+            <? if (Model_Order::by_user(Auth::instance()->get_user())->count_all() > 0) : ?>
+                <li>
+                    <a href="<?=Route::url('oc-panel',array('controller'=>'profile','action'=>'orders'))?>">
+                        <i class="glyphicon glyphicon-shopping-cart"></i> <?=_e('My Payments')?>
+                    </a>
+                </li>
+            <?endif?>
 			<?if(core::config('payment.paypal_seller') == TRUE OR Core::config('payment.stripe_connect')==TRUE):?>
 				<li>
 					<a href="<?=Route::url('oc-panel',array('controller'=>'profile','action'=>'sales'))?>">
