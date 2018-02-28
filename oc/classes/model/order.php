@@ -601,7 +601,17 @@ class Model_Order extends ORM {
 
     }
 
-    protected $_table_columns =  
+    public static function by_user(Model_User $user)
+    {
+        if (! $user->loaded())
+        {
+            return;
+        }
+
+        return (new self)->where('id_user', '=', $user->id_user);
+    }
+
+    protected $_table_columns =
 array (
   'id_order' => 
   array (
