@@ -106,7 +106,7 @@
                             </div>
 
                             <?foreach($custom_fields as $name=>$field):?>
-                                <?if($name!='verifiedbadge' OR Auth::instance()->get_user()->is_admin() OR Auth::instance()->get_user()->is_moderator()):?>
+                                <?if($name!='whatsapp' AND ($name!='verifiedbadge' OR Auth::instance()->get_user()->is_admin() OR Auth::instance()->get_user()->is_moderator())):?>
                                     <div class="form-group" id="cf_new">
                                         <?$cf_name = 'cf_'.$name?>
                                         <?if($field['type'] == 'select' OR $field['type'] == 'radio') {
@@ -125,6 +125,16 @@
                                             'options'   => (!is_array($field['values']))? $field['values'] : $select,
                                             'required'  => $field['required'],
                                             ))?>
+                                        </div>
+                                    </div>
+                                <?elseif($name=='whatsapp'):?>
+                                    <div class="form-group" id="cf_new">
+                                        <label class="col-xs-4 control-label" for="cf_whatsapp"><?=_e('Whatsapp Number')?></label>
+                                        <div class="col-sm-8">
+                                            <input id="cf_whatsapp" name="cf_whatsapp" title="" class="form-control cf_string_fields data-custom  " placeholder="whatsapp" data-placeholder="whatsapp" data-original-title="whatsapp" type="text" 
+                                            data-country-code="<?=(core::config('general.country')!==NULL)?I18n::country_codes()[core::config('general.country')]:''?>"
+                                            value="<?=$user->cf_whatsapp?>"
+                                            >
                                         </div>
                                     </div>
                                 <?endif?>

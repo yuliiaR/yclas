@@ -51,11 +51,13 @@ $I->amOnPage('/');
 $I->click('a[href="http://reoc.lo/oc-panel/profile/favorites"]');
 $I->seeElement('.alert.alert-danger');
 $I->see('You do not have permissions to access Profile favorites');
+
+// Now appears only if the user has payments
 // Orders
-$I->amOnPage('/');
-$I->click('a[href="http://reoc.lo/oc-panel/profile/orders"]');
-$I->seeElement('.alert.alert-danger');
-$I->see('You do not have permissions to access Profile orders');
+// $I->amOnPage('/');
+// $I->click('a[href="http://reoc.lo/oc-panel/profile/orders"]');
+// $I->seeElement('.alert.alert-danger');
+// $I->see('You do not have permissions to access Profile orders');
 
 // Back to default
 $I->amOnPage('/');
@@ -115,12 +117,14 @@ $I->click('a[href="http://reoc.lo/oc-panel/profile/favorites"]');
 $I->dontSeeElement('.alert.alert-danger');
 $I->dontSee('You do not have permissions to access Profile favorites');
 $I->see('My favorites','h1');
+
+// Now appears only if the user has payments
 // Orders
-$I->amOnPage('/');
-$I->click('a[href="http://reoc.lo/oc-panel/profile/orders"]');
-$I->dontSeeElement('.alert.alert-danger');
-$I->dontSee('You do not have permissions to access Profile orders');
-$I->see('Orders','h1');
+// $I->amOnPage('/');
+// $I->click('a[href="http://reoc.lo/oc-panel/profile/orders"]');
+// $I->dontSeeElement('.alert.alert-danger');
+// $I->dontSee('You do not have permissions to access Profile orders');
+// $I->see('Orders','h1');
 
 $I->amOnPage('/');
 $I->click('Logout');
