@@ -294,7 +294,12 @@ class Model_Order extends ORM {
                 {
                     $order->VAT_country = core::config('payment.vat_country');
                     $order->VAT_number = core::config('payment.vat_number');
-                    $order->VAT = euvat::vat_by_country(core::config('payment.vat_country'));
+
+                    // if is an eu country the VAT rate is calculated automatically, otherwise it's set by the vat_non_eu field
+                    if(euvat::is_eu_country(core::config('payment.vat_country')))
+                        $order->VAT = euvat::vat_by_country(core::config('payment.vat_country'));
+                    elseif (core::config('payment.vat_non_eu') AND core::config('payment.vat_non_eu') > 0)
+                        $order->VAT = core::config('payment.vat_non_eu');
                 }
             }
 
