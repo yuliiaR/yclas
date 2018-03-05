@@ -363,9 +363,16 @@ class Controller_Panel_Settings extends Auth_Controller {
             //not updatable fields
             $do_nothing = array('featured_days','pay_to_go_on_feature','featured_plans');
 
+            // VAT country and number is filled
             if(Core::request('vat_country') AND Core::request('vat_number')){
-                if (!euvat::verify_vies(Core::request('vat_number'),Core::request('vat_country'))){
+                // if is an eu country check if VAT number is valid
+                if (euvat::is_eu_country(Core::request('vat_country')) AND !euvat::verify_vies(Core::request('vat_number'),Core::request('vat_country'))){
                     Alert::set(Alert::ERROR, __('Invalid EU Vat Number, please verify number and country match'));
+                    $this->redirect(Route::url('oc-panel',array('controller'=>'settings','action'=>'payment')));
+                }
+                // if is a non-eu country, check if VAT rate is filled and greater than 0 
+                elseif(!euvat::is_eu_country(Core::request('vat_country')) AND (!Core::request('vat_non_eu') OR Core::request('vat_non_eu') < 0)){
+                    Alert::set(Alert::ERROR, __('Please enter a valid VAT rate.'));
                     $this->redirect(Route::url('oc-panel',array('controller'=>'settings','action'=>'payment')));
                 }
             }

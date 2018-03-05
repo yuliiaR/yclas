@@ -10,6 +10,20 @@
  */
 class Controller_Panel_Update extends Auth_Controller {
 
+    public function action_350()
+    {
+        //new configs
+        $configs = array(
+
+            array( 'config_key'     => 'vat_non_eu',
+                   'group_name'     => 'payment',
+                   'config_value'   => ''),
+            );
+
+        Model_Config::config_array($configs);
+
+    }
+
     public function action_340()
     {
         //new configs

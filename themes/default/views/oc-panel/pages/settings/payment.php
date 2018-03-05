@@ -227,6 +227,19 @@
                         </span>
                     </div>
 
+                    <div class="form-group">
+                        <?=FORM::label($forms['vat_non_eu']['key'], __('VAT rate only for Non-EU countries'), array('class'=>'control-label', 'for'=>$forms['vat_non_eu']['key']))?>
+                        <?=FORM::input($forms['vat_non_eu']['key'], $forms['vat_non_eu']['value'], array(
+                            'placeholder' => "Enter the VAT rate", 
+                            'title' => "Enter the VAT rate, only if VAT Country is not an EU country", 
+                            'class' => 'tips form-control', 
+                            'id' => $forms['vat_non_eu']['key'],
+                        ))?>
+                        <span class="help-block">
+                            <?=__("Enter the VAT rate, only if VAT Country is not an EU country. VAT rate needs to be a decimal number, with or without a decimal point.")?>
+                        </span>
+                    </div>
+
                     <hr>
 
                     <div class="form-group">
