@@ -295,7 +295,12 @@ class Social {
 
     public static function GetAccessToken()
     {
-        if(core::config('advertisement.facebook') == 1){
+        if(core::config('advertisement.facebook') == 1
+            OR !empty(core::config('advertisement.facebook_app_id'))
+            OR !empty(core::config('advertisement.facebook_app_secret'))
+            OR !empty(core::config('advertisement.facebook_access_token'))
+            OR !empty(core::config('advertisement.facebook_id')))
+        {
             $token_url = "https://graph.facebook.com/oauth/access_token?client_id=".core::config('advertisement.facebook_app_id')."&client_secret=".core::config('advertisement.facebook_app_secret')."&grant_type=fb_exchange_token&fb_exchange_token=".core::config('advertisement.facebook_access_token');
 
             $c = curl_init();
