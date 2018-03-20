@@ -375,7 +375,7 @@ $(function(){
 });
 
 function getRate(from, to) {
-    
+
     var jqxhr = $.ajax({
       url: 'https://api.fixer.io/latest',
       dataType: 'jsonp',
@@ -581,7 +581,12 @@ $(function(){
 
 function getResizeValue(value) {
     if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
-        return Math.round((value/3));
+        for (i = 1; i < 100; i++) {
+            resizeValue = Math.round((value / i));
+            if (resizeValue <= 400) {
+                return resizeValue;
+            }
+        }
     } else {
         return value;
     }
