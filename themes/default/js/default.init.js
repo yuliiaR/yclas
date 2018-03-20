@@ -745,3 +745,12 @@ $(function(){
         });
     });
 });
+
+// Set the country code if is set on general.country
+// Whatsapp number input could appear on register and edit profile page (user custom field)
+if ($('input#cf_whatsapp').length) {
+    if ($("input#cf_whatsapp").attr('data-country-code') && !$('input#cf_whatsapp').val()) {
+        var country_code = $('input#cf_whatsapp').data('country-code');
+        $('input#cf_whatsapp').val('00'+country_code);
+    }
+}

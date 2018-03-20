@@ -72,7 +72,6 @@ class Model_User extends ORM {
                         'email'         => array(
                                                     array('not_empty'),
                                                     array('email'),
-                                                    array('email_domain'),
                                                     array(array($this, 'unique'), array('email', ':value')),
                                                     array('max_length', array(':value', 145))
                                         ),

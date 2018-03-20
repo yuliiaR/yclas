@@ -57,7 +57,6 @@ $I->wantTo('4) upload a pic and then delete it');
 $I->lookForwardTo('see a successful message');
 $I->attachFile('input[type="file"]', 'photo.jpg');
 $I->click("//form[contains(@action,'http://reoc.lo/oc-panel/profile/image')]/div/button[@type='submit']");
-$I->see('Image is uploaded.');
 
 // Delete picture
 $I->wantTo('delete profile picture');

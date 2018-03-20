@@ -206,7 +206,16 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
                 //activate the ad
                 if ($activate === TRUE)
                 {
-                    $active_ad->published  = Date::unix2mysql(time());
+                    // update publish date if ad was not published before or
+                    //  was published and to_top is not enabled
+                    if($active_ad->published == NULL OR
+                        ($active_ad->published != NULL AND 
+                        (core::config('payment.pay_to_go_on_top') == 0 OR
+                        core::config('payment.to_top') == FALSE)))
+                    {
+                        $active_ad->published = Date::unix2mysql();
+                    }
+                    
                     $active_ad->status     = Model_Ad::STATUS_PUBLISHED;
 
                     try
