@@ -2,1878 +2,977 @@
 
 namespace InstagramAPI;
 
-class Instagram
+/**
+ * Instagram's Private API v4.
+ *
+ * TERMS OF USE:
+ * - This code is in no way affiliated with, authorized, maintained, sponsored
+ *   or endorsed by Instagram or any of its affiliates or subsidiaries. This is
+ *   an independent and unofficial API. Use at your own risk.
+ * - We do NOT support or tolerate anyone who wants to use this API to send spam
+ *   or commit other online crimes.
+ * - You will NOT use this API for marketing or other abusive purposes (spam,
+ *   botting, harassment, massive bulk messaging...).
+ *
+ * @author mgp25: Founder, Reversing, Project Leader (https://github.com/mgp25)
+ * @author SteveJobzniak (https://github.com/SteveJobzniak)
+ */
+class Instagram implements ExperimentsInterface
 {
-    public static $instance;
-    public $username; // Instagram username
-    public $password; // Instagram password
-    public $debug;    // Debug
+    /**
+     * Experiments refresh interval in sec.
+     *
+     * @var int
+     */
+    const EXPERIMENTS_REFRESH = 7200;
+
+    /**
+     * Currently active Instagram username.
+     *
+     * @var string
+     */
+    public $username;
+
+    /**
+     * Currently active Instagram password.
+     *
+     * @var string
+     */
+    public $password;
+
+    /**
+     * The Android device for the currently active user.
+     *
+     * @var \InstagramAPI\Devices\DeviceInterface
+     */
+    public $device;
+
+    /**
+     * Toggles API query/response debug output.
+     *
+     * @var bool
+     */
+    public $debug;
+
+    /**
+     * Toggles truncating long responses when debugging.
+     *
+     * @var bool
+     */
     public $truncatedDebug;
 
-    public $uuid;               // UUID
-    public $device_id;          // Device ID
-    public $username_id;        // Username ID
-    public $token;              // _csrftoken
-    public $isLoggedIn = false; // Session status
-    public $rank_token;         // Rank token
+    /**
+     * For internal use by Instagram-API developers!
+     *
+     * Toggles the throwing of exceptions whenever Instagram-API's "Response"
+     * classes lack fields that were provided by the server. Useful for
+     * discovering that our library classes need updating.
+     *
+     * This is only settable via this public property and is NOT meant for
+     * end-users of this library. It is for contributing developers!
+     *
+     * @var bool
+     */
+    public $apiDeveloperDebug = false;
 
-    public $http;
+    /**
+     * Global flag for users who want to run the library incorrectly online.
+     *
+     * YOU ENABLE THIS AT YOUR OWN RISK! WE GIVE _ZERO_ SUPPORT FOR THIS MODE!
+     * EMBEDDING THE LIBRARY DIRECTLY IN A WEBPAGE (WITHOUT ANY INTERMEDIARY
+     * PROTECTIVE LAYER) CAN CAUSE ALL KINDS OF DAMAGE AND DATA CORRUPTION!
+     *
+     * YOU HAVE BEEN WARNED. ANY DATA CORRUPTION YOU CAUSE IS YOUR OWN PROBLEM!
+     *
+     * The right way to run the library online is described in `webwarning.htm`.
+     *
+     * @var bool
+     *
+     * @see Instagram::__construct()
+     */
+    public static $allowDangerousWebUsageAtMyOwnRisk = true;
+
+    /**
+     * UUID.
+     *
+     * @var string
+     */
+    public $uuid;
+
+    /**
+     * Google Play Advertising ID.
+     *
+     * The advertising ID is a unique ID for advertising, provided by Google
+     * Play services for use in Google Play apps. Used by Instagram.
+     *
+     * @var string
+     *
+     * @see https://support.google.com/googleplay/android-developer/answer/6048248?hl=en
+     */
+    public $advertising_id;
+
+    /**
+     * Device ID.
+     *
+     * @var string
+     */
+    public $device_id;
+
+    /**
+     * Phone ID.
+     *
+     * @var string
+     */
+    public $phone_id;
+
+    /**
+     * Numerical UserPK ID of the active user account.
+     *
+     * @var string
+     */
+    public $account_id;
+
+    /**
+     * Our current guess about the session status.
+     *
+     * This contains our current GUESS about whether the current user is still
+     * logged in. There is NO GUARANTEE that we're still logged in. For example,
+     * the server may have invalidated our current session due to the account
+     * password being changed AFTER our last login happened (which kills all
+     * existing sessions for that account), or the session may have expired
+     * naturally due to not being used for a long time, and so on...
+     *
+     * NOTE TO USERS: The only way to know for sure if you're logged in is to
+     * try a request. If it throws a `LoginRequiredException`, then you're not
+     * logged in anymore. The `login()` function will always ensure that your
+     * current session is valid. But AFTER that, anything can happen... It's up
+     * to Instagram, and we have NO control over what they do with your session!
+     *
+     * @var bool
+     */
+    public $isMaybeLoggedIn = false;
+
+    /**
+     * Raw API communication/networking class.
+     *
+     * @var Client
+     */
+    public $client;
+
+    /**
+     * The account settings storage.
+     *
+     * @var \InstagramAPI\Settings\StorageHandler|null
+     */
     public $settings;
 
-    public $settingsAdopter = ['type'     => 'file',
-        'path'                            => __DIR__.DIRECTORY_SEPARATOR.'data'.DIRECTORY_SEPARATOR, ]; // File | Mysql
-
-    /*
-    // Settings for mysql storage
-    public $settingsAdopter         = array(
-    "type"       => "mysql",
-    "username"   => "",
-    "password"   => "",
-    "host"       => "",
-    "database"   => "");
-    */
-
-    public $proxy = null;     // Full Proxy
-    public $proxyHost = null; // Proxy Host and Port
-    public $proxyAuth = null; // Proxy User and Pass
+    /**
+     * The current application session ID.
+     *
+     * This is a temporary ID which changes in the official app every time the
+     * user closes and re-opens the Instagram application or switches account.
+     *
+     * @var string
+     */
+    public $session_id;
 
     /**
-     * Default class constructor.
+     * A list of experiments enabled on per-account basis.
      *
-     * @param $debug Debug on or off, false by default
+     * @var array
      */
-    public function __construct($debug = false, $truncatedDebug = false)
+    public $experiments;
+
+    /** @var Request\Account Collection of Account related functions. */
+    public $account;
+    /** @var Request\Business Collection of Business related functions. */
+    public $business;
+    /** @var Request\Collection Collection of Collections related functions. */
+    public $collection;
+    /** @var Request\Creative Collection of Creative related functions. */
+    public $creative;
+    /** @var Request\Direct Collection of Direct related functions. */
+    public $direct;
+    /** @var Request\Discover Collection of Discover related functions. */
+    public $discover;
+    /** @var Request\Hashtag Collection of Hashtag related functions. */
+    public $hashtag;
+    /** @var Request\Highlight Collection of Highlight related functions. */
+    public $highlight;
+    /** @var Request\Internal Collection of Internal (non-public) functions. */
+    public $internal;
+    /** @var Request\Live Collection of Live related functions. */
+    public $live;
+    /** @var Request\Location Collection of Location related functions. */
+    public $location;
+    /** @var Request\Media Collection of Media related functions. */
+    public $media;
+    /** @var Request\People Collection of People related functions. */
+    public $people;
+    /** @var Request\Push Collection of Push related functions. */
+    public $push;
+    /** @var Request\Story Collection of Story related functions. */
+    public $story;
+    /** @var Request\Timeline Collection of Timeline related functions. */
+    public $timeline;
+    /** @var Request\Usertag Collection of Usertag related functions. */
+    public $usertag;
+
+    /**
+     * Constructor.
+     *
+     * @param bool  $debug          Show API queries and responses.
+     * @param bool  $truncatedDebug Truncate long responses in debug.
+     * @param array $storageConfig  Configuration for the desired
+     *                              user settings storage backend.
+     *
+     * @throws \InstagramAPI\Exception\InstagramException
+     */
+    public function __construct(
+        $debug = false,
+        $truncatedDebug = false,
+        array $storageConfig = [])
     {
-        self::$instance = $this;
-        $this->mapper = new \JsonMapper();
+        // Disable incorrect web usage by default. People should never embed
+        // this application emulator library directly in a webpage, or they
+        // might cause all kinds of damage and data corruption. They should
+        // use an intermediary layer such as a database or a permanent process!
+        // NOTE: People can disable this safety via the flag at their own risk.
+        if (!self::$allowDangerousWebUsageAtMyOwnRisk && (!defined('PHP_SAPI') || PHP_SAPI !== 'cli')) {
+            // IMPORTANT: We do NOT throw any exception here for users who are
+            // running the library via a webpage. Many webservers are configured
+            // to hide all PHP errors, and would just give the user a totally
+            // blank webpage with "Error 500" if we throw here, which would just
+            // confuse the newbies even more. Instead, we output a HTML warning
+            // message for people who try to run the library on a webpage.
+            echo file_get_contents(__DIR__.'/../webwarning.htm');
+            echo '<p>If you truly want to enable <em>incorrect</em> website usage by directly embedding this application emulator library in your page, then you can do that <strong>AT YOUR OWN RISK</strong> by setting the following flag <em>before</em> you create the <code>Instagram()</code> object:</p>'.PHP_EOL;
+            echo '<p><code>\InstagramAPI\Instagram::$allowDangerousWebUsageAtMyOwnRisk = true;</code></p>'.PHP_EOL;
+            exit(0); // Exit without error to avoid triggering Error 500.
+        }
+
+        // Prevent people from running this library on ancient PHP versions, and
+        // verify that people have the most critically important PHP extensions.
+        // NOTE: All of these are marked as requirements in composer.json, but
+        // some people install the library at home and then move it somewhere
+        // else without the requirements, and then blame us for their errors.
+        if (!defined('PHP_VERSION_ID') || PHP_VERSION_ID < 50600) {
+            throw new \InstagramAPI\Exception\InternalException(
+                'You must have PHP 5.6 or higher to use the Instagram API library.'
+            );
+        }
+        static $extensions = ['curl', 'mbstring', 'gd', 'exif', 'zlib'];
+        foreach ($extensions as $ext) {
+            if (!@extension_loaded($ext)) {
+                throw new \InstagramAPI\Exception\InternalException(sprintf(
+                    'You must have the "%s" PHP extension to use the Instagram API library.',
+                    $ext
+                ));
+            }
+        }
+
+        // Debugging options.
         $this->debug = $debug;
         $this->truncatedDebug = $truncatedDebug;
+
+        // Load all function collections.
+        $this->account = new Request\Account($this);
+        $this->business = new Request\Business($this);
+        $this->collection = new Request\Collection($this);
+        $this->creative = new Request\Creative($this);
+        $this->direct = new Request\Direct($this);
+        $this->discover = new Request\Discover($this);
+        $this->hashtag = new Request\Hashtag($this);
+        $this->highlight = new Request\Highlight($this);
+        $this->internal = new Request\Internal($this);
+        $this->live = new Request\Live($this);
+        $this->location = new Request\Location($this);
+        $this->media = new Request\Media($this);
+        $this->people = new Request\People($this);
+        $this->push = new Request\Push($this);
+        $this->story = new Request\Story($this);
+        $this->timeline = new Request\Timeline($this);
+        $this->usertag = new Request\Usertag($this);
+
+        // Configure the settings storage and network client.
+        $self = $this;
+        $this->settings = Settings\Factory::createHandler(
+            $storageConfig,
+            [
+                // This saves all user session cookies "in bulk" at script exit
+                // or when switching to a different user, so that it only needs
+                // to write cookies to storage a few times per user session:
+                'onCloseUser' => function ($storage) use ($self) {
+                    if ($self->client instanceof Client) {
+                        $self->client->saveCookieJar();
+                    }
+                },
+            ]
+        );
+        $this->client = new Client($this);
+        $this->experiments = [];
     }
 
     /**
-     * Set the user. Manage multiple accounts.
+     * Controls the SSL verification behavior of the Client.
      *
-     * @param string $username Your Instagram username
-     * @param string $password Your Instagram password
+     * @see http://docs.guzzlephp.org/en/latest/request-options.html#verify
+     *
+     * @param bool|string $state TRUE to verify using PHP's default CA bundle,
+     *                           FALSE to disable SSL verification (this is
+     *                           insecure!), String to verify using this path to
+     *                           a custom CA bundle file.
      */
-    public function setUser($username, $password)
+    public function setVerifySSL(
+        $state)
     {
-        $this->device_id = SignatureUtils::generateDeviceId(md5($username.$password));
-        $this->settings = new SettingsAdapter($this->settingsAdopter, $username);
-        $this->checkSettings($username);
-        $this->http = new HttpInterface($this);
-
-        $this->username = $username;
-        $this->password = $password;
-
-        $this->uuid = SignatureUtils::generateUUID(true);
-        if ($this->settings->isLogged()) {
-            $this->isLoggedIn = true;
-            $this->username_id = $this->settings->get('username_id');
-            $this->rank_token = $this->username_id.'_'.$this->uuid;
-            $this->token = $this->settings->get('token');
-        } else {
-            $this->isLoggedIn = false;
-        }
-    }
-
-    protected function checkSettings($username)
-    {
-        if ($this->settings->get('version') == null) {
-            $this->settings->set('version', Constants::VERSION);
-        }
-
-        if (($this->settings->get('user_agent') == null) || (version_compare($this->settings->get('version'), Constants::VERSION) == -1)) {
-            $userAgent = new UserAgent($this);
-            $ua = $userAgent->buildUserAgent();
-            $this->settings->set('version', Constants::VERSION);
-            $this->settings->set('user_agent', $ua);
-        }
+        $this->client->setVerifySSL($state);
     }
 
     /**
-     * Set the proxy.
+     * Gets the current SSL verification behavior of the Client.
      *
-     * @param string $ip       Ip/hostname of proxy
-     * @param int    $port     Port of proxy
-     * @param string $username Username for proxy
-     * @param string $password Password for proxy
-     *
-     * @throws InstagramException
+     * @return bool|string
      */
-    public function setProxy($host, $port = null, $username = null, $password = null)
+    public function getVerifySSL()
     {
-        // no check needed we will give exception on curl if any data wrong / lastwisher
-        // data assigned to http for easier use
-        $this->http->proxy['host'] = $host;
-        $this->http->proxy['port'] = $port;
-        $this->http->proxy['username'] = $username;
-        $this->http->proxy['password'] = $password;
+        return $this->client->getVerifySSL();
     }
 
     /**
-     * Login to Instagram.
+     * Set the proxy to use for requests.
      *
-     * @param bool $force Force login to Instagram, this will create a new session
+     * @see http://docs.guzzlephp.org/en/latest/request-options.html#proxy
      *
-     * @throws InstagramException
-     *
-     * @return ChallengeResponse|LoginResponse|ExploreResponse
+     * @param string|array|null $value String or Array specifying a proxy in
+     *                                 Guzzle format, or NULL to disable
+     *                                 proxying.
      */
-    public function login($force = false)
+    public function setProxy(
+        $value)
     {
-        if (!$this->isLoggedIn || $force) {
-            $this->syncFeatures(true);
+        $this->client->setProxy($value);
+    }
 
-            $response = $this->request('si/fetch_headers')
-            ->requireLogin(true)
-            ->addParams('challenge_type', 'signup')
-            ->addParams('guid', SignatureUtils::generateUUID(false))
-            ->getResponse(new ChallengeResponse(), true);
+    /**
+     * Gets the current proxy used for requests.
+     *
+     * @return string|array|null
+     */
+    public function getProxy()
+    {
+        return $this->client->getProxy();
+    }
 
-            if (!preg_match('#Set-Cookie: csrftoken=([^;]+)#', $response->getFullResponse()[0], $token)) {
-                throw new InstagramException('Missing csfrtoken');
+    /**
+     * Sets the network interface override to use.
+     *
+     * Only works if Guzzle is using the cURL backend. But that's
+     * almost always the case, on most PHP installations.
+     *
+     * @see http://php.net/curl_setopt CURLOPT_INTERFACE
+     *
+     * @param string|null $value Interface name, IP address or hostname, or NULL
+     *                           to disable override and let Guzzle use any
+     *                           interface.
+     */
+    public function setOutputInterface(
+        $value)
+    {
+        $this->client->setOutputInterface($value);
+    }
+
+    /**
+     * Gets the current network interface override used for requests.
+     *
+     * @return string|null
+     */
+    public function getOutputInterface()
+    {
+        return $this->client->getOutputInterface();
+    }
+
+    /**
+     * Login to Instagram or automatically resume and refresh previous session.
+     *
+     * Sets the active account for the class instance. You can call this
+     * multiple times to switch between multiple Instagram accounts.
+     *
+     * WARNING: You MUST run this function EVERY time your script runs! It
+     * handles automatic session resume and relogin and app session state
+     * refresh and other absolutely *vital* things that are important if you
+     * don't want to be banned from Instagram!
+     *
+     * WARNING: This function MAY return a CHALLENGE telling you that the
+     * account needs two-factor login before letting you log in! Read the
+     * two-factor login example to see how to handle that.
+     *
+     * @param string $username           Your Instagram username.
+     * @param string $password           Your Instagram password.
+     * @param int    $appRefreshInterval How frequently `login()` should act
+     *                                   like an Instagram app that's been
+     *                                   closed and reopened and needs to
+     *                                   "refresh its state", by asking for
+     *                                   extended account state details.
+     *                                   Default: After `1800` seconds, meaning
+     *                                   `30` minutes after the last
+     *                                   state-refreshing `login()` call.
+     *                                   This CANNOT be longer than `6` hours.
+     *                                   Read `_sendLoginFlow()`! The shorter
+     *                                   your delay is the BETTER. You may even
+     *                                   want to set it to an even LOWER value
+     *                                   than the default 30 minutes!
+     *
+     * @throws \InvalidArgumentException
+     * @throws \InstagramAPI\Exception\InstagramException
+     *
+     * @return \InstagramAPI\Response\LoginResponse|null A login response if a
+     *                                                   full (re-)login
+     *                                                   happens, otherwise
+     *                                                   `NULL` if an existing
+     *                                                   session is resumed.
+     */
+    public function login(
+        $username,
+        $password,
+        $appRefreshInterval = 1800)
+    {
+        if (empty($username) || empty($password)) {
+            throw new \InvalidArgumentException('You must provide a username and password to login().');
+        }
+
+        return $this->_login($username, $password, false, $appRefreshInterval);
+    }
+
+    /**
+     * Internal login handler.
+     *
+     * @param string $username
+     * @param string $password
+     * @param bool   $forceLogin         Force login to Instagram instead of
+     *                                   resuming previous session. Used
+     *                                   internally to do a new, full relogin
+     *                                   when we detect an expired/invalid
+     *                                   previous session.
+     * @param int    $appRefreshInterval
+     *
+     * @throws \InvalidArgumentException
+     * @throws \InstagramAPI\Exception\InstagramException
+     *
+     * @return \InstagramAPI\Response\LoginResponse|null
+     *
+     * @see Instagram::login() The public login handler with a full description.
+     */
+    protected function _login(
+        $username,
+        $password,
+        $forceLogin = false,
+        $appRefreshInterval = 1800)
+    {
+        if (empty($username) || empty($password)) {
+            throw new \InvalidArgumentException('You must provide a username and password to _login().');
+        }
+
+        // Switch the currently active user/pass if the details are different.
+        if ($this->username !== $username || $this->password !== $password) {
+            $this->_setUser($username, $password);
+        }
+
+        // Perform a full relogin if necessary.
+        if (!$this->isMaybeLoggedIn || $forceLogin) {
+            $this->_sendPreLoginFlow();
+
+            try {
+                $response = $this->request('accounts/login/')
+                    ->setNeedsAuth(false)
+                    ->addPost('phone_id', $this->phone_id)
+                    ->addPost('_csrftoken', $this->client->getToken())
+                    ->addPost('username', $this->username)
+                    ->addPost('adid', $this->advertising_id)
+                    ->addPost('guid', $this->uuid)
+                    ->addPost('device_id', $this->device_id)
+                    ->addPost('password', $this->password)
+                    ->addPost('login_attempt_count', 0)
+                    ->getResponse(new Response\LoginResponse());
+            } catch (\InstagramAPI\Exception\InstagramException $e) {
+                if ($e->hasResponse() && $e->getResponse()->isTwoFactorRequired()) {
+                    // Login failed because two-factor login is required.
+                    // Return server response to tell user they need 2-factor.
+                    return $e->getResponse();
+                } else {
+                    // Login failed for some other reason... Re-throw error.
+                    throw $e;
+                }
             }
 
-            $response = $this->request('accounts/login/')
-            ->requireLogin(true)
-            ->addPost('phone_id', SignatureUtils::generateUUID(true))
-            ->addPost('_csrftoken', $token[0])
+            $this->_updateLoginState($response);
+
+            $this->_sendLoginFlow(true, $appRefreshInterval);
+
+            // Full (re-)login successfully completed. Return server response.
+            return $response;
+        }
+
+        // Attempt to resume an existing session, or full re-login if necessary.
+        // NOTE: The "return" here gives a LoginResponse in case of re-login.
+        return $this->_sendLoginFlow(false, $appRefreshInterval);
+    }
+
+    /**
+     * Finish a two-factor authenticated login.
+     *
+     * This function finishes a two-factor challenge that was provided by the
+     * regular `login()` function. If you successfully answer their challenge,
+     * you will be logged in after this function call.
+     *
+     * @param string $username            Your Instagram username.
+     * @param string $password            Your Instagram password.
+     * @param string $twoFactorIdentifier Two factor identifier, obtained in
+     *                                    login() response. Format: `123456`.
+     * @param string $verificationCode    Verification code you have received
+     *                                    via SMS.
+     * @param int    $appRefreshInterval  See `login()` for description of this
+     *                                    parameter.
+     *
+     * @throws \InvalidArgumentException
+     * @throws \InstagramAPI\Exception\InstagramException
+     *
+     * @return \InstagramAPI\Response\LoginResponse
+     */
+    public function finishTwoFactorLogin(
+        $username,
+        $password,
+        $twoFactorIdentifier,
+        $verificationCode,
+        $appRefreshInterval = 1800)
+    {
+        if (empty($username) || empty($password)) {
+            throw new \InvalidArgumentException('You must provide a username and password to finishTwoFactorLogin().');
+        }
+        if (empty($verificationCode) || empty($twoFactorIdentifier)) {
+            throw new \InvalidArgumentException('You must provide a verification code and two-factor identifier to finishTwoFactorLogin().');
+        }
+
+        // Switch the currently active user/pass if the details are different.
+        // NOTE: The username and password AREN'T actually necessary for THIS
+        // endpoint, but this extra step helps people who statelessly embed the
+        // library directly into a webpage, so they can `finishTwoFactorLogin()`
+        // on their second page load without having to begin any new `login()`
+        // call (since they did that in their previous webpage's library calls).
+        if ($this->username !== $username || $this->password !== $password) {
+            $this->_setUser($username, $password);
+        }
+
+        // Remove all whitespace from the verification code.
+        $verificationCode = preg_replace('/\s+/', '', $verificationCode);
+
+        $response = $this->request('accounts/two_factor_login/')
+            ->setNeedsAuth(false)
+            ->addPost('verification_code', $verificationCode)
+            ->addPost('two_factor_identifier', $twoFactorIdentifier)
+            ->addPost('_csrftoken', $this->client->getToken())
             ->addPost('username', $this->username)
-            ->addPost('guid', $this->uuid)
             ->addPost('device_id', $this->device_id)
             ->addPost('password', $this->password)
-            ->addPost('login_attempt_count', 0)
-            ->getResponse(new LoginResponse(), true);
+            ->getResponse(new Response\LoginResponse());
 
-            $this->isLoggedIn = true;
-            $this->username_id = $response->getLoggedInUser()->getPk();
-            $this->settings->set('username_id', $this->username_id);
-            $this->rank_token = $this->username_id.'_'.$this->uuid;
-            preg_match('#Set-Cookie: csrftoken=([^;]+)#', $response->getFullResponse()[0], $match);
-            $this->token = $match[1];
-            $this->settings->set('token', $this->token);
+        $this->_updateLoginState($response);
 
-            $test = $this->syncFeatures();
-            $this->autoCompleteUserList();
-            $this->timelineFeed();
-            $this->getRankedRecipients();
-            $this->getRecentRecipients();
-            $this->megaphoneLog();
-            $this->getv2Inbox();
-            $this->getRecentActivity();
-            $this->getReelsTrayFeed();
+        $this->_sendLoginFlow(true, $appRefreshInterval);
 
-            return $this->explore();
-        }
-
-        $check = $this->timelineFeed();
-        if ($check->getMessage() == 'login_required') {
-            $this->login(true);
-        }
-        $this->autoCompleteUserList();
-        $this->getReelsTrayFeed();
-        $this->getRankedRecipients();
-        //push register
-        $this->getRecentRecipients();
-        //push register
-        $this->megaphoneLog();
-        $this->getv2Inbox();
-        $this->getRecentActivity();
-
-        return $this->explore();
+        return $response;
     }
 
     /**
-     * @param bool $prelogin
+     * Set the active account for the class instance.
      *
-     * @return SyncResponse
+     * We can call this multiple times to switch between multiple accounts.
+     *
+     * @param string $username Your Instagram username.
+     * @param string $password Your Instagram password.
+     *
+     * @throws \InvalidArgumentException
+     * @throws \InstagramAPI\Exception\InstagramException
      */
-    public function syncFeatures($prelogin = false)
+    protected function _setUser(
+        $username,
+        $password)
     {
-        if ($prelogin) {
-            return $this->request('qe/sync/')
-            ->requireLogin(true)
-            ->addPost('id', SignatureUtils::generateUUID(true))
-            ->addPost('experiments', Constants::LOGIN_EXPERIMENTS)
-            ->getResponse(new SyncResponse());
+        if (empty($username) || empty($password)) {
+            throw new \InvalidArgumentException('You must provide a username and password to _setUser().');
+        }
+
+        // Load all settings from the storage and mark as current user.
+        $this->settings->setActiveUser($username);
+
+        // Generate the user's device instance, which will be created from the
+        // user's last-used device IF they've got a valid, good one stored.
+        // But if they've got a BAD/none, this will create a brand-new device.
+        $savedDeviceString = $this->settings->get('devicestring');
+        $this->device = new Devices\Device(
+            Constants::IG_VERSION,
+            Constants::VERSION_CODE,
+            Constants::USER_AGENT_LOCALE,
+            $savedDeviceString
+        );
+
+        // Get active device string so that we can compare it to any saved one.
+        $deviceString = $this->device->getDeviceString();
+
+        // Generate a brand-new device fingerprint if the device wasn't reused
+        // from settings, OR if any of the stored fingerprints are missing.
+        // NOTE: The regeneration when our device model changes is to avoid
+        // dangerously reusing the "previous phone's" unique hardware IDs.
+        // WARNING TO CONTRIBUTORS: Only add new parameter-checks here if they
+        // are CRITICALLY important to the particular device. We don't want to
+        // frivolously force the users to generate new device IDs constantly.
+        $resetCookieJar = false;
+        if ($deviceString !== $savedDeviceString // Brand new device, or missing
+            || empty($this->settings->get('uuid')) // one of the critically...
+            || empty($this->settings->get('phone_id')) // ...important device...
+            || empty($this->settings->get('device_id'))) { // ...parameters.
+            // Erase all previously stored device-specific settings and cookies.
+            $this->settings->eraseDeviceSettings();
+
+            // Save the chosen device string to settings.
+            $this->settings->set('devicestring', $deviceString);
+
+            // Generate hardware fingerprints for the new device.
+            $this->settings->set('device_id', Signatures::generateDeviceId());
+            $this->settings->set('phone_id', Signatures::generateUUID(true));
+            $this->settings->set('uuid', Signatures::generateUUID(true));
+
+            // Erase any stored account ID, to ensure that we detect ourselves
+            // as logged-out. This will force a new relogin from the new device.
+            $this->settings->set('account_id', '');
+
+            // We'll also need to throw out all previous cookies.
+            $resetCookieJar = true;
+        }
+
+        // Generate other missing values. These are for less critical parameters
+        // that don't need to trigger a complete device reset like above. For
+        // example, this is good for new parameters that Instagram introduces
+        // over time, since those can be added one-by-one over time here without
+        // needing to wipe/reset the whole device.
+        if (empty($this->settings->get('advertising_id'))) {
+            $this->settings->set('advertising_id', Signatures::generateUUID(true));
+        }
+        if (empty($this->settings->get('session_id'))) {
+            $this->settings->set('session_id', Signatures::generateUUID(true));
+        }
+
+        // Store various important parameters for easy access.
+        $this->username = $username;
+        $this->password = $password;
+        $this->uuid = $this->settings->get('uuid');
+        $this->advertising_id = $this->settings->get('advertising_id');
+        $this->device_id = $this->settings->get('device_id');
+        $this->phone_id = $this->settings->get('phone_id');
+        $this->session_id = $this->settings->get('session_id');
+        $this->experiments = $this->settings->getExperiments();
+
+        // Load the previous session details if we're possibly logged in.
+        if (!$resetCookieJar && $this->settings->isMaybeLoggedIn()) {
+            $this->isMaybeLoggedIn = true;
+            $this->account_id = $this->settings->get('account_id');
         } else {
-            return $this->request('qe/sync/')
-            ->addPost('_uuid', $this->uuid)
-            ->addPost('_uid', $this->username_id)
-            ->addPost('_csrftoken', $this->token)
-            ->addPost('id', $this->username_id)
-            ->addPost('experiments', Constants::EXPERIMENTS)
-            ->getResponse(new SyncResponse());
-        }
-    }
-
-    /**
-     * @return autoCompleteUserListResponse
-     */
-    public function autoCompleteUserList()
-    {
-        $this->request('friendships/autocomplete_user_list/')
-        ->setCheckStatus(false)
-        ->addParams('version', '2')
-        ->getResponse(new autoCompleteUserListResponse());
-    }
-
-    /**
-     * @param $gcmToken
-     *
-     * @return mixed
-     */
-    public function pushRegister($gcmToken)
-    {
-        $deviceToken = json_encode([
-            'k' => $gcmToken,
-            'v' => 0,
-            't' => 'fbns-b64',
-        ]);
-
-        $data = json_encode([
-            '_uuid'                => $this->uuid,
-            'guid'                 => $this->uuid,
-            'phone_id'             => SignatureUtils::generateUUID(true),
-            'device_type'          => 'android_mqtt',
-            'device_token'         => $deviceToken,
-            'is_main_push_channel' => true,
-            '_csrftoken'           => $this->token,
-            'users'                => $this->username_id,
-        ]);
-
-        return $this->http->request('push/register/?platform=10&device_type=android_mqtt', SignatureUtils::generateSignature($data))[1];
-    }
-
-    /**
-     * Get timeline feed.
-     *
-     * @param $maxid
-     *
-     * @throws InstagramException
-     *
-     * @return TimelineFeedResponse
-     */
-    public function timelineFeed($maxId = null)
-    {
-        $request = $this->request('feed/timeline')
-        ->addParams('rank_token', $this->rank_token)
-        ->addParams('ranked_content', true);
-        if ($maxId) {
-            $request->addParams('max_id', $maxId);
+            $this->isMaybeLoggedIn = false;
+            $this->account_id = null;
         }
 
-        return $request->getResponse(new TimelineFeedResponse());
+        // Configures Client for current user AND updates isMaybeLoggedIn state
+        // if it fails to load the expected cookies from the user's jar.
+        // Must be done last here, so that isMaybeLoggedIn is properly updated!
+        // NOTE: If we generated a new device we start a new cookie jar.
+        $this->client->updateFromCurrentSettings($resetCookieJar);
     }
 
     /**
-     * @return MegaphoneLogResponse
+     * Updates the internal state after a successful login.
+     *
+     * @param Response\LoginResponse $response The login response.
+     *
+     * @throws \InvalidArgumentException
+     * @throws \InstagramAPI\Exception\InstagramException
      */
-    protected function megaphoneLog()
+    protected function _updateLoginState(
+        Response\LoginResponse $response)
     {
-        return $this->request('megaphone/log/')
-        ->setSignedPost(false)
-        ->addPost('type', 'feed_aysf')
-        ->addPost('action', 'seen')
-        ->addPost('reason', '')
-        ->addPost('_uuid', $this->uuid)
-        ->addPost('device_id', $this->device_id)
-        ->addPost('_csrftoken', $this->token)
-        ->addPost('uuid', md5(time()))
-        ->getResponse(new MegaphoneLogResponse());
+        // This check is just protection against accidental bugs. It makes sure
+        // that we always call this function with a *successful* login response!
+        if (!$response instanceof Response\LoginResponse
+            || !$response->isOk()) {
+            throw new \InvalidArgumentException('Invalid login response provided to _updateLoginState().');
+        }
+
+        $this->isMaybeLoggedIn = true;
+        $this->account_id = $response->getLoggedInUser()->getPk();
+        $this->settings->set('account_id', $this->account_id);
+        $this->settings->set('last_login', time());
     }
 
     /**
-     * Pending Inbox.
+     * Sends pre-login flow. This is required to emulate real device behavior.
      *
-     * @throws InstagramException Pending Inbox Data
-     *
-     * @return PendingInboxResponse|void
+     * @throws \InstagramAPI\Exception\InstagramException
      */
-    public function getPendingInbox()
+    protected function _sendPreLoginFlow()
     {
-        return $this->request('direct_v2/pending_inbox')->getResponse(new PendingInboxResponse());
+        // Calling this non-token API will put a csrftoken in our cookie
+        // jar. We must do this before any functions that require a token.
+        $this->internal->readMsisdnHeader();
+        $this->internal->syncDeviceFeatures(true);
+        $this->internal->getZeroRatingTokenResult();
+        $this->internal->logAttribution();
+        $this->account->setContactPointPrefill('prefill');
     }
 
     /**
-     * Ranked recipients.
-     *
-     * @throws InstagramException Ranked recipients Data
-     *
-     * @return RankedRecipientsResponse|void
+     * Registers available Push channels during the login flow.
      */
-    public function getRankedRecipients()
+    protected function _registerPushChannels()
     {
-        return $this->request('direct_v2/ranked_recipients')
-        ->addParams('show_threads', true)
-        ->getResponse(new RankedRecipientsResponse());
-    }
+        // Forcibly remove the stored token value if >24 hours old.
+        // This prevents us from constantly re-registering the user's
+        // "useless" token if they have stopped using the Push features.
+        try {
+            $lastFbnsToken = (int) $this->settings->get('last_fbns_token');
+        } catch (\Exception $e) {
+            $lastFbnsToken = null;
+        }
+        if (!$lastFbnsToken || $lastFbnsToken < strtotime('-24 hours')) {
+            try {
+                $this->settings->set('fbns_token', '');
+            } catch (\Exception $e) {
+                // Ignore storage errors.
+            }
 
-    /**
-     * Recent recipients.
-     *
-     * @throws InstagramException Ranked recipients Data
-     *
-     * @return RecentRecipientsResponse|void
-     */
-    public function getRecentRecipients()
-    {
-        return $this->request('direct_share/recent_recipients/')
-        ->getResponse(new RecentRecipientsResponse());
-    }
-
-    /**
-     * Explore Tab.
-     *
-     * @throws InstagramException Explore data
-     *
-     * @return ExploreResponse|void
-     */
-    public function explore()
-    {
-        return $this->request('discover/explore/')->getResponse(new ExploreResponse());
-    }
-
-    /**
-     * Home Channel.
-     *
-     * @throws InstagramException discoverChannel data
-     *
-     * @return DiscoverChannelResponse
-     */
-    public function discoverChannels()
-    {
-        return $this->request('discover/channels_home/')->getResponse(new DiscoverChannelsResponse());
-    }
-
-    /**
-     * @return ExposeResponse
-     */
-    public function expose()
-    {
-        return $this->request('qe/expose/')
-        ->addPost('_uuid', $this->uuid)
-        ->addPost('_uid', $this->username_id)
-        ->addPost('id', $this->username_id)
-        ->addPost('_csrftoken', $this->token)
-        ->addPost('experiment', 'ig_android_profile_contextual_feed')
-        ->getResponse(new ExposeResponse());
-    }
-
-    /**
-     * Logout of Instagram.
-     *
-     * @return bool
-     *              Returns true if logged out correctly
-     */
-    public function logout()
-    {
-        return $this->request('accounts/logout/')->getResponse(new LogoutResponse());
-    }
-
-    /**
-     * Upload photo to Instagram.
-     *
-     * @param string $photo         Path to your photo
-     * @param string $caption       Caption to be included in your photo
-     * @param null   $upload_id
-     * @param null   $customPreview
-     * @param null   $location
-     * @param null   $filter
-     *
-     * @return Upload data
-     */
-    public function uploadPhoto($photo, $caption = null, $upload_id = null, $customPreview = null, $location = null, $filter = null)
-    {
-        return $this->http->uploadPhoto($photo, $caption, $upload_id, $customPreview, $location, $filter);
-    }
-
-    /**
-     * @param $photo
-     * @param null $caption
-     * @param null $upload_id
-     * @param null $customPreview
-     */
-    public function uploadPhotoStory($photo, $caption = null, $upload_id = null, $customPreview = null)
-    {
-        return $this->http->uploadPhoto($photo, $caption, $upload_id, $customPreview, null, null, true);
-    }
-
-    /**
-     * Upload video to Instagram.
-     *
-     * @param $video Path to your video
-     * @param null $caption       Caption to be included in your video
-     * @param null $customPreview
-     *
-     * @return mixed
-     */
-    public function uploadVideo($video, $caption = null, $customPreview = null)
-    {
-        return $this->http->uploadVideo($video, $caption, $customPreview);
-    }
-
-    /**
-     * @param $media_id
-     * @param $recipients
-     * @param null $text
-     */
-    public function direct_share($media_id, $recipients, $text = null)
-    {
-        $this->http->direct_share($media_id, $recipients, $text);
-    }
-
-    /**
-     * Send direct message to user by inbox.
-     *
-     * @param array|int $recipients Users id
-     * @param string    $text       Text message
-     */
-    public function direct_message($recipients, $text)
-    {
-        $this->http->direct_message($recipients, $text);
-    }
-
-    /**
-     * Send photo via direct message to user by inbox.
-     *
-     * @param array|int $recipients Users id
-     * @param string    $filepath   Location of photo to upload
-     * @param string    $text       Text message
-     */
-    public function direct_photo($recipients, $filepath, $text)
-    {
-        $this->http->direct_photo($recipients, $filepath, $text);
-    }
-
-    /**
-     * Direct Thread Data.
-     *
-     * @param $threadId Thread Id
-     *
-     * @throws InstagramException Direct Thread Data
-     *
-     * @return array Direct Thread Data
-     */
-    // TODO : Missing Response
-    public function directThread($threadId)
-    {
-        $directThread = $this->http->request("direct_v2/threads/$threadId/?")[1];
-
-        if ($directThread['status'] != 'ok') {
-            throw new InstagramException($directThread['message']."\n");
             return;
         }
 
-        return $directThread;
-    }
-
-    /**
-     * Direct Thread Action.
-     *
-     * @param string $threadId     Thread Id
-     * @param string $threadAction Thread Action 'approve' OR 'decline' OR 'block'
-     *
-     * @return array Direct Thread Action Data
-     */
-    // TODO : Missing Response
-    public function directThreadAction($threadId, $threadAction)
-    {
-        $data = json_encode([
-            '_uuid'      => $this->uuid,
-            '_uid'       => $this->username_id,
-            '_csrftoken' => $this->token,
-        ]);
-
-        return $this->http->request("direct_v2/threads/$threadId/$threadAction/", SignatureUtils::generateSignature($data))[1];
-    }
-
-    /**
-     * @param $upload_id
-     * @param $video
-     * @param string $caption
-     * @param null   $customPreview
-     *
-     * @return ConfigureVideoResponse
-     */
-    public function configureVideo($upload_id, $video, $caption = '', $customPreview = null)
-    {
-        $this->uploadPhoto($video, $caption, $upload_id, $customPreview);
-
-        $size = getimagesize($video)[0];
-
-        return $this->request('media/configure/')
-        ->addParams('video', 1)
-        ->addPost('upload_id', $upload_id)
-        ->addPost('source_type', '3')
-        ->addPost('poster_frame_index', 0)
-        ->addPost('length', 0.00)
-        ->addPost('audio_muted', false)
-        ->addPost('filter_type', '0')
-        ->addPost('video_result', 'deprecated')
-        ->addPost('clips', [
-            'length'          => Utils::getSeconds($video),
-            'source_type'     => '3',
-            'camera_position' => 'back',
-        ])
-        ->addPost('extra', [
-            'source_width'  => 960,
-            'source_height' => 1280,
-        ])
-        ->addPost('device', [
-            'manufacturer'    => $this->settings->get('manufacturer'),
-            'model'           => $this->settings->get('model'),
-            'android_version' => Constants::ANDROID_VERSION,
-            'android_release' => Constants::ANDROID_RELEASE,
-        ])
-        ->addPost('_csrftoken', $this->token)
-        ->addPost('_uuid', $this->uuid)
-        ->addPost('_uid', $this->username_id)
-        ->addPost('caption', $caption)
-        ->setReplacePost(['"length":0' => '"length":0.00'])
-        ->getResponse(new ConfigureVideoResponse());
-    }
-
-    /**
-     * @param $upload_id
-     * @param $photo
-     * @param string $caption
-     * @param null   $location
-     * @param null   $filter
-     *
-     * @return ConfigureResponse
-     */
-    public function configure($upload_id, $photo, $caption = '', $location = null, $filter = null)
-    {
-        $size = getimagesize($photo)[0];
-        if (is_null($caption)) {
-            $caption = '';
+        // Read our token from the storage.
+        try {
+            $fbnsToken = $this->settings->get('fbns_token');
+        } catch (\Exception $e) {
+            $fbnsToken = null;
+        }
+        if ($fbnsToken === null) {
+            return;
         }
 
-        $requestData = $this->request('media/configure/')
-        ->addPost('_csrftoken', $this->token)
-        ->addPost('media_folder', 'Instagram')
-        ->addPost('source_type', 4)
-        ->addPost('_uid', $this->username_id)
-        ->addPost('_uuid', $this->uuid)
-        ->addPost('caption', $caption)
-        ->addPost('upload_id', $upload_id)
-        ->addPost('device', [
-            'manufacturer'    => $this->settings->get('manufacturer'),
-            'model'           => $this->settings->get('model'),
-            'android_version' => Constants::ANDROID_VERSION,
-            'android_release' => Constants::ANDROID_RELEASE,
-        ])
-        ->addPost('edits', [
-            'crop_original_size' => [$size, $size],
-            'crop_center'        => [0, 0],
-            'crop_zoom'          => 1,
-        ])
-        ->addPost('extra', [
-            'source_width'  => $size,
-            'source_height' => $size,
-        ]);
-
-        if (!is_null($location)) {
-            $loc = [
-                $location->getExternalIdSource().'_id'   => $location->getExternalId(),
-                'name'                                   => $location->getName(),
-                'lat'                                    => $location->getLat(),
-                'lng'                                    => $location->getLng(),
-                'address'                                => $location->getAddress(),
-                'external_source'                        => $location->getExternalIdSource(),
-            ];
-
-            $requestData->addPost('location', json_encode($loc))
-            ->addPost('geotag_enabled', true)
-            ->addPost('media_latitude', $location->getLat())
-            ->addPost('posting_latitude', $location->getLat())
-            ->addPost('media_longitude', $location->getLng())
-            ->addPost('posting_longitude', $location->getLng())
-            ->addPost('altitude', mt_rand(10, 800));
+        // Register our last token since we had a fresh (age <24 hours) one,
+        // or clear our stored token if we fail to register it again.
+        try {
+            $this->push->register('mqtt', $fbnsToken);
+        } catch (\Exception $e) {
+            try {
+                $this->settings->set('fbns_token', '');
+            } catch (\Exception $e) {
+                // Ignore storage errors.
+            }
         }
-
-        if (!is_null($filter)) {
-            $requestData->addPost('edits', ['filter_type' => Utils::getFilterCode($filter)]);
-        }
-
-        return $requestData->setReplacePost([
-            '"crop_center":[0,0]'                   => '"crop_center":[0.0,-0.0]',
-            '"crop_zoom":1'                         => '"crop_zoom":1.0',
-            '"crop_original_size":'."[$size,$size]" => '"crop_original_size":'."[$size.0,$size.0]",
-        ])
-        ->getResponse(new ConfigureResponse());
     }
 
     /**
-     * @param $upload_id
-     * @param $photo
+     * Sends login flow. This is required to emulate real device behavior.
      *
-     * @return ConfigureResponse
+     * @param bool $justLoggedIn       Whether we have just performed a full
+     *                                 relogin (rather than doing a resume).
+     * @param int  $appRefreshInterval See `login()` for description of this
+     *                                 parameter.
+     *
+     * @throws \InvalidArgumentException
+     * @throws \InstagramAPI\Exception\InstagramException
+     *
+     * @return \InstagramAPI\Response\LoginResponse|null A login response if a
+     *                                                   full (re-)login is
+     *                                                   needed during the login
+     *                                                   flow attempt, otherwise
+     *                                                   `NULL`.
      */
-    public function configureToReel($upload_id, $photo)
+    protected function _sendLoginFlow(
+        $justLoggedIn,
+        $appRefreshInterval = 1800)
     {
-        $size = getimagesize($photo)[0];
+        if (!is_int($appRefreshInterval) || $appRefreshInterval < 0) {
+            throw new \InvalidArgumentException("Instagram's app state refresh interval must be a positive integer.");
+        }
+        if ($appRefreshInterval > 21600) {
+            throw new \InvalidArgumentException("Instagram's app state refresh interval is NOT allowed to be higher than 6 hours, and the lower the better!");
+        }
 
-        return $this->request('media/configure_to_reel/')
-        ->addPost('upload_id', $upload_id)
-        ->addPost('source_type', 3)
-        ->addPost('edits', [
-            'crop_original_size' => [$size, $size],
-            'crop_zoom'          => 1.3333334,
-            'crop_center'        => [0.0, 0.0],
-        ])
-        ->addPost('extra', [
-            'source_width'  => $size,
-            'source_height' => $size,
-        ])
-        ->addPost('device', [
-            'manufacturer'    => $this->settings->get('manufacturer'),
-            'model'           => $this->settings->get('model'),
-            'android_version' => Constants::ANDROID_VERSION,
-            'android_release' => Constants::ANDROID_RELEASE,
-        ])
-        ->addPost('_csrftoken', $this->token)
-        ->addPost('_uuid', $this->uuid)
-        ->addPost('_uid', $this->username_id)
-        ->setReplacePost([
-            '"crop_center":[0,0]' => '"crop_center":[0.0,0.0]',
-        ])
-        ->getResponse(new ConfigureResponse());
-    }
-
-    /**
-     *  Edit media.
-     *
-     * @param $mediaId  Media id
-     * @param string $captionText Caption text
-     *
-     * @return MediaResponse
-     */
-    public function editMedia($mediaId, $captionText = '', $usertags = null)
-    {
-        if (is_null($usertags)) {
-            return $this->request("media/$mediaId/edit_media/")
-            ->addPost('_uuid', $this->uuid)
-            ->addPost('_uid', $this->username_id)
-            ->addPost('_csrftoken', $this->token)
-            ->addPost('caption_text', $captionText)
-            ->getResponse(new EditMediaResponse());
+        // SUPER IMPORTANT:
+        //
+        // STOP trying to ask us to remove this code section!
+        //
+        // EVERY time the user presses their device's home button to leave the
+        // app and then comes back to the app, Instagram does ALL of these things
+        // to refresh its internal app state. We MUST emulate that perfectly,
+        // otherwise Instagram will silently detect you as a "fake" client
+        // after a while!
+        //
+        // You can configure the login's $appRefreshInterval in the function
+        // parameter above, but you should keep it VERY frequent (definitely
+        // NEVER longer than 6 hours), so that Instagram sees you as a real
+        // client that keeps quitting and opening their app like a REAL user!
+        //
+        // Otherwise they WILL detect you as a bot and silently BLOCK features
+        // or even ban you.
+        //
+        // You have been warned.
+        if ($justLoggedIn) {
+            // Perform the "user has just done a full login" API flow.
+            $this->internal->getZeroRatingTokenResult();
+            $this->people->getBootstrapUsers();
+            $this->story->getReelsTrayFeed();
+            $this->timeline->getTimelineFeed(null, ['recovered_from_crash' => true]);
+            $this->internal->syncUserFeatures();
+            $this->_registerPushChannels();
+            $this->direct->getRankedRecipients('reshare', true);
+            $this->direct->getRankedRecipients('raven', true);
+            $this->direct->getInbox();
+            $this->internal->getProfileNotice();
+            //$this->internal->getMegaphoneLog();
+            $this->people->getRecentActivityInbox();
+            $this->internal->getQPFetch();
+            $this->media->getBlockedMedia();
+            $this->discover->getExploreFeed(null, true);
+            $this->internal->getFacebookOTA();
         } else {
-            return $this->request("media/$mediaId/edit_media/")
-            ->addPost('_uuid', $this->uuid)
-            ->addPost('_uid', $this->username_id)
-            ->addPost('_csrftoken', $this->token)
-            ->addPost('caption_text', $captionText)
-            ->addPost('usertags', $usertags)
-            ->getResponse(new EditMediaResponse());
+            $lastLoginTime = $this->settings->get('last_login');
+            $isSessionExpired = $lastLoginTime === null || (time() - $lastLoginTime) > $appRefreshInterval;
+
+            // Act like a real logged in app client refreshing its news timeline.
+            // This also lets us detect if we're still logged in with a valid session.
+            try {
+                $this->timeline->getTimelineFeed(null, [
+                    'is_pull_to_refresh' => $isSessionExpired ? null : mt_rand(1, 3) < 3,
+                ]);
+            } catch (\InstagramAPI\Exception\LoginRequiredException $e) {
+                // If our session cookies are expired, we were now told to login,
+                // so handle that by running a forced relogin in that case!
+                return $this->_login($this->username, $this->password, true, $appRefreshInterval);
+            }
+
+            // Perform the "user has returned to their already-logged in app,
+            // so refresh all feeds to check for news" API flow.
+            if ($isSessionExpired) {
+                $this->settings->set('last_login', time());
+
+                // Generate and save a new application session ID.
+                $this->session_id = Signatures::generateUUID(true);
+                $this->settings->set('session_id', $this->session_id);
+
+                // Do the rest of the "user is re-opening the app" API flow...
+                $this->people->getBootstrapUsers();
+                $this->story->getReelsTrayFeed();
+                $this->direct->getRankedRecipients('reshare', true);
+                $this->direct->getRankedRecipients('raven', true);
+                $this->_registerPushChannels();
+                //$this->internal->getMegaphoneLog();
+                $this->direct->getInbox();
+                $this->people->getRecentActivityInbox();
+                $this->internal->getProfileNotice();
+                $this->discover->getExploreFeed();
+            }
+
+            // Users normally resume their sessions, meaning that their
+            // experiments never get synced and updated. So sync periodically.
+            $lastExperimentsTime = $this->settings->get('last_experiments');
+            if ($lastExperimentsTime === null || (time() - $lastExperimentsTime) > self::EXPERIMENTS_REFRESH) {
+                $this->internal->syncUserFeatures();
+                $this->internal->syncDeviceFeatures();
+            }
         }
+
+        // We've now performed a login or resumed a session. Forcibly write our
+        // cookies to the storage, to ensure that the storage doesn't miss them
+        // in case something bad happens to PHP after this moment.
+        $this->client->saveCookieJar();
     }
 
     /**
-     *  Tag User.
+     * Log out of Instagram.
      *
-     * @param string      $mediaId     Media id
-     * @param string      $usernameId  Username id
-     * @param array float $position    position relative to image where is placed the tag. Example: [0.4890625,0.6140625]
-     * @param string      $captionText Caption text
+     * WARNING: Most people should NEVER call `logout()`! Our library emulates
+     * the Instagram app for Android, where you are supposed to stay logged in
+     * forever. By calling this function, you will tell Instagram that you are
+     * logging out of the APP. But you SHOULDN'T do that! In almost 100% of all
+     * cases you want to *stay logged in* so that `login()` resumes your session!
      *
-     * @return MediaResponse
+     * @throws \InstagramAPI\Exception\InstagramException
+     *
+     * @return \InstagramAPI\Response\LogoutResponse
+     *
+     * @see Instagram::login()
      */
-    public function tagUser($mediaId, $usernameId, $position, $captionText = '')
+    public function logout()
     {
-        $usertag = '{"removed":[],"in":[{"position":['.$position[0].','.$position[1].'],"user_id":"'.$usernameId.'"}]}';
+        $response = $this->request('accounts/logout/')
+            ->addPost('phone_id', $this->phone_id)
+            ->addPost('_csrftoken', $this->client->getToken())
+            ->addPost('guid', $this->uuid)
+            ->addPost('device_id', $this->device_id)
+            ->addPost('_uuid', $this->uuid)
+            ->getResponse(new Response\LogoutResponse());
 
-        return $this->editMedia($mediaId, $captionText, $usertag);
+        // We've now logged out. Forcibly write our cookies to the storage, to
+        // ensure that the storage doesn't miss them in case something bad
+        // happens to PHP after this moment.
+        $this->client->saveCookieJar();
+
+        return $response;
     }
 
     /**
-     *  Untag User.
+     * Checks if a parameter is enabled in the given experiment.
      *
-     * @param string $mediaId     Media id
-     * @param string $usernameId  Username id
-     * @param string $captionText Caption text
+     * @param string $experiment
+     * @param string $param
      *
-     * @return MediaResponse
+     * @return bool
      */
-    public function untagUser($mediaId, $usernameId, $captionText = '')
+    public function isExperimentEnabled(
+        $experiment,
+        $param)
     {
-        $usertag = '{"removed":["'.$usernameId.'"],"in":[]}';
-
-        return $this->editMedia($mediaId, $captionText, $usertag);
-    }
-
-    public function saveMedia($mediaId)
-    {
-        return $this->request("media/$mediaId/save/")
-        ->addPost('_uuid', $this->uuid)
-        ->addPost('_uid', $this->username_id)
-        ->addPost('_csrftoken', $this->token)
-        ->setSignedPost(true)
-        ->getResponse(new SaveAndUnsaveMedia());
-    }
-
-    public function unsaveMedia($mediaId)
-    {
-        return $this->request("media/$mediaId/unsave/")
-        ->addPost('_uuid', $this->uuid)
-        ->addPost('_uid', $this->username_id)
-        ->addPost('_csrftoken', $this->token)
-        ->setSignedPost(true)
-        ->getResponse(new SaveAndUnsaveMedia());
+        return isset($this->experiments[$experiment][$param])
+            && in_array($this->experiments[$experiment][$param], ['enabled', 'true', '1']);
     }
 
     /**
-     *  Get Saved Feed.
+     * Get a parameter value for the given experiment.
      *
-     * @return SavedFeedResponse
-     */
-    public function getSavedFeed()
-    {
-        return $this->request('feed/saved/')
-        ->addPost('_uuid', $this->uuid)
-        ->addPost('_uid', $this->username_id)
-        ->addPost('_csrftoken', $this->token)
-        ->setSignedPost(true)
-        ->getResponse(new SavedFeedResponse());
-    }
-
-    /**
-     * Remove yourself from a tagged media.
-     *
-     * @param $mediaId
-     *
-     * @return MediaResponse
-     */
-    public function removeSelftag($mediaId)
-    {
-        return $this->request("usertags/$mediaId/remove/")
-        ->addPost('_uuid', $this->uuid)
-        ->addPost('_uid', $this->username_id)
-        ->addPost('_csrftoken', $this->token)
-        ->getResponse(new MediaResponse());
-    }
-
-    /**
-     * Get media info.
-     *
-     * @param $mediaId
-     *
-     * @return MediaInfoResponse
-     */
-    public function mediaInfo($mediaId)
-    {
-        return $this->request("media/$mediaId/info/")
-        ->addPost('_uuid', $this->uuid)
-        ->addPost('_uid', $this->username_id)
-        ->addPost('_csrftoken', $this->token)
-        ->addPost('media_id', $mediaId)
-        ->getResponse(new MediaInfoResponse());
-    }
-
-    /**
-     * Delete photo or video.
-     *
-     * @param $mediaId
+     * @param string $experiment
+     * @param string $param
+     * @param mixed  $default
      *
      * @return mixed
      */
-    public function deleteMedia($mediaId)
+    public function getExperimentParam(
+        $experiment,
+        $param,
+        $default = null)
     {
-        return $this->request("media/$mediaId/delete/")
-        ->addPost('_uuid', $this->uuid)
-        ->addPost('_uid', $this->username_id)
-        ->addPost('_csrftoken', $this->token)
-        ->addPost('media_id', $mediaId)
-        ->getResponse(new MediaDeleteResponse());
+        return isset($this->experiments[$experiment][$param])
+            ? $this->experiments[$experiment][$param]
+            : $default;
     }
 
     /**
-     * Comment media.
+     * Create a custom API request.
      *
-     * @param $mediaId
-     * @param $commentText
+     * Used internally, but can also be used by end-users if they want
+     * to create completely custom API queries without modifying this library.
      *
-     * @return CommentResponse
+     * @param string $url
+     *
+     * @return \InstagramAPI\Request
      */
-    public function comment($mediaId, $commentText)
+    public function request(
+        $url)
     {
-        return $this->request("media/$mediaId/comment/")
-        ->addPost('user_breadcrumb', Utils::generateUserBreadcrumb(mb_strlen($commentText)))
-        ->addPost('idempotence_token', SignatureUtils::generateUUID(true))
-        ->addPost('_uuid', $this->uuid)
-        ->addPost('_uid', $this->username_id)
-        ->addPost('_csrftoken', $this->token)
-        ->addPost('comment_text', $commentText)
-        ->addPost('containermodule', 'comments_feed_timeline')
-        ->getResponse(new CommentResponse());
-    }
-
-    /**
-     * Delete Comment.
-     *
-     * @param string $mediaId
-     *                          Media ID
-     * @param string $commentId
-     *                          Comment ID
-     *
-     * @return array
-     *               Delete comment data
-     */
-    public function deleteComment($mediaId, $commentId)
-    {
-        return $this->request("media/$mediaId/comment/$commentId/delete/")
-        ->addPost('_uuid', $this->uuid)
-        ->addPost('_uid', $this->username_id)
-        ->addPost('_csrftoken', $this->token)
-        ->getResponse(new DeleteCommentResponse());
-    }
-
-    /**
-     * Delete Comment Bulk.
-     *
-     * @param string $mediaId
-     *                           Media id
-     * @param string $commentIds
-     *                           List of comments to delete
-     *
-     * @return array
-     *               Delete Comment Bulk Data
-     */
-    public function deleteCommentsBulk($mediaId, $commentIds)
-    {
-        if (!is_array($commentIds)) {
-            $commentIds = [$commentIds];
-        }
-
-        $string = [];
-        foreach ($commentIds as $commentId) {
-            $string[] = "$commentId";
-        }
-
-        $comment_ids_to_delete = implode(',', $string);
-
-        return $this->request("media/$mediaId/comment/bulk_delete/")
-        ->addPost('_uuid', $this->uuid)
-        ->addPost('_uid', $this->username_id)
-        ->addPost('_csrftoken', $this->token)
-        ->addPost('comment_ids_to_delete', $comment_ids_to_delete)
-        ->getResponse(new DeleteCommentResponse());
-    }
-
-    /**
-     * Like Comment.
-     *
-     * @param string $commentId
-     *
-     * @return CommentLikeUnlikeResponse
-     */
-    public function likeComment($commentId)
-    {
-        return $this->request("media/$commentId/comment_like/")
-        ->addPost('_uuid', $this->uuid)
-        ->addPost('_uid', $this->username_id)
-        ->addPost('_csrftoken', $this->token)
-        ->getResponse(new CommentLikeUnlikeResponse());
-    }
-
-    /**
-     * Unlike Comment.
-     *
-     * @param string $commentId
-     *
-     * @return CommentLikeUnlikeResponse
-     */
-    public function unlikeComment($commentId)
-    {
-        return $this->request("media/$commentId/comment_unlike/")
-        ->addPost('_uuid', $this->uuid)
-        ->addPost('_uid', $this->username_id)
-        ->addPost('_csrftoken', $this->token)
-        ->getResponse(new CommentLikeUnlikeResponse());
-    }
-
-    /**
-     * Sets account to public.
-     *
-     * @param string $photo
-     *                      Path to photo
-     */
-    public function changeProfilePicture($photo)
-    {
-        return new ProfileResponse($this->http->changeProfilePicture($photo));
-    }
-
-    /**
-     * Remove profile picture.
-     *
-     * @return array
-     *               status request data
-     */
-    public function removeProfilePicture()
-    {
-        return $this->request('accounts/remove_profile_picture/')
-        ->addPost('_uuid', $this->uuid)
-        ->addPost('_uid', $this->username_id)
-        ->addPost('_csrftoken', $this->token)
-        ->getResponse(new ProfileResponse());
-    }
-
-    /**
-     * Sets account to private.
-     *
-     * @return array
-     *               status request data
-     */
-    public function setPrivateAccount()
-    {
-        return $this->request('accounts/set_private/')
-        ->addPost('_uuid', $this->uuid)
-        ->addPost('_uid', $this->username_id)
-        ->addPost('_csrftoken', $this->token)
-        ->getResponse(new ProfileResponse());
-    }
-
-    /**
-     * Sets account to public.
-     *
-     * @return array
-     *               status request data
-     */
-    public function setPublicAccount()
-    {
-        return $this->request('accounts/set_public/')
-        ->addPost('_uuid', $this->uuid)
-        ->addPost('_uid', $this->username_id)
-        ->addPost('_csrftoken', $this->token)
-        ->getResponse(new ProfileResponse());
-    }
-
-    /**
-     * Get personal profile data.
-     *
-     * @return ProfileResponse
-     */
-    public function getProfileData()
-    {
-        return $this->request('accounts/current_user/')
-        ->addParams('edit', true)
-        ->addPost('_uuid', $this->uuid)
-        ->addPost('_uid', $this->username_id)
-        ->addPost('_csrftoken', $this->token)
-        ->getResponse(new ProfileResponse());
-    }
-
-    /**
-     * Edit profile.
-     *
-     * @param string $url        Url - website. "" for nothing
-     * @param string $phone      Phone number. "" for nothing
-     * @param string $first_name Name. "" for nothing
-     * @param string $email      Email. Required
-     * @param int    $gender     Gender. male = 1 , female = 0
-     *
-     * @return ProfileResponse edit profile data
-     */
-    public function editProfile($url, $phone, $first_name, $biography, $email, $gender)
-    {
-        return $this->request('accounts/edit_profile/')
-        ->addPost('_uuid', $this->uuid)
-        ->addPost('_uid', $this->username_id)
-        ->addPost('_csrftoken', $this->token)
-        ->addPost('external_url', $url)
-        ->addPost('phone_number', $phone)
-        ->addPost('username', $this->username)
-        ->addPost('first_name', $first_name)
-        ->addPost('biography', $biography)
-        ->addPost('email', $email)
-        ->addPost('gender', $gender)
-        ->getResponse(new ProfileResponse());
-    }
-
-    /**
-     * Change Password.
-     *
-     * @param string $oldPassword Old Password
-     * @param string $newPassword New Password
-     *
-     * @return array Change Password Data
-     */
-    public function changePassword($oldPassword, $newPassword)
-    {
-        return $this->request('accounts/change_password/')
-        ->addPost('_uuid', $this->uuid)
-        ->addPost('_uid', $this->username_id)
-        ->addPost('_csrftoken', $this->token)
-        ->addPost('old_password', $oldPassword)
-        ->addPost('new_password1', $newPassword)
-        ->addPost('new_password2', $newPassword)
-        ->getResponse(new ChangePasswordResponse());
-    }
-
-    /**
-     * Get username info.
-     *
-     * @param string $usernameId Username id
-     *
-     * @return UsernameInfoResponse Username data
-     */
-    public function getUsernameInfo($usernameId)
-    {
-        return $this->request("users/$usernameId/info/")->getResponse(new UsernameInfoResponse());
-    }
-
-    /**
-     * Get self username info.
-     *
-     * @return UsernameInfoResponse Username data
-     */
-    public function getSelfUsernameInfo()
-    {
-        return $this->getUsernameInfo($this->username_id);
-    }
-
-    /**
-     * Get recent activity.
-     *
-     * @throws InstagramException
-     *
-     * @return mixed Recent activity data
-     */
-    public function getRecentActivity()
-    {
-        return $this->request('news/inbox/')->addParams('activity_module', 'all')->getResponse(new ActivityNewsResponse());
-    }
-
-    /**
-     * Get recent activity from accounts followed.
-     *
-     * @throws InstagramException
-     *
-     * @return mixed Recent activity data of follows
-     */
-    public function getFollowingRecentActivity($maxid = null)
-    {
-        $activity = $this->request('news/');
-        if (!is_null($maxid)) {
-            $activity->addParams('max_id', $maxid);
-        }
-
-        return $activity->getResponse(new FollowingRecentActivityResponse());
-    }
-
-    /**
-     * I dont know this yet.
-     *
-     * @throws InstagramException
-     *
-     * @return V2InboxResponse v2 inbox data
-     */
-    public function getv2Inbox()
-    {
-        return $this->request('direct_v2/inbox/')->getResponse(new V2InboxResponse());
-    }
-
-    /**
-     * Get user tags.
-     *
-     * @param string $usernameId
-     *
-     * @throws InstagramException
-     *
-     * @return UsertagsResponse user tags data
-     */
-    public function getUserTags($usernameId)
-    {
-        return $this->request("usertags/$usernameId/feed/")
-        ->addParams('rank_token', $this->rank_token)
-        ->addParams('ranked_content', 'true')
-        ->getResponse(new UsertagsResponse());
-    }
-
-    /**
-     * Get self user tags.
-     *
-     * @return UsertagsResponse self user tags data
-     */
-    public function getSelfUserTags()
-    {
-        return $this->getUserTags($this->username_id);
-    }
-
-    /**
-     * Get media likers.
-     *
-     * @param string $mediaId
-     *
-     * @throws InstagramException
-     *
-     * @return MediaLikersResponse
-     */
-    public function getMediaLikers($mediaId)
-    {
-        return $this->request("media/$mediaId/likers/")->getResponse(new MediaLikersResponse());
-    }
-
-    /**
-     * Get user locations media.
-     *
-     * @param string $usernameId Username id
-     *
-     * @throws InstagramException
-     *
-     * @return array Geo Media data
-     */
-    public function getGeoMedia($usernameId)
-    {
-        return $this->request("maps/user/$usernameId/")->getResponse(new GeoMediaResponse());
-    }
-
-    /**
-     * Get self user locations media.
-     *
-     * @return array Geo Media data
-     */
-    public function getSelfGeoMedia()
-    {
-        return $this->getGeoMedia($this->username_id);
-    }
-
-    /**
-     * @param $latitude
-     * @param $longitude
-     * @param null $query
-     *
-     * @throws InstagramException
-     *
-     * @return LocationResponse|void
-     */
-    public function searchLocation($latitude, $longitude, $query = null)
-    {
-        $locations = $this->request('location_search/')
-        ->addParams('rank_token', $this->rank_token)
-        ->addParams('latitude', $latitude)
-        ->addParams('longitude', $longitude);
-
-        if (!is_null($query)) {
-            $locations->addParams('timestamp', time());
-        } else {
-            $locations->addParams('search_query', $query);
-        }
-
-        return $locations->getResponse(new LocationResponse());
-    }
-
-    /**
-     * facebook user search.
-     *
-     * @param string $query
-     *
-     * @throws InstagramException
-     *
-     * @return array query data
-     */
-    public function fbUserSearch($query)
-    {
-        $query = rawurlencode($query);
-
-        return $this->request('fbsearch/topsearch/')
-        ->addParams('context', 'blended')
-        ->addParams('query', $query)
-        ->addParams('rank_token', $this->rank_token)
-        ->getResponse(new FBSearchResponse());
-    }
-
-    /**
-     * Search users.
-     *
-     * @param string $query
-     *
-     * @throws InstagramException
-     *
-     * @return array query data
-     */
-    public function searchUsers($query)
-    {
-        return $this->request('users/search/')
-        ->addParams('ig_sig_key_version', Constants::SIG_KEY_VERSION)
-        ->addParams('is_typeahead', true)
-        ->addParams('query', $query)
-        ->addParams('rank_token', $this->rank_token)
-        ->getResponse(new SearchUserResponse());
-    }
-
-    /**
-     * Search exact username.
-     *
-     * @param string usernameName username as STRING not an id
-     *
-     * @throws InstagramException
-     *
-     * @return UsernameInfoResponse query data
-     */
-    public function searchUsername($usernameName)
-    {
-        return $this->request("users/$usernameName/usernameinfo/")->getResponse(new UsernameInfoResponse());
-    }
-
-    /**
-     * @param $username
-     *
-     * @return mixed
-     */
-    public function getUsernameId($username)
-    {
-        return $this->searchUsername($username)->getUser()->getPk();
-    }
-
-    /**
-     * Search users using addres book.
-     *
-     * @param array $contacts
-     *
-     * @return array
-     *               query data
-     */
-    public function syncFromAdressBook($contacts)
-    {
-        return $this->request('address_book/link/?include=extra_display_name,thumbnails')
-        ->setSignedPost(false)
-        ->addPost('contacts', json_encode($contacts, true))
-        ->getResponse(new AddressBookResponse());
-    }
-
-    /**
-     * Get related tags.
-     *
-     * @param string $tag
-     *
-     * @throws InstagramException
-     *
-     * @return array query data
-     */
-    public function getTagRelated($tag)
-    {
-        return $this->request("tags/$tag/related")
-        ->addParams('visited', urlencode('[{"id":"'.$tag.'","type":"hashtag"}]'))
-        ->addParams('related_types', urlencode('["hashtag"]'))
-        ->getResponse(new TagRelatedResponse());
-    }
-
-    /**
-     * Get tag info: media_count.
-     *
-     * @param string $tag
-     *
-     * @throws InstagramException
-     *
-     * @return TagInfoResponse
-     */
-    public function getTagInfo($tag)
-    {
-        return $this->request("tags/$tag/info")
-        ->getResponse(new TagInfoResponse());
-    }
-
-    /**
-     * @throws InstagramException
-     *
-     * @return ReelsTrayFeedResponse|void
-     */
-    public function getReelsTrayFeed()
-    {
-        return $this->request('feed/reels_tray/')->getResponse(new ReelsTrayFeedResponse());
-    }
-
-    /**
-     * Get a user's Story Feed.
-     *
-     * @return UserStoryFeedResponse
-     */
-    public function getUserStoryFeed($userId)
-    {
-        return $this->request("feed/user/$userId/story/")
-        ->getResponse(new UserStoryFeedResponse());
-    }
-
-    /**
-     * Get multiple users' story reels.
-     *
-     * @param array $userList List of User IDs
-     *
-     * @return ReelsMediaResponse
-     */
-    public function getReelsMediaFeed($userList)
-    {
-        if (!is_array($userList)) {
-            $userList = [$userList];
-        }
-
-        $userIDs = [];
-        foreach ($userList as $userId) {
-            $userIDs[] = "$userId";
-        }
-
-        return $this->request('feed/reels_media/')
-        ->setSignedPost(true)
-        ->addPost('user_ids', $userIDs)
-        ->getResponse(new ReelsMediaResponse());
-    }
-
-    /**
-     * Get user feed.
-     *
-     * @param string $usernameId   Username id
-     * @param null   $maxid        Max Id
-     * @param null   $minTimestamp Min timestamp
-     *
-     * @throws InstagramException
-     *
-     * @return UserFeedResponse User feed data
-     */
-    public function getUserFeed($usernameId, $maxid = null, $minTimestamp = null)
-    {
-        return $this->request("feed/user/$usernameId/")
-        ->addParams('rank_token', $this->rank_token)
-        ->addParams('ranked_content', 'true')
-        ->addParams('max_id', (!is_null($maxid) ? $maxid : ''))
-        ->addParams('min_timestamp', (!is_null($minTimestamp) ? $minTimestamp : ''))
-        ->getResponse(new UserFeedResponse());
-    }
-
-    /**
-     * Get hashtag feed.
-     *
-     * @param string $hashtagString Hashtag string, not including the #
-     *
-     * @throws InstagramException
-     *
-     * @return array Hashtag feed data
-     */
-    public function getHashtagFeed($hashtagString, $maxid = null)
-    {
-        $hashtagFeed = $this->request("feed/tag/$hashtagString/");
-        if (!is_null($maxid)) {
-            $hashtagFeed->addParams('max_id', $maxid);
-        }
-
-        return $hashtagFeed->getResponse(new TagFeedResponse());
-    }
-
-    /**
-     * Get locations.
-     *
-     * @param string $query search query
-     *
-     * @throws InstagramException
-     *
-     * @return array Location location data
-     */
-    public function searchFBLocation($query)
-    {
-        $query = urlencode($query);
-
-        return $this->request('fbsearch/places/')
-        ->addParams('rank_token', $this->rank_token)
-        ->addParams('query', $query)
-        ->getResponse(new FBLocationResponse());
-    }
-
-    /**
-     * Get location feed.
-     *
-     * @param string $locationId location id
-     *
-     * @throws InstagramException
-     *
-     * @return array Location feed data
-     */
-    public function getLocationFeed($locationId, $maxid = null)
-    {
-        $locationFeed = $this->request("feed/location/$locationId/");
-        if (!is_null($maxid)) {
-            $locationFeed->addParams('max_id', $maxid);
-        }
-
-        return $locationFeed->getResponse(new LocationFeedResponse());
-    }
-
-    /**
-     * Get self user feed.
-     *
-     * @return UserFeedResponse User feed data
-     */
-    public function getSelfUserFeed($max_id = null, $minTimestamp = null)
-    {
-        return $this->getUserFeed($this->username_id, $max_id, $minTimestamp);
-    }
-
-    /**
-     * Get popular feed.
-     *
-     * @throws InstagramException
-     *
-     * @return array popular feed data
-     */
-    public function getPopularFeed()
-    {
-        return $this->request('feed/popular/')
-        ->addParams('people_teaser_supported', '1')
-        ->addParams('rank_token', $this->rank_token)
-        ->addParams('ranked_content', 'true')
-        ->getResponse(new PopularFeedResponse());
-    }
-
-    /**
-     * Get user followings.
-     *
-     * @param string $usernameId Username id
-     *
-     * @return FollowerAndFollowingResponse followers data
-     */
-    public function getUserFollowings($usernameId, $maxid = null)
-    {
-        $requestData = $this->request("friendships/$usernameId/following/")
-        ->addParams('rank_token', $this->rank_token);
-        if (!is_null($maxid)) {
-            $requestData->addParams('max_id', $maxid);
-        }
-
-        return $requestData->getResponse(new FollowerAndFollowingResponse());
-    }
-
-    /**
-     * Get user followers.
-     *
-     * @param string $usernameId Username id
-     *
-     * @return FollowerAndFollowingResponse followers data
-     */
-    public function getUserFollowers($usernameId, $maxid = null)
-    {
-        $requestData = $this->request("friendships/$usernameId/followers/")
-        ->addParams('rank_token', $this->rank_token);
-        if (!is_null($maxid)) {
-            $requestData->addParams('max_id', $maxid);
-        }
-
-        return $requestData->getResponse(new FollowerAndFollowingResponse());
-    }
-
-    /**
-     * Get self user followers.
-     *
-     * @return FollowerAndFollowingResponse followers data
-     */
-    public function getSelfUserFollowers($max_id = null)
-    {
-        return $this->getUserFollowers($this->username_id, $max_id);
-    }
-
-    /**
-     * Get self users we are following.
-     *
-     * @return FollowerAndFollowingResponse users we are following data
-     */
-    public function getSelfUsersFollowing($max_id = null)
-    {
-        return $this->getUserFollowings($this->username_id, $max_id);
-    }
-
-    /**
-     * Like photo or video.
-     *
-     * @param string $mediaId Media id
-     *
-     * @return array status request
-     */
-    public function like($mediaId)
-    {
-        return $this->request("media/$mediaId/like/")
-        ->addPost('_uuid', $this->uuid)
-        ->addPost('_uid', $this->username_id)
-        ->addPost('_csrftoken', $this->token)
-        ->addPost('media_id', $mediaId)
-        ->getResponse(new Response());
-    }
-
-    /**
-     * Unlike photo or video.
-     *
-     * @param string $mediaId Media id
-     *
-     * @return array status request
-     */
-    public function unlike($mediaId)
-    {
-        return $this->request("media/$mediaId/unlike/")
-         ->addPost('_uuid', $this->uuid)
-         ->addPost('_uid', $this->username_id)
-         ->addPost('_csrftoken', $this->token)
-         ->addPost('media_id', $mediaId)
-         ->getResponse(new Response());
-    }
-
-    /**
-     * Get media comments.
-     *
-     * @param string $mediaId Media id
-     *
-     * @return MediaCommentsResponse Media comments data
-     */
-    public function getMediaComments($mediaId, $maxid = null)
-    {
-        return $this->request("media/$mediaId/comments/")
-        ->addParams('ig_sig_key_version', Constants::SIG_KEY_VERSION)
-        ->addParams('max_id', $maxid)
-        ->getResponse(new MediaCommentsResponse());
-    }
-
-    /**
-     * Set name and phone (Optional).
-     *
-     * @param string $name
-     * @param string $phone
-     *
-     * @return array Set status data
-     */
-    public function setNameAndPhone($name = '', $phone = '')
-    {
-        return $this->request('accounts/set_phone_and_name/')
-        ->setSignedPost(true)
-        ->addPost('_uuid', $this->uuid)
-        ->addPost('_uid', $this->username_id)
-        ->addPost('_csrftoken', $this->token)
-        ->addPost('first_name', $name)
-        ->addPost('phone_number', $phone)
-        ->getResponse(new Response());
-    }
-
-    /**
-     * Get direct share.
-     *
-     * @return array Direct share data
-     */
-    public function getDirectShare()
-    {
-        return $this->request('direct_share/inbox/?')
-        ->getResponse(new DirectShareInboxResponse());
-    }
-
-    /**
-     * Backups all your uploaded photos and videos :).
-     */
-    public function backup()
-    {
-        $nextUploadMaxId = null;
-        do {
-            $myUploads = $this->getSelfUserFeed($nextUploadMaxId);
-
-            $backupMainFolder = $this->settingsAdopter['path'].$this->username.'/backup/';
-            $backupFolder = $backupMainFolder.'/'.date('Y-m-d').'/';
-
-            if (!is_dir($backupMainFolder)) {
-                mkdir($backupMainFolder);
-            }
-            if (!is_dir($backupFolder)) {
-                mkdir($backupFolder);
-            }
-
-            foreach ($myUploads->getItems() as $item) {
-                if ($item->media_type == Item::PHOTO) {
-                    $itemUrl = $item->getImageVersions2()->candidates[0]->getUrl();
-                } else {
-                    $itemUrl = $item->getVideoVersions()[0]->getUrl();
-                }
-                $fileExtension = pathinfo(parse_url($itemUrl, PHP_URL_PATH), PATHINFO_EXTENSION);
-                copy($itemUrl, $backupFolder.$item->getId().'.'.$fileExtension);
-            }
-        } while (!is_null($nextUploadMaxId = $myUploads->getNextMaxId()));
-    }
-
-    /**
-     * Follow.
-     *
-     * @param string $userId
-     *
-     * @return array Friendship status data
-     */
-    public function follow($userId)
-    {
-        return $this->request("friendships/create/$userId/")
-        ->addPost('_uuid', $this->uuid)
-        ->addPost('_uid', $this->username_id)
-        ->addPost('_csrftoken', $this->token)
-        ->addPost('user_id', $userId)
-        ->getResponse(new FriendshipResponse());
-    }
-
-    /**
-     * Unfollow.
-     *
-     * @param string $userId
-     *
-     * @return array Friendship status data
-     */
-    public function unfollow($userId)
-    {
-        return $this->request("friendships/destroy/$userId/")
-        ->addPost('_uuid', $this->uuid)
-        ->addPost('_uid', $this->username_id)
-        ->addPost('_csrftoken', $this->token)
-        ->addPost('user_id', $userId)
-        ->getResponse(new FriendshipResponse());
-    }
-
-    /**
-     * Get suggested users.
-     *
-     * @param string $userId
-     *
-     * @return SuggestedUsersResponse
-     */
-    public function getSuggestedUsers($userId)
-    {
-        return $this->request('discover/chaining/')
-        ->addParams('target_id', $userId)
-        ->getResponse(new SuggestedUsersResponse());
-    }
-
-    /**
-     * Block.
-     *
-     * @param string $userId
-     *
-     * @return array Friendship status data
-     */
-    public function block($userId)
-    {
-        return $this->request("friendships/block/$userId/")
-        ->addPost('_uuid', $this->uuid)
-        ->addPost('_uid', $this->username_id)
-        ->addPost('_csrftoken', $this->token)
-        ->addPost('user_id', $userId)
-        ->getResponse(new FriendshipResponse());
-    }
-
-    /**
-     * Unblock.
-     *
-     * @param string $userId
-     *
-     * @return array Friendship status data
-     */
-    public function unblock($userId)
-    {
-        return $this->request("friendships/unblock/$userId/")
-        ->addPost('_uuid', $this->uuid)
-        ->addPost('_uid', $this->username_id)
-        ->addPost('_csrftoken', $this->token)
-        ->addPost('user_id', $userId)
-        ->getResponse(new FriendshipResponse());
-    }
-
-    /**
-     * Show User Friendship.
-     *
-     * @param string $userId
-     *
-     * @return FriendshipStatus relationship data
-     */
-    public function userFriendship($userId)
-    {
-        return $this->request("friendships/show/$userId/")->getResponse(new FriendshipStatus());
-    }
-
-    /**
-     * Show Multiple Users Friendship.
-     *
-     * @param string $userId
-     *
-     * @return FriendshipsShowManyResponse
-     */
-    public function usersFriendship($userList)
-    {
-        return $this->request('friendships/show_many/')
-        ->setSignedPost(false)
-        ->addPost('_uuid', $this->uuid)
-        ->addPost('user_ids', implode(',', $userList))
-        ->addPost('_csrftoken', $this->token)
-        ->getResponse(new FriendshipsShowManyResponse());
-    }
-
-    /**
-     * Get liked media.
-     *
-     * @return array Liked media data
-     */
-    public function getLikedMedia($maxid = null)
-    {
-        return $this->request('feed/liked/?'.(!is_null($maxid) ? 'max_id='.$maxid.'&' : ''))
-        ->getResponse(new LikeFeedResponse());
-    }
-
-    public function verifyPeer($enable)
-    {
-        $this->http->verifyPeer($enable);
-    }
-
-    public function verifyHost($enable)
-    {
-        $this->http->verifyHost($enable);
-    }
-
-    /**
-     * Search tags.
-     *
-     * @param string $query
-     *
-     * @throws InstagramException
-     *
-     * @return array query data
-     */
-    public function searchTags($query)
-    {
-        return $this->request('tags/search/')
-        ->addParams('is_typeahead', true)
-        ->addParams('q', $query)
-        ->addParams('rank_token', $this->rank_token)
-        ->getResponse(new SearchTagResponse());
-    }
-
-    // just for easy typing for earlier php versions
-    public function request($url)
-    {
-        return new Request($url);
-    }
-
-    public static function getInstance()
-    {
-        if (self::$instance === null) {
-            self::$instance = new self();
-        }
-
-        return self::$instance;
-    }
-}
-
-/**
- * Bridge between http object & mapper & response.
- */
-class Request
-{
-    protected $params = [];
-    protected $posts = [];
-    protected $requireLogin = false;
-    protected $floodWait = false;
-    protected $checkStatus = true;
-    protected $signedPost = true;
-    protected $replacePost = [];
-
-    public function __construct($url)
-    {
-        $this->url = $url;
-
-        return $this;
-    }
-
-    public function addParams($key, $value)
-    {
-        if ($value === true) {
-            $value = 'true';
-        }
-        $this->params[$key] = $value;
-
-        return $this;
-    }
-
-    public function addPost($key, $value)
-    {
-        $this->posts[$key] = $value;
-
-        return $this;
-    }
-
-    public function requireLogin($requireLogin = false)
-    {
-        $this->requireLogin = $requireLogin;
-
-        return $this;
-    }
-
-    public function setFloodWait($floodWait = false)
-    {
-        $this->floodWait = $floodWait;
-
-        return $this;
-    }
-
-    public function setCheckStatus($checkStatus = true)
-    {
-        $this->checkStatus = $checkStatus;
-
-        return $this;
-    }
-
-    public function setSignedPost($signedPost = true)
-    {
-        $this->signedPost = $signedPost;
-
-        return $this;
-    }
-
-    public function setReplacePost($replace = [])
-    {
-        $this->replacePost = $replace;
-
-        return $this;
-    }
-
-    public function getResponse($obj, $includeHeader = false)
-    {
-        $instagramObj = Instagram::getInstance();
-
-        if ($this->params) {
-            $endPoint = $this->url.'?'.http_build_query($this->params);
-        } else {
-            $endPoint = $this->url;
-        }
-        if ($this->posts) {
-            if ($this->signedPost) {
-                $post = SignatureUtils::generateSignature(json_encode($this->posts));
-            } else {
-                $post = http_build_query($this->posts);
-            }
-        } else {
-            $post = null;
-        }
-        if ($this->replacePost) {
-            $post = str_replace(array_keys($this->replacePost), array_values($this->replacePost), $post);
-        }
-
-        $response = $instagramObj->http->request($endPoint, $post, $this->requireLogin, $this->floodWait, false);
-
-        $mapper = new \JsonMapper();
-        $mapper->bStrictNullTypes = false;
-        if (isset($_GET['debug'])) {
-            $mapper->bExceptionOnUndefinedProperty = true;
-        }
-        if (is_null($response[1])) {
-            throw new InstagramException('No response from server, connection or configure error');
-        }
-
-        $responseObject = $mapper->map($response[1], $obj);
-
-        if ($this->checkStatus && !$responseObject->isOk()) {
-            throw new InstagramException(get_class($obj).' : '.$responseObject->getMessage());
-        }
-        if ($includeHeader) {
-            $responseObject->setFullResponse($response);
-        } else {
-            $responseObject->setFullResponse($response[1]);
-        }
-
-        return $responseObject;
+        return new Request($this, $url);
     }
 }
