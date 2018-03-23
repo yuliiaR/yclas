@@ -300,23 +300,23 @@ class Controller_Panel_Home extends Auth_Controller {
         $content->users_yesterday = (isset($users[0]['count']))?$users[0]['count']:0;
         
         
-        //Last 30 days ads
+        //Last 30 days users
         $query = DB::select(DB::expr('COUNT(id_user) count'))
                         ->from('users')
                         ->where('status','=',Model_User::STATUS_ACTIVE)
                         ->where('created','between',array(date('Y-m-d',strtotime('-30 day')),date::unix2mysql()))
                         ->execute();
         
-        $ads = $query->as_array();
+        $users = $query->as_array();
         $content->users_month = (isset($users[0]['count']))?$users[0]['count']:0;
         
-        //total ads
+        //total users
         $query = DB::select(DB::expr('COUNT(id_user) count'))
                         ->from('users')
                         ->where('status','=',Model_User::STATUS_ACTIVE)
                         ->execute();
         
-        $ads = $query->as_array();
+        $users = $query->as_array();
         $content->users_total = (isset($users[0]['count']))?$users[0]['count']:0;
 	}
     
