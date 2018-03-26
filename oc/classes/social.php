@@ -158,7 +158,8 @@ class Social {
 
     public static function instagram(Model_Ad $ad)
     {
-        if(core::config('advertisement.instagram_username')!='' AND core::config('advertisement.instagram_password')){
+
+        if(!method_exists('Core','yclas_url') AND core::config('advertisement.instagram_username')!='' AND core::config('advertisement.instagram_password')){
 
             $file = $ad->get_first_image('image');
 
@@ -189,25 +190,23 @@ class Social {
 
                 $caption .= ' - '.Text::limit_chars(Text::removebbcode($ad->description), 100, NULL, TRUE);
                 $caption .= ' - '.$url_ad;
-                $caption = self::GenerateHashtags($ad);
+                $caption .= self::GenerateHashtags($ad);
+
+                // image path needs to be the path on the disk
+                $img_path = substr_replace(APPPATH, '', -3).$ad->image_path().substr($file, strrpos($file, '/') + 1);
 
                 $i = new \InstagramAPI\Instagram();
                 
                 try {
-				    $i->login(core::config('advertisement.instagram_username'), core::config('advertisement.instagram_password'));
-				} catch (Exception $e) {
-				    echo $e->getMessage();
-				}
-
-				try {
-				    $photo = new \InstagramAPI\Media\Photo\InstagramPhoto($file);
-				    $i->timeline->uploadPhoto($photo->getFile(), ['caption' => $caption]);
-				} catch (Exception $e) {
-				    echo $e->getMessage();
-				}
+                    $i->login(core::config('advertisement.instagram_username'), core::config('advertisement.instagram_password'));
+                    $photo = new \InstagramAPI\Media\Photo\InstagramPhoto($img_path);
+                    $i->timeline->uploadPhoto($photo->getFile(), ['caption' => $caption]);
+                } catch (Exception $e) {
+                    echo 'Error posting to Instagram: ' . $e->getMessage();
+                }
+                
             }
         }
-
     }
 
     public static function twitter(Model_Ad $ad)
@@ -299,7 +298,12 @@ class Social {
 
     public static function GetAccessToken()
     {
-        if(core::config('advertisement.facebook') == 1){
+        if(core::config('advertisement.facebook') == 1
+            OR !empty(core::config('advertisement.facebook_app_id'))
+            OR !empty(core::config('advertisement.facebook_app_secret'))
+            OR !empty(core::config('advertisement.facebook_access_token'))
+            OR !empty(core::config('advertisement.facebook_id')))
+        {
             $token_url = "https://graph.facebook.com/oauth/access_token?client_id=".core::config('advertisement.facebook_app_id')."&client_secret=".core::config('advertisement.facebook_app_secret')."&grant_type=fb_exchange_token&fb_exchange_token=".core::config('advertisement.facebook_access_token');
 
             $c = curl_init();
@@ -330,59 +334,4 @@ class Social {
         return $hashtag1.' '.$hashtag2.' '.$hashtag3;
     }
 
-}
-
-
-
-
-// //////////////////
-
-
-function SendRequest($url, $post, $post_data, $user_agent, $cookies) {
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, 'https://instagram.com/api/v1/'.$url);
-    curl_setopt($ch, CURLOPT_USERAGENT, $user_agent);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
-    if($post) {
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $post_data);
-    }
-    if($cookies) {
-        curl_setopt($ch, CURLOPT_COOKIEFILE, 'cookies.txt');            
-    } else {
-        curl_setopt($ch, CURLOPT_COOKIEJAR, 'cookies.txt');
-    }
-    $response = curl_exec($ch);
-    $http = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-    
-    curl_close($ch);
-    
-    return array($http, $response);
-}
-function GenerateGuid() {
-    return sprintf('%04x%04x-%04x-%04x-%04x-%04x%04x%04x', 
-            mt_rand(0, 65535), 
-            mt_rand(0, 65535), 
-            mt_rand(0, 65535), 
-            mt_rand(16384, 20479), 
-            mt_rand(32768, 49151), 
-            mt_rand(0, 65535), 
-            mt_rand(0, 65535), 
-            mt_rand(0, 65535));
-}
-
-function GenerateSignature($data) {
-    return hash_hmac('sha256', $data, '25eace5393646842f0d0c3fb2ac7d3cfa15c052436ee86b5406a8433f54d24a5');
-}
-function GetPostData($filename) {
-    if(!$filename) {
-        echo "The image doesn't exist ".$filename;
-    } else {
-        $post_data = array('device_timestamp' => time(), 
-                            'photo' => '@'.$filename);
-        return $post_data;
-    }
 }
