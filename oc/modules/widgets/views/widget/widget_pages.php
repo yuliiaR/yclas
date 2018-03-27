@@ -9,7 +9,9 @@
 <div class="panel-body">
     <ul>
         <?foreach($widget->page_items as $page):?>
-            <?if (core::config('general.contact_page')!=$page->seotitle AND core::config('general.private_site_page')!=$page->seotitle): ?>
+            <?if (core::config('general.contact_page')!=$page->seotitle
+            AND core::config('advertisement.thanks_page')!=$page->seotitle  
+            AND core::config('general.private_site_page')!=$page->seotitle): ?>
                 <li><a href="<?=Route::url('page',array('seotitle'=>$page->seotitle))?>" title="<?=HTML::chars($page->title)?>">
                     <?=$page->title?></a>
                 </li>
