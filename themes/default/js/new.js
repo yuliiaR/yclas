@@ -416,6 +416,8 @@ $('.fileinput').on('change.bs.fileinput', function() {
                 if (data.exif) {
                     rotation = data.exif.get('Orientation');
                     thumbnail.css('transform', rotate[rotation]);
+                    // Safari fix
+                    thumbnail.css("-webkit-transform", rotate[rotation]);
                 }
             }
         );
