@@ -60,7 +60,7 @@ class Social {
 
     public static function include_vendor_instagram()
     {
-        require_once Kohana::find_file('vendor/', 'Instagram-API/src/Autoload');
+        require_once Kohana::find_file('vendor/', 'Instagram-API/vendor/autoload');
     }
     
     public static function include_vendor_pinterest()
@@ -158,7 +158,8 @@ class Social {
 
     public static function instagram(Model_Ad $ad)
     {
-        if(core::config('advertisement.instagram_username')!='' AND core::config('advertisement.instagram_password')){
+
+        if(!method_exists('Core','yclas_url') AND core::config('advertisement.instagram_username')!='' AND core::config('advertisement.instagram_password')){
 
             $file = $ad->get_first_image('image');
 
@@ -189,21 +190,23 @@ class Social {
 
                 $caption .= ' - '.Text::limit_chars(Text::removebbcode($ad->description), 100, NULL, TRUE);
                 $caption .= ' - '.$url_ad;
-                $caption = self::GenerateHashtags($ad);
+                $caption .= self::GenerateHashtags($ad);
+
+                // image path needs to be the path on the disk
+                $img_path = substr_replace(APPPATH, '', -3).$ad->image_path().substr($file, strrpos($file, '/') + 1);
 
                 $i = new \InstagramAPI\Instagram();
                 
-                try
-                {
-                    $i->setUser(core::config('advertisement.instagram_username'), core::config('advertisement.instagram_password'));
-                    $i->login(true);
-                    $i->uploadPhoto(Core::imagefly($file,500,500), $caption);
+                try {
+                    $i->login(core::config('advertisement.instagram_username'), core::config('advertisement.instagram_password'));
+                    $photo = new \InstagramAPI\Media\Photo\InstagramPhoto($img_path);
+                    $i->timeline->uploadPhoto($photo->getFile(), ['caption' => $caption]);
                 } catch (Exception $e) {
-                    echo $e->getMessage();
+                    echo 'Error posting to Instagram: ' . $e->getMessage();
                 }
+                
             }
         }
-
     }
 
     public static function twitter(Model_Ad $ad)
@@ -295,7 +298,12 @@ class Social {
 
     public static function GetAccessToken()
     {
-        if(core::config('advertisement.facebook') == 1){
+        if(core::config('advertisement.facebook') == 1
+            OR !empty(core::config('advertisement.facebook_app_id'))
+            OR !empty(core::config('advertisement.facebook_app_secret'))
+            OR !empty(core::config('advertisement.facebook_access_token'))
+            OR !empty(core::config('advertisement.facebook_id')))
+        {
             $token_url = "https://graph.facebook.com/oauth/access_token?client_id=".core::config('advertisement.facebook_app_id')."&client_secret=".core::config('advertisement.facebook_app_secret')."&grant_type=fb_exchange_token&fb_exchange_token=".core::config('advertisement.facebook_access_token');
 
             $c = curl_init();
