@@ -18,6 +18,21 @@ class Controller_Panel_Update extends Auth_Controller {
             array( 'config_key'     => 'vat_non_eu',
                    'group_name'     => 'payment',
                    'config_value'   => ''),
+            array( 'config_key'     => 'bitpay_pairing_code',
+                   'group_name'     => 'payment',
+                   'config_value'   => ''),
+            array( 'config_key'     => 'bitpay_token',
+                   'group_name'     => 'payment',
+                   'config_value'   => ''),
+            array( 'config_key'     => 'bitpay_sandbox',
+                    'group_name'     => 'payment',
+                    'config_value'   => '0'),
+            array( 'config_key'     => 'bitpay_private_key',
+                    'group_name'     => 'payment',
+                    'config_value'   => ''),
+            array( 'config_key'     => 'bitpay_public_key',
+                    'group_name'     => 'payment',
+                    'config_value'   => ''),
             );
 
         Model_Config::config_array($configs);

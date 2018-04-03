@@ -27,7 +27,7 @@
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
-    
+
 <?=Form::errors()?>
 
 <h1 class="page-header page-title">
@@ -41,7 +41,7 @@
 <?if (Theme::get('premium')!=1):?>
     <div class="alert alert-info fade in">
         <p>
-            <strong><?=__('Heads Up!')?></strong> 
+            <strong><?=__('Heads Up!')?></strong>
             Authorize, Stripe, Paymill, 2checkout, Paysbuy, SecurePay, Robokassa, Paguelofacil, Paytabs, Payfast, Mercadopago and Bitpay <?=__('only available with premium themes!').'<br>'.__('Upgrade your Yclas site to activate this feature.')?>
         </p>
         <p>
@@ -54,7 +54,7 @@
 
 <div class="row">
     <div class="col-md-12 col-lg-12">
-        <?=FORM::open(Route::url('oc-panel',array('controller'=>'settings', 'action'=>'payment')), array('class'=>'config ajax-load', 'enctype'=>'multipart/form-data'))?>
+        <?=FORM::open(Route::url('oc-panel',array('controller'=>'settings', 'action'=>'payment')), array('class'=>'config', 'enctype'=>'multipart/form-data'))?>
             <div>
                 <div>
                     <ul class="nav nav-tabs nav-tabs-simple nav-tabs-left" id="tab-settings">
@@ -77,7 +77,7 @@
                             <a data-toggle="tab" href="#tabSettingsPaymentPaymill" aria-expanded="false">Paymill</a>
                         </li>
                         <li>
-                            <a data-toggle="tab" href="#tabSettingsPaymentBitpay" aria-expanded="false">Bitpay</a>
+                            <a data-toggle="tab" href="#tabSettingsPaymentBitpayV2" aria-expanded="false">Bitpay</a>
                         </li>
                         <li>
                             <a data-toggle="tab" href="#tabSettingsPaymentPaysbuy" aria-expanded="false">Paysbuy</a>
@@ -129,7 +129,7 @@
                     </div>
 
                     <hr>
-                    
+
                     <div class="form-group">
                         <?=FORM::label($forms['to_featured']['key'], __('Featured Ads'), array('class'=>'control-label', 'for'=>$forms['to_featured']['key']))?>
                         <div class="radio radio-primary">
@@ -142,7 +142,7 @@
                             <?=__("Featured ads will be highlighted for a defined number of days.")?>
                         </span>
                     </div>
-                    
+
                     <div class="form-group">
                         <?=FORM::label($forms['to_top']['key'], __('Featured Plans'), array('class'=>'control-label', 'for'=>$forms['to_top']['key']))?>
                         <a target="_blank" href="https://docs.yclas.com/how-to-create-featured-plan/">
@@ -179,16 +179,16 @@
                             <?=Form::label($forms['to_top']['key'].'0', __('Disabled'))?>
                         </div>
                     </div>
-                
+
                     <div class="form-group">
                         <?=FORM::label($forms['pay_to_go_on_top']['key'], __('To top price'), array('class'=>'control-label', 'for'=>$forms['pay_to_go_on_top']['key']))?>
                         <div class="input-group">
                             <?=FORM::input($forms['pay_to_go_on_top']['key'], $forms['pay_to_go_on_top']['value'], array(
-                                    'placeholder' => "", 
-                                    'class' => 'tips form-control col-sm-3', 
+                                    'placeholder' => "",
+                                    'class' => 'tips form-control col-sm-3',
                                     'id' => $forms['pay_to_go_on_top']['key'],
                                     'data-rule-number' => 'true',
-                                ));?> 
+                                ));?>
                             <span class="input-group-addon"><?=core::config('payment.paypal_currency')?></span>
                         </div>
                         <span class="help-block">
@@ -200,10 +200,10 @@
 
                     <div class="form-group">
                         <?=FORM::label($forms['alternative']['key'], __('Alternative Payment'), array('class'=>'control-label', 'for'=>$forms['alternative']['key']))?>
-                        <?=FORM::select($forms['alternative']['key'], $pages, $forms['alternative']['value'], array( 
-                            'class' => 'tips form-control', 
-                            'id' => $forms['alternative']['key'], 
-                            ))?> 
+                        <?=FORM::select($forms['alternative']['key'], $pages, $forms['alternative']['value'], array(
+                            'class' => 'tips form-control',
+                            'id' => $forms['alternative']['key'],
+                            ))?>
                         <span class="help-block">
                             <?=__("A button with the page title appears next to other pay button, onclick model opens with description.")?>
                         </span>
@@ -217,9 +217,9 @@
                     <div class="form-group">
                         <?=FORM::label($forms['vat_number']['key'], __('VAT Number'), array('class'=>'control-label', 'for'=>$forms['vat_number']['key']))?>
                         <?=FORM::input($forms['vat_number']['key'], $forms['vat_number']['value'], array(
-                            'placeholder' => "VAT number", 
-                            'title' => "Enter the VAT number without the two-letter country code", 
-                            'class' => 'tips form-control', 
+                            'placeholder' => "VAT number",
+                            'title' => "Enter the VAT number without the two-letter country code",
+                            'class' => 'tips form-control',
                             'id' => $forms['vat_number']['key'],
                         ))?>
                         <span class="help-block">
@@ -230,9 +230,9 @@
                     <div class="form-group">
                         <?=FORM::label($forms['vat_non_eu']['key'], __('VAT rate only for Non-EU countries'), array('class'=>'control-label', 'for'=>$forms['vat_non_eu']['key']))?>
                         <?=FORM::input($forms['vat_non_eu']['key'], $forms['vat_non_eu']['value'], array(
-                            'placeholder' => "Enter the VAT rate", 
-                            'title' => "Enter the VAT rate, only if VAT Country is not an EU country", 
-                            'class' => 'tips form-control', 
+                            'placeholder' => "Enter the VAT rate",
+                            'title' => "Enter the VAT rate, only if VAT Country is not an EU country",
+                            'class' => 'tips form-control',
                             'id' => $forms['vat_non_eu']['key'],
                         ))?>
                         <span class="help-block">
@@ -267,7 +267,7 @@
                         </a>
                     </h4>
                     <hr>
-                    
+
                     <div class="form-group">
                         <p class="form-control-static">
                             To get paid via Credit card you can also use a Stripe account. It's free to register. They charge 2'95% of any sale.
@@ -278,23 +278,23 @@
                             </a>
                         </p>
                     </div>
-                    
+
                     <div class="form-group">
                         <?=FORM::label($forms['stripe_private']['key'], __('Stripe private key'), array('class'=>'control-label', 'for'=>$forms['stripe_private']['key']))?>
                         <?=FORM::input($forms['stripe_private']['key'], $forms['stripe_private']['value'], array(
-                            'placeholder' => "", 
-                            'class' => 'tips form-control', 
+                            'placeholder' => "",
+                            'class' => 'tips form-control',
                             'id' => $forms['stripe_private']['key'],
-                        ))?> 
+                        ))?>
                     </div>
 
                     <div class="form-group">
                         <?=FORM::label($forms['stripe_public']['key'], __('Stripe public key'), array('class'=>'control-label', 'for'=>$forms['stripe_public']['key']))?>
                         <?=FORM::input($forms['stripe_public']['key'], $forms['stripe_public']['value'], array(
-                            'placeholder' => "", 
-                            'class' => 'tips form-control', 
+                            'placeholder' => "",
+                            'class' => 'tips form-control',
                             'id' => $forms['stripe_public']['key'],
-                        ))?> 
+                        ))?>
                     </div>
 
                     <div class="form-group">
@@ -348,10 +348,10 @@
                     <div class="form-group">
                         <?=FORM::label($forms['stripe_clientid']['key'], __('Stripe client id').' <a target="_blank" href="https://dashboard.stripe.com/account/applications/settings">Get Key</a>', array('class'=>'control-label', 'for'=>$forms['stripe_clientid']['key']))?>
                         <?=FORM::input($forms['stripe_clientid']['key'], $forms['stripe_clientid']['value'], array(
-                                    'placeholder' => "", 
-                                    'class' => 'tips form-control', 
+                                    'placeholder' => "",
+                                    'class' => 'tips form-control',
                                     'id' => $forms['stripe_clientid']['key'],
-                                    ))?> 
+                                    ))?>
                         <span class="help-block">
                             <?=__("Stripe client id").' Redirect URL: '.Route::url('default', array('controller'=>'stripe','action'=>'connect','id'=>'now'))?>
                         </span>
@@ -360,11 +360,11 @@
                     <div class="form-group">
                         <?=FORM::label($forms['stripe_appfee']['key'], __('Application fee %'), array('class'=>'control-label', 'for'=>$forms['stripe_appfee']['key']))?>
                         <?=FORM::input($forms['stripe_appfee']['key'], $forms['stripe_appfee']['value'], array(
-                            'placeholder' => "", 
-                            'class' => 'tips form-control', 
+                            'placeholder' => "",
+                            'class' => 'tips form-control',
                             'id' => $forms['stripe_appfee']['key'],
                             'type' => 'number',
-                        ))?> 
+                        ))?>
                         <span class="help-block">
                             <?=__("How much you charge the seller in percentage.")?>
                         </span>
@@ -377,19 +377,19 @@
                         <div id="tabSettingsPaymentPaypal" class="tab-pane fade">
                     <h4>Paypal</h4>
                     <hr>
-                        
+
                     <div class="form-group">
                         <?=FORM::label($forms['paypal_account']['key'], __('Paypal account'), array('class'=>'control-label', 'for'=>$forms['paypal_account']['key']))?>
                         <?=FORM::hidden($forms['paypal_account']['key'], 0);?>
                         <?=FORM::input($forms['paypal_account']['key'], $forms['paypal_account']['value'], array(
-                            'placeholder' => "some@email.com", 
-                            'class' => 'tips form-control', 
+                            'placeholder' => "some@email.com",
+                            'class' => 'tips form-control',
                             'id' => $forms['paypal_account']['key'],
                             'data-original-title'=> __("Paypal mail address"),
                             'data-trigger'=>"hover",
                             'data-placement'=>"bottom",
                             'data-toggle'=>"popover",
-                            'data-content'=>__("The paypal email address where the payments will be sent"), 
+                            'data-content'=>__("The paypal email address where the payments will be sent"),
                         ))?>
                         <span class="help-block">
                             <?=__("The paypal email address where the payments will be sent")?>
@@ -451,12 +451,12 @@
                             <?=Form::label($forms['twocheckout_sandbox']['key'].'0', __('Disabled'))?>
                         </div>
                     </div>
-                        
+
                     <div class="form-group">
                         <?=FORM::label($forms['twocheckout_sid']['key'], __('Account Number'), array('class'=>'control-label', 'for'=>$forms['twocheckout_sid']['key']))?>
                         <?=FORM::input($forms['twocheckout_sid']['key'], $forms['twocheckout_sid']['value'], array(
-                            'placeholder' => "", 
-                            'class' => 'tips form-control', 
+                            'placeholder' => "",
+                            'class' => 'tips form-control',
                             'id' => $forms['twocheckout_sid']['key'],
                         ))?>
                     </div>
@@ -464,8 +464,8 @@
                     <div class="form-group">
                         <?=FORM::label($forms['twocheckout_secretword']['key'], __('Secret Word'), array('class'=>'control-label', 'for'=>$forms['twocheckout_secretword']['key']))?>
                         <?=FORM::input($forms['twocheckout_secretword']['key'], $forms['twocheckout_secretword']['value'], array(
-                            'placeholder' => "", 
-                            'class' => 'tips form-control', 
+                            'placeholder' => "",
+                            'class' => 'tips form-control',
                             'id' => $forms['twocheckout_secretword']['key']
                         ))?>
                     </div>
@@ -495,7 +495,7 @@
                             </a>
                         </p>
                     </div>
-                    
+
                     <div class="form-group">
                         <?=FORM::label($forms['authorize_sandbox']['key'], __('Sandbox'), array('class'=>'control-label', 'for'=>$forms['authorize_sandbox']['key']))?>
                         <div class="radio radio-primary">
@@ -505,29 +505,29 @@
                             <?=Form::label($forms['authorize_sandbox']['key'].'0', __('Disabled'))?>
                         </div>
                     </div>
-                    
+
                     <div class="form-group">
                         <?=FORM::label($forms['authorize_login']['key'], __('Authorize API Login'), array('class'=>'control-label', 'for'=>$forms['authorize_login']['key']))?>
                         <?=FORM::input($forms['authorize_login']['key'], $forms['authorize_login']['value'], array(
-                            'placeholder' => "", 
-                            'class' => 'tips form-control', 
+                            'placeholder' => "",
+                            'class' => 'tips form-control',
                             'id' => $forms['authorize_login']['key'],
-                        ))?> 
+                        ))?>
                     </div>
 
                     <div class="form-group">
                         <?=FORM::label($forms['authorize_key']['key'], __('Authorize transaction Key'), array('class'=>'control-label', 'for'=>$forms['authorize_key']['key']))?>
                         <?=FORM::input($forms['authorize_key']['key'], $forms['authorize_key']['value'], array(
-                            'placeholder' => "", 
-                            'class' => 'tips form-control', 
+                            'placeholder' => "",
+                            'class' => 'tips form-control',
                             'id' => $forms['authorize_key']['key'],
-                        ))?> 
+                        ))?>
                     </div>
 
                     <hr>
                     <?=FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'payment'))))?>
                 </div>
-        
+
                         <div id="tabSettingsPaymentPaymill" class="tab-pane fade">
                     <h4>Paymill</h4>
                     <hr>
@@ -542,33 +542,33 @@
                             </a>
                         </p>
                     </div>
-                    
+
                     <div class="form-group">
                         <?=FORM::label($forms['paymill_private']['key'], __('Paymill private key'), array('class'=>'control-label', 'for'=>$forms['paymill_private']['key']))?>
                         <?=FORM::input($forms['paymill_private']['key'], $forms['paymill_private']['value'], array(
-                            'placeholder' => "", 
-                            'class' => 'tips form-control', 
+                            'placeholder' => "",
+                            'class' => 'tips form-control',
                             'id' => $forms['paymill_private']['key'],
-                        ))?> 
+                        ))?>
                     </div>
-    
+
                     <div class="form-group">
                         <?=FORM::label($forms['paymill_public']['key'], __('Paymill public key'), array('class'=>'control-label', 'for'=>$forms['paymill_public']['key']))?>
                         <?=FORM::input($forms['paymill_public']['key'], $forms['paymill_public']['value'], array(
-                            'placeholder' => "", 
-                            'class' => 'tips form-control', 
+                            'placeholder' => "",
+                            'class' => 'tips form-control',
                             'id' => $forms['paymill_public']['key'],
-                        ))?> 
+                        ))?>
                     </div>
 
                     <hr>
                     <?=FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'payment'))))?>
                 </div>
 
-                        <div id="tabSettingsPaymentBitpay" class="tab-pane fade">
+                <div id="tabSettingsPaymentBitpay" class="tab-pane fade">
                     <h4>Bitpay</h4>
                     <hr>
-                    
+
                     <div class="form-group">
                         <p class="form-control-static">
                             Accept bitcoins using Bitpay
@@ -579,25 +579,74 @@
                             </a>
                         </p>
                     </div>
-                    
+
                     <div class="form-group">
                         <?=FORM::label($forms['bitpay_apikey']['key'], __('Bitpay api key'), array('class'=>'control-label', 'for'=>$forms['bitpay_apikey']['key']))?>
                         <?=FORM::input($forms['bitpay_apikey']['key'], $forms['bitpay_apikey']['value'], array(
-                            'placeholder' => "", 
-                            'class' => 'tips form-control', 
+                            'placeholder' => "",
+                            'class' => 'tips form-control',
                             'id' => $forms['bitpay_apikey']['key'],
                             'data-content'=> __("Bitpay api key"),
-                        ))?> 
+                        ))?>
                     </div>
 
                     <hr>
                     <?=FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'payment'))))?>
                 </div>
 
+                <div id="tabSettingsPaymentBitpayV2" class="tab-pane fade">
+                    <h4>Bitpay V2</h4>
+                    <hr>
+
+                    <div class="form-group">
+                        <p class="form-control-static">
+                            Accept bitcoins using Bitpay
+                        </p>
+                        <p class="form-control-static">
+                            <a class="btn btn-success btn-icon-left" target="_blank" href="https://bitpay.com">
+                                <i class="glyphicon glyphicon-pencil"></i> Register for free at Bitpay
+                            </a>
+                        </p>
+                    </div>
+
+                    <hr>
+
+                    <div class="form-group">
+                        <?= FORM::label($forms['bitpay_sandbox']['key'], __('Sandbox'), array('class' => 'control-label', 'for' => $forms['bitpay_sandbox']['key'])) ?>
+                        <div class="radio radio-primary">
+                            <?= Form::radio($forms['bitpay_sandbox']['key'], 1, (bool)$forms['bitpay_sandbox']['value'], array('id' => $forms['bitpay_sandbox']['key'] . '1')) ?>
+                            <?= Form::label($forms['bitpay_sandbox']['key'] . '1', __('Enabled')) ?>
+                            <?= Form::radio($forms['bitpay_sandbox']['key'], 0, !(bool)$forms['bitpay_sandbox']['value'], array('id' => $forms['bitpay_sandbox']['key'] . '0')) ?>
+                            <?= Form::label($forms['bitpay_sandbox']['key'] . '0', __('Disabled')) ?>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <p class="form-control-static">
+                            <a class="btn btn-success" href="<?= Route::url('oc-panel', array('controller' => 'bitpay', 'action' => 'generate_keys')) ?>">
+                                <?= _e('Create and persist a public & private keypair') ?>
+                            </a>
+                        </p>
+                    </div>
+
+                    <div class="form-group">
+                        <?= FORM::label($forms['bitpay_pairing_code']['key'], __('Bitpay pairing code'), array('class' => 'control-label', 'for' => $forms['bitpay_pairing_code']['key'])) ?>
+                        <?= FORM::input($forms['bitpay_pairing_code']['key'], $forms['bitpay_pairing_code']['value'], array(
+                            'placeholder' => "",
+                            'class' => 'tips form-control',
+                            'id' => $forms['bitpay_pairing_code']['key'],
+                            'data-content' => __("Bitpay pairing code"),
+                        )) ?>
+                    </div>
+
+                    <hr>
+                    <?= FORM::button('submit', __('Save'), array('type' => 'submit', 'class' => 'btn btn-primary', 'action' => Route::url('oc-panel', array('controller' => 'settings', 'action' => 'payment')))) ?>
+                </div>
+
                         <div id="tabSettingsPaymentPaysbuy" class="tab-pane fade">
                     <h4>Paysbuy</h4>
                     <hr>
-                    
+
                     <div class="form-group">
                         <p class="form-control-static">
                             Accept BAHT using Paysbuy
@@ -608,12 +657,12 @@
                             </a>
                         </p>
                     </div>
-                        
+
                     <div class="form-group">
                         <?=FORM::label($forms['paysbuy']['key'], __('Paysbuy account'), array('class'=>'control-label', 'for'=>$forms['paysbuy']['key']))?>
                         <?=FORM::input($forms['paysbuy']['key'], $forms['paysbuy']['value'], array(
-                                'placeholder' => "", 
-                                'class' => 'tips form-control', 
+                                'placeholder' => "",
+                                'class' => 'tips form-control',
                                 'id' => $forms['paysbuy']['key']
                         ))?>
                         <span class="help-block">
@@ -630,7 +679,7 @@
                             <?=Form::label($forms['paysbuy_sandbox']['key'].'0', __('Disabled'))?>
                         </div>
                     </div>
-                    
+
                     <hr>
                     <?=FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'payment'))))?>
                 </div>
@@ -638,7 +687,7 @@
                 <div id="tabSettingsPaymentSecurepay" class="tab-pane fade">
                     <h4>SecurePay</h4>
                     <hr>
-                    
+
                     <div class="form-group">
                         <p class="form-control-static">
                             Accept card payments with SecurePay, specialized in Australia
@@ -649,12 +698,12 @@
                             </a>
                         </p>
                     </div>
-                        
+
                     <div class="form-group">
                         <?=FORM::label($forms['securepay_merchant']['key'], __('Merchant ID'), array('class'=>'control-label', 'for'=>$forms['securepay_merchant']['key']))?>
                         <?=FORM::input($forms['securepay_merchant']['key'], $forms['securepay_merchant']['value'], array(
-                                'placeholder' => "", 
-                                'class' => 'tips form-control', 
+                                'placeholder' => "",
+                                'class' => 'tips form-control',
                                 'id' => $forms['securepay_merchant']['key']
                         ))?>
                         <span class="help-block">
@@ -665,8 +714,8 @@
                     <div class="form-group">
                         <?=FORM::label($forms['securepay_password']['key'], __('Password'), array('class'=>'control-label', 'for'=>$forms['securepay_password']['key']))?>
                         <?=FORM::input($forms['securepay_password']['key'], $forms['securepay_password']['value'], array(
-                                'placeholder' => "", 
-                                'class' => 'tips form-control', 
+                                'placeholder' => "",
+                                'class' => 'tips form-control',
                                 'id' => $forms['securepay_password']['key']
                         ))?>
                         <span class="help-block">
@@ -683,7 +732,7 @@
                             <?=Form::label($forms['securepay_testing']['key'].'0', __('Disabled'))?>
                         </div>
                     </div>
-                    
+
                     <hr>
                     <?=FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'payment'))))?>
                 </div>
@@ -691,7 +740,7 @@
                 <div id="tabSettingsPaymentRobokassa" class="tab-pane fade">
                     <h4>Robokassa</h4>
                     <hr>
-                    
+
                     <div class="form-group">
                         <p class="form-control-static">
                             <?=__('Accept payments with Robokassa, specialized in Russia market')?>
@@ -702,12 +751,12 @@
                             </a>
                         </p>
                     </div>
-                        
+
                     <div class="form-group">
                         <?=FORM::label($forms['robokassa_login']['key'], 'Shop identifier', array('class'=>'control-label', 'for'=>$forms['robokassa_login']['key']))?>
                         <?=FORM::input($forms['robokassa_login']['key'], $forms['robokassa_login']['value'], array(
-                                'placeholder' => "", 
-                                'class' => 'tips form-control', 
+                                'placeholder' => "",
+                                'class' => 'tips form-control',
                                 'id' => $forms['robokassa_login']['key']
                         ))?>
                         <span class="help-block">
@@ -718,8 +767,8 @@
                     <div class="form-group">
                         <?=FORM::label($forms['robokassa_pass1']['key'], __('Password').' 1', array('class'=>'control-label', 'for'=>$forms['robokassa_pass1']['key']))?>
                         <?=FORM::input($forms['robokassa_pass1']['key'], $forms['robokassa_pass1']['value'], array(
-                                'placeholder' => "", 
-                                'class' => 'tips form-control', 
+                                'placeholder' => "",
+                                'class' => 'tips form-control',
                                 'id' => $forms['robokassa_pass1']['key']
                         ))?>
                         <span class="help-block">
@@ -730,8 +779,8 @@
                     <div class="form-group">
                         <?=FORM::label($forms['robokassa_pass2']['key'], __('Password').' 2', array('class'=>'control-label', 'for'=>$forms['robokassa_pass2']['key']))?>
                         <?=FORM::input($forms['robokassa_pass2']['key'], $forms['robokassa_pass2']['value'], array(
-                                'placeholder' => "", 
-                                'class' => 'tips form-control', 
+                                'placeholder' => "",
+                                'class' => 'tips form-control',
                                 'id' => $forms['robokassa_pass2']['key']
                         ))?>
                         <span class="help-block">
@@ -757,7 +806,7 @@
                             Fail URL <pre><?=Route::url('default',array('controller'=>'robokassa', 'action'=>'fail','id'=>'1'))?></pre>
                         </span>
                     </div>
-                    
+
                     <hr>
                     <?=FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'payment'))))?>
                 </div>
@@ -769,8 +818,8 @@
                     <div class="form-group">
                         <?=FORM::label($forms['paguelofacil_cclw']['key'], 'CCLW', array('class'=>'control-label', 'for'=>$forms['paguelofacil_cclw']['key']))?>
                         <?=FORM::input($forms['paguelofacil_cclw']['key'], $forms['paguelofacil_cclw']['value'], array(
-                                'placeholder' => "", 
-                                'class' => 'tips form-control', 
+                                'placeholder' => "",
+                                'class' => 'tips form-control',
                                 'id' => $forms['paguelofacil_cclw']['key']
                         ))?>
                         <span class="help-block">
@@ -794,7 +843,7 @@
                             Result URL <pre><?=Route::url('default',array('controller'=>'paguelofacil', 'action'=>'result','id'=>core::config('general.api_key')))?></pre>
                         </span>
                     </div>
-                    
+
                     <hr>
                     <?=FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'payment'))))?>
                 </div>
@@ -806,8 +855,8 @@
                     <div class="form-group">
                         <?=FORM::label($forms['paytabs_merchant_email']['key'], 'Merchant Email', array('class'=>'control-label', 'for'=>$forms['paytabs_merchant_email']['key']))?>
                         <?=FORM::input($forms['paytabs_merchant_email']['key'], $forms['paytabs_merchant_email']['value'], array(
-                                'placeholder' => "", 
-                                'class' => 'tips form-control', 
+                                'placeholder' => "",
+                                'class' => 'tips form-control',
                                 'id' => $forms['paytabs_merchant_email']['key']
                         ))?>
                     </div>
@@ -815,12 +864,12 @@
                     <div class="form-group">
                         <?=FORM::label($forms['paytabs_secret_key']['key'], 'Secret Key', array('class'=>'control-label', 'for'=>$forms['paytabs_secret_key']['key']))?>
                         <?=FORM::input($forms['paytabs_secret_key']['key'], $forms['paytabs_secret_key']['value'], array(
-                                'placeholder' => "", 
-                                'class' => 'tips form-control', 
+                                'placeholder' => "",
+                                'class' => 'tips form-control',
                                 'id' => $forms['paytabs_secret_key']['key']
                         ))?>
                     </div>
-                    
+
                     <hr>
                     <?=FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'payment'))))?>
                 </div>
@@ -832,8 +881,8 @@
                     <div class="form-group">
                         <?=FORM::label($forms['payfast_merchant_id']['key'], 'Merchant ID', array('class'=>'control-label', 'for'=>$forms['payfast_merchant_id']['key']))?>
                         <?=FORM::input($forms['payfast_merchant_id']['key'], $forms['payfast_merchant_id']['value'], array(
-                                'placeholder' => "", 
-                                'class' => 'tips form-control', 
+                                'placeholder' => "",
+                                'class' => 'tips form-control',
                                 'id' => $forms['payfast_merchant_id']['key']
                         ))?>
                     </div>
@@ -841,8 +890,8 @@
                     <div class="form-group">
                         <?=FORM::label($forms['payfast_merchant_key']['key'], 'Merchant Key', array('class'=>'control-label', 'for'=>$forms['payfast_merchant_key']['key']))?>
                         <?=FORM::input($forms['payfast_merchant_key']['key'], $forms['payfast_merchant_key']['value'], array(
-                                'placeholder' => "", 
-                                'class' => 'tips form-control', 
+                                'placeholder' => "",
+                                'class' => 'tips form-control',
                                 'id' => $forms['payfast_merchant_key']['key']
                         ))?>
                     </div>
@@ -856,7 +905,7 @@
                             <?=Form::label($forms['payfast_sandbox']['key'].'0', __('Disabled'))?>
                         </div>
                     </div>
-                    
+
                     <hr>
                     <?=FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'payment'))))?>
                 </div>
@@ -882,8 +931,8 @@
                     <div class="form-group">
                         <?=FORM::label($forms['mercadopago_client_id']['key'], 'Client ID', array('class'=>'control-label', 'for'=>$forms['mercadopago_client_id']['key']))?>
                         <?=FORM::input($forms['mercadopago_client_id']['key'], $forms['mercadopago_client_id']['value'], array(
-                                'placeholder' => "", 
-                                'class' => 'tips form-control', 
+                                'placeholder' => "",
+                                'class' => 'tips form-control',
                                 'id' => $forms['mercadopago_client_id']['key']
                         ))?>
                         <span class="help-block">
@@ -894,8 +943,8 @@
                     <div class="form-group">
                         <?=FORM::label($forms['mercadopago_client_secret']['key'], 'Client Secret', array('class'=>'control-label', 'for'=>$forms['mercadopago_client_secret']['key']))?>
                         <?=FORM::input($forms['mercadopago_client_secret']['key'], $forms['mercadopago_client_secret']['value'], array(
-                                'placeholder' => "", 
-                                'class' => 'tips form-control', 
+                                'placeholder' => "",
+                                'class' => 'tips form-control',
                                 'id' => $forms['mercadopago_client_secret']['key']
                         ))?>
                         <span class="help-block">
@@ -1067,14 +1116,14 @@
                             </a>
                         </p>
                     </div>
-                        
+
                     <div class="form-group">
                         <?=FORM::label($forms['fraudlabspro']['key'], __('FraudLabsPro api key'), array('class'=>'control-label', 'for'=>$forms['fraudlabspro']['key']))?>
                         <?=FORM::input($forms['fraudlabspro']['key'], $forms['fraudlabspro']['value'], array(
-                            'placeholder' => "", 
-                            'class' => 'tips form-control', 
+                            'placeholder' => "",
+                            'class' => 'tips form-control',
                             'id' => $forms['fraudlabspro']['key'],
-                        ))?> 
+                        ))?>
                     </div>
 
                     <hr>
