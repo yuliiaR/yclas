@@ -77,7 +77,7 @@
                             <a data-toggle="tab" href="#tabSettingsPaymentPaymill" aria-expanded="false">Paymill</a>
                         </li>
                         <li>
-                            <a data-toggle="tab" href="#tabSettingsPaymentBitpayV2" aria-expanded="false">Bitpay</a>
+                            <a data-toggle="tab" href="#tabSettingsPaymentBitpay" aria-expanded="false">Bitpay</a>
                         </li>
                         <li>
                             <a data-toggle="tab" href="#tabSettingsPaymentPaysbuy" aria-expanded="false">Paysbuy</a>
@@ -567,35 +567,6 @@
 
                 <div id="tabSettingsPaymentBitpay" class="tab-pane fade">
                     <h4>Bitpay</h4>
-                    <hr>
-
-                    <div class="form-group">
-                        <p class="form-control-static">
-                            Accept bitcoins using Bitpay
-                        </p>
-                        <p class="form-control-static">
-                            <a class="btn btn-success btn-icon-left" target="_blank" href="https://bitpay.com">
-                                <i class="glyphicon glyphicon-pencil"></i> Register for free at Bitpay
-                            </a>
-                        </p>
-                    </div>
-
-                    <div class="form-group">
-                        <?=FORM::label($forms['bitpay_apikey']['key'], __('Bitpay api key'), array('class'=>'control-label', 'for'=>$forms['bitpay_apikey']['key']))?>
-                        <?=FORM::input($forms['bitpay_apikey']['key'], $forms['bitpay_apikey']['value'], array(
-                            'placeholder' => "",
-                            'class' => 'tips form-control',
-                            'id' => $forms['bitpay_apikey']['key'],
-                            'data-content'=> __("Bitpay api key"),
-                        ))?>
-                    </div>
-
-                    <hr>
-                    <?=FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'payment'))))?>
-                </div>
-
-                <div id="tabSettingsPaymentBitpayV2" class="tab-pane fade">
-                    <h4>Bitpay V2</h4>
                     <hr>
 
                     <div class="form-group">

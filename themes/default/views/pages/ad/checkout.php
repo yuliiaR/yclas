@@ -216,10 +216,7 @@
                         <?if(($sk = StripeKO::button($order)) != ''):?>
                             <li class="text-right"><?=$sk?></li>
                         <?endif?>
-                        <?if(($bp = Bitpay::button($order)) != ''):?>
-                            <li class="text-right"><?=$bp?></li>
-                        <?endif?>
-                        <? if (($bp_v2 = BitpayV2::button($order)) != '') : ?>
+                        <? if (($bp_v2 = Bitpay::button($order)) != '') : ?>
                             <li class="text-right"><?= $bp_v2 ?></li>
                         <? endif ?>
                         <?if(($two = twocheckout::form($order)) != ''):?>

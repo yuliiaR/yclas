@@ -1,10 +1,5 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
-/**
- * Controller SETTINGS contains all basic configurations displayed to Admin.
- */
-
-
 class Controller_Panel_Bitpay extends Auth_Controller {
 
     public function action_generate_keys()
