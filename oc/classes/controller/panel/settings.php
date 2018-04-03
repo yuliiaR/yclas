@@ -260,7 +260,7 @@ class Controller_Panel_Settings extends Auth_Controller {
 
                         if ($c->config_key == 'subscriptions_expire' AND $c->config_value == 1 AND Core::config('general.subscriptions') == TRUE)
                         {
-                            
+
                             $plan = new Model_Plan();
                             $plan->where('status','=',1)->find();
 
@@ -273,9 +273,9 @@ class Controller_Panel_Settings extends Auth_Controller {
 
                         if ($c->config_key == 'sms_auth' AND $c->config_value == 1){
 
-                            if(!empty(Kohana::$_POST_ORIG['general']['sms_clickatell_api'][0]) 
+                            if(!empty(Kohana::$_POST_ORIG['general']['sms_clickatell_api'][0])
                                 OR (!Kohana::$_POST_ORIG['general']['sms_clickatell_api'][0] == NULL)){
-                                
+
                                 $test_sms_auth = SMS::testAPIkey(Kohana::$_POST_ORIG['general']['sms_clickatell_api'][0]);
 
                                 if($test_sms_auth == FALSE){
@@ -361,7 +361,7 @@ class Controller_Panel_Settings extends Auth_Controller {
             ->rule('stripe_address', 'range', array(':value', 0, 1));
 
             //not updatable fields
-            $do_nothing = array('featured_days','pay_to_go_on_feature','featured_plans');
+            $do_nothing = array('featured_days','pay_to_go_on_feature','featured_plans', 'bitpay_token', 'bitpay_pairing_code');
 
             // VAT country and number is filled
             if(Core::request('vat_country') AND Core::request('vat_number')){
@@ -370,11 +370,17 @@ class Controller_Panel_Settings extends Auth_Controller {
                     Alert::set(Alert::ERROR, __('Invalid EU Vat Number, please verify number and country match'));
                     $this->redirect(Route::url('oc-panel',array('controller'=>'settings','action'=>'payment')));
                 }
-                // if is a non-eu country, check if VAT rate is filled and greater than 0 
+                // if is a non-eu country, check if VAT rate is filled and greater than 0
                 elseif(!euvat::is_eu_country(Core::request('vat_country')) AND (!Core::request('vat_non_eu') OR Core::request('vat_non_eu') < 0)){
                     Alert::set(Alert::ERROR, __('Please enter a valid VAT rate.'));
                     $this->redirect(Route::url('oc-panel',array('controller'=>'settings','action'=>'payment')));
                 }
+            }
+
+            // Bitpay
+            if (Core::request('bitpay_pairing_code') AND Core::request('bitpay_pairing_code') != Core::config('payment.bitpay_pairing_code'))
+            {
+                $this->redirect(Route::url('oc-panel', array('controller' => 'bitpay', 'action' => 'pair')) . '?code=' . Core::request('bitpay_pairing_code'));
             }
 
             if ($validation->check()) {
