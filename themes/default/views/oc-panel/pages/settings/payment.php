@@ -580,8 +580,6 @@
                         </p>
                     </div>
 
-                    <hr>
-
                     <div class="form-group">
                         <?= FORM::label($forms['bitpay_sandbox']['key'], __('Sandbox'), array('class' => 'control-label', 'for' => $forms['bitpay_sandbox']['key'])) ?>
                         <div class="radio radio-primary">
@@ -590,14 +588,6 @@
                             <?= Form::radio($forms['bitpay_sandbox']['key'], 0, !(bool)$forms['bitpay_sandbox']['value'], array('id' => $forms['bitpay_sandbox']['key'] . '0')) ?>
                             <?= Form::label($forms['bitpay_sandbox']['key'] . '0', __('Disabled')) ?>
                         </div>
-                    </div>
-
-                    <div class="form-group">
-                        <p class="form-control-static">
-                            <a class="btn btn-success" href="<?= Route::url('oc-panel', array('controller' => 'bitpay', 'action' => 'generate_keys')) ?>">
-                                <?= _e('Create and persist a public & private keypair') ?>
-                            </a>
-                        </p>
                     </div>
 
                     <div class="form-group">
