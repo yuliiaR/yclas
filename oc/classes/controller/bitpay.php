@@ -57,34 +57,27 @@ class Controller_Bitpay extends Controller
         $invoiceExceptionStatus = $invoice->getExceptionStatus();
         $invoicePrice = $invoice->getPrice();
 
-        //ipn result validated
-        $ipn_result = Bitpay::bpVerifyNotification();
+        //retrieve info for the item in DB
+        $order = new Model_Order();
+        $order = $order->where('id_order', '=', $id_order)
+                        ->where('status', '=', Model_Order::STATUS_CREATED)
+                        ->limit(1)->find();
 
-        if (isset($ipn_result['error'])) {
-            Kohana::$log->add(Log::ERROR, $ipn_result);
-        } else {
-            //retrieve info for the item in DB
-            $order = new Model_Order();
-            $order = $order->where('id_order', '=', $id_order)
-                           ->where('status', '=', Model_Order::STATUS_CREATED)
-                           ->limit(1)->find();
-
-            if ($order->loaded()) {
-                switch ($invoiceStatus) {
-                    case 'paid':
-                        break;
-                    case 'confirmed':
-                        Kohana::$log->add(Log::DEBUG, 'BitPay bitcoin payment confirmed. Awaiting network confirmation and completed status.');
-                        // no break
-                    case 'complete':
-                        //mark as paid
-                        $order->confirm_payment('bitpay', $ipn->id);
-                        $this->response->body('OK');
-                        break;
-                    case 'invalid':
-                        Kohana::$log->add(Log::ERROR, 'Bitcoin payment is invalid for this order! The payment was not confirmed by the network within 1 hour.');
-                        break;
-                }
+        if ($order->loaded()) {
+            switch ($invoiceStatus) {
+                case 'paid':
+                    break;
+                case 'confirmed':
+                    Kohana::$log->add(Log::DEBUG, 'BitPay bitcoin payment confirmed. Awaiting network confirmation and completed status.');
+                    // no break
+                case 'complete':
+                    //mark as paid
+                    $order->confirm_payment('bitpay', $ipn->id);
+                    $this->response->body('OK');
+                    break;
+                case 'invalid':
+                    Kohana::$log->add(Log::ERROR, 'Bitcoin payment is invalid for this order! The payment was not confirmed by the network within 1 hour.');
+                    break;
             }
         }
 
