@@ -58,7 +58,8 @@ class Bitpay
             $invoice->setCurrency(new \Bitpay\Currency($order->currency));
 
             $invoice->setOrderId($order->id_order)
-                ->setNotificationUrl(Route::url('default', array('controller' => 'bitpay', 'action' => 'ipn', 'id' => $order->id_order)));
+                ->setNotificationUrl(Route::url('default', array('controller' => 'bitpay', 'action' => 'ipn', 'id' => $order->id_order)))
+                ->setRedirectURL(Route::url('oc-panel', array('controller' => 'profile', 'action' => 'orders')));
 
             try {
                 $client->createInvoice($invoice);
@@ -68,6 +69,14 @@ class Bitpay
                 echo (string)$request . PHP_EOL . PHP_EOL . PHP_EOL;
                 echo (string)$response . PHP_EOL . PHP_EOL;
                 exit(1);
+            }
+
+            $order->txn_id = $invoice->getId();
+
+            try {
+                $order->save();
+            } catch (Exception $e) {
+                throw HTTP_Exception::factory(500, $e->getMessage());
             }
 
             return View::factory('pages/bitpay/button', ['invoice' => $invoice]);

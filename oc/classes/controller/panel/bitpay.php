@@ -2,7 +2,7 @@
 
 class Controller_Panel_Bitpay extends Auth_Controller {
 
-    public function action_generate_keys()
+    public function generate_keys()
     {
         require_once Kohana::find_file('vendor', 'bitpay/vendor/autoload', 'php');
 
@@ -15,12 +15,12 @@ class Controller_Panel_Bitpay extends Auth_Controller {
 
         Model_Config::set_value('payment', 'bitpay_private_key', serialize($private_key));
         Model_Config::set_value('payment', 'bitpay_public_key', serialize($public_key));
-
-        HTTP::redirect(Route::url('oc-panel',array('controller'  => 'settings', 'action'=>'payment')));
     }
 
     public function action_pair()
     {
+        $this->generate_keys();
+
         require_once Kohana::find_file('vendor', 'bitpay/vendor/autoload', 'php');
 
         $private_key = unserialize(Core::config('payment.bitpay_private_key'));
