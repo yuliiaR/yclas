@@ -445,7 +445,7 @@ class Model_User extends ORM {
             if ($regenerate_token==TRUE)//regenerating the token, for security or new user...
                 $this->create_token();
 
-            $ql = Auth::instance()->ql_encode($this->token,Route::url($route,$params,'http'));
+            $ql = Auth::instance()->ql_encode($this->token,Route::url($route,$params));
             return Route::url('oc-panel',array('controller' => 'auth', 'action' => 'ql', 'id' =>$ql));
         }
         return NULL;
