@@ -87,43 +87,18 @@
 							</div>
 						</div>
 					<?endif?>
-
-		     <?if(core::config("advertisement.num_images") > 0 ):?>
-					<div class="form-group images"
-						data-max-image-size="<?=core::config('image.max_image_size')?>"
-						data-image-width="<?=core::config('image.width')?>"
-						data-image-height="<?=core::config('image.height') ? core::config('image.height') : 0?>"
-						data-image-quality="<?=core::config('image.quality')?>"
-						data-swaltext="<?=sprintf(__('Is not of valid size. Size is limited to %s MB per image'),core::config('image.max_image_size'))?>"
-					>
-						<div class="col-md-12">
-							<label><?=_e('Images')?></label>
-							<div class="row">
-								<div class="col-md-12">
-									<?for ($i=0; $i < core::config("advertisement.num_images") ; $i++):?>
-										<div class="fileinput fileinput-new <?=($i>=1)?'hidden':NULL?>" data-provides="fileinput">
-										  	<div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;"></div>
-											<div>
-											<span class="btn btn-default btn-file">
-												<span class="fileinput-new"><?=_e('Select')?></span>
-												<span class="fileinput-exists"><?=_e('Edit')?></span>
-												<input type="file" name="<?='image'.$i?>" id="<?='fileInput'.$i?>" accept="image/*">
-											</span>
-                                            <?if (core::config('image.upload_from_url')):?>
-    											<button type="button" class="btn btn-default fileinput-url" data-toggle="modal" data-target="#<?='urlInputimage'.$i?>"><?=_e('Image URL')?></button>
-                                            <?endif?>
-											<a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput"><?=_e('Delete')?></a>
-										  </div>
-										</div>
-									<?endfor?>
-								</div>
+					<?if(core::config("advertisement.num_images") > 0 ):?>
+						<div class="form-group images"
+							data-max-files="<?=core::config("advertisement.num_images") + 1?>"
+							data-max-image-size="<?=core::config('image.max_image_size')?>"
+							data-image-width="<?=core::config('image.width')?>"
+							data-image-height="<?=core::config('image.height') ? core::config('image.height') : ''?>">
+							<div class="col-md-12">
+								<label><?=_e('Images')?></label>
+								<div class="dropzone" id="images-dropzone"></div>
 							</div>
-							<p class="help-block"><?=_e('Up to')?> <?=core::config('advertisement.num_images')?> <?=_e('images allowed.')?></p>
-							<p class="help-block"><?=join(' '.__('or').' ', array_filter(array_merge(array(join(', ', array_slice(array_map('strtoupper', explode(',', core::config('image.allowed_formats'))), 0, -2))), array_slice(array_map('strtoupper', explode(',', core::config('image.allowed_formats'))), -2))))?> <?=_e('formats only')?>.</p>
-							<p class="help-block"><?=_e('Maximum file size of')?> <?=core::config('image.max_image_size')?>MB.</p>
 						</div>
-					</div>
-				<?endif?>
+					<?endif?>
 					<?if($form_show['phone'] != FALSE):?>
 						<div class="form-group">
 							<div class="col-md-4">

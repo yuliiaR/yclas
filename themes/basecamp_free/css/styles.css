@@ -1979,6 +1979,11 @@ div.sceditor-group {padding: 1px 15px 5px 5px !important;}
 	border-color: #3c763d!important;
 }
 
+.dropzone {
+    border-width: 1px !important;
+    border-style: dashed !important;
+}
+
 #toast-container > div{
   opacity: 1!important;
 }
