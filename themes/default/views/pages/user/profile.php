@@ -67,7 +67,7 @@
             <?endif?>
         </ul>
         <?if (Theme::get('premium')==1):?>
-            <?if(isset($user->cf_whatsapp) AND $user->cf_whatsapp!=''):?>
+            <?if(isset($user->cf_whatsapp) AND strlen($user->cf_whatsapp) > 6):?>
                 <a href="https://api.whatsapp.com/send?phone=<?=$user->cf_whatsapp?>" title="Chat with <?=$user->name?>" alt="Whatsapp"><i class="fa fa-2x fa-whatsapp" style="color:#43d854"></i></a>
             <?endif?>
             <?if(isset($user->cf_skype) AND $user->cf_skype!=''):?>
