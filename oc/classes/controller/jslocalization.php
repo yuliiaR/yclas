@@ -224,5 +224,21 @@ class Controller_Jslocalization extends Controller {
                                 }'; 
         $this->template->content = $localization_rules;
     }
-    
+
+    public function action_dropzone()
+    {
+        $this->template->content = '
+            Dropzone.prototype.defaultOptions.dictDefaultMessage = "'.addslashes(__('Drop images here to upload')).'";
+            Dropzone.prototype.defaultOptions.dictFallbackMessage = "'.addslashes(__('Your browser does not support drag and drop file uploads.')).'";
+            Dropzone.prototype.defaultOptions.dictFallbackText = "'.addslashes(__('Please use the fallback form below to upload your files like in the olden days.')).'";
+            Dropzone.prototype.defaultOptions.dictFileTooBig = "'.addslashes(__('File is too big ({{filesize}}MiB). Max filesize: {{maxFilesize}}MiB.')).'";
+            Dropzone.prototype.defaultOptions.dictInvalidFileType = "'.addslashes(__('You can not upload files of this type.')).'";
+            Dropzone.prototype.defaultOptions.dictResponseError = "'.addslashes(__('Server responded with {{statusCode}} code.')).'";
+            Dropzone.prototype.defaultOptions.dictCancelUpload = "'.addslashes(__('Cancel upload')).'";
+            Dropzone.prototype.defaultOptions.dictCancelUploadConfirmation = "'.addslashes(__('Are you sure you want to cancel this upload?')).'";
+            Dropzone.prototype.defaultOptions.dictRemoveFile = "'.addslashes(__('Remove file')).'";
+            Dropzone.prototype.defaultOptions.dictMaxFilesExceeded = "'.addslashes(__('You can not upload any more files.')).'";
+        ';
+    }
+
 }// End Jslocalization Controller

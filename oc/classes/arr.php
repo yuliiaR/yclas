@@ -33,4 +33,32 @@ class Arr extends Kohana_Arr {
 
         return $xml->asXML();
     }
+
+    /**
+     * Re array the odd indexing of multiple file uploads from the format:
+     *
+     * $_FILES['field']['key']['index']
+     *
+     * to
+     *
+     * $_FILES['field']['index']['key']
+     *
+     * @param array $files_post
+     *
+     * @return array $files
+     */
+    public static function re_array_multiple_file_uploads($files_post) {
+        $files = [];
+        $files_count = count($files_post['name']);
+        $files_keys = array_keys($files_post);
+
+        for ($i = 0; $i < $files_count; $i++)
+        {
+            foreach ($files_keys as $key) {
+                $files[$i][$key] = $files_post[$key][$i];
+            }
+        }
+
+        return $files;
+    }
 }

@@ -80,17 +80,22 @@ class Controller_New extends Controller
 
         $this->template->styles = array('css/jquery.sceditor.default.theme.min.css' => 'screen',
                                         'css/jasny-bootstrap.min.css' => 'screen',
+                                        'css/dropzone.min.css' => 'screen',
+                                        'css/jquery-ui.min.css' => 'screen',
                                         '//cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/css/selectize.bootstrap3.min.css' => 'screen',
                                         '//cdn.jsdelivr.net/sweetalert/1.1.3/sweetalert.css' => 'screen');
 
         $this->template->scripts['footer'][] = 'js/jquery.sceditor.bbcode.min.js';
         $this->template->scripts['footer'][] = 'js/jquery.sceditor.plaintext.min.js';
         $this->template->scripts['footer'][] = 'js/jasny-bootstrap.min.js';
+        $this->template->scripts['footer'][] = 'js/dropzone.min.js';
+        $this->template->scripts['footer'][] = Route::url('jslocalization', ['controller' => 'jslocalization', 'action' => 'dropzone']);
+        $this->template->scripts['footer'][] = 'js/jquery-ui.min.js';
         $this->template->scripts['footer'][] = '//cdn.jsdelivr.net/sweetalert/1.1.3/sweetalert.min.js';
         $this->template->scripts['footer'][] = '//cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/js/standalone/selectize.min.js';
         $this->template->scripts['footer'][] = '//cdnjs.cloudflare.com/ajax/libs/ouibounce/0.0.12/ouibounce.min.js';
-        $this->template->scripts['footer'][] = 'js/canvasResize.js';
         $this->template->scripts['footer'][] = 'js/load-image.all.min.js';
+
         if(core::config('advertisement.map_pub_new'))
         {
             $this->template->scripts['async_defer'][] = '//maps.google.com/maps/api/js?libraries=geometry&v=3&key='.core::config("advertisement.gm_api_key").'&callback=initLocationsGMap&language='.i18n::get_gmaps_language(i18n::$locale);
@@ -297,12 +302,31 @@ class Controller_New extends Controller
                         // IMAGE UPLOAD
                         $filename = NULL;
 
-                        for ($i=0; $i < core::config('advertisement.num_images'); $i++)
+                        if (Core::post('ajax'))
                         {
-                            if (Core::post('base64_image'.$i))
-                                $filename = $new_ad->save_base64_image(Core::post('base64_image'.$i));
-                            elseif (isset($_FILES['image'.$i]))
-                                $filename = $new_ad->save_image($_FILES['image'.$i]);
+                            for ($i = 0; $i < core::config('advertisement.num_images'); $i++)
+                            {
+                                $files = Arr::re_array_multiple_file_uploads($_FILES['file']);
+
+                                if (isset($files[$i]))
+                                {
+                                    $filename = $new_ad->save_image($files[$i]);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            for ($i = 0; $i < core::config('advertisement.num_images'); $i++)
+                            {
+                                if (Core::post('base64_image' . $i))
+                                {
+                                    $filename = $new_ad->save_base64_image(Core::post('base64_image' . $i));
+                                }
+                                elseif (isset($_FILES['image' . $i]))
+                                {
+                                    $filename = $new_ad->save_image($_FILES['image' . $i]);
+                                }
+                            }
                         }
 
                         // Post on social media
@@ -311,11 +335,27 @@ class Controller_New extends Controller
                         Alert::set(Alert::SUCCESS, $return['message']);
 
                         //redirect user
-                        if (isset($return['checkout_url']) AND !empty($return['checkout_url']))
-                            $this->redirect($return['checkout_url']);
-                        else
-                            $this->redirect(Route::url('default', array('action'=>'thanks','controller'=>'ad','id'=>$new_ad->id_ad)));
+                        if (Core::post('ajax'))
+                        {
+                            $this->auto_render = FALSE;
+                            $this->template = View::factory('js');
+                            $this->response->headers('Content-Type', 'application/json');
+                            $this->response->status('200');
 
+                            if (isset($return['checkout_url']) AND !empty($return['checkout_url']))
+                                $this->template->content = json_encode(['redirect_url' => $return['checkout_url']]);
+                            else
+                                $this->template->content = json_encode(['redirect_url' => Route::url('default', ['action' => 'thanks', 'controller' => 'ad', 'id' => $new_ad->id_ad])]);
+
+                            return;
+                        }
+                        else
+                        {
+                            if (isset($return['checkout_url']) AND !empty($return['checkout_url']))
+                                $this->redirect($return['checkout_url']);
+                            else
+                                $this->redirect(Route::url('default', array('action'=>'thanks','controller'=>'ad','id'=>$new_ad->id_ad)));
+                        }
                     }
                 }
                 else
@@ -332,10 +372,17 @@ class Controller_New extends Controller
                 Alert::set(Alert::ALERT, __('Captcha is not correct'));
             }
 
+            if (Core::post('ajax'))
+            {
+                $this->auto_render = FALSE;
+                $this->template = View::factory('js');
+                $this->response->headers('Content-Type', 'application/json');
+                $this->response->status('400');
+                $this->template->content = json_encode(['redirect_url' => Route::url('post_new')]);
 
+                return;
+            }
         }
 
     }
-
-
 }
