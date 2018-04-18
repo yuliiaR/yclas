@@ -14,7 +14,7 @@ $I->click('.select-category');
 $I->fillField('category','18');
 $I->fillField('location','57');
 $I->fillField('#description','This is a new admin ad on jobdrop theme');
-$I->attachFile('input[id="fileInput0"]', 'photo.jpg');
+// $I->attachFile('input[id="fileInput0"]', 'photo.jpg');
 $I->fillField('#phone','99885522');
 $I->fillField('#address','barcelona');
 $I->fillField('#price','25');
