@@ -15,7 +15,7 @@ $I->fillField('#title','New ad unregister pinclass');
 $I->fillField('#category-selected','18');
 $I->fillField('#location-selected','4');
 $I->fillField('#description','This is a new ad from unregister user on the pinclass theme');
-$I->attachFile('input[type="file"]', 'photo.jpg');
+// $I->attachFile('input[type="file"]', 'photo.jpg');
 $I->fillField('#phone','99885522');
 $I->fillField('#address','barcelona');
 $I->fillField('#price','25');

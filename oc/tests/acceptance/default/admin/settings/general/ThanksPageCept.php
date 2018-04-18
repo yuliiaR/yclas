@@ -31,7 +31,7 @@ $I->click('.select-category');
 $I->fillField('category','18');
 $I->fillField('location','4');
 $I->fillField('#description','Test thanks page');
-$I->attachFile('input[id="fileInput0"]', 'photo.jpg');
+// $I->attachFile('input[id="fileInput0"]', 'photo.jpg');
 $I->fillField('#phone','99885522');
 $I->fillField('#address','barcelona');
 $I->fillField('#price','25');

@@ -21,7 +21,7 @@ $I->click('.select-category');
 $I->fillField('category','18');
 $I->fillField('location','4');
 $I->fillField('#description','This is a new user ad on newspaper theme');
-$I->attachFile('input[type="file"]', 'photo.jpg');
+// $I->attachFile('input[type="file"]', 'photo.jpg');
 $I->fillField('#phone','99885522');
 $I->fillField('#address','barcelona');
 $I->fillField('#price','25');
