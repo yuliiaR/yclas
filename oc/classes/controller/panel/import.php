@@ -280,7 +280,9 @@ class Controller_Panel_Import extends Controller_Panel_Tools {
         foreach (Model_Field::get_all() as $name => $custom_field)
         {
             $name = 'cf_' . $name;
-            $ad->$name = $adi->$name;
+            if($adi->$name != ''){
+            	$ad->$name = $adi->$name;
+        	}
         }
 
         try {
