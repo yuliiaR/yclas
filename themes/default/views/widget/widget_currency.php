@@ -7,9 +7,9 @@
 	<?endif?>
 	<div class="panel-body">
 		<?if(isset(Model_Ad::current()->cf_currency) AND !empty(Model_Ad::current()->cf_currency)):?>
-	    	<div class="form-group curry" data-locale="<?=Model_Ad::current()->currency();?>" data-currencies="<?=($widget->currencies);?>" data-default="<?=($widget->default);?>">
+	    	<div class="form-group curry" data-locale="<?=Model_Ad::current()->currency();?>" data-currencies="<?=($widget->currencies);?>" data-default="<?=($widget->default);?>" data-apikey="<?=($widget->apikey);?>">
 	    <?else:?>
-	    	<div class="form-group curry" data-locale="<?=core::config('general.number_format');?>" data-currencies="<?=($widget->currencies);?>" data-default="<?=($widget->default);?>">
+	    	<div class="form-group curry" data-locale="<?=core::config('general.number_format');?>" data-currencies="<?=($widget->currencies);?>" data-default="<?=($widget->default);?>" data-apikey="<?=($widget->apikey);?>">
 	    <?endif?>
 	        <div class="my-future-ddm"></div>
 	    </div>
@@ -21,7 +21,7 @@
 	    </div>
 	<?endif?>
 	<div class="panel-body">
-    	<div class="form-group curry" data-locale="<?=core::config('general.number_format');?>" data-currencies="<?=($widget->currencies);?>" data-default="<?=($widget->default);?>">
+    	<div class="form-group curry" data-locale="<?=core::config('general.number_format');?>" data-currencies="<?=($widget->currencies);?>" data-default="<?=($widget->default);?>" data-apikey="<?=($widget->apikey);?>">
 	        <div class="my-future-ddm"></div>
 	    </div>
 	</div>
