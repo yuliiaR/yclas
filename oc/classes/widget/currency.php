@@ -16,7 +16,7 @@ class Widget_Currency extends Widget
 	{	
 
 		$this->title = __('Currency Converter');
-		$this->description = __('Choose currency');
+		$this->description = __('Choose currency. <a target="_blank" href="https://docs.yclas.com/currency-converter-widget/"><i class="fa fa-question-circle"></i></a>');
 
 		$this->fields = array(	
 						 		'currency_title'  => array(	'type'		=> 'text',
@@ -24,6 +24,10 @@ class Widget_Currency extends Widget
 						 		  						'label'		=> __('Currency name displayed'),
 						 		  						'default'   => __('Currencies'),
 														'required'	=> FALSE),
+                                'apikey' => array(      'type'      => 'text',
+                                                        'display'   => 'text',
+                                                        'label'     => __('Enter your API key.'),
+                                                        'required'  => FALSE),
                                 'default' => array(  	'type'      => 'text',
                                                         'display'   => 'text',
                                                         'label'     => __('Choose the default currency (e.g. USD)'),

@@ -377,11 +377,12 @@ $(function(){
 function getRate(from, to) {
 
     var jqxhr = $.ajax({
-      url: 'https://api.fixer.io/latest',
+      url: 'http://data.fixer.io/api/latest',
       dataType: 'jsonp',
       data: {
         symbols: to,
-        base: from
+        base: from,
+        access_key: $('.curry').data('apikey')
       }
     });
 
