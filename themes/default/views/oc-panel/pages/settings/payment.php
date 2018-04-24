@@ -42,11 +42,11 @@
     <div class="alert alert-info fade in">
         <p>
             <strong><?=__('Heads Up!')?></strong>
-            Authorize, Stripe, Paymill, 2checkout, Paysbuy, SecurePay, Robokassa, Paguelofacil, Paytabs, Payfast, Mercadopago and Bitpay <?=__('only available with premium themes!').'<br>'.__('Upgrade your Yclas site to activate this feature.')?>
+            <?=__('Payment gateways are only available with PRO version!').'<br>'.__('Upgrade your Yclas site to activate this feature.')?>
         </p>
         <p>
-            <a class="btn btn-info" href="<?=Route::url('oc-panel',array('controller'=>'theme'))?>">
-                <?=__('Browse Themes')?>
+            <a class="btn btn-info" href="https://yclas.com/self-hosted.html">
+                <?=__('Upgrade to PRO now')?>
             </a>
         </p>
     </div>

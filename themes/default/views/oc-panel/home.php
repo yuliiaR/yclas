@@ -6,6 +6,18 @@
 
 <hr>
 
+<div class="alert alert-info fade in">
+    <p>
+        <strong><?=__('Heads Up!')?></strong> 
+        <?=__('You are using our Lite version, to enable all the features and to get support upgrade to PRO')?>
+    </p>
+    <p>
+        <a class="btn btn-info" href="https://yclas.com/self-hosted.html">
+            <?=__('Upgrade to PRO now')?>
+        </a>
+    </p>
+</div>
+
 <p><?=__('This is the main overview page of your website.')?></p>
 
 <?if (core::cookie('intro_panel')!=1):?>
