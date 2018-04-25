@@ -1,5 +1,6 @@
 $(function(){
     $('textarea[name=description]').sceditor({
+    		format: 'bbcode',
             plugins: "bbcode,plaintext",
             toolbar: "bold,italic,underline,strike|left,center,right,justify|" +
             "bulletlist,orderedlist|link,unlink,image,youtube|source",

@@ -128,16 +128,16 @@
               query += selected_currencies[i]+',';
           }
           query = query.slice(0, -1);
-          query += '"';
         }
 
         // Request currencies from yahoo finance
         var jqxhr = $.ajax({
-          url: 'https://api.fixer.io/latest',
+          url: 'http://data.fixer.io/api/latest',
           dataType: 'jsonp',
           data: {
             symbols: query,
-            base: settings.base
+            base: settings.base,
+            access_key: $('.curry').data('apikey')
           }
         });
 
@@ -228,7 +228,7 @@
           money = $price.text();
 
           // remove currency symbol and letters
-          money = money.replace(/[^\d,-]/g, '');
+          money = money.replace(/[^0-9.,]/g, '');
 
           // Check if field has comma instead of decimal and replace with decimal
           if ( money.indexOf(',') !== -1 ){
@@ -237,7 +237,7 @@
           }
 
           // Remove anything but the numbers and decimals and convert string to Number
-          money = Number(money.replace(/[^0-9\.]+/g, ''));
+          // money = Number(money.replace(/[^0-9\.]+/g, ''));
 
           if ($price.data('base-figure')) {
 
