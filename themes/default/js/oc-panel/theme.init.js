@@ -401,12 +401,6 @@ $('.close-panel').on('click',function() {
     $('#intro-panel').addClass('hidden');
 });
 
-
-// Initiate fastclick
-$(function() {
-    FastClick.attach(document.body);
-});
-
 $(function(){
 
     // Shortcut binding to elements with 'data-keybinding' attribute: trigger click-event when hotkey pressed
