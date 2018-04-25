@@ -140,7 +140,6 @@ class Auth_Controller extends Controller
                                                       'js/jquery.bootgrid.min.js',
                                                       'js/query.bootgrid.fa.min.js',
                                                       'js/oc-panel/metismenu.min.js',
-                                                      'js/oc-panel/fastclick.min.js',
                                                       'js/oc-panel/theme.init.js?v='.Core::VERSION,
                                                       'js/oc-panel/sidebar.js?v='.Core::VERSION,
                     );
@@ -182,7 +181,6 @@ class Auth_Controller extends Controller
                                                         'js/jquery.bootgrid.min.js',
                                                         'js/query.bootgrid.fa.min.js',
                                                         'js/oc-panel/metismenu.min.js',
-                                                        'js/oc-panel/fastclick.min.js',
                                                         'js/oc-panel/theme.init.js?v='.Core::VERSION,
                                                         'js/oc-panel/sidebar.js?v='.Core::VERSION,
                                                       );
