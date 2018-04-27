@@ -376,6 +376,8 @@ Dropzone.options.imagesDropzone = {
             if (dzClosure.getQueuedFiles().length > 0) {
                 e.preventDefault();
                 e.stopPropagation();
+                //Update the original textarea before validating
+                $("#description").sceditor('instance').updateOriginal();
 
                 if ($('#publish-new').valid()) {
                     $('#processing-modal').on('shown.bs.modal', function () {
