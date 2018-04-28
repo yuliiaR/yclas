@@ -367,7 +367,7 @@ Dropzone.options.imagesDropzone = {
     maxFiles: $('.images').data('max-files'),
     parallelUploads: $('.images').data('max-files'),
     parallelUploads: $('.images').data('max-files'),
-    resizeWidth: $('.images').data('image-width'),
+    resizeWidth: getResizeValue($('.images').data('image-width')),
 
     init: function () {
         dzClosure = this;
