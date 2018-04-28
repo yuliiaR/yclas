@@ -367,7 +367,7 @@ Dropzone.options.imagesDropzone = {
     maxFiles: $('.images').data('max-files'),
     parallelUploads: $('.images').data('max-files'),
     parallelUploads: $('.images').data('max-files'),
-    resizeWidth: $('.images').data('image-width'),
+    resizeWidth: getResizeValue($('.images').data('image-width')),
 
     init: function () {
         dzClosure = this;
@@ -377,7 +377,7 @@ Dropzone.options.imagesDropzone = {
                 e.preventDefault();
                 e.stopPropagation();
                 //Update the original textarea before validating
-                $("#description").sceditor('instance').updateOriginal();
+                $('textarea[name=description]:not(.disable-bbcode)').sceditor('instance').updateOriginal();
 
                 if ($('#publish-new').valid()) {
                     $('#processing-modal').on('shown.bs.modal', function () {

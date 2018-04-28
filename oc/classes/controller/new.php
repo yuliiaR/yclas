@@ -81,7 +81,7 @@ class Controller_New extends Controller
         $this->template->styles = array('css/jquery.sceditor.default.theme.min.css' => 'screen',
                                         'css/jasny-bootstrap.min.css' => 'screen',
                                         'css/dropzone.min.css' => 'screen',
-                                        'css/jquery-ui.min.css' => 'screen',
+                                        'css/jquery-ui-sortable.min.css' => 'screen',
                                         '//cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/css/selectize.bootstrap3.min.css' => 'screen',
                                         '//cdn.jsdelivr.net/sweetalert/1.1.3/sweetalert.css' => 'screen');
 
@@ -90,7 +90,7 @@ class Controller_New extends Controller
         $this->template->scripts['footer'][] = 'js/jasny-bootstrap.min.js';
         $this->template->scripts['footer'][] = 'js/dropzone.min.js';
         $this->template->scripts['footer'][] = Route::url('jslocalization', ['controller' => 'jslocalization', 'action' => 'dropzone']);
-        $this->template->scripts['footer'][] = 'js/jquery-ui.min.js';
+        $this->template->scripts['footer'][] = 'js/jquery-ui-sortable.min.js';
         $this->template->scripts['footer'][] = '//cdn.jsdelivr.net/sweetalert/1.1.3/sweetalert.min.js';
         $this->template->scripts['footer'][] = '//cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/js/standalone/selectize.min.js';
         $this->template->scripts['footer'][] = '//cdnjs.cloudflare.com/ajax/libs/ouibounce/0.0.12/ouibounce.min.js';
