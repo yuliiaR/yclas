@@ -377,7 +377,7 @@ Dropzone.options.imagesDropzone = {
                 e.preventDefault();
                 e.stopPropagation();
                 //Update the original textarea before validating
-                $("#description").sceditor('instance').updateOriginal();
+                $('textarea[name=description]:not(.disable-bbcode)').sceditor('instance').updateOriginal();
 
                 if ($('#publish-new').valid()) {
                     $('#processing-modal').on('shown.bs.modal', function () {
