@@ -275,7 +275,7 @@ $("button[name=submit]").click(function(){
 
 function initLocationsGMap() {
     jQuery.ajax({
-        url: ("https:" == document.location.protocol ? "https:" : "http:") + "//cdn.jsdelivr.net/gmaps/0.4.15/gmaps.min.js",
+        url: ("https:" == document.location.protocol ? "https:" : "http:") + "//cdn.jsdelivr.net/gmaps/0.4.25/gmaps.min.js",
         dataType: "script",
         cache: true
     }).done(function() {
