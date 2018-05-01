@@ -68,25 +68,27 @@ function init_panel()
     else
     {
         $('#formorm_description, textarea[name=description]:not(.disable-bbcode), textarea[name=email_purchase_notes], .cf_textarea_fields').sceditor({
+            format: 'bbcode',
             plugins: "bbcode,plaintext",
-            toolbar: "bold,italic,underline,strike|left,center,right,justify|" +
-            "bulletlist,orderedlist|link,unlink,image,youtube|source",
+            toolbar: "bold,italic,underline,strike,|left,center,right,justify|" +
+                "bulletlist,orderedlist|link,unlink,youtube|source",
             resizeEnabled: "true",
             emoticonsEnabled: false,
+            width: '100%',
             rtl: $('meta[name="application-name"]').data('rtl'),
             style: $('meta[name="application-name"]').data('baseurl') + "themes/default/css/jquery.sceditor.default.min.css",
-            enablePasteFiltering: "true"});
+        });
     }
 
     // hack to submit form data from summernote source code mode
     $("form").submit(function(e) {
-        if ($("textarea[name=description]").data('editor')=='html')
+        if ($("textarea[name=description], textarea[name='formorm[description]']").data('editor')=='html')
         {
             if ($('#formorm_description, textarea[name=description], textarea[name=email_purchase_notes], .cf_textarea_fields').summernote('codeview.isActivated')) {
                 $('#formorm_description, textarea[name=description], textarea[name=email_purchase_notes], .cf_textarea_fields').summernote('codeview.deactivate');
             }
         }
-        else if ($( "#crud-post" ).length || $( "#crud-category" ) || $( "#crud-faqcategory" ).length) {
+        else if ($( "#crud-post" ).length || $( "#crud-category" ).length || $( "#crud-location" ).length) {
             if ($('#formorm_description').summernote('codeview.isActivated')) {
                 $('#formorm_description').summernote('codeview.deactivate');
             }
