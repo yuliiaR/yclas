@@ -410,7 +410,7 @@ Dropzone.options.imagesDropzone = {
         });
 
         this.on("thumbnail", function (file, dataUrl) {
-            window.loadImage.parseMetaData(file, (data) => {
+            window.loadImage.parseMetaData(file, function (data) {
                 if (data.exif) {
                     var rotation = 1;
                     var rotate = {
