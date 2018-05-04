@@ -52,6 +52,7 @@ class Controller_Panel_Bitpay extends Auth_Controller {
                 ]
             );
         } catch (\Exception $e) {
+            Model_Config::set_value('payment', 'bitpay_pairing_code', '');
             Alert::set(Alert::WARNING, $e->getMessage());
             Alert::set(Alert::WARNING, 'Pairing failed. Please check whether you are trying to pair a production pairing code on test.');
             HTTP::redirect(Route::url('oc-panel', array('controller' => 'settings', 'action' => 'payment')));
