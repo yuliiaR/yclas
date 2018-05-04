@@ -71,7 +71,7 @@ function init_panel()
             format: 'bbcode',
             plugins: "bbcode,plaintext",
             toolbar: "bold,italic,underline,strike,|left,center,right,justify|" +
-                "bulletlist,orderedlist|link,unlink,youtube|source",
+                "bulletlist,orderedlist|link,unlink,image,youtube|source",
             resizeEnabled: "true",
             emoticonsEnabled: false,
             width: '100%',
