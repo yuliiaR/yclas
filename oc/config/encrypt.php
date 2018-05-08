@@ -3,8 +3,8 @@
 return array(
 	'default' => array(
 		'type'   => 'openssl',
-        'key'    => '1234567891234567',//not in use, we use auth.php hash_key
-		'cipher' => 'AES-128-CBC',
+        'key'    => '12345678912345671234567891234567',//not in use, we use auth.php hash_key
+		'cipher' => 'AES-256-CBC',
 	),
 
 );
