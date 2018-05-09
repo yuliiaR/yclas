@@ -55,7 +55,7 @@ class Cron_Ad {
         {
             $ads = new Model_Ad();
             $ads = $ads ->where('status','=',Model_Ad::STATUS_PUBLISHED)
-                        ->where(DB::expr('DATE(DATE_ADD( published, INTERVAL '.core::config('advertisement.expire_date').' DAY))'),'=', Date::format('-1 days','Y-m-d'))
+                        ->where(DB::expr('DATE(DATE_ADD( published, INTERVAL '.core::config('advertisement.expire_date').' DAY))'),'<', Date::unix2mysql())
                         ->find_all();
 
             foreach ($ads as $ad) 

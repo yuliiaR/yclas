@@ -28,8 +28,8 @@ class Encrypt extends Kohana_Encrypt {
 				$config = Kohana::$config->load('encrypt')->$name;
 			}
 
-			//here we override we use to encrypt using the one of the installation
-			$config['key'] = Core::config('auth.hash_key');
+			//here we override we use to encrypt using the one of the installation, needs to be 32 chars...we duplicate it since hash_key is 16
+			$config['key'] = Core::config('auth.hash_key').Core::config('auth.hash_key');
 
 			if ( ! isset($config['key']))
 			{

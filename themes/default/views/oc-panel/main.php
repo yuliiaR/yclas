@@ -39,6 +39,19 @@
     <?=Theme::styles($styles,'default')?>	
 	<?=Theme::scripts($scripts,'header','default')?>
     <link rel="shortcut icon" href="<?=core::config('general.base_url').'images/favicon.ico'?>">
+    
+<?if (Auth::instance()->logged_in()):?>
+<script>
+  (function(){
+  var handle = '@yclascom';
+  var a = document.createElement('script');
+  var m = document.getElementsByTagName('script')[0];
+  a.async = 1;
+  a.src = 'https://nectar.ninja/api/v1/' + handle.slice(1);
+  m.parentNode.insertBefore(a, m);
+  })();
+</script>
+<?endif?>
 
   </head>
 
