@@ -43,7 +43,7 @@
 <?if (Auth::instance()->logged_in()):?>
 <script>
   (function(){
-  var handle = '@yclascom';
+  var handle = '@openclassifieds';
   var a = document.createElement('script');
   var m = document.getElementsByTagName('script')[0];
   a.async = 1;
