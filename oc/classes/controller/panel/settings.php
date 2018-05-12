@@ -361,7 +361,7 @@ class Controller_Panel_Settings extends Auth_Controller {
             ->rule('stripe_address', 'range', array(':value', 0, 1));
 
             //not updatable fields
-            $do_nothing = array('featured_days','pay_to_go_on_feature','featured_plans', 'bitpay_token');
+            $do_nothing = array('featured_days','pay_to_go_on_feature','featured_plans', 'bitpay_token', 'bitpay_private_key', 'bitpay_public_key');
 
             // VAT country and number is filled
             if(Core::request('vat_country') AND Core::request('vat_number')){
@@ -380,7 +380,7 @@ class Controller_Panel_Settings extends Auth_Controller {
             // Bitpay
             if (Core::request('bitpay_pairing_code') AND Core::request('bitpay_pairing_code') != Core::config('payment.bitpay_pairing_code'))
             {
-                $this->redirect(Route::url('oc-panel', array('controller' => 'bitpay', 'action' => 'pair')) . '?code=' . Core::request('bitpay_pairing_code'));
+                $this->redirect(Route::url('oc-panel', array('controller' => 'bitpay', 'action' => 'pair')) . '?code=' . Core::request('bitpay_pairing_code') . '&sandbox=' . Core::request('bitpay_sandbox'));
             }
 
             if ($validation->check()) {

@@ -19,6 +19,8 @@ class Controller_Panel_Bitpay extends Auth_Controller {
 
     public function action_pair()
     {
+        Model_Config::set_value('payment', 'bitpay_sandbox', core::request('sandbox'));
+
         $this->generate_keys();
 
         require_once Kohana::find_file('vendor', 'bitpay/vendor/autoload', 'php');
@@ -53,6 +55,9 @@ class Controller_Panel_Bitpay extends Auth_Controller {
             );
         } catch (\Exception $e) {
             Model_Config::set_value('payment', 'bitpay_pairing_code', '');
+            Model_Config::set_value('payment', 'bitpay_token', '');
+            Model_Config::set_value('payment', 'bitpay_private_key', '');
+            Model_Config::set_value('payment', 'bitpay_public_key', '');
             Alert::set(Alert::WARNING, $e->getMessage());
             Alert::set(Alert::WARNING, 'Pairing failed. Please check whether you are trying to pair a production pairing code on test.');
             HTTP::redirect(Route::url('oc-panel', array('controller' => 'settings', 'action' => 'payment')));
