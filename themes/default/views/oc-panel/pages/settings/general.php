@@ -245,6 +245,7 @@
                                 ))?>
                                 <span class="help-block">
                                     <?=__("If you choose to use alert terms, you can select the page you want to render. And to edit content, select Content->Page on your admin panel sidebar. Find the page and click Edit. In section Description add content that suits you.")?>
+                                    <a href="ttps://www.shareasale.com/r.cfm?b=854385&u=1782794&m=65338">If you need to generate your terms of service or privacy policy click here.</a>
                                 </span>
                             </div>
 

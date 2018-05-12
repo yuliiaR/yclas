@@ -877,15 +877,7 @@
 
                     <div class="form-group">
                         <p class="form-control-static">
-                            Get your <strong>CLIENT_ID</strong> and <strong>CLIENT_SECRET</strong> in the following address:
-                            <ul>
-                            <li>Argentina: <a href="https://www.mercadopago.com/mla/herramientas/aplicaciones">https://www.mercadopago.com/mla/herramientas/aplicaciones</a></li>
-                            <li>Brazil: <a href="https://www.mercadopago.com/mlb/ferramentas/aplicacoes">https://www.mercadopago.com/mlb/ferramentas/aplicacoes</a></li>
-                            <li>Mexico: <a href="https://www.mercadopago.com/mlm/herramientas/aplicaciones">https://www.mercadopago.com/mlm/herramientas/aplicaciones</a></li>
-                            <li>Venezuela: <a href="https://www.mercadopago.com/mlv/herramientas/aplicaciones">https://www.mercadopago.com/mlv/herramientas/aplicaciones</a></li>
-                            <li>Colombia: <a href="https://www.mercadopago.com/mco/herramientas/aplicaciones">https://www.mercadopago.com/mco/herramientas/aplicaciones</a></li>
-                            <li>Chile: <a href="https://www.mercadopago.com/mlc/herramientas/aplicaciones">https://www.mercadopago.com/mlc/herramientas/aplicaciones</a></li>
-                            </ul>
+                            Get your <strong>CLIENT_ID</strong> and <strong>CLIENT_SECRET</strong> <a href="https://www.mercadopago.com/mla/account/credentials?type=basic">here</a>
                         </p>
                     </div>
 

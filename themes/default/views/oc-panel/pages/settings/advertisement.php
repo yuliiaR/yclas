@@ -319,6 +319,7 @@
                             ))?>
                             <span class="help-block">
                                 <?=__("If you choose to use terms of service, you can select activate. And to edit content, select link 'Content' on your admin panel sidebar. Find page named 'Terms of service' click 'Edit'. In section 'Description' add content that suits you.")?>
+                                <a href="ttps://www.shareasale.com/r.cfm?b=854385&u=1782794&m=65338">If you need to generate your terms of service or privacy policy click here.</a>
                             </span>
                         </div>
 
