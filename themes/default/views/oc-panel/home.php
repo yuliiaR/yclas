@@ -8,7 +8,7 @@
 
 <div class="alert alert-info fade in">
     <p>
-        <strong><?=__('Heads Up!')?></strong> 
+        <strong><?=__('Heads Up!')?></strong>
         <?=__('You are using our Lite version, to enable all the features and to get support upgrade to PRO')?>
     </p>
     <p>
@@ -33,7 +33,7 @@
                         <?=__('Thanks for using Yclas. If you have any questions you can you can click the help button in the upper right corner.')?>
                     </p>
                     <p>
-                        <?=__('Your installation version is')?> 
+                        <?=__('Your installation version is')?>
                         <a class="ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'update','action'=>'index'))?>?reload=1"><span class="label label-info"><?=core::VERSION?></span></a>
                     </p>
                     <h4 class="page-header"><?=__('Lets get started')?></h4>
@@ -81,7 +81,7 @@
                     </div>
                 </div>
             </div>
-            <a class="ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'stats','action'=>'index'))?>">
+            <a class="ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'user','action'=>'index'))?>">
                 <div class="panel-footer">
                     <span class="pull-left"><?=__('View details')?></span>
                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -224,12 +224,12 @@
                             <? $i = 0; foreach($res as $ad):?>
                                 <tr>
                                     <td><?=$ad->id_ad?>
-                    
+
                                     <td><a href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>"><?= wordwrap($ad->title, 15, "<br />\n"); ?></a>
                                     </td>
-                    
+
                                     <td class="hidden-sm hidden-xs"><?= wordwrap($ad->category->name, 15, "<br />\n"); ?>
-                    
+
                                     <td class="hidden-sm hidden-xs">
                                         <?if($ad->location->loaded()):?>
                                             <?=wordwrap($ad->location->name, 15, "<br />\n");?>
@@ -237,13 +237,13 @@
                                             n/a
                                         <?endif?>
                                     </td>
-                    
+
                                     <?if(core::config('advertisement.count_visits')==1):?>
                                         <td class="hidden-xs"><?=$ad->count_ad_hit();?></td>
                                     <?endif?>
-                    
+
                                     <td><?= Date::format($ad->published, core::config('general.date_format'))?></td>
-                
+
                                 </tr>
                             <?endforeach?>
                         </tbody>
