@@ -81,10 +81,22 @@ class Valid extends Kohana_Valid{
             else
                 $banned_domains = File::read($file);
         }
-        else//get the domains from the file
+        else
+        {
+            //get the domains from the file
             $banned_domains = File::read($file);
+        }
 
-        return json_decode($banned_domains);
+        $banned_domains = json_decode($banned_domains);
+
+        if (!empty(core::config('general.disallowed_email_domains')))
+        {
+            $disallowed_email_domains = explode(',', core::config('general.disallowed_email_domains'));
+
+            $banned_domains = $disallowed_email_domains + $banned_domains;
+        }
+
+        return $banned_domains;
     }
 
     /**

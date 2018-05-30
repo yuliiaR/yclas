@@ -33,6 +33,9 @@ class Controller_Panel_Update extends Auth_Controller {
             array( 'config_key'     => 'bitpay_public_key',
                     'group_name'     => 'payment',
                     'config_value'   => ''),
+            array( 'config_key'     => 'disallowed_email_domains',
+                    'group_name'     => 'general',
+                    'config_value'   => ''),
             );
 
         Model_Config::config_array($configs);
