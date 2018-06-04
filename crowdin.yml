@@ -1,0 +1,3 @@
+files:
+  - source: '*.php'
+    translation: /languages/%locale_with_underscore%/LC_MESSAGES/
